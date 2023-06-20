@@ -9,10 +9,29 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth/mongodb-adapter": "^1.0.0",
+    "@reduxjs/toolkit": "^1.9.5",
+    "axios": "^1.4.0",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.5",
+    "formik": "^2.4.2",
+    "mongodb": "^5.6.0",
+    "mongoose": "^7.2.4",
     "next": "13.4.5",
+    "next-auth": "^4.22.1",
+    "next-connect": "^1.0.0",
+    "next-redux-wrapper": "^8.1.0",
+    "nodemailer": "^6.9.3",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-icons": "^4.9.0",
+    "react-redux": "^8.1.0",
+    "redux": "^4.2.1",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.4.2",
+    "sass": "^1.63.3",
+    "yarn": "^1.22.19",
+    "yup": "^1.2.0"
   }
 }
