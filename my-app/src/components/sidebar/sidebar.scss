@@ -1,0 +1,105 @@
+.sidebar{
+
+  flex:1;
+  border-right: 0.5px solid rgb(161, 40, 157);
+  min-height: 100vh;
+  background-color: #15202b;; //change dark/white mode
+
+  .top{
+    height: 50px;
+    display: flex;
+    
+    .logo{
+      font-size: 15px;
+      font-weight: bold;
+      color: white;
+      margin-left: 10px;
+      margin-top: 5px;
+    }
+
+    .menu{
+      margin-top: 5px;
+      margin-left: 50px;
+      color: white;
+      &:hover{
+        color: #0091ea;
+        cursor: pointer;
+      }
+    }
+  }
+
+  hr{
+    height: 0;
+    border: 0.5px solid #6439ff;
+  }
+
+  .image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    img{
+      height: 100px;
+      width: 100px;
+      border-radius: 360px;
+    }
+
+    .name{
+      margin-top: 5px;
+      font-size: 15px;
+      font-weight: 600;
+      color: white;
+    }
+
+    .role{
+      color:#0091ea;
+    }
+  }
+
+  .center{
+
+    padding-left: 10px;
+    
+    ul{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      .title{
+        font-size: 10px;
+        font-weight: bold;
+        color: white;
+        margin-top: 15px;
+        margin-bottom: 5px;
+      }
+
+      li{
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        cursor: pointer;
+        
+        &:hover{
+          span, .icon{
+            color: #0091ea;
+          }
+        }
+        
+        .icon{
+          font-size: 20px;
+          color: white;
+          margin-right: 10px;
+        }
+
+        span{
+          font-size: 15px;
+          font-weight: bold;
+          color: #888;
+        }
+      }
+    }
+    
+  }
+
+}
