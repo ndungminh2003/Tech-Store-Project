@@ -1,0 +1,103 @@
+.featured{
+
+  flex: 2;
+  color: white;
+  -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  border-radius: 10px;
+  height: 20em;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+
+  .top{
+    margin-top: 5px;
+    margin-left: 5px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+
+    .title{
+      color: rgb(205, 166, 36);
+      font-weight: bold;
+    }
+
+    .icon{
+      color: gray;
+      cursor: pointer;
+      &:hover{
+        color: #0091ea;
+      }
+    }
+  }
+
+  .bottom{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+
+    .featureChart{
+      margin-top: 5px;
+      margin-bottom: 5px;
+      height: 10em;
+      width: 10em;
+    }
+
+    .title{
+      font-weight: bold;
+      font-size: 14px;
+      color: gray;
+    }
+
+    .amount{
+      font-weight: bold;
+      color: green;
+
+    }
+
+  }
+
+  .summary{
+    margin-top: 10px;
+    display: flex;
+    font-size: 14px;
+    justify-content: space-between;
+  
+    .item{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .itemTitle{
+        color: gray;
+      }
+      
+
+      .result{
+        margin-top: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &.positive{
+          color: green;
+        }
+
+        &.negative{
+          color: red;
+        }
+      }
+      
+    }
+  }
+
+
+
+
+}

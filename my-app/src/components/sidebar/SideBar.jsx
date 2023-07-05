@@ -6,12 +6,10 @@ import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import CategoryIcon from '@mui/icons-material/Category';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 import Inventory2Icon from '@mui/icons-material/Inventory2';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import SettingsIcon from '@mui/icons-material/Settings';
-import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
-import myImg from './admin.png'
+import avatar from './admin.png'
+import LogoutIcon from '@mui/icons-material/Logout';
+import { Link } from 'react-router-dom';
 
 export default function SideBar() {
   return (
@@ -20,11 +18,10 @@ export default function SideBar() {
       <div className="top">
         <span className="logo">TECH STORE</span>
         <span className="menu"><MenuIcon /></span>
-
       </div>
 
       <div className="image">
-        <img src={myImg} alt="admin" />
+        <img src={avatar} alt="avatar" />
         <span className="name">N.D.Minh</span>
         <span className="role">Admin</span>
       </div>
@@ -35,6 +32,7 @@ export default function SideBar() {
           <p className="title">MAIN</p>
           <li>
             <HomeIcon className="icon"/>
+            
             <span>Dashbroad</span>  
           </li>
 
@@ -71,27 +69,11 @@ export default function SideBar() {
             <span>Orders</span>  
           </li>
 
-        
-          {/* <p className="title">USER</p>
-          <li>
-            <NotificationsActiveIcon className="icon"/>
-            <span>Notifications</span>  
-          </li>
-
-          <li>
-            <AccountCircleIcon className="icon"/>
-            <span>Profile</span>  
-          </li>
-
-          <li>
-            <SettingsIcon className="icon"/>
-            <span>Settings</span>  
-          </li> 
-
           <li>
             <LogoutIcon className="icon"/>
-            <span>Logout</span>  
-          </li> */}
+            <span>Log Out</span>  
+          </li>
+          
 
         </ul>
 

@@ -1,10 +1,10 @@
 .sidebar{
 
   flex:1;
-  border-right: 0.5px solid rgb(161, 40, 157);
   min-height: 100vh;
+  border-right: solid rgba(193, 153, 11, 0.5) 1px;
   background-color: #15202b;; //change dark/white mode
-
+  
   .top{
     height: 50px;
     display: flex;
@@ -19,7 +19,7 @@
 
     .menu{
       margin-top: 5px;
-      margin-left: 50px;
+      margin-left: 65px;
       color: white;
       &:hover{
         color: #0091ea;
@@ -27,6 +27,7 @@
       }
     }
   }
+  
 
   hr{
     height: 0;
@@ -60,6 +61,7 @@
   .center{
 
     padding-left: 10px;
+    font-size: 15px;
     
     ul{
       list-style: none;
@@ -93,7 +95,6 @@
         }
 
         span{
-          font-size: 15px;
           font-weight: bold;
           color: #888;
         }

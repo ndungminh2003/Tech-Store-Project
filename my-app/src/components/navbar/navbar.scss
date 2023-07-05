@@ -1,0 +1,77 @@
+.navbar{
+
+  display: flex;
+  align-items: center;
+  height: 50px;
+  // background-color: #15202b; // container also have a background with this color
+  font-size: 15px;
+  
+
+  .container{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+
+    .search{
+      display: flex;
+      align-items: center;
+      
+      color: white;
+      
+      input{
+        border: none;
+        outline: none;
+      }
+
+      .icon{
+        &:hover{
+          color: #0091ea;
+          cursor: pointer;
+        }
+      }
+      
+    }
+    
+    .items{
+      
+      color: white;
+      display: flex;
+      align-items: center;
+
+      .icon{
+        font-size: 20px;
+        margin-left: 10px;  
+        &:hover{
+          color: #0091ea;
+          cursor: pointer;
+        }
+        
+      }
+
+      .item{
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        .counter{
+          height: 15px;
+          width: 15px;
+          background-color: red;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: bold;
+          position: absolute;
+          top: -5px;
+          right: -5px;
+        }
+      }
+      
+
+    }
+  }
+
+}
