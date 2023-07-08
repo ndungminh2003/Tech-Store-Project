@@ -4,8 +4,11 @@ import Image from "next/image";
 import styles from "@/styles/Home.module.scss";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import Main from "@/components/home/main";
+import FlashDeals from "@/components/home/flashDeals";
 import axios from "axios";
 import { useSession, signIn, signOut } from "next-auth/react";
+import Category from "@/components/home/category";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -15,7 +18,35 @@ export default function Home() {
   return (
     <div>
       <Header />
-      <Footer />
+      <div className={styles.home}>
+        <div className={styles.container}>
+          <Main />
+          <FlashDeals />
+          <div className={styles.home__category}>
+            {/* <Category
+              header="Laptop"
+              products={_laptop}
+              background="#5a31f4;"
+            />
+            <Category
+              header="Laptop"
+              products={asus_laptop}
+              background="#5a31f4;"
+            />
+            <Category
+              header="Laptop"
+              products={asus_laptop}
+              background="#5a31f4;"
+            />
+            <Category
+              header="Laptop"
+              products={asus_laptop}
+              background="#5a31f4;"
+            /> */}
+          </div>
+        </div>
+        <Footer />
+      </div>
     </div>
   );
 }
