@@ -50,7 +50,7 @@ const Addcolor = () => {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      title: colorName || "",
+      title: colorName || "#000000",
     },
     validationSchema: schema,
     onSubmit: (values) => {

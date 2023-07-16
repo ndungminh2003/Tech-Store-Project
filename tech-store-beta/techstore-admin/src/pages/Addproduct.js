@@ -19,6 +19,8 @@ import {
   updateAProduct,
   resetState,
 } from "../features/product/productSlice";
+import chroma from "chroma-js";
+
 let schema = yup.object().shape({
   title: yup.string().required("Title is Required"),
   description: yup.string().required("Description is Required"),
@@ -33,6 +35,8 @@ let schema = yup.object().shape({
   quantity: yup.number().required("Quantity is Required"),
 });
 
+const cl = chroma("#FF0000").name();
+
 const defaultProductState = {
   title: "",
   description: "",
@@ -40,9 +44,9 @@ const defaultProductState = {
   brand: "",
   category: "",
   tags: "",
-  color: "",
+  color: [],
   quantity: "",
-  images: "",
+  images: [],
 };
 
 const Addproduct = () => {
@@ -73,6 +77,7 @@ const Addproduct = () => {
     productName,
   } = newProduct;
   const product = productName !== undefined ? productName : defaultProductState;
+
   useEffect(() => {
     if (getProductId !== undefined) {
       dispatch(getAProduct(getProductId));
@@ -96,7 +101,7 @@ const Addproduct = () => {
   colorState.forEach((i) => {
     coloropt.push({
       label: i.title,
-      value: i._id,
+      value: i.title,
     });
   });
   const img = [];
@@ -108,8 +113,8 @@ const Addproduct = () => {
   });
 
   useEffect(() => {
-    formik.values.color = color ? color : " ";
-    formik.values.images = img;
+    formik.setFieldValue("color", color || []); // Use setFieldValue to update the color property
+    formik.setFieldValue("images", img);
   }, [color]);
   const formik = useFormik({
     enableReinitialize: true,
@@ -253,6 +258,7 @@ const Addproduct = () => {
             allowClear
             className="w-100"
             placeholder="Select colors"
+            value={formik.values.color}
             defaultValue={color}
             onChange={(i) => handleColors(i)}
             options={coloropt}

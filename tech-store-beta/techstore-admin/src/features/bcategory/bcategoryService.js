@@ -35,7 +35,6 @@ const deleteBlogCategory = async (id) => {
 const bCategoryService = {
   getBlogCategories,
   createBlogCategory,
-  deleteBlogCategory,
   getBlogCategory,
   deleteBlogCategory,
   updateBlogCategory,

@@ -33,7 +33,7 @@ const initialState = {
   message: "",
 };
 export const uploadSlice = createSlice({
-  name: "imaegs",
+  name: "images",
   initialState,
   reducers: {},
   extraReducers: (builder) => {

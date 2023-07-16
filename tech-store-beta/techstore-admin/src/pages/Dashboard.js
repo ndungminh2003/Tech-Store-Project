@@ -144,7 +144,7 @@ const Dashboard = () => {
           </div>
           <div className="d-flex flex-column align-items-end">
             <h6 className="green">
-              <BsArrowDownRight /> 32%
+              <BsArrowUpRight /> 32%
             </h6>
             <p className="mb-0 desc">Compared To April 2022</p>
           </div>
