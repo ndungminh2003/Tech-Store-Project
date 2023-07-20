@@ -16,7 +16,8 @@ const Style = {
   borderRadius: 5,
   width:350, 
   height:500,
-  boxShadow: '-1px 1px 5px 0px rgba(128,128,128,1)'
+  boxShadow: '-1px 1px 5px 0px rgba(128,128,128,1)',
+  margin: 2, 
 
 }
 

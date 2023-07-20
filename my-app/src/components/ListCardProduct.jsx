@@ -45,14 +45,14 @@ export default function ListCardProduct({pros}) {
          
       </div>
 
-      <div className=' flex flex-row justify-between p-4 '>
+      <div className=' flex flex-row justify-between p-4 flex-wrap'>
         <CardProduct />
         <CardProduct />
         <CardProduct />
         <CardProduct />
       </div>
 
-      <div className=' flex flex-row justify-between p-4'>
+      <div className=' flex flex-row justify-between p-4 flex-wrap'>
         <CardProduct />
         <CardProduct />
         <CardProduct />

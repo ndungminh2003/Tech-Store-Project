@@ -29,7 +29,7 @@ export default function SearchBar() {
 
   return (
 
-    <form className=' w-96 relative min-w-[200px]'>
+    <form className=' w-96 relative min-w-[250px]'>
 
       <div className=' relative'>
         <input type="search" placeholder='Search...' className=' w-full p-4 rounded-full' onChange={handleSearch} />
