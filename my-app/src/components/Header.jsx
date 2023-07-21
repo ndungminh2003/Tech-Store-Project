@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { NavLink, Link } from 'react-router-dom'
 import SearchBar from './SearchBar';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
