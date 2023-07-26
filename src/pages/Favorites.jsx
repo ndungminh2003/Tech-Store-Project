@@ -8,9 +8,9 @@ export default function ProductView() {
         {" "}
         Lorem ipsum dolor sit amet.{" "}
       </button>
-      <div className="flex justify-between clear-right p-10">
+      <div className="flex justify-between p-10 clear-right">
         <div className="product-detail">
-          <div className="flex justify-between pb-5 product-detail-top">
+          <div className="product-detail-top flex justify-between pb-5">
             <div className="product-name pl-5 font-[600]">Product's name</div>
             <div className="product-evaluate pr-[200px]">
               ✩ ✩ ✩ ✩
@@ -25,7 +25,7 @@ export default function ProductView() {
               <FavoriteIcon />
                 {/* phần này mình ko kiếm được icon thích hợp để đưa vào */}
               </div>
-              <div className="flex product-deatail-content">
+              <div className="product-deatail-content flex">
                 <div className="product-deatail-image pl-[47px] pt-[52px] pb-[52px] pr-[30px]">
                   <img
                     src="https://i.pinimg.com/564x/81/3b/f2/813bf2b968dad8dfa2ec9a85560da8cb.jpg"
@@ -51,7 +51,7 @@ export default function ProductView() {
           </div>
         </div>
         <div className="product-option w-[475px] pt-[75px]">
-          <div className="flex flex-col product-option-price">
+          <div className="product-option-price flex flex-col">
             <div className="text-[20px]">23452352345 đ</div>
             <small className="text-[#adadad]">
               {" "}
@@ -78,8 +78,8 @@ export default function ProductView() {
             </div>
           </div>
           <div className="product-option-discount text-[18px]">
-            <strong className="text-[20px]">Discount: </strong>
-             No discount code
+            <strong className="text-[20px]">Discount:</strong>
+            No discount code
           </div>
           <div className="product-option-buy-cart flex gap-[42px] mt-10">
             <button className="bg-[#ccc] w-[519px] h-[50px] rounded-[10px]">

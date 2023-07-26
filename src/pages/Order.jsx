@@ -10,7 +10,7 @@ export default function CardProduct() {
           <div className="order-info bg-white pt-[117px]">
             <form action="">
               <div className="order-info-user pl-[48px] pr-[86px]">
-                <div> Customer information </div>
+                <div> customer information </div>
                 <input
                   type="text"
                   placeholder="Name"
@@ -76,7 +76,7 @@ export default function CardProduct() {
                       </div>
                       <div className="pt-2 order-group">
                         <input type="radio" id="three" className="mr-2" />
-                        <label htmlFor="three">transfer or Mobile banking</label>
+                        <label htmlFor="three">Transfer or Mobile banking</label>
                       </div>
                     </div>
                   </div>
