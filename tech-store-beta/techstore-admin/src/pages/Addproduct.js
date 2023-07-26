@@ -35,8 +35,6 @@ let schema = yup.object().shape({
   quantity: yup.number().required("Quantity is Required"),
 });
 
-const cl = chroma("#FF0000").name();
-
 const defaultProductState = {
   title: "",
   description: "",
@@ -54,20 +52,31 @@ const Addproduct = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const getProductId = location.pathname.split("/")[3];
+  const newProduct = useSelector((state) => state.product);
+  const brandState = useSelector((state) => state.brand.brands);
+  const catState = useSelector((state) => state.pCategory.pCategories);
+  const colorState = useSelector((state) => state.color.colors);
+  const uploadImgState = useSelector((state) => state.upload.images);
+
   const [color, setColor] = useState([]);
-  const [images, setImages] = useState([]);
-  // console.log(color);
+  const [images, setImages] = useState(newProduct.productName?.images || []);
   useEffect(() => {
+    setImages(newProduct.productName?.images || []);
+  }, [newProduct.productName?.images]);
+  useEffect(() => {
+    dispatch(resetState());
     dispatch(getBrands());
     dispatch(getCategories());
     dispatch(getColors());
   }, []);
+  useEffect(() => {
+    if (getProductId !== undefined) {
+      dispatch(getAProduct(getProductId));
+    } else {
+      dispatch(resetState());
+    }
+  }, [getProductId]);
 
-  const brandState = useSelector((state) => state.brand.brands);
-  const catState = useSelector((state) => state.pCategory.pCategories);
-  const colorState = useSelector((state) => state.color.colors);
-  const imgState = useSelector((state) => state.upload.images);
-  const newProduct = useSelector((state) => state.product);
   const {
     isSuccess,
     isError,
@@ -77,14 +86,6 @@ const Addproduct = () => {
     productName,
   } = newProduct;
   const product = productName !== undefined ? productName : defaultProductState;
-
-  useEffect(() => {
-    if (getProductId !== undefined) {
-      dispatch(getAProduct(getProductId));
-    } else {
-      dispatch(resetState());
-    }
-  }, [getProductId]);
   useEffect(() => {
     if (isSuccess && createdProduct) {
       toast.success("Product Added Successfullly!");
@@ -104,32 +105,22 @@ const Addproduct = () => {
       value: i.title,
     });
   });
-  const img = [];
-  imgState.forEach((i) => {
-    img.push({
-      public_id: i.public_id,
-      url: i.url,
-    });
-  });
+  // product.images.forEach((i) => {
+  //   img.push({
+  //     public_id: i?.public_id,
+  //     url: i.url,
+  //   });
+  // });
 
   useEffect(() => {
-    formik.setFieldValue("color", color || []); // Use setFieldValue to update the color property
-    formik.setFieldValue("images", img);
+    formik.setFieldValue("color", color || []);
   }, [color]);
+  useEffect(() => {
+    formik.setFieldValue("images", images || []);
+  }, [images]);
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: product,
-    // initialValues: {
-    //   title: productName.title || "",
-    //   description: productName.description || "",
-    //   price: productName.price || "",
-    //   brand: productName.brand || "",
-    //   category: productName.category || "",
-    //   tags: "",
-    //   color: productName.color || "",
-    //   quantity: productName.quantity || "",
-    //   images: productName.images || "",
-    // },
     validationSchema: schema,
     onSubmit: (values) => {
       if (getProductId !== undefined) {
@@ -138,19 +129,35 @@ const Addproduct = () => {
         dispatch(updateAProduct(data));
         dispatch(resetState());
       } else {
+        console.log(values);
         dispatch(createProduct(values));
         formik.resetForm();
         setColor(null);
         setTimeout(() => {
           dispatch(resetState());
-        }, 3000);
+        }, 1000);
       }
     },
   });
   const handleColors = (e) => {
     setColor(e);
-    // console.log(color);
   };
+  const handleImages = async (acceptedFiles) => {
+    dispatch(uploadImg(acceptedFiles)).then((res) => {
+      setImages((prevImages) => [...prevImages, ...res.payload]);
+    });
+  };
+
+  const handleDeleteImage = (image, index) => {
+    if (image.public_id !== undefined) {
+      dispatch(delImg(image.public_id));
+    }
+    const updatedImages = [...images];
+    updatedImages.splice(index, 1);
+    console.log("delete", updatedImages);
+    setImages(updatedImages);
+  };
+
   return (
     <div>
       <h3 className="mb-4 title">
@@ -278,13 +285,11 @@ const Addproduct = () => {
             {formik.touched.quantity && formik.errors.quantity}
           </div>
           <div className="bg-white border-1 p-5 text-center">
-            <Dropzone
-              onDrop={(acceptedFiles) => dispatch(uploadImg(acceptedFiles))}
-            >
+            <Dropzone onDrop={(acceptedFiles) => handleImages(acceptedFiles)}>
               {({ getRootProps, getInputProps }) => (
                 <section>
                   <div {...getRootProps()}>
-                    <input {...getInputProps()} />
+                    <input {...getInputProps({ multiple: true })} />
                     <p>
                       Drag 'n' drop some files here, or click to select files
                     </p>
@@ -294,16 +299,16 @@ const Addproduct = () => {
             </Dropzone>
           </div>
           <div className="showimages d-flex flex-wrap gap-3">
-            {imgState?.map((i, j) => {
+            {images?.map((i, j) => {
               return (
-                <div className=" position-relative" key={j}>
+                <div className=" position-relative d-flex" key={j}>
+                  <img src={i.url} alt="" width={200} height={200} />
                   <button
                     type="button"
-                    onClick={() => dispatch(delImg(i.public_id))}
-                    className="btn-close position-absolute"
-                    style={{ top: "10px", right: "10px" }}
+                    onClick={() => handleDeleteImage(i, j)}
+                    className="btn-close position-relative"
+                    style={{ alignSelf: "start" }}
                   ></button>
-                  <img src={i.url} alt="" width={200} height={200} />
                 </div>
               );
             })}

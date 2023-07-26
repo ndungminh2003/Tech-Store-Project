@@ -29,7 +29,7 @@ const updateProduct = async (product) => {
     },
     config
   );
-  // console.log(product.productData);
+  console.log(product.productData);
   return response.data;
 };
 

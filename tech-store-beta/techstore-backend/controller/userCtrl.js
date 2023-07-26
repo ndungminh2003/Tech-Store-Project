@@ -13,28 +13,14 @@ const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const sendEmail = require("./emailCtrl");
 
-// Create a User ----------------------------------------------
-
 const createUser = asyncHandler(async (req, res) => {
-  /**
-   * TODO:Get the email from req.body
-   */
   const email = req.body.email;
-  /**
-   * TODO:With the help of email find the user exists or not
-   */
   const findUser = await User.findOne({ email: email });
 
   if (!findUser) {
-    /**
-     * TODO:if user not found user create a new user
-     */
     const newUser = await User.create(req.body);
     res.json(newUser);
   } else {
-    /**
-     * TODO:if user found then thow an error: User already exists
-     */
     throw new Error("User Already Exists");
   }
 });
@@ -42,7 +28,6 @@ const createUser = asyncHandler(async (req, res) => {
 // Login a user
 const loginUserCtrl = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
-  // check if user exists or not
   const findUser = await User.findOne({ email });
   if (findUser && (await findUser.isPasswordMatched(password))) {
     const refreshToken = await generateRefreshToken(findUser?._id);
@@ -75,7 +60,6 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
 
 const loginAdmin = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
-  // check if user exists or not
   const findAdmin = await User.findOne({ email });
   if (findAdmin.role !== "admin") throw new Error("Not Authorised");
   if (findAdmin && (await findAdmin.isPasswordMatched(password))) {
@@ -134,7 +118,7 @@ const logout = asyncHandler(async (req, res) => {
       httpOnly: true,
       secure: true,
     });
-    return res.sendStatus(204); // forbidden
+    return res.sendStatus(204);
   }
   await User.findOneAndUpdate(refreshToken, {
     refreshToken: "",
@@ -143,7 +127,7 @@ const logout = asyncHandler(async (req, res) => {
     httpOnly: true,
     secure: true,
   });
-  res.sendStatus(204); // forbidden
+  res.sendStatus(204);
 });
 
 // Update a user
@@ -347,7 +331,6 @@ const userCart = asyncHandler(async (req, res) => {
   try {
     let products = [];
     const user = await User.findById(_id);
-    // check if user already have product in cart
     const alreadyExistCart = await Cart.findOne({ orderby: user._id });
     if (alreadyExistCart) {
       alreadyExistCart.remove;
