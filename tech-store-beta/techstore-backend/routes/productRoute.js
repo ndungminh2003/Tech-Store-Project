@@ -7,11 +7,14 @@ const {
   deleteProduct,
   addToWishlist,
   rating,
+  searchProduct,
 } = require("../controller/productCtrl");
 const { isAdmin, authMiddleware } = require("../middlewares/authMiddleware");
 const router = express.Router();
 
 router.post("/", authMiddleware, isAdmin, createProduct);
+
+router.get("/search/:query", searchProduct);
 
 router.get("/:id", getaProduct);
 router.put("/wishlist", authMiddleware, addToWishlist);

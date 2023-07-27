@@ -14,7 +14,7 @@ export default function Home() {
     dispatch(getProducts());
   }, []);
   const productState = useSelector((state) => state.product.products);
-  console.log(productState)
+  // console.log(productState)
   // const productState = {name: 'iphone', price: 1000, brand: 'apple', image: 'https://cdn.tgdd.vn/Products/Images/42/213031/iphone-13-pro-max-xanh-duong-600x600-600x600.jpg'};
   return (
 

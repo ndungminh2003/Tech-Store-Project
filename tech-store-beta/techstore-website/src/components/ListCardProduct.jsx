@@ -28,12 +28,12 @@ const brands = [
 ]
 
 export default function ListCardProduct(props) {
-  console.log(props.productState);
+  // console.log(props.productState);
   const [products, setProducts] = useState(props.productState);
   useEffect(() => {
     setProducts(props.productState);
   }, [props.productState]);
-  console.log(products);
+  // console.log(products);
   return (
     <div className=' flex flex-col'>
       

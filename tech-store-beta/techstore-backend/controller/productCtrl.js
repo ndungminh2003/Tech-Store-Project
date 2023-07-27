@@ -54,6 +54,27 @@ const getaProduct = asyncHandler(async (req, res) => {
   }
 });
 
+const searchProduct = asyncHandler(async (req, res) => {
+  const { query } = req.params;
+  console.log(query);
+  try {
+    const regexPattern = query
+      .split(" ")
+      .map((word) => `(?=.*\\b${word}\\b)`)
+      .join("");
+    console.log(regexPattern);
+    const findProduct = await Product.find({
+      title: { $regex: new RegExp(regexPattern, "i") },
+    });
+    const totalProducts = await Product.countDocuments({
+      title: { $regex: new RegExp(regexPattern, "i") },
+    });
+    res.json({ findProduct, totalProducts, keyword: query });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
 const getAllProduct = asyncHandler(async (req, res) => {
   try {
     // Filtering
@@ -197,4 +218,5 @@ module.exports = {
   deleteProduct,
   addToWishlist,
   rating,
+  searchProduct,
 };

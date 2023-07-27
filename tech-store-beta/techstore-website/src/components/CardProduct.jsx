@@ -23,13 +23,13 @@ const Style = {
 
 
 export default function CardProduct(props) {
-  console.log("props", props);
-  console.log(props?.images);
+  // console.log("props", props);
+  // console.log(props?.images);
   const  [images, setImages] = useState(props.images);
   useEffect(() => {
     setImages(props.images);
   }, [props.images]);
-  console.log( "image", images);
+  // console.log( "image", images);
   return (
 
       <Card sx={Style} >
@@ -37,8 +37,8 @@ export default function CardProduct(props) {
         <div className=' flex flex-col'> 
           
           <CardMedia
-            sx={{ width: 250, height: 260, objectFit: 'contain', display: 'block', marginLeft: 'auto', marginRight: 'auto' }}
-            image={images[0]?.url || "https://boschbrandstore.com/wp-content/uploads/2019/01/no-image.png"}
+            sx={{ width: 260, height: 260, objectFit: 'contain', display: 'block', marginLeft: 'auto', marginRight: 'auto' }}
+            image={images[0]?.url || "https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/1/0/1024_10_.png"}
             
             title="Laptop"
           />

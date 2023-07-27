@@ -15,6 +15,7 @@ export const uploadImg = createAsyncThunk(
     }
   }
 );
+
 export const delImg = createAsyncThunk(
   "delete/images",
   async (id, thunkAPI) => {

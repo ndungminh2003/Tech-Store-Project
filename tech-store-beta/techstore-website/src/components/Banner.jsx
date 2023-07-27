@@ -107,7 +107,7 @@ export default function Banner() {
     }
   }, [currentIndex]);
 
-  console.log(currentIndex);
+  // console.log(currentIndex);
   
 
   const prevSlide = () =>{

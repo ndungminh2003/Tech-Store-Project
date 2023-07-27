@@ -7,6 +7,13 @@ const getProducts = async () => {
 
   return response.data;
 };
+
+const searchProducts = async (query) => {
+  const response = await axios.get(`${base_url}product/search/${query}`);
+  console.log(response.data);
+  return response.data;
+};
+
 const createProduct = async (product) => {
   const response = await axios.post(`${base_url}product/`, product, config);
 
@@ -51,6 +58,7 @@ const productService = {
   updateProduct,
   getProduct,
   deleteProduct,
+  searchProducts,
 };
 
 export default productService;
