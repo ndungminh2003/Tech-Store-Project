@@ -1,6 +1,22 @@
 import React, { useState } from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import StarIcon from "@mui/icons-material/Star";
+import { Rating } from "@mui/material";
+import { Link } from "react-router-dom";
+import { ReactComponent as GiftBoxIcon } from "../assets/giftbox.svg";
+
+import BoughtTogether from "../components/BoughtTogether/BoughtTogether";
+import ProductInfor from "../components/ProductInfor/ProductInfor";
+import ProductSimilar from "../components/ProductSimilar/ProductSimilar";
+import ContentProduct from "../components/ContentProduct/ContentProduct";
+import { Autoplay, Navigation, Pagination } from "swiper";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 export default function ProductView() {
   const lineStyle = {
@@ -40,8 +56,38 @@ export default function ProductView() {
     }, 3000);
   };
 
+  const listImgThumb = [
+    "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_green_211119.jpg",
+    "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_burgundy_211119.jpg",
+    "https://cdn2.cellphones.com.vn/x/media/catalog/product/1/5/15.1.png",
+    "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_phantomwhite_211119.jpg",
+    "https://cdn2.cellphones.com.vn/x/media/catalog/product/1/5/15.6.png",
+  ];
+
+  const listImgOrigin = [
+    "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_green_211119.jpg",
+    "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_burgundy_211119.jpg",
+    "https://cdn2.cellphones.com.vn/x/media/catalog/product/1/5/15.1.png",
+    "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_phantomwhite_211119.jpg",
+    "https://cdn2.cellphones.com.vn/x/media/catalog/product/1/5/15.6.png",
+  ];
+  const pagination = {
+    clickable: true,
+    renderBullet: function (index, className) {
+      console.log(index);
+      return (
+        '<img class="w-[50px] h-[50px] cursor-pointer rounded-md overflow-hidden' +
+        className +
+        '" src="' +
+        listImgThumb[index] +
+        '">' +
+        "</img>"
+      );
+    },
+  };
+
   return (
-    <div className="container-product-view">
+    <div className="max-w-[1200px] m-auto">
       {showMessage && (
         <div className="fixed inset-0 h-[60px] z-10 flex top-[73px] items-center justify-center">
           <div className="flex px-4 py-2 text-center text-white bg-green-500 rounded-lg shadow-lg w-max">
@@ -63,7 +109,7 @@ export default function ProductView() {
           </div>
         </div>
       )}
-      <div className="flex justify-between p-10 pl-28 pr-28">
+      {/* <div className="flex justify-between p-10 pl-28 pr-28">
         <div className="product-detail">
           <div className="product-detail-top flex gap-[30px] pb-5">
             <h1 className="product-name line-clamp-3 box-orient-vertical text-[#0a263c] line-height-[2rem] font-bold text-lg overflow-hidden ml-10">
@@ -77,7 +123,7 @@ export default function ProductView() {
                 <StarIcon className="text-yellow-300" />
               </div>
               <div className="product-icon-star ">
-                <StarIcon className="text-yellow-300" />
+                <StarIcon cl assName="text-yellow-300" />
               </div>
               <div className="product-icon-star ">
                 <StarIcon className="text-yellow-300" />
@@ -240,8 +286,194 @@ export default function ProductView() {
             </button>
           </div>
         </div>
-      </div>
-      <div className="p-10 mb-5 product-view-comment pl-28 pr-28">
+      </div> */}
+
+      <section>
+        <div className="flex gap-1 mt-[30px]">
+          <h1 className="text-lg text-[#0a263c] font-bold">
+            Samsung Galaxy S23 Ultra 256GB
+          </h1>
+          <Rating name="read-only" value={5} readOnly />
+          <p>1 đánh giá</p>
+        </div>
+        <hr className="my-[15px] border-none" />
+        <div className="flex">
+          <div className="w-[60%]">
+            <Swiper
+              pagination={pagination}
+              modules={[Pagination]}
+              className="mySwiper !border !border-gray-400 rounded-xl"
+            >
+              <FavoriteBorderIcon className="absolute top-2 left-2 !cursor-pointer z-20 text-[#d70018] hover:animate-ping"></FavoriteBorderIcon>
+              {listImgOrigin.map((img) => {
+                return (
+                  <SwiperSlide>
+                    <img
+                      src={img}
+                      alt=""
+                      className="w-[398px] h-[398px] m-auto"
+                    />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+
+            <div></div>
+
+            <ProductInfor />
+            <BoughtTogether />
+          </div>
+          <div className="w-[40%] pl-[20px]">
+            <div className="mb-[10px]">
+              <div className="flex gap-[10px] w-full flex-nowrap">
+                <Link className="border border-[#d70018] w-[calc(100%/3-10px)] px-1 py-[5px] text-xs flex flex-col text-center gap-1 rounded-lg">
+                  <strong>12GB - 1TB</strong>
+                  <span>35.990.000 đ</span>
+                </Link>
+                <Link className="border border-[#d1d5db] w-[calc(100%/3-10px)] px-1 py-[5px] text-xs flex flex-col text-center gap-1 rounded-lg">
+                  <strong>12GB - 512GB</strong>
+                  <span>29.990.000 đ</span>
+                </Link>
+                <Link className="border border-[#d1d5db] w-[calc(100%/3-10px)] px-1 py-[5px] text-xs flex flex-col text-center gap-1 rounded-lg">
+                  <strong>8GB - 256GB</strong>
+                  <span>26.990.000 đ</span>
+                </Link>
+              </div>
+            </div>
+            <div>
+              <div>
+                <p className="text-[#444] mb-[10px] text-sm font-bold">
+                  Chọn màu để xem giá và chi nhánh có hàng
+                </p>
+              </div>
+              <div>
+                <ul className="flex flex-wrap gap-[10px] w-full">
+                  <li className="w-[calc(100%/3-10px)]">
+                    <Link className="border border-[#d1d5db]  px-1 py-[5px] text-xs flex text-center gap-1 rounded-lg">
+                      <img
+                        src="https://cdn2.cellphones.com.vn/50x50,webp,q100/media/catalog/product/s/2/s23-ultra-tim_5.png"
+                        alt="img_product"
+                        className="w-[30px] h-[30px]"
+                      />
+                      <div className="flex flex-col">
+                        <strong>Trắng</strong>
+                        <span>26.990.000 đ</span>
+                      </div>
+                    </Link>
+                  </li>
+                  <li className="w-[calc(100%/3-10px)]">
+                    <Link className="border border-[#d1d5db] px-1 py-[5px] text-xs flex text-center gap-1 rounded-lg">
+                      <img
+                        src="https://cdn2.cellphones.com.vn/50x50,webp,q100/media/catalog/product/s/2/s23-ultra-den_5.png"
+                        alt="img_product"
+                        className="w-[30px] h-[30px]"
+                      />
+                      <div className="flex flex-col">
+                        <strong>Xanh</strong>
+                        <span>26.990.000 đ</span>
+                      </div>
+                    </Link>
+                  </li>
+                  <li className="w-[calc(100%/3-10px)]">
+                    <Link className="border border-[#d1d5db] px-1 py-[5px] text-xs flex text-center gap-1 rounded-lg">
+                      <img
+                        src="https://cdn2.cellphones.com.vn/50x50,webp,q100/media/catalog/product/s/2/s23-ultra-kem_5.png"
+                        alt="img_product"
+                        className="w-[30px] h-[30px]"
+                      />
+                      <div className="flex flex-col">
+                        <strong>Đen</strong>
+                        <span>26.990.000 đ</span>
+                      </div>
+                    </Link>
+                  </li>
+                  <li className="w-[calc(100%/3-10px)]">
+                    <Link className="border border-[#d1d5db] px-1 py-[5px] text-xs flex text-center gap-1 rounded-lg">
+                      <img
+                        src="https://cdn2.cellphones.com.vn/50x50,webp,q100/media/catalog/product/s/2/s23-ultra-xanh_5.png"
+                        alt="img_product"
+                        className="w-[30px] h-[30px]"
+                      />
+                      <div className="flex flex-col">
+                        <strong>Tím</strong>
+                        <span>26.990.000 đ</span>
+                      </div>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <Link className="my-3 block">
+                <img
+                  src="https://cdn2.cellphones.com.vn/x120,webp,q100/https://dashboard.cellphones.com.vn/storage/product-banner-fold-flip-dat-hang.gif"
+                  alt="product_banner"
+                />
+              </Link>
+              <div className="rounded-[10px] overflow-hidden border border-[#fee2e2]">
+                <div className="flex items-center gap-[10px] p-2 bg-[#fee2e2]">
+                  <div className="w-5 fill-[#d70018] ">
+                    <GiftBoxIcon />
+                  </div>
+                  <h1 className="text-base text-[#d70018] font-semibold">
+                    Khuyến mãi
+                  </h1>
+                </div>
+                <div className="text-sm py-4 px-2 flex flex-col gap-4">
+                  <div className="flex gap-1">
+                    <p className="p-1 bg-[#cc0f35] text-white rounded-full w-5 h-5 text-[10px] flex items-center justify-center">
+                      1
+                    </p>
+                    <Link>
+                      Nhận ngay ưu đãi YouTube Premium dành cho chủ sở hữu
+                      Samsung Galaxy
+                    </Link>
+                  </div>
+                  <div className="flex gap-1">
+                    <p className="p-1 bg-[#cc0f35] text-white rounded-full w-5 h-5 text-[10px] flex items-center justify-center">
+                      2
+                    </p>
+                    <Link>
+                      Trả góp 12 tháng 0 lãi, 0đ trả trước qua Samsung Finance+
+                    </Link>
+                  </div>
+                  <div className="flex gap-1">
+                    <p className="p-1 bg-[#cc0f35] text-white rounded-full w-5 h-5 text-[10px] flex items-center justify-center">
+                      3
+                    </p>
+                    <Link>
+                      Tặng Sim 4G Mobifone siêu data - Miễn phí 12 tháng
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex gap-[10px] mt-[10px]">
+                <button className="w-[calc(100%-70px)] flex flex-col items-center text-white bg-[#f52f32] py-2 rounded-[10px]">
+                  <strong className="text-base">MUA NGAY</strong>
+                  <span className="text-sm">
+                    (Giao nhanh từ 2 giờ hoặc nhận tại cửa hàng)
+                  </span>
+                </button>
+                <button className="rounded-[10px] border-[2px] border-[#e04040] px-1">
+                  <img
+                    src="https://cdn2.cellphones.com.vn/50x,webp,q70/media/wysiwyg/add-to-cart.png"
+                    alt=""
+                    className="w-[24px] h-[30px] object-contain m-auto"
+                  />
+                  <span className="text-[7.5px] text-[#e04040] font-semibold">
+                    Thêm vào giỏ
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <ProductSimilar />
+      </section>
+      <ContentProduct />
+
+      {/* <div className="p-10 mb-5 product-view-comment pl-28 pr-28">
         <div className="p-3 rounded-[10px] shadow offset-x-0 offset-y-1 blur-2 spread-0.1 mb-15 w-[60%]">
           <h2 className="text-[1rem] font-[600]">
             Đánh giá & nhận xét Samsung Galaxy S23 Ultra 256GB
@@ -418,7 +650,7 @@ export default function ProductView() {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
