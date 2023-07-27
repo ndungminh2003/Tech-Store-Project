@@ -66,9 +66,9 @@ const orders = [
 
 export default function Purchase() {
   return (
-    <div className=' flex p-5 flex-1'>
+    <div className=' flex p-4 container mx-auto '>
       
-      <div className=' flex flex-col gap-20 w-1/6 min-w-[15rem]'>
+      <div className=' flex flex-col gap-20 w-1/6 min-w-[15rem] xxsm:hidden xsm:hidden sm:hidden'>
         <div className=' flex gap-2 text-lg items-center'>
           <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className=' cursor-pointer' sx={{ width: 80, height: 80 }}/>
           <div className=' flex flex-col items-center'>
@@ -102,13 +102,13 @@ export default function Purchase() {
       </div>
 
 
-      <div className=' flex flex-col w-5/6 gap-5 min-w-[50rem]'>
+      <div className=' flex flex-col gap-5 min-w-[36rem] w-full'>
         <div className=' flex text-2xl bg-slate-500 h-20 justify-between rounded-lg'>
           {/* Link */}
-          <span className=' flex justify-center items-center p-4 w-1/4 text-white cursor-pointer hover:bg-slate-600 hover:duration-500 hover:rounded-lg'>All</span>
-          <span className=' flex justify-center items-center p-4 w-1/4 text-white cursor-pointer hover:bg-slate-600 hover:duration-500 hover:rounded-lg'>Shipping</span>
-          <span className=' flex justify-center items-center p-4 w-1/4 text-white cursor-pointer hover:bg-slate-600 hover:duration-500 hover:rounded-lg'>Completed</span>
-          <span className=' flex justify-center items-center p-4 w-1/4 text-white cursor-pointer hover:bg-slate-600 hover:duration-500 hover:rounded-lg'>Canceled</span>
+          <span className=' flex justify-center items-center p-4 w-1/4 text-white cursor-pointer hover:bg-slate-600 hover:duration-500 hover:rounded-lg xxsm:text-lg xsm:text-lg sm:text-lg md:text-xl'>All</span>
+          <span className=' flex justify-center items-center p-4 w-1/4 text-white cursor-pointer hover:bg-slate-600 hover:duration-500 hover:rounded-lg xxsm:text-lg xsm:text-lg sm:text-lg md:text-xl'>Shipping</span>
+          <span className=' flex justify-center items-center p-4 w-1/4 text-white cursor-pointer hover:bg-slate-600 hover:duration-500 hover:rounded-lg xxsm:text-lg xsm:text-lg sm:text-lg md:text-xl'>Completed</span>
+          <span className=' flex justify-center items-center p-4 w-1/4 text-white cursor-pointer hover:bg-slate-600 hover:duration-500 hover:rounded-lg xxsm:text-lg xsm:text-lg sm:text-lg md:text-xl'>Canceled</span>
         </div>
 
 
@@ -124,7 +124,7 @@ export default function Purchase() {
                 <div className=' flex flex-col h-[55rem] bg-slate-200 rounded-lg items-center overflow-y-auto'>  
                   {
                     orders.map( order => (
-                      <div className=' flex flex-col p-4 bg-white w-[97%] m-4 rounded-lg gap-4'>      
+                      <div className=' flex flex-col p-4 bg-white w-[97%] m-4 rounded-lg gap-4 only:'>      
                          <div className=' flex items-center justify-between border-b border-gray-400 p-4'>
                             {
                               order.status === 'COMPLETED' ? (<span className=' text-green-500 text-lg'> <LocalShippingIcon /> The order was shipped successfully </span>) : ''
@@ -141,7 +141,7 @@ export default function Purchase() {
                                     <span>x{product.quanlity}</span>
                                   </div>
                                 </div>
-                                <div className=' flex items-center font-bold text-lg'>
+                                <div className=' flex items-center font-bold text-lg '>
                                   {product.price}
                                 </div>
                               </div>                                                                             

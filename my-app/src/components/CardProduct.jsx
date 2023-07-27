@@ -14,8 +14,7 @@ const Style = {
   
   border: 'solid 2 ',
   borderRadius: 5,
-  width:350, 
-  height:500,
+
   boxShadow: '-1px 1px 5px 0px rgba(128,128,128,1)',
   margin: 2, 
 
@@ -28,31 +27,41 @@ export default function CardProduct() {
 
       <Card sx={Style} >
 
-        <div className=' flex flex-col'> 
+        <div className=' flex flex-col gap-1 items-center'> 
           
-          <CardMedia
-            sx={{ width: 250, height: 260, objectFit: 'contain', display: 'block', marginLeft: 'auto', marginRight: 'auto' }}
-            image="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/3/_/3_51_1_7.jpg"
-            title="Lap top"
-          />
+          <div>
+            <CardMedia
+              sx={{ width: 150, height: 150, objectFit: 'contain', display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: 2}}
+              image="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/3/_/3_51_1_7.jpg"
+              title="Lap top"
+            />
+          </div>
+          
+          <div>
+            <CardContent>
+              <Typography gutterBottom variant="h6" component="div">
+                Apple Macbook Pro 13 M2 2022  8GB 256GB I Chính hãng Apple Việt Nam
+              </Typography>
+              <div className=' text-red-700 text-2xl'> 27.000.000đ </div>
+              <Stack spacing={1}>
+                <Rating name="half-rating-read" defaultValue={2.5} precision={0.5} readOnly />
+              </Stack>
+            </CardContent>
+          </div>
 
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Apple Macbook Pro 13 M2 2022  8GB 256GB I Chính hãng Apple Việt Nam
-            </Typography>
-            <div className=' text-red-700 text-2xl'> 27.000.000đ </div>
-            <Stack spacing={1}>
-              <Rating name="half-rating-read" defaultValue={2.5} precision={0.5} readOnly />
-            </Stack>
-          </CardContent>
-
-          <div className=' flex justify-around '>
-            <Link to='/'><Button size="medium">Buy now</Button></Link>
+          <div className=' flex w-full justify-around p-1'>
             
-            <Button size="medium" >
-              Add to favorite
-              <FavoriteIcon sx={{color: 'red'}}/>
-            </Button>
+            <div>
+              <Link to='/'><Button size="small"> <span className=' text-gray-500'>Buy now</span> </Button></Link>
+            </div>
+            
+            <div>
+              <Button size="small" >
+                <span className='  text-gray-500 mr-1'>Add to favorite</span>
+                <FavoriteIcon sx={{color: 'red'}}/>
+              </Button>
+            </div>
+            
           </div>
 
         </div>

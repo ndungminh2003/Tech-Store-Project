@@ -60,7 +60,7 @@ export default function CatalogSearch() {
       
       </div>
 
-      <div className=' flex flex-row justify-between p-4 flex-wrap '>
+      <div className=' flex flex-row justify-between p-2 flex-wrap '>
         {
           products.map( product => (
             <CardProduct />

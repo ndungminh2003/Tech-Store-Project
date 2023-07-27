@@ -125,9 +125,9 @@ export default function Banner() {
 
   return (
 
-    <div className=' flex gap-5 justify-between'>
+    <div className=' container mx-auto flex gap-2 justify-between '>
       
-        <div className=' relative flex flex-col gap-1 w-56 border-2 rounded-3xl ml-4 mt-8 shadow-lg shadow-gray-400 min-w-max h-fit'>
+        <div className=' relative flex flex-col gap-1 w-56 border-2 rounded-3xl ml-4 mt-8 shadow-lg shadow-gray-400 min-w-max h-fit xxsm:hidden xsm:hidden sm:hidden'>
           { 
             catalog.map( c => (
               <div key={c.id} onMouseMove={ () => handleMouseOver(c)} onMouseOut={handleMouseLeave} className=' flex items-center justify-between p-2 cursor-pointer hover:bg-gray-300 hover:rounded-3xl hover:px-2 '>
@@ -149,21 +149,20 @@ export default function Banner() {
           }
         </div>
         
-        <div className=' flex flex-col mt-8 py-1 px-1 border-4 rounded-3xl w-[58rem] h-[35rem] shadow-lg shadow-gray-400 '>
+        <div className=' flex mt-8 p-1 border-4 rounded-3xl h-[35rem] w-[55rem] shadow-lg shadow-gray-400 xxsm:h-[15rem] xsm:h-[25rem] sm:h-[26rem] md:h-[26rem] lg:h-[28rem] xl:h-[30rem]'>
+          
           <div className=' relative w-full h-full p-1'>
             <img src={slides[currentIndex].url} alt="" className=' rounded-xl w-full h-full object-fit duration-500 '/>
             <ArrowBackIosIcon sx={{width: 35, height: 35}} onClick={prevSlide} className=' absolute top-1/2  translate-x-[0] tranlate-y-[-50%] cursor-pointer p-2 bg-black/20 text-white left-5 text-xl rounded-full' />
             <ArrowForwardIosIcon sx={{width: 35, height: 35}} onClick={nextSlide} className=' absolute top-1/2  translate-x-[0] tranlate-y-[-50%] cursor-pointer p-2 bg-black/20 text-white right-5 text-xl rounded-full' />
           </div>          
-          <div>
-            
-          </div>
+          
         </div>
 
-        <div className=' flex flex-col mt-12 py-1 px-1 gap-3 w-[24rem] h-64'>
+        <div className=' flex flex-col mt-12 py-1 px-1 gap-3 w-[24rem] h-64 xxsm:hidden xsm:hidden sm:hidden md:hidden lg:hidden'>
           <img src="https://cdn2.cellphones.com.vn/690x300,webp,q10/https://dashboard.cellphones.com.vn/storage/s21-fe-right-banner-th7.png" alt="" className=' rounded-3xl cursor-pointer '/>
-          <img src="https://cdn2.cellphones.com.vn/690x300,webp,q10/https://dashboard.cellphones.com.vn/storage/ipadth7-new.png" alt="" className=' rounded-3xl cursor-pointer '/>
-          <img src="https://cdn2.cellphones.com.vn/690x300,webp,q10/https://dashboard.cellphones.com.vn/storage/msi%20gaming%20right%20banner.jpg" alt="" className=' rounded-3xl cursor-pointer '/>       
+          <img src="https://cdn2.cellphones.com.vn/690x300,webp,q10/https://dashboard.cellphones.com.vn/storage/ipadth7-new.png" alt="" className=' rounded-3xl cursor-pointer  '/>
+          <img src="https://cdn2.cellphones.com.vn/690x300,webp,q10/https://dashboard.cellphones.com.vn/storage/RightBanner_PreOrder_WATCH6_Series_07.png" alt="" className=' rounded-3xl cursor-pointer '/>       
         </div>
 
       </div>
