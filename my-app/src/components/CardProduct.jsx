@@ -14,12 +14,10 @@ const Style = {
   
   border: 'solid 2 ',
   borderRadius: 5,
-
   boxShadow: '-1px 1px 5px 0px rgba(128,128,128,1)',
-  margin: 2, 
+  margin: 0.5,
 
 }
-
 
 export default function CardProduct() {
 
@@ -31,7 +29,7 @@ export default function CardProduct() {
           
           <div>
             <CardMedia
-              sx={{ width: 150, height: 150, objectFit: 'contain', display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: 2}}
+              sx={{ width: 140, height: 140, objectFit: 'contain', display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: 2}}
               image="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/3/_/3_51_1_7.jpg"
               title="Lap top"
             />

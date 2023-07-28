@@ -1,5 +1,14 @@
 import React from 'react'
 import CardProduct from './CardProduct'
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Navigation} from 'swiper/modules';
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+
 
 const brands = [
 
@@ -30,7 +39,7 @@ export default function ListCardProduct({pros}) {
     <div className=' container mx-auto flex flex-col'>
       
       
-      <div className=' flex gap-4 justify-between px-4 py-2 xxsm:flex-col xsm:flex-col sm:flex-col md:flex-col '>
+       <div className=' flex gap-4 justify-between px-4 py-2 xxsm:flex-col xsm:flex-col sm:flex-col md:flex-col '>
         
         <h1 className=' font-bold text-3xl text-gray-500'>{pros}</h1>
         <div className=' flex gap-5 xxsm:hidden xsm:gap-4 sm:gap-4 md:gap-4 '>
@@ -42,38 +51,65 @@ export default function ListCardProduct({pros}) {
           <span className=' cursor-pointer bg-slate-200 p-4 rounded-xl hover:bg-slate-400 duration-300 xsm:hidden sm:hidden'>All</span>
         </div>
       </div>
+      
 
-      <div className=' flex flex-row p-2 gap-2 justify-center'>
-          
-          <div className=' '>
-            <CardProduct />
-          </div>
+      <Swiper
+        slidesPerView={1}
+        spaceBetween={0}
+        navigation={true}
+        loop={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
 
-          <div className=' '>
-            <CardProduct />
-          </div>
+        breakpoints={{
 
-          <div className=' xxsm:hidden xsm:hidden sm:hidden md:hidden'>
-            <CardProduct />
-          </div>
+          600: {
+            slidesPerView: 2,
+            spaceBetween: 0,
+          },
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 0,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 0,
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 0,
+          },
 
-          <div className=' xxsm:hidden xsm:hidden sm:hidden md:hidden lg:hidden '>
-            <CardProduct />
-          </div>
+          1280: {
+            slidesPerView: 4,
+            spaceBetween: 0,
+          },
+          1536: {
+            slidesPerView: 5,
+            spaceBetween: 0,
+          },
+        }}
+        modules={[Autoplay, Navigation]}
+        className="mySwiper"
+        >
 
-          <div className=' xxsm:hidden xsm:hidden sm:hidden md:hidden lg:hidden xl:hidden'>
-            <CardProduct />
-          </div>
-  
-      </div>
+        <SwiperSlide><CardProduct /></SwiperSlide>
+        <SwiperSlide><CardProduct /></SwiperSlide>
+        <SwiperSlide><CardProduct /></SwiperSlide>
+        <SwiperSlide><CardProduct /></SwiperSlide>
+        <SwiperSlide><CardProduct /></SwiperSlide>
+        <SwiperSlide><CardProduct /></SwiperSlide>
+        <SwiperSlide><CardProduct /></SwiperSlide>
+        <SwiperSlide><CardProduct /></SwiperSlide>
+        <SwiperSlide><CardProduct /></SwiperSlide>
+        <SwiperSlide><CardProduct /></SwiperSlide>
 
-      {/* <div className=' flex p-4 '>
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
-      </div> */}
-    
+      </Swiper>
+
+
+
     </div>
   )
 }
