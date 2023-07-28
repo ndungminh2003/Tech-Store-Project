@@ -1,20 +1,23 @@
 import styles from "../styles/signin.module.scss";
 import { BiLeftArrowAlt } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import LoginInput from "../components/LoginInput";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import CircledIconBtn from "../components/CircledIconBtn";
-import register from "../features/user/userSlice";
+import { register } from "../features/user/userSlice";
 
-const initialValues = {
+var initialValues = {
   name: "",
+  mobile: "",
   email: "",
   password: "",
   conf_password: "",
 };
+
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 const RegisterValidation = Yup.object({
   name: Yup.string()
@@ -22,6 +25,9 @@ const RegisterValidation = Yup.object({
     .min(2, "First name must be between 2 and 16 characters. ")
     .max(16, "First name must be between 2 and 16 characters. ")
     .matches(/^[aA-zZ]/, "Numbers and special characters are not allowed."),
+  mobile: Yup.string()
+    .required("Enter phone number")
+    .matches(phoneRegExp, "Phone number is not valid"),
   email: Yup.string()
     .required(
       "You'll need this when you log in and if you ever need to reset your password."
@@ -40,15 +46,16 @@ const RegisterValidation = Yup.object({
 
 export default function Register() {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const formik = useFormik({
     enableReinitialize: true,
-    initialValues,
+    initialValues: initialValues,
     validationSchema: RegisterValidation,
     onSubmit: (values) => {
-      console.log("Register Form Values:", values);
-      dispatch(register(values));
+      const { conf_password, ...data } = values;
+      dispatch(register(data));
       formik.resetForm();
+      navigate("/login");
     },
   });
 
@@ -79,6 +86,18 @@ export default function Register() {
               />
               {formik.touched.name && formik.errors.name && (
                 <div style={{ color: "red" }}>{formik.errors.name}</div>
+              )}
+              <LoginInput
+                type="text"
+                name="mobile"
+                icon="phone"
+                placeholder="Phone Number"
+                value={formik.values.mobile}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.mobile && formik.errors.mobile && (
+                <div style={{ color: "red" }}>{formik.errors.mobile}</div>
               )}
               <LoginInput
                 type="text"
@@ -118,7 +137,7 @@ export default function Register() {
                   {formik.errors.conf_password}
                 </div>
               )}
-              <button type="submit">Submit</button>
+              <CircledIconBtn type="submit" text="Register" />
               <div className={styles.forgot}>
                 <Link to="/login">Login</Link>
               </div>

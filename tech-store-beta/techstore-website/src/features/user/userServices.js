@@ -4,9 +4,10 @@ import { base_url } from "../../utils/baseUrl";
 
 const register = async (user) => {
   const response = await axios.post(`${base_url}user/register`, user);
-  if (response.data) {
-    return response.data;
-  }
+  // if (response.data) {
+  //   return response.data;
+  // }
+  return response.data;
 };
 
 const login = async (user) => {

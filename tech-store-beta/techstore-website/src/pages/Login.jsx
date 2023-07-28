@@ -1,39 +1,38 @@
 import styles from "../styles/signin.module.scss";
 import { BiLeftArrowAlt } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import { Formik, Form, useFormik } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import LoginInput from "../components/LoginInput";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import CircledIconBtn from "../components/CircledIconBtn";
-import login from "../features/user/userSlice";
+import { login } from "../features/user/userSlice";
+import { useNavigate } from "react-router-dom";
 
-const initialvalues = {
-  login_email: "",
-  login_password: "",
-  name: "",
+const initialValues = {
   email: "",
   password: "",
-  conf_password: "",
 };
 
 const loginValidation = Yup.object({
-  login_email: Yup.string()
+  email: Yup.string()
     .required("Email address is required.")
     .email("Please enter a valid email address."),
-  login_password: Yup.string().required("Please enter a password"),
+  password: Yup.string().required("Please enter a password"),
 });
 
 export default function Login() {
   const dispatch = useDispatch();
-  const [user, setUser] = useState(initialvalues);
-  const { login_email, login_password } = user;
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
-  };
-
+  const navigate = useNavigate();
+  const formik = useFormik({
+    enableReinitialize: true,
+    initialValues: initialValues,
+    validationSchema: loginValidation,
+    onSubmit: (values) => {
+      dispatch(login(values));
+      navigate("/");
+    },
+  });
   return (
     <>
       <div className={styles.login}>
@@ -49,40 +48,39 @@ export default function Login() {
           <div className={styles.login__form}>
             <h1>Login</h1>
             <p>Get access to one of the best shopping services in Viet Nam.</p>
-            <Formik
-              enableReinitialize
-              initialValues={{ login_email, login_password }}
-              validationSchema={loginValidation}
-              onSubmit={(values) => {
-                dispatch(login(values));
-              }}
-            >
-              {() => (
-                <Form>
-                  <LoginInput
-                    type="text"
-                    name="login_email"
-                    icon="email"
-                    placeholder="Email address"
-                    onChange={handleChange}
-                  />
-                  <LoginInput
-                    type="password"
-                    name="login_password"
-                    icon="password"
-                    placeholder="Password"
-                    onChange={handleChange}
-                  />
-                  <CircledIconBtn type="submit" text="Login" />
-                  <div className={styles.forgot}>
-                    <Link to="/forget">Forgot password ?</Link>
-                  </div>
-                  <div className={styles.forgot}>
-                    <Link to="/register">Register</Link>
-                  </div>
-                </Form>
+            <form onSubmit={formik.handleSubmit}>
+              <LoginInput
+                type="text"
+                name="email"
+                icon="email"
+                placeholder="Email Address"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.email && formik.errors.email && (
+                <div style={{ color: "red" }}>{formik.errors.email}</div>
               )}
-            </Formik>
+              <LoginInput
+                type="password"
+                name="password"
+                icon="password"
+                placeholder="Password"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.password && formik.errors.password && (
+                <div style={{ color: "red" }}>{formik.errors.password}</div>
+              )}
+              <CircledIconBtn type="submit" text="Login" />
+              <div className={styles.forgot}>
+                <Link to="/forgot">Forgot password ?</Link>
+              </div>
+              <div className={styles.forgot}>
+                <Link to="/register">Register</Link>
+              </div>
+            </form>
           </div>
         </div>
       </div>

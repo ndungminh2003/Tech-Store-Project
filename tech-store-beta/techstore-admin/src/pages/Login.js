@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../features/auth/authSlice";
+import { login, resetState } from "../features/auth/authSlice";
 
 let schema = yup.object().shape({
   email: yup
@@ -26,10 +26,16 @@ const Login = () => {
       dispatch(login(values));
     },
   });
-  const authState = useSelector((state) => state);
+  const authState = useSelector((state) => state.auth);
 
-  const { user, isError, isSuccess, isLoading, message } = authState.auth;
-  const role = user.role !== undefined ? user.role : "";
+  const { user, isError, isSuccess, isLoading, message } = authState;
+  useEffect(() => {
+    localStorage.clear();
+    // localStorage.removeItem("token");
+    // localStorage.removeItem("user");
+    dispatch(resetState());
+  }, []);
+  const role = user?.role !== undefined ? user.role : "";
   useEffect(() => {
     if (isSuccess && role === "admin") {
       navigate("admin");
@@ -39,8 +45,9 @@ const Login = () => {
       navigate("");
     }
   }, [user, isError, isSuccess, isLoading]);
+
   return (
-    <div className="py-5" style={{ background: "#ffd333", minHeight: "100vh" }}>
+    <div className="py-5" style={{ background: "#1e293b", minHeight: "100vh" }}>
       <br />
       <br />
       <br />
@@ -84,7 +91,7 @@ const Login = () => {
           </div>
           <button
             className="border-0 px-3 py-2 text-white fw-bold w-100 text-center text-decoration-none fs-5"
-            style={{ background: "#ffd333" }}
+            style={{ background: "#1e293b" }}
             type="submit"
           >
             Login

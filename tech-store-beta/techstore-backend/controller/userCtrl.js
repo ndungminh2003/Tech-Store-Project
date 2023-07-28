@@ -44,8 +44,7 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
     });
     res.json({
       _id: findUser?._id,
-      firstname: findUser?.firstname,
-      lastname: findUser?.lastname,
+      name: findUser?.name,
       email: findUser?.email,
       mobile: findUser?.mobile,
       role: findUser?.role,
@@ -77,8 +76,7 @@ const loginAdmin = asyncHandler(async (req, res) => {
     });
     res.json({
       _id: findAdmin?._id,
-      firstname: findAdmin?.firstname,
-      lastname: findAdmin?.lastname,
+      name: findAdmin?.name,
       email: findAdmin?.email,
       mobile: findAdmin?.mobile,
       role: findAdmin?.role,
@@ -140,8 +138,7 @@ const updatedUser = asyncHandler(async (req, res) => {
     const updatedUser = await User.findByIdAndUpdate(
       _id,
       {
-        firstname: req?.body?.firstname,
-        lastname: req?.body?.lastname,
+        name: req?.body?.name,
         email: req?.body?.email,
         mobile: req?.body?.mobile,
       },

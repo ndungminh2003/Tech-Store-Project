@@ -21,6 +21,12 @@ import { useNavigate } from "react-router-dom";
 const { Header, Sider, Content } = Layout;
 const MainLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.clear();
+    window.location.href = "/login";
+  };
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -177,7 +183,7 @@ const MainLayout = () => {
           <div className="d-flex gap-4 align-items-center">
             <div className="position-relative">
               <IoIosNotifications className="fs-4" />
-              <span className="badge bg-warning rounded-circle p-1 position-absolute">
+              <span className="badge bg-secondary rounded-circle p-1 position-absolute">
                 3
               </span>
             </div>
@@ -198,7 +204,7 @@ const MainLayout = () => {
                 aria-expanded="false"
               >
                 <h5 className="mb-0">Hoang Anh</h5>
-                <p className="mb-0">Hoangnora271@gmail.com</p>
+                <p className="mb-0">Administrator</p>
               </div>
               <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <li>

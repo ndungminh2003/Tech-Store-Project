@@ -11,13 +11,13 @@ body {
 }
 
 .trigger:hover {
-  color: #1890ff;
+  color: #6497b1;
 }
 
 .logo {
   height: 32px;
   margin: 16px;
-  background: rgba(255, 255, 255, 0.3);
+  background: #1e293b;
 }
 .ant-layout {
   min-height: 100vh;
@@ -45,7 +45,7 @@ body {
   display: none;
 }
 .logo {
-  background-color: #ffd333;
+  background-color: #1e293b;
   margin: 0;
   height: 64px;
 }

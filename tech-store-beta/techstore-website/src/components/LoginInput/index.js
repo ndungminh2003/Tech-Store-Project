@@ -2,9 +2,8 @@ import styles from "./styles.module.scss";
 import { BiUser } from "react-icons/bi";
 import { SiMinutemailer } from "react-icons/si";
 import { IoKeyOutline } from "react-icons/io5";
-import { ErrorMessage, useField } from "formik";
+import { BiPhone } from "react-icons/bi";
 export default function LoginInput({ icon, placeholder, ...props }) {
-  console.log("props in LoginInput", props);
   return (
     <div className={`${styles.input}`}>
       {icon == "user" ? (
@@ -13,6 +12,8 @@ export default function LoginInput({ icon, placeholder, ...props }) {
         <SiMinutemailer />
       ) : icon == "password" ? (
         <IoKeyOutline />
+      ) : icon == "phone" ? (
+        <BiPhone />
       ) : (
         ""
       )}
