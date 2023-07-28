@@ -5,7 +5,7 @@ import Footer from './Footer'
 
 export default function Layout() {
   return (
-    <div>
+    <div className=' flex flex-col gap-4'>
       <Header />
         <Outlet />
       <Footer />
