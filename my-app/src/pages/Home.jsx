@@ -15,7 +15,7 @@ export default function Home() {
         <ListCardProduct pros={'LAPTOP'}/>
         <ListCardProduct pros={'TABLET'}/>
       </div>
-      
+
     </div>
 
   );
