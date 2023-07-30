@@ -66,43 +66,9 @@ const orders = [
 
 export default function Purchase() {
   return (
-    <div className=' flex p-4 container mx-auto '>
+    <div >
       
-      <div className=' flex flex-col gap-20 w-1/6 min-w-[15rem] xxsm:hidden xsm:hidden sm:hidden'>
-        <div className=' flex gap-2 text-lg items-center'>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className=' cursor-pointer' sx={{ width: 80, height: 80 }}/>
-          <div className=' flex flex-col items-center'>
-            <span className=' font-bold'>User Name</span>
-            <div className=' flex items-center'>
-              <EditIcon />
-              <span className=' cursor-pointer text-gray-500'>Edit acount</span>
-            </div>
-          </div>
-        </div>
-        
-        <div className=' flex flex-col gap-4'>
-          <div className=' flex gap-2 items-center cursor-pointer text-lg bg-slate-400 rounded-xl w-30 h-10 hover:bg-slate-500 hover:duration-300 hover:text-lime-950 w-3/4'>
-            <AccountCircleIcon className=' ml-2'/>
-            <span>My account</span>
-          </div>
-          <div className=' flex gap-2 items-center cursor-pointer text-lg bg-slate-400 rounded-xl w-30 h-10 hover:bg-slate-500 hover:duration-300 hover:text-lime-950 w-3/4'>
-            <EventNoteIcon className=' ml-2'/>
-            <span>My Purchase</span>
-          </div>
-          <div className=' flex gap-2 items-center cursor-pointer text-lg bg-slate-400 rounded-xl w-30 h-10 hover:bg-slate-500 hover:duration-300 hover:text-lime-950 w-3/4'>
-            <NotificationsActiveIcon className=' ml-2'/>
-            <span>Notification</span>
-          </div>
-          <div className=' flex gap-2 items-center cursor-pointer text-lg bg-slate-400 rounded-xl w-30 h-10 hover:bg-slate-500 hover:duration-300 hover:text-lime-950 w-3/4'>
-            <LoyaltyIcon className=' ml-2'/>
-            <span>Voucher</span>
-          </div>
-        </div>
-
-      </div>
-
-
-      <div className=' flex flex-col gap-5 min-w-[36rem] w-full'>
+      <div className=' flex flex-col gap-5 min-w-[36rem]'>
         <div className=' flex text-2xl bg-slate-500 h-20 justify-between rounded-lg'>
           {/* Link */}
           <span className=' flex justify-center items-center p-4 w-1/4 text-white cursor-pointer hover:bg-slate-600 hover:duration-500 hover:rounded-lg xxsm:text-lg xsm:text-lg sm:text-lg md:text-xl'>All</span>
@@ -110,7 +76,6 @@ export default function Purchase() {
           <span className=' flex justify-center items-center p-4 w-1/4 text-white cursor-pointer hover:bg-slate-600 hover:duration-500 hover:rounded-lg xxsm:text-lg xsm:text-lg sm:text-lg md:text-xl'>Completed</span>
           <span className=' flex justify-center items-center p-4 w-1/4 text-white cursor-pointer hover:bg-slate-600 hover:duration-500 hover:rounded-lg xxsm:text-lg xsm:text-lg sm:text-lg md:text-xl'>Canceled</span>
         </div>
-
 
         {
           orders.length === 0 ? (
@@ -171,9 +136,7 @@ export default function Purchase() {
                 </div>
               )
         }
-        
       </div>
-
     </div>
   )
 }

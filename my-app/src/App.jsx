@@ -4,14 +4,23 @@ import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import CatalogSearch from "./pages/CatalogSearch";
 import Purchase from "./pages/Purchase";
+import User from "./pages/User";
+import Edit from "./pages/EditProfile";
+import UserHome from "./pages/UserHome";
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />}>
     
     <Route index element={<Home />} />
     <Route path="contact" element={<Contact />} />
-    <Route path="catalogsearch" element={<CatalogSearch />} />
-    <Route path="purchase" element={<Purchase />} />
+    <Route path="search-product" element={<CatalogSearch />} />
+
+    <Route path="/user" element={<User />}>
+      <Route index element={<UserHome />} />
+      <Route path="order" element={<Purchase />} />
+      <Route path="edit" element={<Edit />} />
+    </Route>
+    
 
   </Route>
 

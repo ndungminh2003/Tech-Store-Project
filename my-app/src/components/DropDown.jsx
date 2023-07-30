@@ -36,24 +36,30 @@ export default function DropDown({pros}) {
 
       {
         isOpen && (
-          <div className=' flex flex-col gap-2 p-2 w-[120%] xsm:w-[100%] sm:w-[100%] rounded-xl absolute top-16 bg-slate-100 shadow-lg shadow-gray-300'>
+          <div className=' flex flex-col gap-2 p-2 w-[130%] xsm:w-[100%] sm:w-[100%] rounded-xl absolute top-16 bg-slate-100 shadow-lg shadow-gray-300'>
+            
+            <Link to='/user' onClick={handleOnClick}>
+              <div className=' flex items-center text-lg xsm:text-sm sm:text-sm gap-1 cursor-pointer p-2 hover:bg-gray-300 hover:rounded-lg'>
+                <ManageAccountsIcon />
+                <span>My Acount</span>
+              </div>
+            </Link>
+            
 
-            <div className=' flex items-center text-lg xsm:text-sm sm:text-sm gap-1 cursor-pointer p-2 hover:bg-gray-300 hover:rounded-lg'>
-              <ManageAccountsIcon />
-              <span>My Acount</span>
-            </div>
-
-            <Link to='/purchase'>
+            <Link to='/user/order' onClick={handleOnClick}>
               <div className=' flex items-center text-lg xsm:text-sm sm:text-sm gap-1 cursor-pointer p-2 hover:bg-gray-300 hover:rounded-lg'>
                 <PaymentIcon />
                 <span>Purchase</span>
               </div>
             </Link>
             
-            <div className=' flex items-center text-lg xsm:text-sm sm:text-sm gap-1 cursor-pointer p-2 hover:bg-gray-300 hover:rounded-lg'>
-              <LogoutIcon />
-              <span>Log out</span>
-            </div>
+            <Link to='/' onClick={handleOnClick}>
+              <div className=' flex items-center text-lg xsm:text-sm sm:text-sm gap-1 cursor-pointer p-2 hover:bg-gray-300 hover:rounded-lg'>
+                <LogoutIcon />
+                <span>Log out</span>
+              </div>
+            </Link>
+            
 
           </div>
         )

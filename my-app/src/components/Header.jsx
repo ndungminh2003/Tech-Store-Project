@@ -4,7 +4,7 @@ import SearchBar from './SearchBar';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import CallIcon from '@mui/icons-material/Call';
 import NotesIcon from '@mui/icons-material/Notes';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import Badge from '@mui/material/Badge';
 import DropDown from './DropDown';
 
@@ -42,14 +42,14 @@ export default function Header() {
           </Link>
           
           
-          <Link to='/order'>
+          <Link to='/wishlist'>
             <div className=' flex gap-2 items-center p-4 cursor-pointer capitalize text-xl hover:bg-gray-500 hover:rounded-lg hover:py-2 text-white xxsm:hidden xsm:hidden sm:hidden md:hidden lg:hidden'> 
-              <LocalShippingIcon />          
-              <span>order</span>   
+              <FavoriteIcon sx={{color: 'red'}}/>          
+              <span>wishlist</span>   
             </div>
           </Link>
 
-          <Link to='contact'>
+          <Link to='/contact'>
             <div className=' flex gap-2 items-center p-4 cursor-pointer capitalize text-xl hover:bg-gray-500 hover:rounded-lg hover:py-2 text-white xxsm:hidden xsm:hidden sm:hidden md:hidden lg:hidden'>         
               <CallIcon />         
               <span>contact</span>

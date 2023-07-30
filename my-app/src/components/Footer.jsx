@@ -2,8 +2,8 @@ import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import CallIcon from '@mui/icons-material/Call';
 import NotesIcon from '@mui/icons-material/Notes';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import HomeIcon from '@mui/icons-material/Home';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 export default function Footer() {
   return (
@@ -56,10 +56,10 @@ export default function Footer() {
           <span>catalog</span>
         </div>
 
-        <Link to='/order'>
+        <Link to='/wishlist'>
           <div className=' flex flex-col gap-2 items-center p-4 cursor-pointer capitalize xxsm:text-sm xsm:text-sm sm:text-sm md:text-lg hover:bg-gray-500 hover:rounded-lg hover:py-1 text-white '> 
-            <LocalShippingIcon />          
-            <span>order</span>      
+            <FavoriteIcon sx={{color: 'red'}}/>          
+            <span>wishlist</span>      
           </div>
         </Link>
         
