@@ -24,12 +24,13 @@ export default function Header() {
             </div>
           </Link>
           
-
-          <div className=' flex gap-2 items-center p-4 cursor-pointer capitalize text-xl lg:text-lg hover:bg-gray-500 hover:rounded-lg hover:py-2 text-white xxsm:hidden xsm:hidden sm:hidden md:hidden'>
-            <NotesIcon />
-            <span>catalog</span>
-          </div>
-
+          <Link>
+            <div className=' flex gap-2 items-center p-4 cursor-pointer capitalize text-xl lg:text-lg hover:bg-gray-500 hover:rounded-lg hover:py-2 text-white xxsm:hidden xsm:hidden sm:hidden md:hidden'>
+              <NotesIcon />
+              <span>catalog</span>
+            </div>
+          </Link>
+          
           <SearchBar />
 
           <Link to='/shopping_cart'>
@@ -41,10 +42,9 @@ export default function Header() {
             </div>
           </Link>
           
-          
           <Link to='/wishlist'>
             <div className=' flex gap-2 items-center p-4 cursor-pointer capitalize text-xl hover:bg-gray-500 hover:rounded-lg hover:py-2 text-white xxsm:hidden xsm:hidden sm:hidden md:hidden lg:hidden'> 
-              <FavoriteIcon sx={{color: 'red'}}/>          
+              <FavoriteIcon />          
               <span>wishlist</span>   
             </div>
           </Link>

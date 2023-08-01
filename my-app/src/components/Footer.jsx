@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <div className=' bg-slate-800 w-full text-white z-50 xxsm:sticky xxsm:bottom-0 xsm:sticky xsm:bottom-0 sm:sticky sm:bottom-0 md:sticky md:bottom-0 lg:sticky lg:bottom-0'>
 
-      <footer className= ' container mx-auto grid grid-cols-3 gap-4 py-3 justify-items-center p-6 xxsm:hidden xsm:hidden sm:hidden md:hidden lg:hidden'>
+      <footer className= ' container mx-auto grid grid-cols-3 gap-4 py-3 justify-items-center p-6 xxsm:hidden xsm:hidden sm:hidden md:hidden lg:hidden '>
         <div className=' flex flex-col gap-3'>
           <h1>INFORMATION AND POLICY</h1>
           <p className=' cursor-pointer ml-2'>Privacy Policy</p>
@@ -58,7 +58,7 @@ export default function Footer() {
 
         <Link to='/wishlist'>
           <div className=' flex flex-col gap-2 items-center p-4 cursor-pointer capitalize xxsm:text-sm xsm:text-sm sm:text-sm md:text-lg hover:bg-gray-500 hover:rounded-lg hover:py-1 text-white '> 
-            <FavoriteIcon sx={{color: 'red'}}/>          
+            <FavoriteIcon />          
             <span>wishlist</span>      
           </div>
         </Link>

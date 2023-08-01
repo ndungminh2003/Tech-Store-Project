@@ -1,9 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
+  prefix: "tw-",
   theme: {
     extend: {},
-    
     screens: {
       
       'xxsm': {'min': '300px', 'max': '599px'},
@@ -25,6 +25,9 @@ module.exports = {
       '2xl': {'min': '1536px'},
       // => @media (min-width: 1536px) { ... }
     },
+  },
+  corePlugins: {
+    preflight: false,
   },
   plugins: [],
 }

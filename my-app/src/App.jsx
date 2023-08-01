@@ -8,6 +8,7 @@ import User from "./pages/User";
 import Edit from "./pages/EditProfile";
 import UserHome from "./pages/UserHome";
 
+
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />}>
     
@@ -20,8 +21,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route path="order" element={<Purchase />} />
       <Route path="edit" element={<Edit />} />
     </Route>
-    
-
+  
   </Route>
 
 ));
