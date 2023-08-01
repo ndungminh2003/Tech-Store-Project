@@ -29,6 +29,9 @@ const ProductSimilar = () => {
           className="!min-h-[0] mt-[85px] md:mt-5 md:!mx-0 !mx-4 rounded-xl !p-[10px]"
         >
           <SwiperSlide className="!w-[228px] rounded-[15px] shadow-cellphone p-[10px]">
+            <div className="percent-discount">
+              <p className="mt-[5px]">Giảm 12%</p>
+            </div>
             <img
               className="rounded-xl w-[160px] !object-cover"
               src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/f/r/frame_1_3_9.png"
@@ -52,6 +55,9 @@ const ProductSimilar = () => {
             </div>
           </SwiperSlide>
           <SwiperSlide className="!w-[228px] rounded-[15px] shadow-cellphone p-[10px]">
+            <div className="percent-discount">
+              <p className="mt-[5px]">Giảm 12%</p>
+            </div>
             <img
               className="rounded-xl w-[160px] !object-cover"
               src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/g/r/group_182_2.png"
@@ -75,6 +81,9 @@ const ProductSimilar = () => {
             </div>
           </SwiperSlide>
           <SwiperSlide className="!w-[228px] rounded-[15px] shadow-cellphone p-[10px]">
+            <div className="percent-discount">
+              <p className="mt-[5px]">Giảm 12%</p>
+            </div>
             <img
               className="rounded-xl w-[160px] !object-cover"
               src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/g/r/group_2007_2_.png"
@@ -98,6 +107,9 @@ const ProductSimilar = () => {
             </div>
           </SwiperSlide>
           <SwiperSlide className="!w-[228px] rounded-[15px] shadow-cellphone p-[10px]">
+            <div className="percent-discount">
+              <p className="mt-[5px]">Giảm 12%</p>
+            </div>
             <img
               className="rounded-xl w-[160px] !object-cover"
               src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/g/r/group_201_4.png"
@@ -121,6 +133,9 @@ const ProductSimilar = () => {
             </div>
           </SwiperSlide>
           <SwiperSlide className="!w-[228px] rounded-[15px] shadow-cellphone p-[10px]">
+            <div className="percent-discount">
+              <p className="mt-[5px]">Giảm 12%</p>
+            </div>
             <img
               className="rounded-xl w-[160px] !object-cover"
               src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/g/r/group_201_4.png"
@@ -144,6 +159,9 @@ const ProductSimilar = () => {
             </div>
           </SwiperSlide>
           <SwiperSlide className="!w-[228px] rounded-[15px] shadow-cellphone p-[10px]">
+            <div className="percent-discount">
+              <p className="mt-[5px]">Giảm 12%</p>
+            </div>
             <img
               className="rounded-xl w-[160px] !object-cover"
               src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/g/r/group_201_4.png"

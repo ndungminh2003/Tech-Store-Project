@@ -1,0 +1,19 @@
+/* styles.css */
+.otp-number {
+    background: #f9f9f9;
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+    font-size: 20px;
+    height: 50px;
+    margin: 0 10px;
+    padding: 5px;
+    text-align: center;
+    width: 65px;
+  }
+  
+  .otp-number:focus-visible {
+    background: #ffe8e8;
+    border: 1px solid #fd2424;
+    outline: none;
+  }
+  

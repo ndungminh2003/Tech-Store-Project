@@ -1,5 +1,6 @@
 import React from "react";
 import BoxReview from "../BoxReview/BoxReview";
+import Question from "../Question/Question";
 
 const ContentProduct = () => {
   return (
@@ -145,6 +146,7 @@ const ContentProduct = () => {
             </table>
           </div>
         </div>
+        <Question />
         <BoxReview />
       </div>
       <div className="w-[calc(100%-830px)]">

@@ -229,7 +229,7 @@ const BoxReview = () => {
           <p className="mb-1 text-xl text-[#363636] font-semibold">
             Hỏi và đáp
           </p>
-          <div>
+          <div className="flex gap-2">
             <textarea
               name=""
               id=""
@@ -238,6 +238,17 @@ const BoxReview = () => {
               placeholder="Xin mời để lại câu hỏi, CellphoneS sẽ trả lời lại trong 1h, các câu hỏi sau 22h - 8h sẽ được trả lời vào sáng hôm sau"
               className="w-[calc(100%-80px)] p-3 border border-[#ccc] outline-none h-32 shadow-cellphone rounded-[15px] text-[#363636] text-sm"
             ></textarea>
+            <button className="bg-[#d7000e] text-white flex items-center justify-center gap-1 py-[7px]  rounded-lg w-[70px] !h-10">
+              <svg
+                height="15"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+                className="fill-white w-4 h-4 text-base"
+              >
+                <path d="M511.6 36.86l-64 415.1c-1.5 9.734-7.375 18.22-15.97 23.05c-4.844 2.719-10.27 4.097-15.68 4.097c-4.188 0-8.319-.8154-12.29-2.472l-122.6-51.1l-50.86 76.29C226.3 508.5 219.8 512 212.8 512C201.3 512 192 502.7 192 491.2v-96.18c0-7.115 2.372-14.03 6.742-19.64L416 96l-293.7 264.3L19.69 317.5C8.438 312.8 .8125 302.2 .0625 289.1s5.469-23.72 16.06-29.77l448-255.1c10.69-6.109 23.88-5.547 34 1.406S513.5 24.72 511.6 36.86z"></path>
+              </svg>
+              Gửi
+            </button>
           </div>
         </div>
         <div>

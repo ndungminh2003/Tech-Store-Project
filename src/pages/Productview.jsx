@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import StarIcon from "@mui/icons-material/Star";
 import { Rating } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as GiftBoxIcon } from "../assets/giftbox.svg";
 
 import BoughtTogether from "../components/BoughtTogether/BoughtTogether";
@@ -17,8 +17,21 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import Question from "../components/Question/Question";
 
+import LightGallery from "lightgallery/react";
+
+// import styles
+import "lightgallery/css/lightgallery.css";
+import "lightgallery/css/lg-zoom.css";
+import "lightgallery/css/lg-thumbnail.css";
+
+// import plugins if you need
+import lgThumbnail from "lightgallery/plugins/thumbnail";
+import lgZoom from "lightgallery/plugins/zoom";
+import lgFullscreen from "lightgallery/plugins/fullscreen";
 export default function ProductView() {
+  const navigate = useNavigate();
   const lineStyle = {
     width: "150px", // Chiều dài 150px
     height: "2px", // Chiều cao 2px
@@ -71,18 +84,32 @@ export default function ProductView() {
     "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_phantomwhite_211119.jpg",
     "https://cdn2.cellphones.com.vn/x/media/catalog/product/1/5/15.6.png",
   ];
+
   const pagination = {
     clickable: true,
     renderBullet: function (index, className) {
       console.log(index);
-      return (
-        '<img class="w-[50px] h-[50px] cursor-pointer rounded-md overflow-hidden' +
-        className +
-        '" src="' +
-        listImgThumb[index] +
-        '">' +
-        "</img>"
-      );
+      if (index !== 0) {
+        return (
+          '<img class="w-[50px] h-[50px] cursor-pointer rounded-md z-10 ' +
+          className +
+          '" src="' +
+          listImgThumb[index - 1] +
+          '">' +
+          "</img>"
+        );
+      } else {
+        return (
+          '<div class="text-[10px] ' +
+          className +
+          '">' +
+          '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 21 20" style="width: 20px; height:20px; margin: auto"><title>star</title> <g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><image width="21" height="20" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAUCAYAAABiS3YzAAAABHNCSVQICAgIfAhkiAAAAZlJREFUOE+lVYtRQjEQ3FSgVoBUIB2gFWgHYgdLBUIFbgdCB3YgdgAVaAfSQZx9kzB5fwYzk5mXkGz27naPgDMGyQ2ARwBLSf4eHGHsAMkFgHcABwATAFNJx6F754D+ADDIE4BvAGtJq4tBC5YvDpvkB4D5GNtBpiR3AG4l3ZoZyXsAnym36mPbCUpyFkK4izG6KBXLDJAemoQQFjHGQ1d+A0mzeAZgFtcAZgUDXyrXZuu1I7gqznl9DCHsYoxbg7oQBtsD8LdndUiS91qDZH7chDz9kPec77VBfdFSeegDGZNdyneW3tKgOZx4KXChkq2kRVWo/wA3AY13qv4lwF2ANdAG450kO6h3JNXYYVXI5cGWTpMOIckSOwe0puMW08TWPt9I4ljVSbq4rV5QY5r099tlQ4cryRo+jb6omqDZ29asDWBlOF+vSeTec0+tTJH67FzStDenJB3yG4CbZFt/2zFfANyh/LuN4l6wBlA9KKlGrsnUfdKszMis3ZhZsLYVDexp7+dzp8iGJOVirfr+OlLuM/i+qZQ/ZTTSBXFK4lAAAAAASUVORK5CYII="></image></g></g></svg>' +
+          "Tính năng nổi bật" +
+          "</div>"
+        );
+      }
+
+      // return '<span class="' + className + '">' + (index + 1) + "</span>";
     },
   };
 
@@ -109,184 +136,6 @@ export default function ProductView() {
           </div>
         </div>
       )}
-      {/* <div className="flex justify-between p-10 pl-28 pr-28">
-        <div className="product-detail">
-          <div className="product-detail-top flex gap-[30px] pb-5">
-            <h1 className="product-name line-clamp-3 box-orient-vertical text-[#0a263c] line-height-[2rem] font-bold text-lg overflow-hidden ml-10">
-              iPhone 12 64GB | Chính hãng VN/A
-            </h1>
-            <div className="product-evaluate pr-[200px] flex items-center">
-              <div className="product-icon-star ">
-                <StarIcon className="text-yellow-300" />
-              </div>
-              <div className="product-icon-star ">
-                <StarIcon className="text-yellow-300" />
-              </div>
-              <div className="product-icon-star ">
-                <StarIcon cl assName="text-yellow-300" />
-              </div>
-              <div className="product-icon-star ">
-                <StarIcon className="text-yellow-300" />
-              </div>
-              <span className="text-[14px]"> &nbsp;4 reivews</span>
-            </div>
-          </div>
-          <div className="product-detail-bottom w-[781px] h-[398px] bg-gradient-to-r from-pink-400 to-yellow-200 relative rounded-t-lg p-2">
-            <div className="product-deatail-herd">
-              <div className="product-deatail-heart w-[38px] h-[33px] text-[34px]">
-                &#9829;
-              </div>
-              <div className="product-deatail-content flex pt-[45px] p-[10px]">
-                <div className="product-deatail-image p-[10px] bg-white">
-                  <img
-                    src="https://i.pinimg.com/564x/81/3b/f2/813bf2b968dad8dfa2ec9a85560da8cb.jpg"
-                    alt=""
-                    className="w-[250px] h-[250px] rounded "
-                  />
-                </div>
-                <div className="product-detail-text pt-[0px] pb-[52px]">
-                  <h2 className="font-semibold text-center text-white uppercase product-detail-title bottom-5 text-18">
-                    Lorem ipsum dolor sit amet.
-                  </h2>
-
-                  <ul className="pl-[10px] text-left">
-                    <li className="flex text-left text-white text-14 leading-145">
-                      - Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    </li>
-                    <li className="flex text-left text-white text-14 leading-145">
-                      - Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="product-option w-[475px] pt-[75px]">
-          <div className="flex flex-wrap gap-2 product-option-price">
-            <button
-              className={`relative text-[13px] border-[1px] border-[#000] w-[31.333%] px-2 py-1 rounded-[10px] ${
-                0 === activeIndex ? "border-[#f00]" : "bg-white"
-              }`}
-              onClick={() => handleButtonClick(0)}
-            >
-              <strong className="product-gb">256gb</strong>
-              <div className="product-price">{formatCurrency(10000000)}</div>
-              {0 === activeIndex && (
-                <span class="absolute top-0 left-0  w-[18px] rounded-lg h-13 bg-red-700 text-white text-xs flex items-center justify-center">
-                  ✓
-                </span>
-              )}
-            </button>
-            <button
-              className={`text-[13px] border-[1px] relative border-[#000] w-[31.333%] px-2 py-1 rounded-[10px] ${
-                1 === activeIndex ? "border-[#f00]" : "bg-white"
-              }`}
-              onClick={() => handleButtonClick(1)}
-            >
-              <strong className="product-gb">512gb</strong>
-              <div className="product-price">{formatCurrency(15000000)}</div>
-              {1 === activeIndex && (
-                <span class="absolute top-0 left-0 w-[18px] h-13 rounded-lg bg-red-700 text-white text-xs flex items-center justify-center">
-                  ✓
-                </span>
-              )}
-            </button>
-            <button
-              className={`text-[13px] relative border-[1px]  border-[#000] w-[31.333%] px-2 py-1 rounded-[10px] ${
-                2 === activeIndex ? "border-[#f00]" : "bg-white"
-              }`}
-              onClick={() => handleButtonClick(2)}
-            >
-              <strong className="product-gb">1tb</strong>
-              <div className="product-price">{formatCurrency(20000000)}</div>
-              {2 === activeIndex && (
-                <span class="absolute top-0 left-0  w-[18px] rounded-lg h-13 bg-red-700 text-white text-xs flex items-center justify-center">
-                  ✓
-                </span>
-              )}
-            </button>
-          </div>
-          <div className="product-option-select pt-[20px]">
-            <div className="product-option-title text-[14px] font-[700] text-[#444] mb-[10px]">
-              Lorem ipsum dolor sit amet.
-            </div>
-            <div className="flex flex-wrap gap-2 product-option-price">
-              <button
-                className={`relative text-[13px] border-[1px] border-[#000] w-[31.333%] px-2 py-1 rounded-[10px] ${
-                  0 === activeIndexs ? "border-[#f00]" : "bg-white"
-                }`}
-                onClick={() => handleButtonClicks(0)}
-              >
-                <div className="flex p-2">
-                  <img
-                    src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/g/a/galaxys23ultra_front_green_221122_2.jpg"
-                    className="w-[30px] h-[30px]"
-                    alt=""
-                  />
-                  <div className="pl-2 text-left">
-                    <strong className="product-gb">256gb</strong>
-                    <div className="product-price">
-                      {formatCurrency(10000000)}
-                    </div>
-                  </div>
-                </div>
-                {0 === activeIndexs && (
-                  <span class="absolute top-0 left-0  w-[18px] rounded-lg h-13 bg-red-700 text-white text-xs flex items-center justify-center">
-                    ✓
-                  </span>
-                )}
-              </button>
-              <button
-                className={`text-[13px] border-[1px] relative border-[#000] w-[31.333%] px-2 py-1 rounded-[10px] ${
-                  1 === activeIndexs ? "border-[#f00]" : "bg-white"
-                }`}
-                onClick={() => handleButtonClicks(1)}
-              >
-                <strong className="product-gb">512gb</strong>
-                <div className="product-price">{formatCurrency(15000000)}</div>
-                {1 === activeIndexs && (
-                  <span class="absolute top-0 left-0 w-[18px] h-13 rounded-lg bg-red-700 text-white text-xs flex items-center justify-center">
-                    ✓
-                  </span>
-                )}
-              </button>
-              <button
-                className={`text-[13px] relative border-[1px]  border-[#000] w-[31.333%] px-2 py-1 rounded-[10px] ${
-                  2 === activeIndexs ? "border-[#f00]" : "bg-white"
-                }`}
-                onClick={() => handleButtonClicks(2)}
-              >
-                <strong className="product-gb">1tb</strong>
-                <div className="product-price">{formatCurrency(20000000)}</div>
-                {2 === activeIndexs && (
-                  <span class="absolute top-0 left-0  w-[18px] rounded-lg h-13 bg-red-700 text-white text-xs flex items-center justify-center">
-                    ✓
-                  </span>
-                )}
-              </button>
-            </div>
-          </div>
-          <div className="product-option-discount text-[15px] pt-5">
-            <strong className="text-[15px]">Discount:</strong>
-            No discount code
-          </div>
-          <div className="product-option-buy-cart flex gap-[10px] mt-10">
-            <button className="bg-[#ccc] text-center w-[519px] rounded-[10px] bg-gradient-to-r from-red-600 to-red-600 border-none text-white flex flex-col items-center h-[60px] outline-none w-calc-100-minus-70">
-              <strong>Buy Now</strong>
-              <div className="text-[13px]">(Lorem ipsum dolor sit amet.)</div>
-            </button>
-            <button
-              onClick={handleShowMessage}
-              className="w-[68px] h-[50px] text-[9px] bg-[#fff] border-[1px] text-[#f00] border-[red] rounded-[8px]"
-            >
-              <ShoppingCartIcon color="white" />
-              <br />
-              add to cart
-            </button>
-          </div>
-        </div>
-      </div> */}
 
       <section>
         <div className="flex gap-1 mt-[30px]">
@@ -301,25 +150,78 @@ export default function ProductView() {
           <div className="w-[60%]">
             <Swiper
               pagination={pagination}
-              modules={[Pagination]}
-              className="mySwiper !border !border-gray-400 rounded-xl"
+              modules={[Pagination, Navigation, Autoplay]}
+              loop={true}
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: true,
+              }}
+              navigation
+              className=""
             >
               <FavoriteBorderIcon className="absolute top-2 left-2 !cursor-pointer z-20 text-[#d70018] hover:animate-ping"></FavoriteBorderIcon>
-              {listImgOrigin.map((img) => {
-                return (
-                  <SwiperSlide>
-                    <img
-                      src={img}
-                      alt=""
-                      className="w-[398px] h-[398px] m-auto"
-                    />
-                  </SwiperSlide>
-                );
+
+              {listImgOrigin.map((img, index) => {
+                if (index !== 0) {
+                  return (
+                    <SwiperSlide key={index}>
+                      <LightGallery
+                        speed={500}
+                        plugins={[lgThumbnail, lgZoom, lgFullscreen]}
+                        className="flex"
+                      >
+                        <a href={listImgOrigin[index]}>
+                          <img
+                            src={listImgOrigin[index]}
+                            alt=""
+                            className="w-[398px] h-[398px] m-auto"
+                          />
+                        </a>
+                      </LightGallery>
+                    </SwiperSlide>
+                  );
+                } else {
+                  return (
+                    <SwiperSlide>
+                      <div className="bg-gradient h-full w-full min-w-[718px] min-h-[398px] rounded-[10px]">
+                        <div className="p-4 flex items-center gap-2 w-full h-full">
+                          <img
+                            src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_burgundy_211119.jpg"
+                            alt=""
+                            className="w-[270px] h-[270px] rounded-[10px]"
+                          />
+                          <div className="text-white">
+                            <p className="text-lg mb-[5px] uppercase font-semibold text-center">
+                              Tính năng nổi bật
+                            </p>
+                            <div>
+                              <ul className="text-sm flex flex-col gap-[5px]">
+                                <li>
+                                  Vi xử lý mạnh mẽ nhất Galaxy - Snapdragon 8
+                                  Gen 1 (4 nm)
+                                </li>
+                                <li>
+                                  Camera mắt thần bóng đêm Nightography - Chụp
+                                  đêm cực đỉnh
+                                </li>
+                                <li>
+                                  S Pen đầu tiên trên Galaxy S - Độ trễ thấp, dễ
+                                  thao tác
+                                </li>
+                                <li>
+                                  Dung lượng pin bất chấp ngày đêm - Viên pin
+                                  5000mAh, sạc nhanh 45W
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                  );
+                }
               })}
             </Swiper>
-
-            <div></div>
-
             <ProductInfor />
             <BoughtTogether />
           </div>
@@ -447,7 +349,10 @@ export default function ProductView() {
               </div>
 
               <div className="flex gap-[10px] mt-[10px]">
-                <button className="w-[calc(100%-70px)] flex flex-col items-center text-white bg-[#f52f32] py-2 rounded-[10px]">
+                <button
+                  className="w-[calc(100%-70px)] flex flex-col items-center text-white bg-[#f52f32] py-2 rounded-[10px]"
+                  onClick={() => navigate("/cart")}
+                >
                   <strong className="text-base">MUA NGAY</strong>
                   <span className="text-sm">
                     (Giao nhanh từ 2 giờ hoặc nhận tại cửa hàng)
