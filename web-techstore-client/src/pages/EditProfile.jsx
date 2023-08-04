@@ -48,7 +48,7 @@ export default function Edit() {
 					<div className=' tw-flex tw-flex-col tw-gap-4 tw-items-center tw-w-1/2 tw-min-w-[400px]'>
 
 						<div className=" tw-flex tw-flex-col tw-items-center">
-							<div className=' tw-w-28 tw-h-28 '>
+							<div className=' tw-w-24 tw-h-24'>
 								<img src="/logo/1.png" alt="logo" className=' tw-rounded-xl'/>
 							</div>
 							<div className=' tw-font-bold tw-text-lg tw-text-gray-600'>Minh Dung Nguyen</div> 
