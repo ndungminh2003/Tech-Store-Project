@@ -47,8 +47,10 @@ export default function Edit() {
 				<form action=""  onSubmit={formik.handleSubmit} className=' tw-flex tw-justify-center tw-p-6'>	
 					<div className=' tw-flex tw-flex-col tw-gap-4 tw-items-center tw-w-1/2 tw-min-w-[400px]'>
 
-						<div className=" tw-text-center">
-							<div className=' tw-font-bold tw-text-4xl'>TechStore</div>
+						<div className=" tw-flex tw-flex-col tw-items-center">
+							<div className=' tw-w-28 tw-h-28 '>
+								<img src="/logo/1.png" alt="logo" className=' tw-rounded-xl'/>
+							</div>
 							<div className=' tw-font-bold tw-text-lg tw-text-gray-600'>Minh Dung Nguyen</div> 
 						</div>
 
