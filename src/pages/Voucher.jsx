@@ -1,6 +1,7 @@
 import React from "react";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { Link, useNavigate } from "react-router-dom";
+import "../assets/style/res.scss";
 
 function Voucher() {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ function Voucher() {
     <div className="">
       <div className="flex items-center justify-center max-w-[700px] m-auto my-5">
         <div
-          className="py-[10px] flex w-full text-center cursor-pointer"
+          className="res-none py-[10px] flex w-full text-center cursor-pointer"
           onClick={() => navigate("/cart/payment-info")}
         >
           <div className="!text-base text-[#d70018] justify-start flex items-center font-semibold">
@@ -44,7 +45,7 @@ function Voucher() {
                 ></path>
               </svg>
             </div>
-            <p className="text-[#d70018]">Chọn sản phẩm</p>
+            <p className="text-[#d70018] text-center  h-[75px]  ">Chọn sản phẩm</p>
           </div>
           <div className="w-[20%] flex flex-col items-center text-xs text-[#0e2431] process-item relative active">
             <div className="w-[35px] h-[35px] border border-[#d70018] rounded-full relative">
@@ -67,7 +68,7 @@ function Voucher() {
                 ></path>
               </svg>
             </div>
-            <p className="text-[#d70018]">Thông tin đặt hàng</p>
+            <p className="text-[#d70018] text-center h-[75px]">Thông tin đặt hàng</p>
           </div>
           <div className="w-[20%] flex flex-col items-center text-xs text-[#0e2431] process-item relative active">
             <div className="w-[35px] h-[35px] border border-[#d70018] rounded-full relative">
@@ -106,7 +107,7 @@ function Voucher() {
                 ></path>
               </svg>
             </div>
-            <p className="text-[#d70018]">Phiếu giảm giá</p>
+            <p className="text-[#d70018] text-center h-[75px]">Phiếu giảm giá</p>
           </div>
           <div className="w-[20%] flex flex-col items-center text-xs text-[#0e2431] process-item relative">
             <div className="w-[35px] h-[35px] border border-[#777] rounded-full relative">
@@ -129,7 +130,7 @@ function Voucher() {
                 ></path>
               </svg>
             </div>
-            <p>Thanh toán</p>
+            <p className=" text-center h-[75px]">Thanh toán</p>
           </div>
 
           <div className="w-[20%] flex flex-col items-center text-xs text-[#0e2431] process-item relative">
@@ -153,7 +154,7 @@ function Voucher() {
                 ></path>
               </svg>
             </div>
-            <p>Hoàn tất đặt hàng</p>
+            <p className="text-center h-[75px]">Hoàn tất đặt hàng</p>
           </div>
         </div>
 

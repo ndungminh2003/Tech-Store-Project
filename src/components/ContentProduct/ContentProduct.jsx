@@ -1,11 +1,11 @@
 import React from "react";
 import BoxReview from "../BoxReview/BoxReview";
 import Question from "../Question/Question";
-
+import "../../assets/style/ContentProduct.scss"
 const ContentProduct = () => {
   return (
-    <div className="flex gap-3">
-      <div className="w-[830px]">
+    <div className="flex gap-3 content-product">
+      <div className="content-product-top w-[830px]">
         <div className="p-[15px] shadow-cellphone rounded-[10px]">
           <div className="p-2 mb-2 bg-[#f2f2f2] rounded-lg">
             <h1 className="text-[#d70018] font-semibold text-lg text-center">
@@ -149,7 +149,7 @@ const ContentProduct = () => {
         <Question />
         <BoxReview />
       </div>
-      <div className="w-[calc(100%-830px)]">
+      <div className="content-product-bottom w-[calc(100%-830px)]">
         <div className="p-3 rounded-[10px] shadow-cellphone">
           <h1 className="text-base text-[#363636] mb-3 font-semibold">
             Thông số kỹ thuật

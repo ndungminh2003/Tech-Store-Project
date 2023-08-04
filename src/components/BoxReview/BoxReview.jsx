@@ -7,6 +7,7 @@ import LinearProgress, {
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
+import "../../assets/style/BoxReview.scss" 
 
 const BoxReview = () => {
   const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
@@ -23,7 +24,7 @@ const BoxReview = () => {
     },
   }));
   return (
-    <div className="p-2 shadow-cellphone">
+    <div className="box-review p-2 shadow-cellphone">
       <h1 className="text-[#363636] mb-6 text-base font-semibold">
         Đánh giá & nhận xét iPhone 14 Pro Max 256GB | Chính hãng VN/A
       </h1>

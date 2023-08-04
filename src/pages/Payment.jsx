@@ -61,7 +61,7 @@ function Payment() {
                 ></path>
               </svg>
             </div>
-            <p className="text-[#d70018]">Chọn sản phẩm</p>
+            <p className="text-[#d70018] text-center">Chọn sản phẩm</p>
           </div>
           <div className="w-[20%] flex flex-col items-center text-xs text-[#0e2431] process-item relative active">
             <div className="w-[35px] h-[35px] border border-[#d70018] rounded-full relative">
@@ -84,7 +84,7 @@ function Payment() {
                 ></path>
               </svg>
             </div>
-            <p className="text-[#d70018]">Thông tin đặt hàng</p>
+            <p className="text-[#d70018] text-center">Thông tin đặt hàng</p>
           </div>
           <div className="w-[20%] flex flex-col items-center text-xs text-[#0e2431] process-item relative active">
             <div className="w-[35px] h-[35px] border border-[#d70018] rounded-full relative">
@@ -123,7 +123,7 @@ function Payment() {
                 ></path>
               </svg>
             </div>
-            <p className="text-[#d70018]">Phiếu giảm giá</p>
+            <p className="text-[#d70018] text-center">Phiếu giảm giá</p>
           </div>
           <div className="w-[20%] flex flex-col items-center text-xs text-[#0e2431] process-item relative active">
             <div className="w-[35px] h-[35px] border border-[#d70018] rounded-full relative">
@@ -146,7 +146,7 @@ function Payment() {
                 ></path>
               </svg>
             </div>
-            <p className="text-[#d70018]">Thanh toán</p>
+            <p className="text-[#d70018] text-center">Thanh toán</p>
           </div>
 
           <div className="w-[20%] flex flex-col items-center text-xs text-[#0e2431] process-item relative ">
@@ -170,7 +170,7 @@ function Payment() {
                 ></path>
               </svg>
             </div>
-            <p>Hoàn tất đặt hàng</p>
+            <p className="text-center">Hoàn tất đặt hàng</p>
           </div>
         </div>
 

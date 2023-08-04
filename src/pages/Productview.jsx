@@ -4,6 +4,7 @@ import StarIcon from "@mui/icons-material/Star";
 import { Rating } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as GiftBoxIcon } from "../assets/giftbox.svg";
+import "../assets/style/Productview.scss"
 
 import BoughtTogether from "../components/BoughtTogether/BoughtTogether";
 import ProductInfor from "../components/ProductInfor/ProductInfor";
@@ -137,8 +138,8 @@ export default function ProductView() {
         </div>
       )}
 
-      <section>
-        <div className="flex gap-1 mt-[30px]">
+      <section className="option">
+        <div className="option-title flex gap-1 mt-[30px]">
           <h1 className="text-lg text-[#0a263c] font-bold">
             Samsung Galaxy S23 Ultra 256GB
           </h1>
@@ -146,8 +147,8 @@ export default function ProductView() {
           <p>1 đánh giá</p>
         </div>
         <hr className="my-[15px] border-none" />
-        <div className="flex">
-          <div className="w-[60%]">
+        <div className="option-top flex">
+          <div className="option-img w-[60%]">
             <Swiper
               pagination={pagination}
               modules={[Pagination, Navigation, Autoplay]}
@@ -174,7 +175,7 @@ export default function ProductView() {
                           <img
                             src={listImgOrigin[index]}
                             alt=""
-                            className="w-[398px] h-[398px] m-auto"
+                            className="w-[398px] h-[398px] m-auto object-cover"
                           />
                         </a>
                       </LightGallery>
@@ -183,12 +184,12 @@ export default function ProductView() {
                 } else {
                   return (
                     <SwiperSlide>
-                      <div className="bg-gradient h-full w-full min-w-[718px] min-h-[398px] rounded-[10px]">
-                        <div className="p-4 flex items-center gap-2 w-full h-full">
+                      <div className="option-bg bg-gradient h-full w-full min-w-[718px] min-h-[398px] rounded-[10px]">
+                        <div className="option-outstanding p-4 flex items-center gap-2 w-full h-full">
                           <img
                             src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_burgundy_211119.jpg"
                             alt=""
-                            className="w-[270px] h-[270px] rounded-[10px]"
+                            className="w-[270px] h-[270px] rounded-[10px] object-cover"
                           />
                           <div className="text-white">
                             <p className="text-lg mb-[5px] uppercase font-semibold text-center">
@@ -225,7 +226,7 @@ export default function ProductView() {
             <ProductInfor />
             <BoughtTogether />
           </div>
-          <div className="w-[40%] pl-[20px]">
+          <div className="option-price w-[40%] pl-[20px]">
             <div className="mb-[10px]">
               <div className="flex gap-[10px] w-full flex-nowrap">
                 <Link className="border border-[#d70018] w-[calc(100%/3-10px)] px-1 py-[5px] text-xs flex flex-col text-center gap-1 rounded-lg">

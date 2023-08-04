@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import MaskedEmail from "./MaskedEmail";
 import { useNavigate } from "react-router-dom";
 
-import "../assets/styles.css";
+import "../assets/style/styles.css";
 const CreateNewPassword = () => {
-  const email = "taquangthang2002hn@gmail.com";
+  const email = "nbduy21@vp.fitus.edu.vn";
   const [countdown, setCountdown] = useState(60);
   const [isCounting, setIsCounting] = useState(true);
 
@@ -89,8 +89,8 @@ const CreateNewPassword = () => {
         <div className="text-[#e0052b]">{countdown}s</div>
         )}
         </div>
-      <div>
-        <button onClick={handleForgotPasswordClick} className="bg-[#e0052b] rounded-md text-white cursor-pointer block text-center text-14 font-semibold mt-[20px] mb-[20px] mx-auto pt-[11px] pb-[11px] w-full">
+      <div className="res-btn ">
+        <button onClick={handleForgotPasswordClick} className=" bg-[#e0052b] rounded-md text-white cursor-pointer block text-center text-14 font-semibold mt-[20px] mb-[20px] mx-auto pt-[11px] pb-[11px] w-full">
           Tiếp tục
         </button>
       </div>

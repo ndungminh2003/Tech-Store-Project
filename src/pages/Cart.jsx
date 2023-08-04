@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import { AccountCircle } from "@mui/icons-material";
 import { Link, useNavigate } from "react-router-dom";
+import "../assets/style/res.scss";
+
 export default function CardProduct() {
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
@@ -19,7 +22,7 @@ export default function CardProduct() {
     <div className="">
       <div className="flex items-center justify-center  max-w-[700px] m-auto my-5">
         <div
-          className="py-[10px] flex w-full text-center"
+          className="res-none py-[10px] flex w-full text-center"
           onClick={() => navigate("/")}
         >
           <div className="!text-base text-[#d70018] justify-start flex items-center font-semibold">
@@ -65,7 +68,7 @@ export default function CardProduct() {
         </button>
       </div> */}
 
-      <div className="max-w-[600px] h-[600px] overflow-auto max-h-[600px] m-auto flex flex-col gap-10 hidden-scrollbar">
+      <div className="res-content max-w-[600px] h-[600px] overflow-auto max-h-[600px] m-auto flex flex-col gap-10 hidden-scrollbar">
         <div className="flex">
           <div>
             <img
@@ -79,7 +82,7 @@ export default function CardProduct() {
               <Link className="text-[#0e2431] text-[15px] font-bold hover:underline">
                 iPhone 14 Pro Max 256GB-Tím
               </Link>
-              <DeleteIcon className="cursor-pointer"/>
+              <DeleteIcon className="cursor-pointer" />
             </div>
 
             <div className="flex items-center justify-between text-[15px]">
@@ -322,25 +325,28 @@ export default function CardProduct() {
           </div>
         </div>
       </div>
-
-      <div className="w-full max-w-[670px] m-auto bg-white shadow-cellphone rounded-md p-[10px] mt-20">
-        <div className="flex items-center justify-between text-base mb-2">
-          <h1 className="text-[#0e2431] font-semibold">Tổng tiền tạm tính:</h1>
-          <span className="text-[#d70018] font-bold">47.520.000 ₫</span>
-        </div>
-        <div className="flex flex-col font-bold gap-2">
-          <button
-            className="px-3 py-[6px] uppercase h-[60px] bg-[#d70018] rounded text-white"
-            onClick={() => navigate("/cart/payment-info")}
-          >
-            Tiến hành đặt hàng
-          </button>
-          <Link
-            to="/"
-            className="px-3 py-[6px] uppercase h-[60px] leading-[48px] text-center border border-[#dc3545] rounded text-[#dc3545] hover:bg-[#dc3545] hover:text-white"
-          >
-            Chọn thêm sản phẩm khác
-          </Link>
+      <div className="res-total-price">
+        <div className="w-full max-w-[670px] m-auto bg-white shadow-cellphone rounded-md p-[10px] mt-20">
+          <div className="flex items-center justify-between text-base mb-2">
+            <h1 className="text-[#0e2431] font-semibold">
+              Tổng tiền tạm tính:
+            </h1>
+            <span className="text-[#d70018] font-bold">47.520.000 ₫</span>
+          </div>
+          <div className="flex flex-col font-bold gap-2">
+            <button
+              className="px-3 py-[6px] uppercase h-[60px] bg-[#d70018] rounded text-white"
+              onClick={() => navigate("/cart/payment-info")}
+            >
+              Tiến hành đặt hàng
+            </button>
+            <Link
+              to="/"
+              className="px-3 py-[6px] uppercase h-[60px] leading-[48px] text-center border border-[#dc3545] rounded text-[#dc3545] hover:bg-[#dc3545] hover:text-white"
+            >
+              Chọn thêm sản phẩm khác
+            </Link>
+          </div>
         </div>
       </div>
     </div>

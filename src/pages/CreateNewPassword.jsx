@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../assets/styles.scss";
+import "../assets/style/styles.scss";
 const CreateNewPassword = () => {
   return (
     <div className="restore-password w-[700px] m-0 m-auto mt-[20px]">
@@ -14,7 +14,7 @@ const CreateNewPassword = () => {
         />
       </div>
       <div>
-        <h5>Tạo mật khẩu mới</h5>
+        <h5 className="ml-3 mr-1">Tạo mật khẩu mới</h5>
         <div className="input-group">
           <input
             type="password"
@@ -77,7 +77,7 @@ const CreateNewPassword = () => {
           <label>Xác nhận lại mật khẩu</label>
         </div>
       </div>
-      <div>
+      <div className="ml-3 mr-3">
         <button className="bg-[#e0052b] rounded-md text-white cursor-pointer block text-center text-14 font-semibold mt-[20px] mb-[20px] mx-auto pt-[11px] pb-[11px] w-full">
           Tiếp tục
         </button>

@@ -11,7 +11,7 @@ function PaymentSuccess() {
 
   return (
     <div className="">
-      <div className="flex items-center justify-center max-w-[700px] m-auto my-5">
+      <div className="res-none flex items-center justify-center max-w-[700px] m-auto my-5">
         <div
           className="py-[10px] flex w-full text-center cursor-pointer"
           onClick={() => navigate("/")}

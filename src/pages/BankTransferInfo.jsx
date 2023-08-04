@@ -69,7 +69,7 @@ const BankTransferInfo = () => {
           <strong>Thông tin chuyển khoản</strong>
           <ul>
             <li>Công ty cổ phần ngoài NN</li>
-            <li>Ngân hàng Vietinbank – CN Thành Phố Hà Nội</li>
+            <li>Ngân hàng Vietinbank – CN Thành Phố Hồ Chí Minh</li>
             <li>
               Số tài khoản: <strong>999999999</strong>
             </li>
