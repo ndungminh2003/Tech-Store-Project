@@ -31,26 +31,25 @@ export default function User() {
         <div className=' tw-flex tw-flex-col tw-gap-4'>
 
           <NavLink to='/user' className='tw-no-underline'>
-            <div className=' tw-flex tw-gap-2 tw-items-center tw-cursor-pointer tw-text-lg tw-bg-slate-400 tw-rounded-xl tw-w-30 tw-h-10 hover:tw-bg-slate-500 hover:tw-duration-300 hover:tw-text-lime-950 tw-w-3/4'>{/*w-30*/}
+            <div className=' tw-flex tw-gap-2 tw-items-center tw-cursor-pointer tw-text-lg tw-bg-slate-400 tw-rounded-xl tw-h-10 hover:tw-bg-slate-500 hover:tw-duration-300 hover:tw-text-lime-950 tw-w-3/4'>{/*w-30*/}
               <PermContactCalendarIcon className=' tw-ml-2'/>
               <span>Detail</span>
             </div>
           </NavLink>
 
-          
           <NavLink to='/user/order' className='tw-no-underline'>
-            <div className=' tw-flex tw-gap-2 tw-items-center tw-cursor-pointer tw-text-lg tw-bg-slate-400 tw-rounded-xl tw-w-30 tw-h-10 hover:tw-bg-slate-500 hover:tw-duration-300 hover:tw-text-lime-950 tw-w-3/4'>{/*w-30*/}
+            <div className=' tw-flex tw-gap-2 tw-items-center tw-cursor-pointer tw-text-lg tw-bg-slate-400 tw-rounded-xl tw-h-10 hover:tw-bg-slate-500 hover:tw-duration-300 hover:tw-text-lime-950 tw-w-3/4'>{/*w-30*/}
               <EventNoteIcon className=' tw-ml-2'/>
               <span>My Purchase</span>
             </div>
           </NavLink>
           
-          <div className=' tw-flex tw-gap-2 tw-items-center tw-cursor-pointer tw-text-lg tw-bg-slate-400 tw-rounded-xl tw-w-30 tw-h-10 hover:tw-bg-slate-500 hover:tw-duration-300 hover:tw-text-lime-950 tw-w-3/4'>{/*w-30*/}
+          <div className=' tw-flex tw-gap-2 tw-items-center tw-cursor-pointer tw-text-lg tw-bg-slate-400 tw-rounded-xl tw-h-10 hover:tw-bg-slate-500 hover:tw-duration-300 hover:tw-text-lime-950 tw-w-3/4'>{/*w-30*/}
             <SupportAgentIcon className=' tw-ml-2'/>
             <span>Support</span>
           </div>
 
-          <div className=' tw-flex tw-gap-2 tw-items-center tw-cursor-pointer tw-text-lg tw-bg-slate-400 tw-rounded-xl tw-w-30 tw-h-10 hover:tw-bg-slate-500 hover:tw-duration-300 hover:tw-text-lime-950 tw-w-3/4'>{/*w-30*/}
+          <div className=' tw-flex tw-gap-2 tw-items-center tw-cursor-pointer tw-text-lg tw-bg-slate-400 tw-rounded-xl tw-h-10 hover:tw-bg-slate-500 hover:tw-duration-300 hover:tw-text-lime-950 tw-w-3/4'>{/*w-30*/}
             <LoyaltyIcon className=' tw-ml-2'/>
             <span>Voucher</span>
           </div>
