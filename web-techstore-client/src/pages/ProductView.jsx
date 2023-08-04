@@ -184,14 +184,14 @@ export default function ProductView() {
                 } else {
                   return (
                     <SwiperSlide>
-                      <div className="tw-bg-gradient tw-h-full tw-w-full tw-min-w-[718px] tw-min-h-[398px] tw-rounded-[10px]">
+                      <div className=" tw-h-full tw-w-full tw-min-w-[718px] tw-min-h-[398px] tw-rounded-[10px]">
                         <div className="tw-p-4 tw-flex tw-items-center tw-gap-2 tw-w-full tw-h-full">
                           <img
                             src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_burgundy_211119.jpg"
                             alt=""
                             className="tw-w-[270px] tw-h-[270px] tw-rounded-[10px]"
                           />
-                          <div className="tw-text-white">
+                          <div className="tw-bg-gradient-to-r tw-from-purple-500 tw-to-pink-500tw-text-white">
                             <p className="tw-text-lg tw-mb-[5px] tw-uppercase tw-font-semibold tw-text-center">
                               Tính năng nổi bật
                             </p>

@@ -19,8 +19,8 @@ export default function Header() {
         <div className=' tw-container tw-mx-auto tw-flex tw-h-full tw-justify-around tw-items-center '>
 
           <Link to='/' className='tw-no-underline'>
-            <div className=' tw-capitalize tw-cursor-pointer tw-text-3xl xxsm:tw-text-xl xsm:tw-text-2xl sm:tw-text-2xl tw-p-4 tw-text-white '>
-              <span>TechStore</span>
+            <div className=' tw-w-52 tw-flex tw-items-center tw-justify-center xxsm:tw-w-36 xsm:tw-w-36 sm:tw-w-36 md:tw-w-44'>
+              <img src="/logo/2.png" alt="logo" className=' tw-object-fill'/>
             </div>
           </Link>
           
