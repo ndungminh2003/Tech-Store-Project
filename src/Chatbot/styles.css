@@ -1,0 +1,23 @@
+.react-chatbot-kit-chat-container {
+  
+  width: 24rem;
+  height: 34rem;
+  bottom: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+  border-radius: 10px;
+}
+
+.react-chatbot-kit-chat-header {
+  font-size: medium;
+  background-color: rgb(30, 41, 59, 1);
+  color: white;
+
+}
+
+
+.react-chatbot-kit-chat-input-container {
+
+  height: 60px;
+
+}
+
