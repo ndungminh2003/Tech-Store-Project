@@ -89,7 +89,7 @@ const AddCoupon = () => {
         {getCouponId !== undefined ? "Edit" : "Add"} Coupon
       </h3>
       <div>
-        <form action="" onSubmit={formik.handleSubmit}>
+        <form action="" onSubmit={formik.handleSubmit} className=" flex flex-col gap-2">
           <CustomInput
             type="text"
             name="name"
