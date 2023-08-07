@@ -9,7 +9,7 @@ const Resetpassword = () => {
       <br />
       <br />
       <br />
-      <div className="my-5 w-1/4 bg-white rounded-lg mx-auto p-6">
+      <div className="my-5 w-1/4 bg-white rounded-lg mx-auto p-6 flex flex-col gap-4">
         <h3 className="text-center text-xl font-bold title"> Reset Password</h3>
         <p className="text-center">Please Enter your new password.</p>
         <form action="" className=" flex flex-col gap-4">

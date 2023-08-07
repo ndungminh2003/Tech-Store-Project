@@ -213,7 +213,7 @@ const MainLayout = () => {
               </div>
 
               <div class=" flex flex-col mr-8 " >
-                <h5 class="mb-0 font-bold">Hoang Anh</h5>
+                <h5 class="mb-0 font-bold">Minh</h5>
                 <p class="mb-0">Administrator</p>
               </div>
               
