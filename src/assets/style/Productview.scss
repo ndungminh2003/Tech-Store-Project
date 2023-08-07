@@ -1,0 +1,56 @@
+@media (max-width: 768px) {
+  .option {
+    padding: 0 10px;
+    &-title {
+      display: none;
+    }
+    &-top {
+      flex-direction: column;
+    }
+    &-img {
+      width: 100%;
+    }
+    &-price {
+      width: 100%;
+    }
+  }
+}
+@media (max-width: 576px) {
+  .option {
+    padding: 0 10px;
+    &-bg {
+      // width: 84vw;
+    }
+    &-outstanding {
+      width: 86vw;
+    }
+    &-title {
+      display: none;
+    }
+    &-top {
+      flex-direction: column;
+    }
+    &-img {
+      width: 100%;
+    }
+    &-price {
+      width: 100%;
+    }
+    .swiper-slide.swiper-slide-active {
+        // width: 78vw !important;
+      }
+      .min-w-\[718px\] {
+        min-width: 18px; 
+    }
+  }
+  .w-\[270px\] {
+    width: 137px;
+  }
+
+  .h-\[270px\] {
+    height: 188px;
+  }
+  li{
+    font-size: 12px;
+  }
+}

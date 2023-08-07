@@ -1,0 +1,24 @@
+@media (min-width: 577px) and (max-width: 768px) {
+  .footer {
+    padding: 0 10px;
+
+    &-grid {
+      grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    }
+    &-center {
+      justify-content: center;
+    }
+  }
+}
+@media (max-width: 577px) {
+  .footer {
+    padding: 0 10px;
+
+    &-grid {
+      grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    }
+    &-center {
+      text-align: center;
+    }
+  }
+}
