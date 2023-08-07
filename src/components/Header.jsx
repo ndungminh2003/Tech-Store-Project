@@ -330,6 +330,31 @@ export default function Header() {
 
   const handleOnClick = () =>{  
     setIsOpen((prev) => !prev);
+    if (isOpen === false) {
+      // Create the overlay element
+      const overlay = document.createElement('div');
+      overlay.id = 'overlay';
+  
+      // Apply styles to the overlay
+      overlay.style.position = 'fixed';
+      overlay.style.top = '0';
+      overlay.style.left = '0';
+      overlay.style.width = '100%';
+      overlay.style.height = '100%';
+      overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.53)';
+      overlay.style.zIndex = '45';
+  
+      // Add the overlay to the body
+      document.body.appendChild(overlay);
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    } else {
+      // Remove the overlay when isOpen is true
+      const overlay = document.getElementById('overlay'); // Assuming the overlay is the first div added to the body
+      if (overlay) {
+        overlay.remove();
+      }
+    }
+    
   }
 
   const [hoveredElement, setHoveredElement] = useState(null);
@@ -347,7 +372,7 @@ export default function Header() {
 
       <div className=' w-full bg-slate-800 sticky top-0 z-50'>
 
-        <div className=' container mx-auto flex h-17 justify-around items-center '>
+        <div className=' relative container mx-auto flex h-17 justify-around items-center '>
 
           <Link to='/'>
             <div className=' w-52 flex items-center justify-center xxsm:w-36 xsm:w-36 sm:w-36 md:w-44'>
@@ -355,15 +380,15 @@ export default function Header() {
             </div>
           </Link>
           
-          <div onClick={handleOnClick}>
-            <div className=' flex gap-2 items-center p-4 cursor-pointer capitalize text-xl lg:text-lg hover:bg-gray-500 hover:rounded-lg hover:py-2 text-white xxsm:hidden xsm:hidden sm:hidden md:hidden'>
+          <div onClick={handleOnClick} className=''> 
+            <div className=' flex gap-2 items-center p-4 cursor-pointer capitalize text-xl lg:text-lg hover:bg-gray-500 hover:rounded-lg hover:py-4 text-white xxsm:hidden xsm:hidden sm:hidden md:hidden'>
               <NotesIcon />
               <span>catalog</span>
             </div>
 
             {
               isOpen ? (
-                <div id='catalog' className=' absolute left-9 top-[70px] flex flex-col gap-1 w-60 border-2 rounded-3xl ml-2 mt-8 shadow-lg shadow-gray-400 min-w-max h-fit xxsm:hidden xsm:hidden sm:hidden z-50 bg-white'>
+                <div id='catalog' className=' absolute left-0 top-[70px] flex flex-col gap-1 w-60 border-2 rounded-3xl ml-2 mt-8 shadow-lg shadow-gray-400 min-w-max h-fit xxsm:hidden xsm:hidden sm:hidden z-50 bg-white'>
                   { 
                     catalog.map( c => (
                       <div key={c.id} onMouseMove={ () => handleMouseOver(c)} onMouseOut={handleMouseLeave} className=' flex items-center justify-between p-2 cursor-pointer hover:bg-gray-300 hover:rounded-3xl hover:px-2 '>
@@ -432,7 +457,7 @@ export default function Header() {
           <SearchBar />
 
           <Link to='/shopping-cart'>
-            <div className='flex gap-2 items-center p-4 cursor-pointer capitalize text-xl xxsm:text-lg xsm:text-lg sm:text-lg md:text-lg lg:text-lg xsm:flex-col hover:bg-gray-500 hover:rounded-lg hover:py-2 text-white min-w-fit xxsm:hidden'>
+            <div className='flex gap-2 items-center p-4 cursor-pointer capitalize text-xl xxsm:text-lg xsm:text-lg sm:text-lg md:text-lg lg:text-lg xsm:flex-col hover:bg-gray-500 hover:rounded-lg hover:py-4 text-white min-w-fit xxsm:hidden'>
               <Badge badgeContent={shoppingCart} color="primary">
                 <ShoppingCartIcon color="white" />
               </Badge>
@@ -441,14 +466,14 @@ export default function Header() {
           </Link>
           
           <Link to='/wishlist'>
-            <div className=' flex gap-2 items-center p-4 cursor-pointer capitalize text-xl hover:bg-gray-500 hover:rounded-lg hover:py-2 text-white xxsm:hidden xsm:hidden sm:hidden md:hidden lg:hidden'> 
+            <div className=' flex gap-2 items-center p-4 cursor-pointer capitalize text-xl hover:bg-gray-500 hover:rounded-lg hover:py-4 text-white xxsm:hidden xsm:hidden sm:hidden md:hidden lg:hidden'> 
               <FavoriteIcon />          
               <span>wishlist</span>   
             </div>
           </Link>
 
           <Link to='/contact'>
-            <div className=' flex gap-2 items-center p-4 cursor-pointer capitalize text-xl hover:bg-gray-500 hover:rounded-lg hover:py-2 text-white xxsm:hidden xsm:hidden sm:hidden md:hidden lg:hidden'>         
+            <div className=' flex gap-2 items-center p-4 cursor-pointer capitalize text-xl hover:bg-gray-500 hover:rounded-lg hover:py-4 text-white xxsm:hidden xsm:hidden sm:hidden md:hidden lg:hidden'>         
               <CallIcon />         
               <span>contact</span>
             </div>
@@ -457,7 +482,7 @@ export default function Header() {
           <DropDown pros={'Minh'}/>
 
           {/* <Link to='/login'>
-            <div className=' flex gap-2 items-center p-4 cursor-pointer capitalize text-xl hover:bg-gray-500 hover:rounded-lg hover:py-2 text-white xxsm:hidden xsm:hidden sm:hidden md:hidden'>        
+            <div className=' flex gap-2 items-center p-4 cursor-pointer capitalize text-xl hover:bg-gray-500 hover:rounded-lg hover:py-4 text-white xxsm:hidden xsm:hidden sm:hidden md:hidden'>        
               <AccountCircleIcon />      
               <span>login</span>
             </div>
