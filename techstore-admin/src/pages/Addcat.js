@@ -74,17 +74,20 @@ const Addcat = () => {
       </h3>
       <div>
         <form action="" onSubmit={formik.handleSubmit}>
-          <CustomInput
-            type="text"
-            label="Enter Product Category"
-            onChng={formik.handleChange("title")}
-            onBlr={formik.handleBlur("title")}
-            val={formik.values.title}
-            id="brand"
-          />
-          <div className="error">
-            {formik.touched.title && formik.errors.title}
+          <div className=" h-12">
+            <CustomInput
+              type="text"
+              label="Enter Product Category"
+              onChng={formik.handleChange("title")}
+              onBlr={formik.handleBlur("title")}
+              val={formik.values.title}
+              id="brand"
+            />
+            <div className="error">
+              {formik.touched.title && formik.errors.title}
+            </div>
           </div>
+          
           <button
             className="inline-block align-middle text-center select-none font-normal whitespace-no-wrap rounded py-1 px-3 leading-normal no-underline bg-green-500 text-white hover:bg-green-600 border-0 rounded-3 my-5"
             type="submit"

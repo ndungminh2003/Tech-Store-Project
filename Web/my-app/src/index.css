@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+} 
+
+.swiper-button-prev:after {
+
+  --swiper-navigation-size: 25px;
+  padding: 15px;
+  background-color: #fff;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 100%;
+  opacity: .8;
+  color: black;
+  margin-right: 32px;
+
+}
+
+.swiper-button-next:after {
+
+  --swiper-navigation-size: 25px;
+  padding: 15px;
+  background-color: #fff;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 100%;
+  opacity: .8;
+  color: black;
+  margin-left: 32px;
+
+}
+
+
+

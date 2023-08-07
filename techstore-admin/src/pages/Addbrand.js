@@ -80,19 +80,22 @@ const Addbrand = () => {
       </h3>
       <div>
         <form action="" onSubmit={formik.handleSubmit}>
-          <CustomInput
-            type="text"
-            name="title"
-            onChng={formik.handleChange("title")}
-            onBlr={formik.handleBlur("title")}
-            val={formik.values.title}
-            label="Enter Brand"
-            id="brand"
-            
-          />
-          <div className="error">
-            {formik.touched.title && formik.errors.title}
+          <div className=" h-12">
+            <CustomInput
+              type="text"
+              name="title"
+              onChng={formik.handleChange("title")}
+              onBlr={formik.handleBlur("title")}
+              val={formik.values.title}
+              label="Enter Brand"
+              id="brand"
+              
+            />
+            <div className="error">
+              {formik.touched.title && formik.errors.title}
+            </div>
           </div>
+          
           <button
             className="inline-block align-middle text-center select-none font-normal whitespace-no-wrap rounded py-1 px-3 leading-normal no-underline bg-green-500 text-white hover:green-600 border-0 my-5"
             type="submit"

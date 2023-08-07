@@ -90,42 +90,54 @@ const AddCoupon = () => {
       </h3>
       <div>
         <form action="" onSubmit={formik.handleSubmit} className=" flex flex-col gap-2">
-          <CustomInput
-            type="text"
-            name="name"
-            onChng={formik.handleChange("name")}
-            onBlr={formik.handleBlur("name")}
-            val={formik.values.name}
-            label="Enter Coupon Name"
-            id="name"
-          />
-          <div className="error">
-            {formik.touched.name && formik.errors.name}
+
+          <div className=" h-16">
+            <CustomInput
+              type="text"
+              name="name"
+              onChng={formik.handleChange("name")}
+              onBlr={formik.handleBlur("name")}
+              val={formik.values.name}
+              label="Enter Coupon Name"
+              id="name"
+            />
+            <div className="error">
+              {formik.touched.name && formik.errors.name}
+            </div>
+          </div> 
+          
+          <div className=" h-16 flex justify-center flex-col">
+            <input
+              type="date"
+              name="expiry"
+              onChange={formik.handleChange("expiry")}
+              onBlur={formik.handleBlur("expiry")}
+              val={formik.values.expiry}
+              label="Enter Expiry Data"
+              id="date"
+              className=" w-full h-10"
+            />
+            <div className="error h-4">
+              {formik.touched.expiry && formik.errors.expiry}
+            </div>
           </div>
-          <CustomInput
-            type="date"
-            name="expiry"
-            onChng={formik.handleChange("expiry")}
-            onBlr={formik.handleBlur("expiry")}
-            val={formik.values.expiry}
-            label="Enter Expiry Data"
-            id="date"
-          />
-          <div className="error">
-            {formik.touched.expiry && formik.errors.expiry}
+          
+          <div className=" h-16">
+            <CustomInput
+              type="number"
+              name="discount"
+              onChng={formik.handleChange("discount")}
+              onBlr={formik.handleBlur("discount")}
+              val={formik.values.discount}
+              label="Enter Discount"
+              id="discount"
+            />
+            <div className="error">
+              {formik.touched.discount && formik.errors.discount}
+            </div>
           </div>
-          <CustomInput
-            type="number"
-            name="discount"
-            onChng={formik.handleChange("discount")}
-            onBlr={formik.handleBlur("discount")}
-            val={formik.values.discount}
-            label="Enter Discount"
-            id="discount"
-          />
-          <div className="error">
-            {formik.touched.discount && formik.errors.discount}
-          </div>
+          
+          
           <button
             className="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded py-1 px-3 leading-normal no-underline bg-green-500 text-white hover:bg-green-600 my-5"
             type="submit"
