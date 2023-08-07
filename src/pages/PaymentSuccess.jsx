@@ -16,12 +16,12 @@ function PaymentSuccess() {
           className="py-[10px] flex w-full text-center cursor-pointer"
           onClick={() => navigate("/")}
         >
-          <div className="!text-base text-[#d70018] justify-start flex items-center font-semibold">
+          <div className="!text-base text-gray-600 justify-start flex items-center font-semibold">
             <ArrowBackIosIcon />
             <h1 className="hover:underline">Đóng</h1>
           </div>
 
-          <h1 className="text-lg text-[#d70018] font-semibold justify-center m-auto pr-[70px]">
+          <h1 className="text-lg text-gray-600 font-semibold justify-center m-auto pr-[70px]">
             Thông tin đặt hàng
           </h1>
         </div>

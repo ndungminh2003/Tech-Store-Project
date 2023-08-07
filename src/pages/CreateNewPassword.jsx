@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import "../assets/style/styles.scss";
 const CreateNewPassword = () => {
   return (
-    <div className="restore-password w-[700px] m-0 m-auto mt-[20px]">
+    <div className="restore-password w-[700px] m-auto mt-[20px]">
       <div className="mx-auto text-2xl font-bold text-center">
         <h3>Tạo mật khẩu mới</h3>
       </div>
       <div className="mt-6 text-center restore-password-logo">
         <img
-          src="https://account.cellphones.com.vn/_nuxt/img/Shipper_CPS3.0251fdd.png"
+          src="/logo/small.png"
           alt=""
-          className="h-[213px] m-0 m-auto"
+          className="h-[120px] m-auto rounded-xl"
         />
       </div>
       <div>
@@ -78,7 +78,7 @@ const CreateNewPassword = () => {
         </div>
       </div>
       <div className="ml-3 mr-3">
-        <button className="bg-[#e0052b] rounded-md text-white cursor-pointer block text-center text-14 font-semibold mt-[20px] mb-[20px] mx-auto pt-[11px] pb-[11px] w-full">
+        <button className="bg-slate-500 rounded-md text-white cursor-pointer block text-center text-14 font-semibold mt-[20px] mb-[20px] mx-auto pt-[11px] pb-[11px] w-full">
           Tiếp tục
         </button>
       </div>

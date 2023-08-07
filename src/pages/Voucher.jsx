@@ -13,11 +13,11 @@ function Voucher() {
           className="res-none py-[10px] flex w-full text-center cursor-pointer"
           onClick={() => navigate("/cart/payment-info")}
         >
-          <div className="!text-base text-[#d70018] justify-start flex items-center font-semibold">
+          <div className="!text-base text-gray-600 justify-start flex items-center font-semibold">
             <ArrowBackIosIcon />
             <h1 className="hover:underline">Trở về</h1>
           </div>
-          <h1 className="text-lg text-[#d70018] font-semibold justify-center m-auto pr-[70px]">
+          <h1 className="text-lg text-gray-600 font-semibold justify-center m-auto pr-[70px]">
             Phiếu giảm giá
           </h1>
         </div>
@@ -249,12 +249,12 @@ function Voucher() {
         </div>
         <div className="flex flex-col gap-2 font-bold">
           <button
-            className="px-3 py-[6px] uppercase h-[60px] bg-[#d70018] rounded text-white"
+            className="px-3 py-[6px] uppercase h-[60px] bg-slate-500 rounded text-white"
             onClick={() => navigate("/cart/payment")}
           >
             Tiếp tục
           </button>
-          <Link className="px-3 py-[6px] uppercase h-[60px] leading-[48px] text-center border border-[#dc3545] rounded text-[#dc3545] hover:bg-[#dc3545] hover:text-white" to="/">
+          <Link className="px-3 py-[6px] uppercase h-[60px] leading-[48px] text-center border border-slate-500 rounded text-black hover:bg-slate-500 hover:text-white" to="/">
             Chọn thêm sản phẩm khác
           </Link>
         </div>

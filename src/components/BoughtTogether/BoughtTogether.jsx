@@ -26,7 +26,7 @@ const BoughtTogether = () => {
           navigation
           slidesPerGroupAuto
           slidesPerView={"auto"}
-          className="!min-h-[0] mt-[85px] md:mt-5 md:!mx-0 !mx-4 rounded-xl !p-[10px]"
+          className="!min-h-[0] "
         >
           <SwiperSlide className="!w-[194px] rounded-[15px] shadow-cellphone p-[10px]">
             <img
@@ -46,7 +46,7 @@ const BoughtTogether = () => {
               </p>
             </div>
             <Rating value={5} readOnly className="!text-base" />
-            <div className="text-xs flex items-center gap-1 justify-end ">
+            <div className="flex items-center justify-end gap-1 text-xs ">
               <span>Yêu thích</span>
               <FavoriteBorderIcon className="text-[#d70018] hover:animate-ping cursor-pointer" />
             </div>
@@ -69,7 +69,7 @@ const BoughtTogether = () => {
               </p>
             </div>
             <Rating value={5} readOnly className="!text-base" />
-            <div className="text-xs flex items-center gap-1 justify-end ">
+            <div className="flex items-center justify-end gap-1 text-xs ">
               <span>Yêu thích</span>
               <FavoriteBorderIcon className="text-[#d70018] hover:animate-ping cursor-pointer" />
             </div>
@@ -92,7 +92,7 @@ const BoughtTogether = () => {
               </p>
             </div>
             <Rating value={5} readOnly className="!text-base" />
-            <div className="text-xs flex items-center gap-1 justify-end ">
+            <div className="flex items-center justify-end gap-1 text-xs ">
               <span>Yêu thích</span>
               <FavoriteBorderIcon className="text-[#d70018] hover:animate-ping cursor-pointer" />
             </div>
@@ -115,7 +115,7 @@ const BoughtTogether = () => {
               </p>
             </div>
             <Rating value={5} readOnly className="!text-base" />
-            <div className="text-xs flex items-center gap-1 justify-end ">
+            <div className="flex items-center justify-end gap-1 text-xs ">
               <span>Yêu thích</span>
               <FavoriteBorderIcon className="text-[#d70018] hover:animate-ping cursor-pointer" />
             </div>

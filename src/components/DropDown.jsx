@@ -20,8 +20,8 @@ export default function DropDown({pros}) {
 
   return (
 
-    <div className=' relative'>
-      <div onClick={handleOnClick} className=' flex gap-2 items-center p-4 cursor-pointer capitalize text-xl lg:text-lg hover:bg-gray-500 hover:rounded-lg text-white xxsm:hidden'>        
+    <div className='relative '>
+      <div onClick={handleOnClick} className='flex items-center gap-2 p-4 text-xl text-white capitalize cursor-pointer  lg:text-lg hover:bg-gray-500 hover:rounded-lg xxsm:hidden'>        
         <AccountCircleIcon />      
         <span>{pros}</span>
         {
@@ -36,24 +36,30 @@ export default function DropDown({pros}) {
 
       {
         isOpen && (
-          <div className=' flex flex-col gap-2 p-2 w-[120%] xsm:w-[100%] sm:w-[100%] rounded-xl absolute top-16 bg-slate-100 shadow-lg shadow-gray-300'>
+          <div className=' flex flex-col gap-2 p-2 w-[130%] xsm:w-[100%] sm:w-[100%] rounded-xl absolute top-16 bg-slate-100 shadow-lg shadow-gray-300'>
+            
+            <Link to='/user' onClick={handleOnClick}>
+              <div className='flex items-center gap-1 p-2 text-lg cursor-pointer  xsm:text-sm sm:text-sm hover:bg-gray-300 hover:rounded-lg'>
+                <ManageAccountsIcon />
+                <span>My Account</span>
+              </div>
+            </Link>
+            
 
-            <div className=' flex items-center text-lg xsm:text-sm sm:text-sm gap-1 cursor-pointer p-2 hover:bg-gray-300 hover:rounded-lg'>
-              <ManageAccountsIcon />
-              <span>My Acount</span>
-            </div>
-
-            <Link to='/purchase'>
-              <div className=' flex items-center text-lg xsm:text-sm sm:text-sm gap-1 cursor-pointer p-2 hover:bg-gray-300 hover:rounded-lg'>
+            <Link to='/user/order' onClick={handleOnClick}>
+              <div className='flex items-center gap-1 p-2 text-lg cursor-pointer  xsm:text-sm sm:text-sm hover:bg-gray-300 hover:rounded-lg'>
                 <PaymentIcon />
                 <span>Purchase</span>
               </div>
             </Link>
             
-            <div className=' flex items-center text-lg xsm:text-sm sm:text-sm gap-1 cursor-pointer p-2 hover:bg-gray-300 hover:rounded-lg'>
-              <LogoutIcon />
-              <span>Log out</span>
-            </div>
+            <Link to='/' onClick={handleOnClick}>
+              <div className='flex items-center gap-1 p-2 text-lg cursor-pointer  xsm:text-sm sm:text-sm hover:bg-gray-300 hover:rounded-lg'>
+                <LogoutIcon />
+                <span>Log out</span>
+              </div>
+            </Link>
+            
 
           </div>
         )

@@ -33,7 +33,7 @@ function Payment() {
           <div className="!text-base text-[#d70018] justify-start flex items-center font-semibold">
           </div>
 
-          <h1 className="text-lg text-[#d70018] font-semibold justify-center m-auto pr-[70px] mx-auto pl-20">
+          <h1 className="text-lg text-gray-600 font-semibold justify-center m-auto pr-[70px] mx-auto pl-20">
             Thanh toán
           </h1>
         </div>
@@ -365,7 +365,7 @@ function Payment() {
         </div>
         <div className="flex flex-col gap-2 font-bold">
           <button
-            className="px-3 py-[6px] uppercase h-[60px] bg-[#d70018] rounded text-white"
+            className="px-3 py-[6px] uppercase h-[60px] bg-slate-500 rounded text-white"
             onClick={() => {
               if (paymentSelected === "cash_on_shop") {
                 navigate("/cart/payment/success");

@@ -21,14 +21,21 @@ import BankTransferInfo from "./pages/BankTransferInfo";
 import RestorePassword from "./pages/RestorePassword";
 import Otp from "./pages/Otp";
 import CreateNewPassword from "./pages/CreateNewPassword";
+import CatalogSearch from "./pages/CatalogSearch";
+import Purchase from "./pages/Purchase";
+import User from "./pages/User";
+import Edit from "./pages/EditProfile";
+import UserHome from "./pages/UserHome";
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route index element={<Home />} />
       <Route path="contact" element={<Contact />} />
+      <Route path="search-product" element={<CatalogSearch />} />
       <Route path="ProductView" element={<ProductView />} />
       <Route path="Favorites" element={<Favorites />} />
-      <Route path="Cart" element={<Cart />} />
+      <Route path="shopping-cart" element={<Cart />} />
       <Route path="cart/payment-info" element={<PaymentInfo />} />
       <Route path="cart/voucher" element={<Voucher />} />
       <Route path="cart/payment" element={<Payment />} />
@@ -40,6 +47,13 @@ const router = createBrowserRouter(
       <Route path="RestorePassword" element={<RestorePassword />} />
       <Route path="Otp" element={<Otp />} />
       <Route path="CreateNewPassword" element={<CreateNewPassword />} />
+
+      <Route path="/user" element={<User />}>
+        <Route index element={<UserHome />} />
+        <Route path="order" element={<Purchase />} />
+        <Route path="edit" element={<Edit />} />
+      </Route>
+
     </Route>
   )
 );

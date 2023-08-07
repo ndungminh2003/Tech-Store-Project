@@ -7,10 +7,17 @@ import config from '../Chatbot/config'
 import MessageParser from '../Chatbot/MessageParser'
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import '../Chatbot/styles.css'
+import { useLocation } from 'react-router-dom'
 
 export default function Support() {
 
   const [showBot, toggleBot] = useState(false);
+
+  let location = useLocation();
+
+  if (location.pathname !== '/'){
+    return null;
+  }
 
   return (
     <div className=' relative '>
@@ -40,9 +47,6 @@ export default function Support() {
           </button>
         )
       }
-      
-
-
     </div>
   )
 }

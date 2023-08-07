@@ -37,7 +37,7 @@ const CreateNewPassword = () => {
     navigate("/CreateNewPassword");
   };
   return (
-    <div className="restore-password w-[700px] m-0 m-auto mt-[20px]">
+    <div className="restore-password w-[700px] m-auto mt-[20px]">
       <div className="mx-auto text-2xl font-bold text-center">
         <h3>Quên mật khẩu</h3>
       </div>
@@ -90,7 +90,7 @@ const CreateNewPassword = () => {
         )}
         </div>
       <div className="res-btn ">
-        <button onClick={handleForgotPasswordClick} className=" bg-[#e0052b] rounded-md text-white cursor-pointer block text-center text-14 font-semibold mt-[20px] mb-[20px] mx-auto pt-[11px] pb-[11px] w-full">
+        <button onClick={handleForgotPasswordClick} className=" bg-slate-500 rounded-md text-white cursor-pointer block text-center text-14 font-semibold mt-[20px] mb-[20px] mx-auto pt-[11px] pb-[11px] w-full">
           Tiếp tục
         </button>
       </div>

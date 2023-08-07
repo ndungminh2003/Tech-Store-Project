@@ -147,82 +147,84 @@ export default function ProductView() {
           <p>1 đánh giá</p>
         </div>
         <hr className="my-[15px] border-none" />
-        <div className="option-top flex">
+        <div className="flex option-top">
           <div className="option-img w-[60%]">
-            <Swiper
-              pagination={pagination}
-              modules={[Pagination, Navigation, Autoplay]}
-              loop={true}
-              autoplay={{
-                delay: 3000,
-                disableOnInteraction: true,
-              }}
-              navigation
-              className=""
-            >
-              <FavoriteBorderIcon className="absolute top-2 left-2 !cursor-pointer z-20 text-[#d70018] hover:animate-ping"></FavoriteBorderIcon>
+            <div>
+              <Swiper
+                pagination={pagination}
+                modules={[Pagination, Navigation, Autoplay]}
+                loop={true}
+                autoplay={{
+                  delay: 3000,
+                  disableOnInteraction: true,
+                }}
+                navigation
+                className=""
+              >
+                <FavoriteBorderIcon className="absolute top-2 left-2 !cursor-pointer z-20 text-[#d70018] hover:animate-ping"></FavoriteBorderIcon>
 
-              {listImgOrigin.map((img, index) => {
-                if (index !== 0) {
-                  return (
-                    <SwiperSlide key={index}>
-                      <LightGallery
-                        speed={500}
-                        plugins={[lgThumbnail, lgZoom, lgFullscreen]}
-                        className="flex"
-                      >
-                        <a href={listImgOrigin[index]}>
-                          <img
-                            src={listImgOrigin[index]}
-                            alt=""
-                            className="w-[398px] h-[398px] m-auto object-cover"
-                          />
-                        </a>
-                      </LightGallery>
-                    </SwiperSlide>
-                  );
-                } else {
-                  return (
-                    <SwiperSlide>
-                      <div className="option-bg bg-gradient h-full w-full min-w-[718px] min-h-[398px] rounded-[10px]">
-                        <div className="option-outstanding p-4 flex items-center gap-2 w-full h-full">
-                          <img
-                            src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_burgundy_211119.jpg"
-                            alt=""
-                            className="w-[270px] h-[270px] rounded-[10px] object-cover"
-                          />
-                          <div className="text-white">
-                            <p className="text-lg mb-[5px] uppercase font-semibold text-center">
-                              Tính năng nổi bật
-                            </p>
-                            <div>
-                              <ul className="text-sm flex flex-col gap-[5px]">
-                                <li>
-                                  Vi xử lý mạnh mẽ nhất Galaxy - Snapdragon 8
-                                  Gen 1 (4 nm)
-                                </li>
-                                <li>
-                                  Camera mắt thần bóng đêm Nightography - Chụp
-                                  đêm cực đỉnh
-                                </li>
-                                <li>
-                                  S Pen đầu tiên trên Galaxy S - Độ trễ thấp, dễ
-                                  thao tác
-                                </li>
-                                <li>
-                                  Dung lượng pin bất chấp ngày đêm - Viên pin
-                                  5000mAh, sạc nhanh 45W
-                                </li>
-                              </ul>
+                {listImgOrigin.map((img, index) => {
+                  if (index !== 0) {
+                    return (
+                      <SwiperSlide key={index}>
+                        <LightGallery
+                          speed={500}
+                          plugins={[lgThumbnail, lgZoom, lgFullscreen]}
+                          className="flex"
+                        >
+                          <a href={listImgOrigin[index]}>
+                            <img
+                              src={listImgOrigin[index]}
+                              alt=""
+                              className="w-[398px] h-[398px] m-auto object-cover"
+                            />
+                          </a>
+                        </LightGallery>
+                      </SwiperSlide>
+                    );
+                  } else {
+                    return (
+                      <SwiperSlide>
+                        <div className="option-bg bg-gradient h-full w-full min-w-[718px] min-h-[398px] rounded-[10px]">
+                          <div className="flex items-center w-full h-full gap-2 p-4 option-outstanding">
+                            <img
+                              src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_burgundy_211119.jpg"
+                              alt=""
+                              className="w-[270px] h-[270px] rounded-[10px] object-cover"
+                            />
+                            <div className="text-white">
+                              <p className="text-lg mb-[5px] uppercase font-semibold text-center">
+                                Tính năng nổi bật
+                              </p>
+                              <div>
+                                <ul className="text-sm flex flex-col gap-[5px]">
+                                  <li>
+                                    Vi xử lý mạnh mẽ nhất Galaxy - Snapdragon 8
+                                    Gen 1 (4 nm)
+                                  </li>
+                                  <li>
+                                    Camera mắt thần bóng đêm Nightography - Chụp
+                                    đêm cực đỉnh
+                                  </li>
+                                  <li>
+                                    S Pen đầu tiên trên Galaxy S - Độ trễ thấp, dễ
+                                    thao tác
+                                  </li>
+                                  <li>
+                                    Dung lượng pin bất chấp ngày đêm - Viên pin
+                                    5000mAh, sạc nhanh 45W
+                                  </li>
+                                </ul>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </SwiperSlide>
-                  );
-                }
-              })}
-            </Swiper>
+                      </SwiperSlide>
+                    );
+                  }
+                })}
+              </Swiper>
+            </div>
             <ProductInfor />
             <BoughtTogether />
           </div>
@@ -305,7 +307,7 @@ export default function ProductView() {
                   </li>
                 </ul>
               </div>
-              <Link className="my-3 block">
+              <Link className="block my-3">
                 <img
                   src="https://cdn2.cellphones.com.vn/x120,webp,q100/https://dashboard.cellphones.com.vn/storage/product-banner-fold-flip-dat-hang.gif"
                   alt="product_banner"
@@ -320,7 +322,7 @@ export default function ProductView() {
                     Khuyến mãi
                   </h1>
                 </div>
-                <div className="text-sm py-4 px-2 flex flex-col gap-4">
+                <div className="flex flex-col gap-4 px-2 py-4 text-sm">
                   <div className="flex gap-1">
                     <p className="p-1 bg-[#cc0f35] text-white rounded-full w-5 h-5 text-[10px] flex items-center justify-center">
                       1

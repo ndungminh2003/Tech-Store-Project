@@ -24,9 +24,9 @@ const Login = () => {
       <div>
         <div className="mt-5 text-center">
           <img
-            src="https://account.cellphones.com.vn/_nuxt/img/Shipper_CPS3.0251fdd.png"
+            src="/logo/small.png"
             alt=""
-            className="w-[80px] h-[80px] m-auto"
+            className="w-[80px] h-[80px] m-auto rounded-xl"
           />
         </div>
         <div>
@@ -61,7 +61,7 @@ const Login = () => {
               <ReCAPTCHA sitekey={TEST_SITE_KEY} />
             </div>
 
-            <button className="outline-none bg-[#e0052b] text-white text-center text-sm py-[10px] w-full rounded-md font-semibold">
+            <button className="outline-none bg-slate-500 text-white text-center text-sm py-[10px] w-full rounded-md font-semibold">
               Đăng nhập
             </button>
 
@@ -94,7 +94,7 @@ const Login = () => {
 
             <div className="flex items-center justify-center gap-[5px] my-5 text-sm">
               <p className="text-[#777]">Bạn chưa có tài khoản?</p>
-              <Link to={"/register"} className="text-[#d70018] font-semibold">
+              <Link to={"/register"} className="text-gray-600 font-semibold">
                 Đăng ký ngay
               </Link>
             </div>

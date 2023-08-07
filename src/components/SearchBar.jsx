@@ -1,7 +1,7 @@
 import React from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import { useState } from 'react';
-import "../assets/style/SearchBar.scss"
+
 
 const types = [
   'iphone',
@@ -29,11 +29,11 @@ export default function SearchBar() {
 
   return (
 
-    <form className=' w-96 relative min-w-[200px] search'>
+    <form className=' w-96 relative min-w-[250px] xsm:w-[200px] p-4'>
 
       <div className=' relative'>
-        <input type="search" placeholder='Search...' className='search-input w-full p-4 rounded-full' onChange={handleSearch} />
-        <button className='search-btn absolute right-1 top-1/2 -translate-y-1/2 bg-gray-400 rounded-full p-3'>
+        <input type="search" placeholder='Search...' className=' w-full p-4 rounded-full' onChange={handleSearch} />
+        <button className=' absolute right-1 top-1/2 -translate-y-1/2 bg-gray-400 rounded-full p-3'>
           <SearchIcon />
         </button>
       </div>

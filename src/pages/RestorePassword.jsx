@@ -14,7 +14,7 @@ const RestorePassword = () => {
     navigate("/Login");
   };
   return (
-    <div className="restore-password w-[700px] m-0 m-auto mt-[20px]">
+    <div className="restore-password w-[700px] m-auto mt-[20px]">
       <div className="flex">
         <div className="cursor-pointer restore-password-back"  onClick={handleBackClick}>
           <svg
@@ -53,16 +53,16 @@ const RestorePassword = () => {
       </div>
       <div className="text-center restore-password-logo">
         <img
-          src="https://account.cellphones.com.vn/_nuxt/img/Shipper_CPS3.0251fdd.png"
+          src="/logo/small.png"
           alt=""
-          className="h-[213px] m-0 m-auto"
+          className="h-[120px] m-auto rounded-xl "
         />
       </div>
       <div className="restore-password-confirm">
         <div className="restore-password-text text-[#777] text-sm mb-5 ml-3">
           Gửi mã xác nhận để lấy lại mật khẩu
         </div>
-        <div className=" res-restore-password border-[2px] border-[#e11b1e] rounded-lg cursor-pointer mb-5 pl-[20px] pr-[20px] pt-[10px] pb-[10px] flex items-center gap-[15px]">
+        <div className=" res-restore-password border-[2px] border-slate-500 rounded-lg cursor-pointer mb-5 pl-[20px] pr-[20px] pt-[10px] pb-[10px] flex items-center gap-[15px]">
           <div className=" restore-password-icon w-[68px] h-[68px] p-[22px] rounded-[50%] bg-[#ffd9d9]">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <path
@@ -84,7 +84,7 @@ const RestorePassword = () => {
           <ReCAPTCHA sitekey={TEST_SITE_KEY} />
         </div>
         <div className="res-btn">
-          <button  onClick={handleForgotPasswordClick} className=" bg-[#e0052b] rounded-md text-white cursor-pointer block text-center text-14 font-semibold mt-[20px] mb-[20px] mx-auto pt-[11px] pb-[11px] w-full">
+          <button  onClick={handleForgotPasswordClick} className=" bg-slate-500 rounded-md text-white cursor-pointer block text-center text-14 font-semibold mt-[20px] mb-[20px] mx-auto pt-[11px] pb-[11px] w-full">
             Tiếp tục
           </button>
         </div>
