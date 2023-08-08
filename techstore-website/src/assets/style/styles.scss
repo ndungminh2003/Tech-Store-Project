@@ -1,0 +1,65 @@
+// styles.scss
+
+$input-border-color: #d1d0d0;
+$input-focus-border-color: #d6d6d6;
+$input-label-color: #afafaf;
+$input-highlight-color: #e11b1e;
+@mixin input-focus-within {
+  &.focus-within {
+    label {
+      top: 0px;
+      font-size: 12px;
+      color: $input-highlight-color;
+      border-radius: 5px;
+    }
+
+    input {
+      padding-top: 10px;
+      border-color: $input-highlight-color;
+      border-radius: 5px;
+    }
+  }
+}
+
+@mixin input-has-value {
+  &.has-value {
+    label {
+      top: 0px;
+      font-size: 12px;
+      color: $input-highlight-color;
+      border-color: $input-highlight-color;
+    }
+  }
+}
+
+.input-group {
+  position: relative;
+  margin-top: 0.5rem;
+
+  input {
+    border-bottom: 1px solid $input-border-color;
+    outline: none;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+
+    &:focus {
+      border-color: $input-focus-border-color;
+    }
+  }
+
+  label {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: $input-label-color;
+    pointer-events: none;
+    transition: top 0.3s, font-size 0.3s, color 0.3s;
+  }
+
+  @include input-focus-within;
+  @include input-has-value;
+}

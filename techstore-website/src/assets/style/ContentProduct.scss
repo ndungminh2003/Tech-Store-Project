@@ -1,0 +1,41 @@
+@media (max-width: 992px) {
+    .content-product{
+        &-top{
+            width:72vw;
+
+        }
+        &-bottom{
+            width: 100%;
+
+        }
+    }
+}
+@media (max-width: 769px) {
+    .content-product{
+        flex-direction: column;
+        &-top{
+            width: 100%;
+            order: 2;
+
+        }
+        &-bottom{
+            // display: none;
+            order: 1;
+            width: 100%;
+
+        }
+    }
+}
+@media (max-width: 576px) {
+    .content-product{
+        flex-direction: column;
+        &-top{
+            order: 2;
+            width: 100%;
+        }
+        &-bottom{
+            order: 1;
+            width: 100%;
+        }
+    }
+}
