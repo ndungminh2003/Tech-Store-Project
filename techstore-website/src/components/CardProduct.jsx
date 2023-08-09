@@ -68,7 +68,7 @@ export default function CardProduct(props) {
             />
           </div>
 
-          <div className=" flex flex-col justify-center h-[200px]">
+          <div className=" flex flex-col justify-center h-[150px]">
             <CardContent className=" flex flex-col h-full w-[300px] md:w-[200px]">
               <Typography gutterBottom variant="h6" component="div">
                 {props.name}
