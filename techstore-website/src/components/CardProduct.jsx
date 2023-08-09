@@ -52,8 +52,8 @@ export default function CardProduct(props) {
           <div className=" hover:scale-110">
             <CardMedia
               sx={{
-                width: 140,
-                height: 140,
+                width: 180,
+                height: 180,
                 objectFit: "contain",
                 display: "block",
                 marginLeft: "auto",
@@ -69,7 +69,7 @@ export default function CardProduct(props) {
           </div>
 
           <div className=" flex flex-col justify-center h-[200px]">
-            <CardContent className=" flex flex-col h-full">
+            <CardContent className=" flex flex-col h-full w-[300px] md:w-[200px]">
               <Typography gutterBottom variant="h6" component="div">
                 {props.name}
               </Typography>
