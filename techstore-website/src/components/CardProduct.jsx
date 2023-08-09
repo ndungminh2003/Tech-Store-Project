@@ -9,11 +9,13 @@ import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+
 const Style = {
   border: "solid 2 ",
   borderRadius: 4,
   boxShadow: "-1px 1px 5px 0px rgba(128,128,128,1)",
   margin: 0.5,
+  height: "411px"
 };
 
 export default function CardProduct(props) {
@@ -45,8 +47,8 @@ export default function CardProduct(props) {
 
   return (
     <>
-      <Card sx={Style} onClick={handleCardClick}>
-        <div className=" flex flex-col gap-1 items-center cursor-pointer hover:border-gray-400 hover:border-[2px] hover:rounded-2xl hover:duration-75 ">
+      <Card sx={Style} onClick={handleCardClick} className=" cursor-pointer hover:border-gray-400 hover:border-[2px] hover:rounded-2xl hover:duration-75">
+        <div className=" flex flex-col gap-2 items-center h-full">  
           <div className=" hover:scale-110">
             <CardMedia
               sx={{
@@ -66,24 +68,26 @@ export default function CardProduct(props) {
             />
           </div>
 
-          <div>
-            <CardContent>
+          <div className=" flex flex-col justify-center h-[200px]">
+            <CardContent className=" flex flex-col h-full">
               <Typography gutterBottom variant="h6" component="div">
                 {props.name}
               </Typography>
-              <div className=" text-red-700 text-2xl"> {props.price}đ </div>
-              <Stack spacing={1}>
-                <Rating
-                  name="half-rating-read"
-                  defaultValue={2.5}
-                  precision={0.5}
-                  readOnly
-                />
-              </Stack>
+              <div className=" flex flex-col justify-end h-[140px]">
+                <div className=" text-red-700 text-2xl"> {props.price}đ </div>
+                <Stack spacing={1} >
+                  <Rating
+                    name="half-rating-read"
+                    defaultValue={2.5}
+                    precision={0.5}
+                    readOnly
+                  />
+                </Stack>
+              </div>
             </CardContent>
           </div>
 
-          <div className="flex w-full justify-end p-1">
+          <div className="flex w-full justify-end p-1 h-full items-end">
             <div>
               <Button size="small">
                 <span className="text-gray-500 mr-1">Add To Favorite</span>
