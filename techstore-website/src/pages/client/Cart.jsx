@@ -325,7 +325,7 @@ export default function CardProduct() {
           </div>
         </div>
       </div>
-      <div className="res-total-price">
+      <div className="res-total-price sticky bottom-0 mb-5">
         <div className="w-full max-w-[670px] m-auto bg-white shadow-cellphone rounded-md p-[10px] mt-20">
           <div className="flex items-center justify-between text-base mb-2">
             <h1 className="text-[#0e2431] font-semibold">
