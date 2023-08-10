@@ -101,7 +101,7 @@ const ProductList = () => {
     setOpen(false);
     setTimeout(() => {
       dispatch(getProducts());
-    }, 100);
+    }, 500);
   };
   return (
     <div className="admin">

@@ -13,13 +13,14 @@ const uploadImages = asyncHandler(async (req, res) => {
     for (const file of files) {
       const { path } = file;
       const newpath = await uploader(path);
-      console.log(newpath);
       urls.push(newpath);
       fs.unlinkSync(path);
     }
-    const images = urls.map((file) => {
-      return file;
+    const images = [];
+    urls.forEach((file) => {
+      images.push(file);
     });
+    console.log("image", images);
     res.json(images);
   } catch (error) {
     throw new Error(error);

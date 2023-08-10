@@ -72,7 +72,7 @@ export default function CatalogSearch() {
                 name={product.title}
                 price={product.price}
                 brand={product.brand}
-                images={product.images}
+                thumbnail={product.thumbnail}
                 description={product.description}
                 slug={product.slug}
               />

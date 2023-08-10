@@ -103,6 +103,7 @@ export default function ListCardProduct(props) {
                 name={product.title}
                 price={product.price}
                 brand={product.brand}
+                thumbnail={product.thumbnail}
                 images={product.images}
                 description={product.description}
                 slug={product.slug}

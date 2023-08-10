@@ -5,6 +5,7 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { login, resetAuthState } from "../../features/auth/authSlice";
+import { resetState } from "../../features/product/productSlice";
 
 let schema = yup.object().shape({
   email: yup
@@ -35,6 +36,7 @@ const AdminLogin = () => {
     // localStorage.removeItem("token");
     // localStorage.removeItem("user");
     // dispatch(resetAuthState());
+    dispatch(resetState());
   }, []);
 
   useEffect(() => {

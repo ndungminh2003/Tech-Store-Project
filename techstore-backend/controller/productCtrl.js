@@ -23,9 +23,26 @@ const updateProduct = asyncHandler(async (req, res) => {
     if (req.body.title) {
       req.body.slug = slugify(req.body.title);
     }
+    const oldProduct = await Product.findById(id);
     const updatedProduct = await Product.findByIdAndUpdate(id, req.body, {
       new: true,
     });
+
+    if (
+      req.body.images &&
+      req.body.images.length > 0 &&
+      ((oldProduct.images.length > 0 &&
+        oldProduct.images[0].url !== req.body.images[0].url) ||
+        oldProduct.images.length === 0)
+    ) {
+      updatedProduct.thumbnail = req.body.images[0].url;
+      await updatedProduct.save();
+    } else if (req.body.images && req.body.images.length === 0) {
+      updatedProduct.thumbnail =
+        "https://res.cloudinary.com/dqwdvpi4d/image/upload/v1691639790/default-product-image-removebg-preview_p3g0jy.png";
+      await updatedProduct.save();
+    }
+
     res.json(updatedProduct);
   } catch (error) {
     throw new Error(error);

@@ -15,14 +15,13 @@ export default function Home() {
   useEffect(() => {
     dispatch(resetState());
     let params = {
-      limit: 50,
+      // limit: 80,
+      // skip: 30,
     };
     dispatch(getLimitProducts(params));
   }, []);
   const productState = useSelector((state) => state.product);
   const { products, isLoading, isSuccess, isError } = productState;
-  console.log(isLoading);
-  console.log(productState);
 
   return (
     <div className=" flex flex-col gap-6">

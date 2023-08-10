@@ -18,6 +18,7 @@ import {
   getAProduct,
   updateAProduct,
   resetState,
+  resetProductState,
 } from "../../features/product/productSlice";
 
 let schema = yup.object().shape({
@@ -132,9 +133,11 @@ const AddProduct = () => {
         dispatch(createProduct(values));
         formik.resetForm();
         setColor(null);
-        setTimeout(() => {
-          dispatch(resetState());
-        }, 1000);
+        setImages([]);
+        dispatch(resetProductState());
+        // setTimeout(() => {
+        //   dispatch(resetState());
+        // }, 1000);
       }
     },
   });

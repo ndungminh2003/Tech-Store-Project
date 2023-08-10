@@ -90,6 +90,7 @@ export const deleteAProduct = createAsyncThunk(
 );
 
 export const resetState = createAction("Reset_all");
+export const resetProductState = createAction("product/resetState");
 
 const initialState = {
   products: [],
@@ -224,7 +225,10 @@ export const productSlice = createSlice({
         state.isSuccess = false;
         state.message = action.error;
       })
-      .addCase(resetState, () => initialState);
+      .addCase(resetState, () => initialState)
+      .addCase(resetProductState, (state) => {
+        return initialState;
+      });
   },
 });
 export default productSlice.reducer;

@@ -1,5 +1,7 @@
 const mongoose = require("mongoose"); // Erase if already required
 
+const defaultImage =
+  "https://res.cloudinary.com/dqwdvpi4d/image/upload/v1691639790/default-product-image-removebg-preview_p3g0jy.png";
 // Declare the Schema of the Mongo model
 var productSchema = new mongoose.Schema(
   {
@@ -38,6 +40,10 @@ var productSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    thumbnail: {
+      type: String,
+      default: defaultImage,
+    },
     images: [
       {
         public_id: String,
@@ -60,6 +66,19 @@ var productSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+productSchema.pre("save", async function (next) {
+  if (this.isModified("images") && this.images.length > 0) {
+    this.thumbnail = this.images[0].url;
+  }
+  next();
+});
+
+productSchema.post("save", async function (doc) {
+  if (this.isModified("images") && this.images.length > 0) {
+    await this.updateOne({ thumbnail: this.images[0].url });
+  }
+});
 
 //Export the model
 module.exports = mongoose.model("Product", productSchema);
