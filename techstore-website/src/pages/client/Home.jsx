@@ -3,6 +3,8 @@ import Banner from "../../components/Banner";
 import ListCardProduct from "../../components/ListCardProduct";
 import { useDispatch, useSelector } from "react-redux";
 import Widget from "../../components/Widget";
+import SkeletonProduct from "../../components/SkeletonProduct";
+
 import {
   getProducts,
   getLimitProducts,
@@ -17,16 +19,27 @@ export default function Home() {
     };
     dispatch(getLimitProducts(params));
   }, []);
-  const productState = useSelector((state) => state.product.products);
-  // console.log(productState);
+  const productState = useSelector((state) => state.product);
+  const { products, isLoading, isSuccess, isError } = productState;
+  console.log(isLoading);
+  console.log(productState);
+
   return (
     <div className=" flex flex-col gap-6">
       <Banner />
-      <div className=" flex flex-col gap-6">
-        <ListCardProduct type={"PHONE"} productState={productState} />
-        <ListCardProduct type={"LAPTOP"} productState={productState} />
-        <ListCardProduct type={"WATCH"} productState={productState} />
-      </div>
+      {isLoading ? (
+        <div className=" flex flex-col gap-6">
+          <SkeletonProduct type={"PHONE"} />
+          <SkeletonProduct type={"LAPTOP"} />
+          <SkeletonProduct type={"WATCH"} />
+        </div>
+      ) : (
+        <div className=" flex flex-col gap-6">
+          <ListCardProduct type={"PHONE"} productState={products} />
+          <ListCardProduct type={"LAPTOP"} productState={products} />
+          <ListCardProduct type={"WATCH"} productState={products} />
+        </div>
+      )}
 
       <Widget />
     </div>

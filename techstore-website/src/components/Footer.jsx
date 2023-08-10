@@ -4,8 +4,17 @@ import CallIcon from '@mui/icons-material/Call';
 import NotesIcon from '@mui/icons-material/Notes';
 import HomeIcon from '@mui/icons-material/Home';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useLocation } from 'react-router-dom'
+
 
 export default function Footer() {
+
+  let location = useLocation();
+
+  if (location.pathname === '/shopping-cart'){
+    return null;
+  }
+
   return (
     <div className=' bg-slate-800 w-full text-white z-50 xxsm:sticky xxsm:bottom-0 xsm:sticky xsm:bottom-0 sm:sticky sm:bottom-0 md:sticky md:bottom-0 lg:sticky lg:bottom-0'>
 
