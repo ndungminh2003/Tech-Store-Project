@@ -12,6 +12,7 @@ import ProductSimilar from "../../components/ProductSimilar/ProductSimilar";
 import ContentProduct from "../../components/ContentProduct/ContentProduct";
 import { Autoplay, Navigation, Pagination } from "swiper";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import BackToTop from "../../components/BackToTop";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -559,6 +560,7 @@ export default function ProductView() {
           </div>
         </div>
       </div> */}
+      <BackToTop />
     </div>
   );
 }
