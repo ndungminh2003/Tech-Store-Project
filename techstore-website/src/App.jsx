@@ -19,6 +19,7 @@ import PaymentInfo from "./pages/client/PaymentInfor";
 import Voucher from "./pages/client/Voucher";
 import Payment from "./pages/client/Payment";
 import PaymentSuccess from "./pages/client/PaymentSuccess";
+import WishList from "./pages/client/WishList";
 
 import BankTransferInfo from "./pages/client/BankTransferInfo";
 import RestorePassword from "./pages/client/RestorePassword";
@@ -76,6 +77,7 @@ const router = createBrowserRouter(
         <Route path="shopping-cart" element={<Cart />} />
         <Route path="restore-password" element={<RestorePassword />} />
         <Route path="otp" element={<Otp />} />
+        <Route path="wishlist" element={<WishList />} />
         <Route element={<RequireAuth allowedRoles="guest" />}>
           <Route path="register" element={<Register />} />
         </Route>

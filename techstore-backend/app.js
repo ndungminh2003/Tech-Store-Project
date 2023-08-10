@@ -16,12 +16,9 @@ const uploadRouter = require("./routes/uploadRoute");
 const bodyParser = require("body-parser");
 const { notFound, errorHandler } = require("./middlewares/errorHandler");
 const cookieParser = require("cookie-parser");
-const session = require("express-session");
-const mongoose = require("mongoose");
+
 const morgan = require("morgan");
 const cors = require("cors");
-
-const MongoStore = require("connect-mongo")(session);
 
 dbConnect();
 app.use(morgan("dev"));
@@ -30,22 +27,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-const sessionStore = new MongoStore({
-  mongooseConnection: mongoose.connection,
-  collection: "sessions",
-});
-
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    store: sessionStore,
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 24, // 24 hours
-    },
-  })
-);
 app.use("/api/user", authRouter);
 app.use("/api/product", productRouter);
 app.use("/api/blog", blogRouter);
