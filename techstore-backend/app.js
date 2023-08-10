@@ -25,9 +25,10 @@ const MongoStore = require("connect-mongo")(session);
 
 dbConnect();
 app.use(morgan("dev"));
-app.use(cors());
+app.use(cors({ origin: true, credentials: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 const sessionStore = new MongoStore({
   mongooseConnection: mongoose.connection,
@@ -45,7 +46,6 @@ app.use(
     },
   })
 );
-app.use(cookieParser());
 app.use("/api/user", authRouter);
 app.use("/api/product", productRouter);
 app.use("/api/blog", blogRouter);

@@ -1,8 +1,11 @@
 import axios from "axios";
 import { get_config } from "../../utils/axiosconfig";
 import { base_url } from "../../utils/baseUrl";
+
 const login = async (user) => {
-  const response = await axios.post(`${base_url}user/login`, user);
+  const response = await axios.post(`${base_url}user/login`, user, {
+    withCredentials: true,
+  });
   if (response.data) {
     localStorage.setItem("user", JSON.stringify(response.data));
   }
@@ -16,7 +19,11 @@ const register = async (user) => {
 };
 
 const logout = async (email) => {
-  const response = await axios.post(`${base_url}user/logout`, { email });
+  const response = await axios.post(
+    `${base_url}user/logout`,
+    { email },
+    { withCredentials: true }
+  );
   localStorage.removeItem("user");
   return response.data;
 };

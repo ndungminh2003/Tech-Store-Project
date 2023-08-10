@@ -18,7 +18,7 @@ export default function Home() {
     dispatch(getLimitProducts(params));
   }, []);
   const productState = useSelector((state) => state.product.products);
-  console.log(productState);
+  // console.log(productState);
   return (
     <div className=" flex flex-col gap-6">
       <Banner />
