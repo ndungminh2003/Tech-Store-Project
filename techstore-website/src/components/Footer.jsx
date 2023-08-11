@@ -11,12 +11,12 @@ export default function Footer() {
 
   let location = useLocation();
 
-  if (location.pathname === '/shopping-cart'){
+  if (location.pathname === '/shopping-cart' || location.pathname === '/wishlist' || location.pathname === '/contact' || location.pathname === '/login' || location.pathname === '/register'){
     return null;
   }
 
   return (
-    <div className=' bg-slate-800 w-full text-white z-50 xxsm:sticky xxsm:bottom-0 xsm:sticky xsm:bottom-0 sm:sticky sm:bottom-0 md:sticky md:bottom-0 lg:sticky lg:bottom-0'>
+    <div className=' bg-slate-800 w-full text-white z-50 xxsm:sticky xxsm:bottom-0 xsm:sticky xsm:bottom-0 sm:sticky sm:bottom-0 md:sticky md:bottom-0 lg:sticky lg:bottom-0 '>
 
       <footer className= ' container mx-auto grid grid-cols-3 gap-4 py-3 justify-items-center p-6 xxsm:hidden xsm:hidden sm:hidden md:hidden lg:hidden '>
         <div className=' flex flex-col gap-3'>
@@ -53,27 +53,27 @@ export default function Footer() {
       <div className=' container mx-auto flex h-17 justify-around items-center xl:hidden 2xl:hidden'>
         
         <Link to='/'>
-          <div className=' flex flex-col gap-2 items-center p-4 cursor-pointer capitalize xxsm:text-sm xsm:text-sm sm:text-sm md:text-lg hover:bg-gray-500 hover:rounded-lg hover:py-1 text-white'>
+          <div className=' flex flex-col gap-2 items-center p-4 cursor-pointer capitalize xxsm:text-sm xsm:text-sm sm:text-sm md:text-lg hover:bg-gray-500 hover:rounded-lg hover:py-2 text-white'>
             <HomeIcon />
             <span>home</span>
           </div>
         </Link>
         
 
-        <div className=' flex flex-col gap-2 items-center p-4 cursor-pointer capitalize xxsm:text-sm xsm:text-sm sm:text-sm md:text-lg hover:bg-gray-500 hover:rounded-lg hover:py-1 text-white'>
+        {/* <div className=' flex flex-col gap-2 items-center p-4 cursor-pointer capitalize xxsm:text-sm xsm:text-sm sm:text-sm md:text-lg hover:bg-gray-500 hover:rounded-lg hover:py-2 text-white'>
           <NotesIcon />
           <span>catalog</span>
-        </div>
+        </div> */}
 
         <Link to='/wishlist'>
-          <div className=' flex flex-col gap-2 items-center p-4 cursor-pointer capitalize xxsm:text-sm xsm:text-sm sm:text-sm md:text-lg hover:bg-gray-500 hover:rounded-lg hover:py-1 text-white '> 
+          <div className=' flex flex-col gap-2 items-center p-4 cursor-pointer capitalize xxsm:text-sm xsm:text-sm sm:text-sm md:text-lg hover:bg-gray-500 hover:rounded-lg hover:py-2 text-white '> 
             <FavoriteIcon />          
             <span>wishlist</span>      
           </div>
         </Link>
         
         <Link to='/contact'>
-          <div className=' flex flex-col gap-2 items-center p-4 cursor-pointer capitalize xxsm:text-sm xsm:text-sm sm:text-sm md:text-lg hover:bg-gray-500 hover:rounded-lg hover:py-1 text-white '>         
+          <div className=' flex flex-col gap-2 items-center p-4 cursor-pointer capitalize xxsm:text-sm xsm:text-sm sm:text-sm md:text-lg hover:bg-gray-500 hover:rounded-lg hover:py-2 text-white '>         
             <CallIcon />         
             <span>contact</span>
           </div>

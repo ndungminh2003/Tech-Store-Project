@@ -395,7 +395,7 @@ export default function Banner() {
     <div className=" container mx-auto flex gap-2 justify-between ">
       <div
         id="catalog"
-        className=" relative flex flex-col gap-1 w-60 border-2 rounded-3xl ml-2 mt-4 shadow-lg shadow-gray-400 min-w-max h-fit xxsm:hidden xsm:hidden sm:hidden "
+        className=" relative flex flex-col gap-1 w-60 border-2 rounded-3xl ml-2 mt-4 shadow-lg shadow-gray-400 min-w-max h-fit xxsm:hidden xsm:hidden sm:hidden md:hidden "
       >
         {catalog.map((c) => (
           <div
@@ -465,7 +465,7 @@ export default function Banner() {
         )}
       </div>
 
-      <div className=" flex mt-4 p-1 border-4 rounded-3xl h-[35rem] w-[55rem] shadow-lg shadow-gray-400 xxsm:h-[15rem] xsm:h-[25rem] sm:h-[26rem] md:h-[26rem] lg:h-[28rem] xl:h-[30rem]">
+      <div className=" flex mt-4 p-1 border-4 rounded-3xl h-[35rem] w-[55rem] shadow-lg shadow-gray-400 xxsm:h-[15rem] xsm:h-[25rem] sm:h-[26rem] md:h-[30rem] lg:h-[28rem] xl:h-[30rem]">
         <div className=" relative w-full h-full p-1">
           <img
             src={slides[currentIndex].url}

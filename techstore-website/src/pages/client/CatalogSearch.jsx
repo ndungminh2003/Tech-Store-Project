@@ -30,10 +30,17 @@ export default function CatalogSearch() {
   return (
     <div className=" flex flex-col m-6 container mx-auto gap-4">
       {products?.totalProducts === 0 ? (
-        <span className="flex justify-center text-xl text-red-500 font-bold">
-          Error: No products found for the keyword{" "}
-          <b className="mx-1">'{products?.keyword}'</b>
-        </span>
+        <div className=" flex flex-col items-center gap-10 ">
+          <span className="flex justify-center text-xl text-red-500 font-bold">
+            Error: No products found for the keyword{" "}
+            <b className="mx-1">'{products?.keyword}'</b>
+          </span>
+          
+          <img src="/logo/small.png" alt="logo" className=" rounded-lg w-52 h-52 mt-16"/>
+          <span className="flex justify-center text-xl text-black font-bold mb-20">
+            Opps Sorry! No Results Found
+          </span>
+        </div>
       ) : (
         <span className="flex justify-center text-xl text-gray-500">
           Found <b className="mx-1">{products?.totalProducts}</b> products for
@@ -41,27 +48,30 @@ export default function CatalogSearch() {
         </span>
       )}
 
-      <div className="flex flex-col gap-2 ml-8">
-        <div className=" text-3xl text-gray-500 font-bold">Filter</div>
-        <div>
-          <div className=" flex gap-5 cursor-pointer">
-            <p
-              className=" flex justify-center items-center bg-slate-300 p-3 hover:bg-slate-400 hover:duration-200 rounded-xl gap-2"
-              onClick={sortHighToLow}
-            >
-              <KeyboardDoubleArrowUpIcon sx={{ color: "blue" }} />
-              High-priced
-            </p>
-            <p
-              className=" flex justify-center items-center bg-slate-300 p-3 hover:bg-slate-400 hover:duration-200 rounded-xl gap-2"
-              onClick={sortLowToHigh}
-            >
-              <KeyboardDoubleArrowDownIcon sx={{ color: "blue" }} />
-              Low-priced
-            </p>
+      {products?.totalProducts > 0 && (
+        <div className="flex flex-col gap-2 ml-8">
+          <div className=" text-3xl text-gray-500 font-bold">Filter</div>
+          <div>
+            <div className=" flex gap-5 cursor-pointer">
+              <p
+                className=" flex justify-center items-center bg-slate-300 p-3 hover:bg-slate-400 hover:duration-200 rounded-xl gap-2"
+                onClick={sortHighToLow}
+              >
+                <KeyboardDoubleArrowUpIcon sx={{ color: "blue" }} />
+                High-priced
+              </p>
+              <p
+                className=" flex justify-center items-center bg-slate-300 p-3 hover:bg-slate-400 hover:duration-200 rounded-xl gap-2"
+                onClick={sortLowToHigh}
+              >
+                <KeyboardDoubleArrowDownIcon sx={{ color: "blue" }} />
+                Low-priced
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      )}
+
       {products?.totalProducts > 0 && (
         <div className=" flex flex-row p-4 flex-wrap gap-5">
           {sortedProducts.map((product) => (

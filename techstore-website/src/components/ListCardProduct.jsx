@@ -63,7 +63,7 @@ export default function ListCardProduct(props) {
           loop={true}
           autoplay={{
             delay: 2500,
-            disableOnInteraction: false,
+            disableOnInteraction: true,
           }}
           breakpoints={{
             600: {
