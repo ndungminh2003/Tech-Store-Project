@@ -14,6 +14,7 @@ const {
   unblockUser,
   handleRefreshToken,
   updatePassword,
+  changePassword,
   forgotPasswordToken,
   resetPassword,
   loginAdmin,
@@ -28,6 +29,10 @@ const {
   updateOrderStatus,
   getAllOrders,
   getOrderById,
+  sendOTP,
+  verifyOTP,
+  clearOTP,
+  deleteNotVerifiedUser,
 } = require("../controller/userCtrl");
 const { authMiddleware, isAdmin } = require("../middlewares/authMiddleware");
 const router = express.Router();
@@ -43,9 +48,12 @@ router.put(
   updateOrderStatus
 );
 
+router.post("/send-otp", sendOTP);
 router.post("/login", login);
 router.post("/logout", logout);
 router.post("/admin-login", loginAdmin);
+router.post("/verify-otp", verifyOTP);
+router.post("/clear-otp", clearOTP);
 router.post("/cart", authMiddleware, userCart);
 router.post("/cart/applycoupon", authMiddleware, applyCoupon);
 router.post("/cart/cash-order", authMiddleware, createOrder);
@@ -61,13 +69,16 @@ router.get("/wishlist", authMiddleware, getWishlist);
 router.get("/cart", authMiddleware, getUserCart);
 
 router.get("/:id", authMiddleware, isAdmin, getaUser);
-router.delete("/empty-cart", authMiddleware, emptyCart);
-router.delete("/:id", authMiddleware, isAdmin, deleteaUser);
 
 router.put("/edit-profile", authMiddleware, updateUserProfile);
 router.put("/edit-user/:id", authMiddleware, isAdmin, updateUser);
+router.put("/change-password", changePassword);
 router.put("/save-address", authMiddleware, saveAddress);
 router.put("/block-user/:id", authMiddleware, isAdmin, blockUser);
 router.put("/unblock-user/:id", authMiddleware, isAdmin, unblockUser);
+
+router.delete("/delete-is-not-verified/:id", deleteNotVerifiedUser);
+router.delete("/empty-cart", authMiddleware, emptyCart);
+router.delete("/:id", authMiddleware, isAdmin, deleteaUser);
 
 module.exports = router;

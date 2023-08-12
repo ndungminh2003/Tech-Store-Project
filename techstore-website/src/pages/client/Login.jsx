@@ -1,12 +1,13 @@
 import { Checkbox } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../features/auth/authSlice";
+import { login, resetAuthState } from "../../features/auth/authSlice";
 import * as Yup from "yup";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { toast } from "react-toastify";
 
 const initialValues = {
   email: "",
@@ -24,13 +25,19 @@ const Login = () => {
   const TEST_SITE_KEY = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI";
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isSubmited, setIsSubmited] = useState(false);
+  const [isEmailFilled, setIsEmailFilled] = useState(false);
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: initialValues,
     validationSchema: loginValidation,
     onSubmit: (values) => {
       values = { ...values, role: "user" };
+      dispatch(resetAuthState());
       dispatch(login(values));
+      setIsSubmited(true);
+      formik.resetForm();
+      setIsEmailFilled(false);
       // navigate(from, { replace: true });
     },
   });
@@ -38,20 +45,34 @@ const Login = () => {
   const authState = useSelector((state) => state.auth);
   const { user, isError, isSuccess, isLoading, message } = authState;
   useEffect(() => {
-    if (isSuccess && user?.role === "user") {
+    if (isSubmited && isSuccess && !isLoading && user?.role === "user") {
+      toast.success("Đăng nhập thành công");
       navigate("/");
-    } else if (user?.role === undefined) {
-      navigate("/login");
-    } else if (isSuccess && user?.role !== "user") {
+    } else if (
+      isSubmited &&
+      !isLoading &&
+      (user?.role === undefined || user?.role !== "user")
+    ) {
+      toast.error("Email hoặc mật khẩu không đúng");
+      setIsSubmited(false);
+      // navigate("/login");
+    } else if (user?.role !== undefined) {
       navigate(-1);
-    } else {
-      navigate("/login");
     }
+    // else {
+    //   navigate("/login");
+    // }
   }, [user, isError, isSuccess, isLoading]);
 
   const handleForgotPasswordClick = () => {
-    navigate("/RestorePassword");
+    if (isEmailFilled) {
+      navigate(`/forgot-password?email=${formik.values.email}`);
+    } else {
+      // Hiển thị thông báo yêu cầu điền email trước khi chuyển hướng
+      alert("Vui lòng điền vào trường email trước khi tiếp tục.");
+    }
   };
+
   return (
     <div className="max-w-[700px] m-auto">
       <div className="py-[10px] flex w-full text-center">
@@ -81,7 +102,10 @@ const Login = () => {
                 className="text-base text-[#222] w-full !border-b !border-[#e8e8e8] h-[40px] px-[15px] outline-none rounded"
                 value={formik.values.email}
                 onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+                onBlur={(event) => {
+                  formik.handleBlur(event);
+                  setIsEmailFilled(!!formik.values.email);
+                }}
               />
               {formik.touched.email && formik.errors.email ? (
                 <div style={{ color: "red" }}>{formik.errors.email}</div>

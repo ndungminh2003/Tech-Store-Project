@@ -11,15 +11,18 @@ const role = {
 const RequireAuth = ({ allowedRoles }) => {
   const auth = useAuth();
   const location = useLocation();
-  // console.log(auth);
-  // console.log(allowedRoles);
-  // console.log(location);
-  console.log("auth?.user", auth?.user);
+
+  if (allowedRoles === "" && auth?.user && auth?.user?.role !== "user") {
+    return <Navigate to="/unauthorized" state={{ from: location }} replace />;
+  }
   if (allowedRoles === role.guest && auth?.user && auth?.user?.role) {
-    console.log("Hello");
     return <Navigate to={-1} replace />;
   }
-  if (!auth?.user || !auth?.user?.role) {
+  if (
+    allowedRoles !== role.guest &&
+    allowedRoles !== "" &&
+    (!auth?.user || !auth?.user?.role)
+  ) {
     return allowedRoles === role.user ? (
       <Navigate to={`/login`} state={{ from: location }} replace />
     ) : (
@@ -30,7 +33,11 @@ const RequireAuth = ({ allowedRoles }) => {
       />
     );
   }
-  if (allowedRoles && allowedRoles !== auth.user.role) {
+  if (
+    allowedRoles !== role.guest &&
+    allowedRoles !== "" &&
+    allowedRoles !== auth.user.role
+  ) {
     return <Navigate to="/unauthorized" state={{ from: location }} replace />;
   }
 

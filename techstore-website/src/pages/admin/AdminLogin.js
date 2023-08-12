@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import CustomInput from "../../components/CustomInput";
 import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
@@ -6,7 +6,7 @@ import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { login, resetAuthState } from "../../features/auth/authSlice";
 import { resetState } from "../../features/product/productSlice";
-
+import { toast } from "react-toastify";
 let schema = yup.object().shape({
   email: yup
     .string()
@@ -17,6 +17,7 @@ let schema = yup.object().shape({
 const AdminLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isSubmited, setIsSubmited] = useState(false);
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -26,6 +27,8 @@ const AdminLogin = () => {
     onSubmit: (values) => {
       values = { ...values, role: "admin" };
       dispatch(login(values));
+      setIsSubmited(true);
+      formik.resetForm();
     },
   });
   const authState = useSelector((state) => state.auth);
@@ -40,15 +43,21 @@ const AdminLogin = () => {
   }, []);
 
   useEffect(() => {
-    if (isSuccess && user?.role === "admin") {
+    if (isSubmited && !isLoading && isSuccess && user?.role === "admin") {
+      toast.success("Login Successfull");
       navigate("/admin");
-    } else if (user?.role === undefined) {
-      navigate("/admin-login");
-    } else if (isSuccess && user?.role !== "admin") {
+    } else if (
+      isSubmited &&
+      !isLoading &&
+      (user?.role === undefined || user?.role !== "admin")
+    ) {
+      setIsSubmited(false);
+    } else if (user?.role !== undefined) {
       navigate(-1);
-    } else {
-      navigate("/admin-login");
     }
+    // else {
+    //   navigate("/admin-login");
+    // }
   }, [user, isError, isSuccess, isLoading]);
 
   return (
@@ -64,7 +73,7 @@ const AdminLogin = () => {
       <div className="my-5 w-1/4 bg-white rounded-lg mx-auto p-6">
         <h3 className="text-center title text-3xl font-bold p-2">Login</h3>
         <p className="text-center mb-4">Login to your account to continue.</p>
-        <div className="error text-center">
+        <div className="error text-center" style={{ color: "red" }}>
           {message.message === "Rejected" ? "You are not an Admin" : ""}
         </div>
         <form

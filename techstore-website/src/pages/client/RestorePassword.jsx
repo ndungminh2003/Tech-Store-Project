@@ -1,22 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import MaskedEmail from "./MaskedEmail";
+import { sendOTP } from "../../features/auth/authSlice";
+import { toast } from "react-toastify";
 const RestorePassword = () => {
   const TEST_SITE_KEY = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI";
-  const email = "nbduy21@vp.fitus.edu.vn";
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const email = queryParams.get("email") || "";
+  const { message, isError, isSuccess, isLoading } = useSelector(
+    (state) => state.auth
+  );
+  const [isSubmited, setIsSubmited] = useState(false);
   const handleForgotPasswordClick = () => {
-    navigate("/Otp");
+    dispatch(sendOTP({ email }));
+    setIsSubmited(true);
   };
   const handleBackClick = () => {
-    navigate("/Login");
+    navigate("/login");
   };
+  useEffect(() => {
+    if (isSubmited && !isLoading && isSuccess) {
+      navigate(`/forgot-password-otp?email=${email}`);
+    } else if (isSubmited && !isLoading && isError) {
+      toast.error("Email chưa được đăng ký");
+      setIsSubmited(false);
+    }
+  }, [message, isError, isSuccess, isLoading]);
+
   return (
     <div className="restore-password w-[700px] m-auto mt-[20px]">
       <div className="flex">
-        <div className="cursor-pointer restore-password-back"  onClick={handleBackClick}>
+        <div
+          className="cursor-pointer restore-password-back"
+          onClick={handleBackClick}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -84,7 +106,10 @@ const RestorePassword = () => {
           <ReCAPTCHA sitekey={TEST_SITE_KEY} />
         </div>
         <div className="res-btn">
-          <button  onClick={handleForgotPasswordClick} className=" bg-slate-500 rounded-md text-white cursor-pointer block text-center text-14 font-semibold mt-[20px] mb-[20px] mx-auto pt-[11px] pb-[11px] w-full">
+          <button
+            onClick={handleForgotPasswordClick}
+            className=" bg-slate-500 rounded-md text-white cursor-pointer block text-center text-14 font-semibold mt-[20px] mb-[20px] mx-auto pt-[11px] pb-[11px] w-full"
+          >
             Tiếp tục
           </button>
         </div>

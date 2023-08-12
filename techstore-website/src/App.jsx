@@ -24,6 +24,7 @@ import WishList from "./pages/client/WishList";
 import BankTransferInfo from "./pages/client/BankTransferInfo";
 import RestorePassword from "./pages/client/RestorePassword";
 import Otp from "./pages/client/Otp";
+import RegisteredOTP from "./pages/client/RegisteredOTP";
 import CatalogSearch from "./pages/client/CatalogSearch";
 import CreateNewPassword from "./pages/client/CreateNewPassword";
 import Purchase from "./pages/client/Purchase";
@@ -66,23 +67,26 @@ import React from "react";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="login" element={<Login />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="search-product" element={<CatalogSearch />} />
-        <Route path="purchase" element={<Purchase />} />
-        <Route path="product-view/:slug" element={<ProductView />} />
-        <Route path="catalog" element={<Catalog />} />
-        <Route path="shopping-cart" element={<Cart />} />
-        <Route path="restore-password" element={<RestorePassword />} />
-        <Route path="otp" element={<Otp />} />
-        <Route path="wishlist" element={<WishList />} />
-        <Route element={<RequireAuth allowedRoles="guest" />}>
-          <Route path="register" element={<Register />} />
+      <Route element={<RequireAuth allowedRoles="" />}>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="search-product" element={<CatalogSearch />} />
+          <Route path="purchase" element={<Purchase />} />
+          <Route path="product-view/:slug" element={<ProductView />} />
+          <Route path="catalog" element={<Catalog />} />
+          <Route path="shopping-cart" element={<Cart />} />
+          <Route path="forgot-password-otp" element={<Otp />} />
+          <Route path="otp" element={<RegisteredOTP />} />
+          <Route path="wishlist" element={<WishList />} />
+          <Route path="forgot-password" element={<RestorePassword />} />
+          <Route path="change-password" element={<CreateNewPassword />} />
+
+          <Route path="login" element={<Login />} />
+          <Route element={<RequireAuth allowedRoles="guest" />}>
+            <Route path="register" element={<Register />} />
+          </Route>
         </Route>
-        <Route path="login" element={<Login />} />
-        <Route path="change-password" element={<CreateNewPassword />} />
       </Route>
       <Route path="/admin-login" element={<AdminLogin />} />
       <Route element={<RequireAuth allowedRoles="admin" />}>

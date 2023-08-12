@@ -24,10 +24,54 @@ export const login = createAsyncThunk(
 );
 
 export const register = createAsyncThunk(
-  "user/register",
+  "auth/register",
   async (userData, thunkAPI) => {
     try {
       return await authService.register(userData);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const sendOTP = createAsyncThunk(
+  "auth/send-otp",
+  async (email, thunkAPI) => {
+    try {
+      return await authService.sendOTP(email);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const verifyOTP = createAsyncThunk(
+  "auth/verify-otp",
+  async (data, thunkAPI) => {
+    try {
+      return await authService.verifyOTP(data.email, data.otp);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const deleteNotVerifiedUser = createAsyncThunk(
+  "auth/delete-not-verified",
+  async (id, thunkAPI) => {
+    try {
+      return await authService.deleteNotVerified(id);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const changePassword = createAsyncThunk(
+  "auth/change-password",
+  async (data, thunkAPI) => {
+    try {
+      return await authService.changePassword(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -66,6 +110,7 @@ export const getOrders = createAsyncThunk(
     }
   }
 );
+
 export const getOrderById = createAsyncThunk(
   "order/get-order",
   async (id, thunkAPI) => {
@@ -101,6 +146,7 @@ export const authSlice = createSlice({
         state.message = action.error;
         state.isLoading = false;
       })
+
       .addCase(register.pending, (state) => {
         state.isLoading = true;
       })
@@ -109,6 +155,72 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.registeredUser = action.payload;
+      })
+      .addCase(register.rejected, (state, action) => {
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
+        state.isLoading = false;
+      })
+      .addCase(sendOTP.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(sendOTP.fulfilled, (state, action) => {
+        state.isError = false;
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = action.payload;
+      })
+      .addCase(sendOTP.rejected, (state, action) => {
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
+        state.isLoading = false;
+      })
+      .addCase(verifyOTP.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(verifyOTP.fulfilled, (state, action) => {
+        state.isError = false;
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isVerified = true;
+      })
+      .addCase(verifyOTP.rejected, (state, action) => {
+        state.isError = true;
+        state.isSuccess = false;
+        state.isVerified = false;
+        state.isLoading = false;
+      })
+      .addCase(deleteNotVerifiedUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteNotVerifiedUser.fulfilled, (state, action) => {
+        state.isError = false;
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = action.payload;
+      })
+      .addCase(deleteNotVerifiedUser.rejected, (state, action) => {
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
+        state.isLoading = false;
+      })
+      .addCase(changePassword.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(changePassword.fulfilled, (state, action) => {
+        state.isError = false;
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = action.payload;
+      })
+      .addCase(changePassword.rejected, (state, action) => {
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
+        state.isLoading = false;
       })
       .addCase(refreshToken.pending, (state) => {
         state.isLoading = true;

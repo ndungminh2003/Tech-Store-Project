@@ -35,6 +35,37 @@ const refreshToken = async () => {
   return response.data;
 };
 
+const sendOTP = async (email) => {
+  console.log("services", email);
+  const response = await axios.post(`${base_url}user/send-otp`, email);
+  return response.data;
+};
+
+const verifyOTP = async (email, otp) => {
+  console.log("services", {
+    email,
+    otp,
+  });
+  const response = await axios.post(`${base_url}user/verify-otp`, {
+    email,
+    otp,
+  });
+  return response.data;
+};
+
+const deleteNotVerified = async (id) => {
+  const response = await axios.delete(
+    `${base_url}user/delete-is-not-verified/${id}`
+  );
+
+  return response.data;
+};
+
+const changePassword = async (data) => {
+  const response = await axios.put(`${base_url}user/change-password`, data);
+  return response.data;
+};
+
 const getOrders = async () => {
   let config = get_config();
 
@@ -56,6 +87,10 @@ const authService = {
   refreshToken,
   getOrders,
   getOrder,
+  sendOTP,
+  verifyOTP,
+  deleteNotVerified,
+  changePassword,
 };
 
 export default authService;

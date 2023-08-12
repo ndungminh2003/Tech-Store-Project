@@ -12,7 +12,7 @@ const CustomInput = (props) => {
         onChange={onChng}
         onBlur={onBlr}
         className={`w-full h-10 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors peer rounded-md`}
-        autocomplete="off"
+        autoComplete="off"
       />
       {val ? (
         <label

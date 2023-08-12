@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import MaskedEmail from "./MaskedEmail";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { sendOTP, verifyOTP } from "../../features/auth/authSlice";
 import { useFormik } from "formik";
@@ -16,9 +16,7 @@ const CreateNewPassword = () => {
   const { isSuccess, isLoading, isError, isVerified } = useSelector(
     (state) => state.auth
   );
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const email = queryParams.get("email") || "";
+  const email = useSelector((state) => state.auth?.registeredUser?.email) || "";
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -85,7 +83,7 @@ const CreateNewPassword = () => {
       isVerified !== undefined
     ) {
       displaySuccessToast("OTP verified successfully");
-      navigate(`/change-password?email=${email}&isVerified=${isVerified}`);
+      navigate("/login");
     } else if (
       isSubmited &&
       isCounting &&
@@ -132,14 +130,14 @@ const CreateNewPassword = () => {
 
   const handleResend = () => {
     dispatch(sendOTP({ email }));
-    setCountdown(10);
+    setCountdown(60);
     setIsCounting(true);
   };
 
   return (
     <div className="restore-password w-[700px] m-auto mt-[20px]">
       <div className="mx-auto text-2xl font-bold text-center">
-        <h3>Forgot Password</h3>
+        <h3>Registration confirmation</h3>
       </div>
       <div className="restore-password-confirm mt-[110px] p-[15px] text-[13px]">
         Enter the OTP sent via email <MaskedEmail email={email} />

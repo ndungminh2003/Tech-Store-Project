@@ -19,7 +19,17 @@ const createUser = asyncHandler(async (req, res) => {
 
   if (!findUser) {
     const newUser = await User.create(req.body);
-    res.json(newUser);
+    const otp = Math.floor(1000 + Math.random() * 9000);
+    newUser.otp = otp;
+    await newUser.save();
+    const data = {
+      to: email,
+      text: `Hey User here is your OTP ${otp}`,
+      subject: "Sent OTP",
+      htm: "<h1>Hey User here is your OTP</h1>" + otp,
+    };
+    sendEmail(data);
+    res.status(200).json(newUser);
   } else {
     throw new Error("User Already Exists");
   }
@@ -67,47 +77,6 @@ const login = asyncHandler(async (req, res) => {
     accessToken: generateToken(findUser?._id),
   });
 });
-
-// admin login
-
-// const loginAdminCtrl = asyncHandler(async (req, res) => {
-//   const { email, password } = req.body;
-//   const findUser = await User.findOne({ email });
-//   if (!findUser) {
-//     return res.status(404).json("Email not found");
-//   }
-//   if (findUser.role !== "admin") throw new Error("Not Authorised");
-//   const validPassword = await findUser.isPasswordMatched(password);
-//   if (!validPassword) {
-//     return res.status(404).json("Password is not correct");
-//   }
-
-//   const refreshToken = generateRefreshToken(findUser?._id);
-//   const updateuser = await User.findByIdAndUpdate(
-//     findUser.id,
-//     {
-//       refreshToken: refreshToken,
-//     },
-//     { new: true }
-//   );
-//   res.cookie("refreshToken", refreshToken, {
-//     httpOnly: true,
-//     secure: false, // gán bằng true sau khi deploy
-//     sameSite: "strict",
-//     maxAge: 72 * 60 * 60 * 1000,
-//   });
-
-//   console.log({ refreshToken });
-
-//   res.json({
-//     _id: findUser?._id,
-//     name: findUser?.name,
-//     email: findUser?.email,
-//     mobile: findUser?.mobile,
-//     role: findUser?.role,
-//     accessToken: generateToken(findUser?._id),
-//   });
-// });
 
 const loginAdmin = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
@@ -206,6 +175,99 @@ const logout = asyncHandler(async (req, res) => {
     res.sendStatus(204);
   } catch (error) {
     throw new Error(error);
+  }
+});
+
+// send OTP to email
+
+const sendOTP = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+  console.log("controller", email);
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json("Email not found");
+    }
+    const otp = Math.floor(1000 + Math.random() * 9000);
+    user.otp = otp;
+    await user.save();
+    const data = {
+      to: email,
+      text: `Hey User here is your OTP ${otp}`,
+      subject: "Sent OTP",
+      htm: "<h1>Hey User here is your OTP</h1>" + otp,
+    };
+    sendEmail(data);
+    res.status(200).json(user);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+// clear OTP
+
+const clearOTP = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json("Email not found");
+    }
+    user.otp = "";
+    await user.save();
+    res.status(200).json(user);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+// verify OTP
+
+const verifyOTP = asyncHandler(async (req, res) => {
+  const { email, otp } = req.body;
+  console.log("controller", email, otp);
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "User does not exist" });
+    }
+    if (user.otp !== otp) {
+      return res.status(400).json({ message: "Invalid OTP code" });
+    }
+
+    user.otp = ""; // Xoá mã OTP sau khi xác minh thành công
+    await user.save();
+    return res.status(200).json({ message: "OTP verification successful" });
+  } catch (error) {
+    console.error(error);
+    return res
+      .status(500)
+      .json({ message: "An error occurred during OTP verification" });
+  }
+});
+
+// delete not verified user
+
+const deleteNotVerifiedUser = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  validateMongoDbId(id);
+  try {
+    let user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ message: "Người dùng không tồn tại." });
+    }
+
+    if (user?.otp === "") {
+      return res.status(400).json({ message: "Người dùng đã xác minh OTP." });
+    }
+
+    let deletedUser = await user.remove();
+
+    return res.status(200).json({ message: "Xóa người dùng thành công" });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Có lỗi xảy ra trong quá trình xóa người dùng." });
   }
 });
 
@@ -382,6 +444,23 @@ const updatePassword = asyncHandler(async (req, res) => {
     res.json(updatedPassword);
   } else {
     res.json(user);
+  }
+});
+
+const changePassword = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+  console.log("controller", email, password);
+  try {
+    const user = await User.findOne({ email });
+    if (password) {
+      user.password = password;
+      const updatedPassword = await user.save();
+      res.json({ message: "Password Updated Successfully" });
+    } else {
+      res.json({ message: "Password not updated" });
+    }
+  } catch (error) {
+    throw new Error(error);
   }
 });
 
@@ -585,6 +664,7 @@ const getAllOrders = asyncHandler(async (req, res) => {
     throw new Error(error);
   }
 });
+
 const getOrderById = asyncHandler(async (req, res) => {
   const { id } = req.params;
   validateMongoDbId(id);
@@ -598,6 +678,7 @@ const getOrderById = asyncHandler(async (req, res) => {
     throw new Error(error);
   }
 });
+
 const updateOrderStatus = asyncHandler(async (req, res) => {
   const { status } = req.body;
   const { id } = req.params;
@@ -634,6 +715,7 @@ module.exports = {
   handleRefreshToken,
   logout,
   updatePassword,
+  changePassword,
   forgotPasswordToken,
   resetPassword,
   loginAdmin,
@@ -648,4 +730,8 @@ module.exports = {
   updateOrderStatus,
   getAllOrders,
   getOrderById,
+  sendOTP,
+  verifyOTP,
+  clearOTP,
+  deleteNotVerifiedUser,
 };

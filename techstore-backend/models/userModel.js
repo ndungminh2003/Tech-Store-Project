@@ -40,6 +40,10 @@ var userSchema = new mongoose.Schema(
     address: {
       type: String,
     },
+    otp: {
+      type: String,
+      default: "",
+    },
     wishlist: [{ type: mongoose.Types.ObjectId, ref: "Product" }],
     refreshToken: {
       type: String,
