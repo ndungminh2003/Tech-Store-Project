@@ -70,6 +70,16 @@ const getaProduct = asyncHandler(async (req, res) => {
     throw new Error(error);
   }
 });
+const getProductBySlug = asyncHandler(async (req, res) => {
+  const { slug } = req.params;
+  console.log(slug);
+  try {
+    const findProduct = await Product.findOne({ slug: slug });
+    res.json(findProduct);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
 
 const searchProduct = asyncHandler(async (req, res) => {
   const { query } = req.params;
@@ -230,6 +240,7 @@ const rating = asyncHandler(async (req, res) => {
 module.exports = {
   createProduct,
   getaProduct,
+  getProductBySlug,
   getAllProduct,
   updateProduct,
   deleteProduct,

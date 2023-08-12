@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import StarIcon from "@mui/icons-material/Star";
 import { Rating } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { ReactComponent as GiftBoxIcon } from "../../assets/giftbox.svg";
 import "../../assets/style/Productview.scss";
 
@@ -20,6 +20,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import Question from "../../components/Question/Question";
+import { useDispatch, useSelector } from "react-redux";
+import { getProductBySlug } from "../../features/product/productSlice";
 
 import LightGallery from "lightgallery/react";
 
@@ -34,6 +36,11 @@ import lgZoom from "lightgallery/plugins/zoom";
 import lgFullscreen from "lightgallery/plugins/fullscreen";
 export default function ProductView() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const pathname = location.pathname;
+  const lastSlashIndex = pathname.lastIndexOf("/");
+  const slug = pathname.slice(lastSlashIndex + 1);
   const lineStyle = {
     width: "150px", // Chiều dài 150px
     height: "2px", // Chiều cao 2px
@@ -70,6 +77,10 @@ export default function ProductView() {
       setShowMessage(false);
     }, 3000);
   };
+
+  useEffect(() => {
+    dispatch(getProductBySlug(slug));
+  }, []);
 
   const listImgThumb = [
     "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_green_211119.jpg",

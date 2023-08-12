@@ -8,6 +8,12 @@ const getProducts = async () => {
   return response.data;
 };
 
+const getProductBySlug = async (slug) => {
+  const response = await axios.get(`${base_url}product/${slug}`);
+
+  return response.data;
+};
+
 const getLimitProducts = async (limit) => {
   let params = "?";
   if (limit) {
@@ -78,6 +84,7 @@ const deleteProduct = async (id) => {
 
 const productService = {
   getProducts,
+  getProductBySlug,
   getLimitProducts,
   getProductByCatalog,
   createProduct,

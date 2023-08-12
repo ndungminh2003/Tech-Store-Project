@@ -2,6 +2,7 @@ const express = require("express");
 const {
   createProduct,
   getaProduct,
+  getProductBySlug,
   getAllProduct,
   updateProduct,
   deleteProduct,
@@ -16,7 +17,8 @@ router.post("/", authMiddleware, isAdmin, createProduct);
 
 router.get("/search/:query", searchProduct);
 
-router.get("/:id", getaProduct);
+router.get("/:slug", getProductBySlug);
+// router.get("/:id", getaProduct);
 router.put("/wishlist", authMiddleware, addToWishlist);
 router.put("/rating", authMiddleware, rating);
 
