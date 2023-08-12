@@ -36,7 +36,7 @@ export default function CatalogSearch() {
             <b className="mx-1">'{products?.keyword}'</b>
           </span>
           
-          <img src="/logo/small.png" alt="logo" className=" rounded-lg w-52 h-52 mt-16"/>
+          <img src="/logo/small.png" alt="logo" className=" rounded-lg w-96 h-96 mt-16"/>
           <span className="flex justify-center text-xl text-black font-bold mb-20">
             Opps Sorry! No Results Found
           </span>
