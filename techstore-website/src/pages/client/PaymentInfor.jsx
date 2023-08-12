@@ -329,136 +329,136 @@
 //         </div>
 //       </div>
 //     </div>
-    // <div className="cart w-[850px] m-0 m-auto bg-[#ececec] p-[35px]">
-    //   <div className="cart-top flex gap-[275px] mb-5">
-    //     <div className="cart-back">
-    //       {" "}
-    //       <strong> &#60; Back</strong>
-    //     </div>
-    //     <div className="cart-title">
-    //       {" "}
-    //       <strong> Shopping cart </strong>
-    //     </div>
-    //   </div>
-    //   <div className="cart-center">
-    //     <div className="flex items-center justify-between cart-content">
-    //       <div className="cart-img">
-    //         <img
-    //           src="https://haycafe.vn/wp-content/uploads/2022/06/anh-pho-dem-mua-dong.jpg"
-    //           className="w-[150px] h-[150px]"
-    //           alt=""
-    //         />
-    //       </div>
-    //       <div className="cart-name-price pl-5 w-[414px]">
-    //         <h6 className="cart-name text-[20px]">Product Name</h6>
-    //         <div className="flex items-center pt-5 cart-price">
-    //           <div className="text-[16px]">
-    //             <strong>23452352345 đ</strong>
-    //           </div>
-    //           <small className="text-[#adadad] text-[13px] pl-10">
-    //             {" "}
-    //             <del> 78967896789 đ</del>
-    //           </small>
-    //         </div>
-    //       </div>
-    //       <div className="cart-totol-delete">
-    //         <div className="text-right cart-delete">
-    //           {" "}
-    //           <DeleteIcon />
-    //         </div>
-    //         <div className="cart-totol bg-[#fff] w-[100px] h-[30px] cursor-pointer rounded-[5px] mt-2 mr-[10px]">
-    //           <input
-    //             type="button"
-    //             value="-"
-    //             onClick={handleDecrease}
-    //             className="w-[25px] h-full"
-    //           />
-    //           <input
-    //             type="number"
-    //             value={quantity}
-    //             className="w-[50px] h-full text-center"
-    //             readOnly
-    //           />
-    //           <input
-    //             type="button"
-    //             value="+"
-    //             onClick={handleIncrease}
-    //             className="w-[25px] h-full cursor-pointer"
-    //           />
-    //         </div>
-    //       </div>
-    //     </div>
-    //     <div className="w-[100%] h-[2px] bg-[#fff] mt-5"></div>
-    //     <div className="flex items-center justify-between mt-5 cart-content">
-    //       <div className="cart-img">
-    //         <img
-    //           src="https://haycafe.vn/wp-content/uploads/2022/06/anh-pho-dem-mua-dong.jpg"
-    //           className="w-[150px] h-[150px]"
-    //           alt=""
-    //         />
-    //       </div>
-    //       <div className="cart-name-price pl-5 w-[414px]">
-    //         <h6 className="cart-name text-[20px]">Product Name</h6>
-    //         <div className="flex items-center pt-5 cart-price">
-    //           <div className="text-[16px]">
-    //             <strong>23452352345 đ</strong>
-    //           </div>
-    //           <small className="text-[#adadad] text-[13px] pl-10">
-    //             {" "}
-    //             <del> 78967896789 đ</del>
-    //           </small>
-    //         </div>
-    //         <div className="cart-discount">
-    //           <strong>Discount</strong>
-    //           <p className="w-[414px] overflow-hidden truncate">
-    //             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque
-    //             autem dolores h
-    //           </p>
-    //         </div>
-    //       </div>
-    //       <div className="cart-totol-delete">
-    //         <div className="text-right cart-delete">
-    //           {" "}
-    //           <DeleteIcon />
-    //         </div>
-    //         <div className="cart-totol bg-[#fff] w-[100px] h-[30px] cursor-pointer rounded-[5px] mt-2 mr-[10px]">
-    //           <input
-    //             type="button"
-    //             value="-"
-    //             onClick={handleDecrease}
-    //             className="w-[25px] h-full"
-    //           />
-    //           <input
-    //             type="number"
-    //             value={quantity}
-    //             className="w-[50px] h-full text-center"
-    //             readOnly
-    //           />
-    //           <input
-    //             type="button"
-    //             value="+"
-    //             onClick={handleIncrease}
-    //             className="w-[25px] h-full cursor-pointer"
-    //           />
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <div className="cart-bottom bg-[#fff] mt-20 p-[5px]">
-    //     <div className="flex justify-between mb-5 cart-bottom-totol">
-    //       <div className="cart-bottom-left">Total</div>
-    //       <div className="cart-bottom-left pr-4 text-[#a7a6a6]">123424 đ</div>
-    //     </div>
-    //     <div className="cart-bottom-btn">
-    //       <button className="cart-bottom-order w-full h-[50px] bg-[#ccc] border-2 border-black bg-transparent">
-    //         Proceed order
-    //       </button>
-    //       <button className="carrt-bottom-choose w-full h-[50px] mt-2 bg-[#ccc] border-2 border-black bg-transparent">
-    //         Choose another product
-    //       </button>
-    //     </div>
-    //   </div>
-    // </div>
+// <div className="cart w-[850px] m-0 m-auto bg-[#ececec] p-[35px]">
+//   <div className="cart-top flex gap-[275px] mb-5">
+//     <div className="cart-back">
+//       {" "}
+//       <strong> &#60; Back</strong>
+//     </div>
+//     <div className="cart-title">
+//       {" "}
+//       <strong> Shopping cart </strong>
+//     </div>
+//   </div>
+//   <div className="cart-center">
+//     <div className="flex items-center justify-between cart-content">
+//       <div className="cart-img">
+//         <img
+//           src="https://haycafe.vn/wp-content/uploads/2022/06/anh-pho-dem-mua-dong.jpg"
+//           className="w-[150px] h-[150px]"
+//           alt=""
+//         />
+//       </div>
+//       <div className="cart-name-price pl-5 w-[414px]">
+//         <h6 className="cart-name text-[20px]">Product Name</h6>
+//         <div className="flex items-center pt-5 cart-price">
+//           <div className="text-[16px]">
+//             <strong>23452352345 đ</strong>
+//           </div>
+//           <small className="text-[#adadad] text-[13px] pl-10">
+//             {" "}
+//             <del> 78967896789 đ</del>
+//           </small>
+//         </div>
+//       </div>
+//       <div className="cart-totol-delete">
+//         <div className="text-right cart-delete">
+//           {" "}
+//           <DeleteIcon />
+//         </div>
+//         <div className="cart-totol bg-[#fff] w-[100px] h-[30px] cursor-pointer rounded-[5px] mt-2 mr-[10px]">
+//           <input
+//             type="button"
+//             value="-"
+//             onClick={handleDecrease}
+//             className="w-[25px] h-full"
+//           />
+//           <input
+//             type="number"
+//             value={quantity}
+//             className="w-[50px] h-full text-center"
+//             readOnly
+//           />
+//           <input
+//             type="button"
+//             value="+"
+//             onClick={handleIncrease}
+//             className="w-[25px] h-full cursor-pointer"
+//           />
+//         </div>
+//       </div>
+//     </div>
+//     <div className="w-[100%] h-[2px] bg-[#fff] mt-5"></div>
+//     <div className="flex items-center justify-between mt-5 cart-content">
+//       <div className="cart-img">
+//         <img
+//           src="https://haycafe.vn/wp-content/uploads/2022/06/anh-pho-dem-mua-dong.jpg"
+//           className="w-[150px] h-[150px]"
+//           alt=""
+//         />
+//       </div>
+//       <div className="cart-name-price pl-5 w-[414px]">
+//         <h6 className="cart-name text-[20px]">Product Name</h6>
+//         <div className="flex items-center pt-5 cart-price">
+//           <div className="text-[16px]">
+//             <strong>23452352345 đ</strong>
+//           </div>
+//           <small className="text-[#adadad] text-[13px] pl-10">
+//             {" "}
+//             <del> 78967896789 đ</del>
+//           </small>
+//         </div>
+//         <div className="cart-discount">
+//           <strong>Discount</strong>
+//           <p className="w-[414px] overflow-hidden truncate">
+//             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque
+//             autem dolores h
+//           </p>
+//         </div>
+//       </div>
+//       <div className="cart-totol-delete">
+//         <div className="text-right cart-delete">
+//           {" "}
+//           <DeleteIcon />
+//         </div>
+//         <div className="cart-totol bg-[#fff] w-[100px] h-[30px] cursor-pointer rounded-[5px] mt-2 mr-[10px]">
+//           <input
+//             type="button"
+//             value="-"
+//             onClick={handleDecrease}
+//             className="w-[25px] h-full"
+//           />
+//           <input
+//             type="number"
+//             value={quantity}
+//             className="w-[50px] h-full text-center"
+//             readOnly
+//           />
+//           <input
+//             type="button"
+//             value="+"
+//             onClick={handleIncrease}
+//             className="w-[25px] h-full cursor-pointer"
+//           />
+//         </div>
+//       </div>
+//     </div>
+//   </div>
+//   <div className="cart-bottom bg-[#fff] mt-20 p-[5px]">
+//     <div className="flex justify-between mb-5 cart-bottom-totol">
+//       <div className="cart-bottom-left">Total</div>
+//       <div className="cart-bottom-left pr-4 text-[#a7a6a6]">123424 đ</div>
+//     </div>
+//     <div className="cart-bottom-btn">
+//       <button className="cart-bottom-order w-full h-[50px] bg-[#ccc] border-2 border-black bg-transparent">
+//         Proceed order
+//       </button>
+//       <button className="carrt-bottom-choose w-full h-[50px] mt-2 bg-[#ccc] border-2 border-black bg-transparent">
+//         Choose another product
+//       </button>
+//     </div>
+//   </div>
+// </div>
 //   );
 // }
 
@@ -952,7 +952,7 @@
 //                               ) || null
 //                             }
 //                             onChange={(event, newValue) => {
-                              
+
 //                               setFieldValue(
 //                                 "addressStore",
 //                                 newValue ? newValue.id : ""
@@ -1022,137 +1022,136 @@
 //         </Form>
 //       )}
 //     </Formik>
-    // <div className="cart w-[850px] m-0 m-auto bg-[#ececec] p-[35px]">
-    //   <div className="cart-top flex gap-[275px] mb-5">
-    //     <div className="cart-back">
-    //       {" "}
-    //       <strong> &#60; Back</strong>
-    //     </div>
-    //     <div className="cart-title">
-    //       {" "}
-    //       <strong> Shopping cart </strong>
-    //     </div>
-    //   </div>
-    //   <div className="cart-center">
-    //     <div className="flex items-center justify-between cart-content">
-    //       <div className="cart-img">
-    //         <img
-    //           src="https://haycafe.vn/wp-content/uploads/2022/06/anh-pho-dem-mua-dong.jpg"
-    //           className="w-[150px] h-[150px]"
-    //           alt=""
-    //         />
-    //       </div>
-    //       <div className="cart-name-price pl-5 w-[414px]">
-    //         <h6 className="cart-name text-[20px]">Product Name</h6>
-    //         <div className="flex items-center pt-5 cart-price">
-    //           <div className="text-[16px]">
-    //             <strong>23452352345 đ</strong>
-    //           </div>
-    //           <small className="text-[#adadad] text-[13px] pl-10">
-    //             {" "}
-    //             <del> 78967896789 đ</del>
-    //           </small>
-    //         </div>
-    //       </div>
-    //       <div className="cart-totol-delete">
-    //         <div className="text-right cart-delete">
-    //           {" "}
-    //           <DeleteIcon />
-    //         </div>
-    //         <div className="cart-totol bg-[#fff] w-[100px] h-[30px] cursor-pointer rounded-[5px] mt-2 mr-[10px]">
-    //           <input
-    //             type="button"
-    //             value="-"
-    //             onClick={handleDecrease}
-    //             className="w-[25px] h-full"
-    //           />
-    //           <input
-    //             type="number"
-    //             value={quantity}
-    //             className="w-[50px] h-full text-center"
-    //             readOnly
-    //           />
-    //           <input
-    //             type="button"
-    //             value="+"
-    //             onClick={handleIncrease}
-    //             className="w-[25px] h-full cursor-pointer"
-    //           />
-    //         </div>
-    //       </div>
-    //     </div>
-    //     <div className="w-[100%] h-[2px] bg-[#fff] mt-5"></div>
-    //     <div className="flex items-center justify-between mt-5 cart-content">
-    //       <div className="cart-img">
-    //         <img
-    //           src="https://haycafe.vn/wp-content/uploads/2022/06/anh-pho-dem-mua-dong.jpg"
-    //           className="w-[150px] h-[150px]"
-    //           alt=""
-    //         />
-    //       </div>
-    //       <div className="cart-name-price pl-5 w-[414px]">
-    //         <h6 className="cart-name text-[20px]">Product Name</h6>
-    //         <div className="flex items-center pt-5 cart-price">
-    //           <div className="text-[16px]">
-    //             <strong>23452352345 đ</strong>
-    //           </div>
-    //           <small className="text-[#adadad] text-[13px] pl-10">
-    //             {" "}
-    //             <del> 78967896789 đ</del>
-    //           </small>
-    //         </div>
-    //         <div className="cart-discount">
-    //           <strong>Discount</strong>
-    //           <p className="w-[414px] overflow-hidden truncate">
-    //             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque
-    //             autem dolores h
-    //           </p>
-    //         </div>
-    //       </div>
-    //       <div className="cart-totol-delete">
-    //         <div className="text-right cart-delete">
-    //           {" "}
-    //           <DeleteIcon />
-    //         </div>
-    //         <div className="cart-totol bg-[#fff] w-[100px] h-[30px] cursor-pointer rounded-[5px] mt-2 mr-[10px]">
-    //           <input
-    //             type="button"
-    //             value="-"
-    //             onClick={handleDecrease}
-    //             className="w-[25px] h-full"
-    //           />
-    //           <input
-    //             type="number"
-    //             value={quantity}
-    //             className="w-[50px] h-full text-center"
-    //             readOnly
-    //           />
-    //           <input
-    //             type="button"
-    //             value="+"
-    //             onClick={handleIncrease}
-    //             className="w-[25px] h-full cursor-pointer"
-    //           />
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <div className="cart-bottom bg-[#fff] mt-20 p-[5px]">
-    //     <div className="flex justify-between mb-5 cart-bottom-totol">
-    //       <div className="cart-bottom-left">Total</div>
-    //       <div className="cart-bottom-left pr-4 text-[#a7a6a6]">123424 đ</div>
-    //     </div>
-    //     <div className="cart-bottom-btn">
-    //       <button className="cart-bottom-order w-full h-[50px] bg-[#ccc] border-2 border-black bg-transparent">
-    //         Proceed order
-    //       </button>
-    //       <button className="carrt-bottom-choose w-full h-[50px] mt-2 bg-[#ccc] border-2 border-black bg-transparent">
-    //         Choose another product
-    //       </button>
-    //     </div>
-    //   </div>
-    // </div>
-
+// <div className="cart w-[850px] m-0 m-auto bg-[#ececec] p-[35px]">
+//   <div className="cart-top flex gap-[275px] mb-5">
+//     <div className="cart-back">
+//       {" "}
+//       <strong> &#60; Back</strong>
+//     </div>
+//     <div className="cart-title">
+//       {" "}
+//       <strong> Shopping cart </strong>
+//     </div>
+//   </div>
+//   <div className="cart-center">
+//     <div className="flex items-center justify-between cart-content">
+//       <div className="cart-img">
+//         <img
+//           src="https://haycafe.vn/wp-content/uploads/2022/06/anh-pho-dem-mua-dong.jpg"
+//           className="w-[150px] h-[150px]"
+//           alt=""
+//         />
+//       </div>
+//       <div className="cart-name-price pl-5 w-[414px]">
+//         <h6 className="cart-name text-[20px]">Product Name</h6>
+//         <div className="flex items-center pt-5 cart-price">
+//           <div className="text-[16px]">
+//             <strong>23452352345 đ</strong>
+//           </div>
+//           <small className="text-[#adadad] text-[13px] pl-10">
+//             {" "}
+//             <del> 78967896789 đ</del>
+//           </small>
+//         </div>
+//       </div>
+//       <div className="cart-totol-delete">
+//         <div className="text-right cart-delete">
+//           {" "}
+//           <DeleteIcon />
+//         </div>
+//         <div className="cart-totol bg-[#fff] w-[100px] h-[30px] cursor-pointer rounded-[5px] mt-2 mr-[10px]">
+//           <input
+//             type="button"
+//             value="-"
+//             onClick={handleDecrease}
+//             className="w-[25px] h-full"
+//           />
+//           <input
+//             type="number"
+//             value={quantity}
+//             className="w-[50px] h-full text-center"
+//             readOnly
+//           />
+//           <input
+//             type="button"
+//             value="+"
+//             onClick={handleIncrease}
+//             className="w-[25px] h-full cursor-pointer"
+//           />
+//         </div>
+//       </div>
+//     </div>
+//     <div className="w-[100%] h-[2px] bg-[#fff] mt-5"></div>
+//     <div className="flex items-center justify-between mt-5 cart-content">
+//       <div className="cart-img">
+//         <img
+//           src="https://haycafe.vn/wp-content/uploads/2022/06/anh-pho-dem-mua-dong.jpg"
+//           className="w-[150px] h-[150px]"
+//           alt=""
+//         />
+//       </div>
+//       <div className="cart-name-price pl-5 w-[414px]">
+//         <h6 className="cart-name text-[20px]">Product Name</h6>
+//         <div className="flex items-center pt-5 cart-price">
+//           <div className="text-[16px]">
+//             <strong>23452352345 đ</strong>
+//           </div>
+//           <small className="text-[#adadad] text-[13px] pl-10">
+//             {" "}
+//             <del> 78967896789 đ</del>
+//           </small>
+//         </div>
+//         <div className="cart-discount">
+//           <strong>Discount</strong>
+//           <p className="w-[414px] overflow-hidden truncate">
+//             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque
+//             autem dolores h
+//           </p>
+//         </div>
+//       </div>
+//       <div className="cart-totol-delete">
+//         <div className="text-right cart-delete">
+//           {" "}
+//           <DeleteIcon />
+//         </div>
+//         <div className="cart-totol bg-[#fff] w-[100px] h-[30px] cursor-pointer rounded-[5px] mt-2 mr-[10px]">
+//           <input
+//             type="button"
+//             value="-"
+//             onClick={handleDecrease}
+//             className="w-[25px] h-full"
+//           />
+//           <input
+//             type="number"
+//             value={quantity}
+//             className="w-[50px] h-full text-center"
+//             readOnly
+//           />
+//           <input
+//             type="button"
+//             value="+"
+//             onClick={handleIncrease}
+//             className="w-[25px] h-full cursor-pointer"
+//           />
+//         </div>
+//       </div>
+//     </div>
+//   </div>
+//   <div className="cart-bottom bg-[#fff] mt-20 p-[5px]">
+//     <div className="flex justify-between mb-5 cart-bottom-totol">
+//       <div className="cart-bottom-left">Total</div>
+//       <div className="cart-bottom-left pr-4 text-[#a7a6a6]">123424 đ</div>
+//     </div>
+//     <div className="cart-bottom-btn">
+//       <button className="cart-bottom-order w-full h-[50px] bg-[#ccc] border-2 border-black bg-transparent">
+//         Proceed order
+//       </button>
+//       <button className="carrt-bottom-choose w-full h-[50px] mt-2 bg-[#ccc] border-2 border-black bg-transparent">
+//         Choose another product
+//       </button>
+//     </div>
+//   </div>
+// </div>
 
 // import React, { useState, useEffect } from "react";
 // import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
@@ -1597,9 +1596,6 @@
 
 // export default PaymentInfo;
 
-
-
-
 import React, { useState, useEffect } from "react";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { Link, useNavigate } from "react-router-dom";
@@ -1719,7 +1715,11 @@ function PaymentInfo() {
   ];
 
   const addressStore = [
-    { id:"ch1", parentId: "040", label: "Đất Thổ Cư Hòa Lạc, Km29, ĐCT08, Thạch Hoà, Thạch Thất, Hà Nội" },
+    {
+      id: "ch1",
+      parentId: "040",
+      label: "Đất Thổ Cư Hòa Lạc, Km29, ĐCT08, Thạch Hoà, Thạch Thất, Hà Nội",
+    },
   ];
 
   const TEST_SITE_KEY = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI";
@@ -1766,7 +1766,7 @@ function PaymentInfo() {
             <div className="flex items-center justify-center  max-w-[700px] m-auto my-5">
               <div
                 className="res-none py-[10px] flex w-full text-center cursor-pointer"
-                onClick={() => navigate("/shopping-cart")}
+                onClick={() => navigate("/cart")}
               >
                 <div className="!text-base text-gray-600 justify-start flex items-center font-semibold">
                   <ArrowBackIosIcon />
@@ -1802,7 +1802,9 @@ function PaymentInfo() {
                       ></path>
                     </svg>
                   </div>
-                  <p className="text-[#d70018] text-center h-[75px]">Chọn sản phẩm</p>
+                  <p className="text-[#d70018] text-center h-[75px]">
+                    Chọn sản phẩm
+                  </p>
                 </div>
                 <div className="w-[20%] flex flex-col gap-1 items-center text-xs text-[#0e2431] process-item relative active">
                   <div className="w-[35px] h-[35px] border border-[#d70018] rounded-full relative">
@@ -1825,7 +1827,9 @@ function PaymentInfo() {
                       ></path>
                     </svg>
                   </div>
-                  <p className="text-[#d70018] text-center  h-[75px]">Thông tin đặt hàng</p>
+                  <p className="text-[#d70018] text-center  h-[75px]">
+                    Thông tin đặt hàng
+                  </p>
                 </div>
                 <div className="w-[20%] flex flex-col gap-1 items-center text-xs text-[#0e2431] process-item relative">
                   <div className="w-[35px] h-[35px] border border-[#777] rounded-full relative ">
@@ -2086,7 +2090,6 @@ function PaymentInfo() {
                               ) || null
                             }
                             onChange={(event, newValue) => {
-                              
                               setFieldValue(
                                 "addressStore",
                                 newValue ? newValue.id : ""
@@ -2290,4 +2293,3 @@ function PaymentInfo() {
 }
 
 export default PaymentInfo;
-

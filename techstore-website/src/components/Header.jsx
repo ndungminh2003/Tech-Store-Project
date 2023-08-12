@@ -464,7 +464,7 @@ export default function Header() {
 
         <SearchBar />
 
-        <Link to="/shopping-cart">
+        <Link to="/cart">
           <div className="flex gap-2 items-center p-4 cursor-pointer capitalize text-xl xxsm:text-lg xsm:text-lg sm:text-lg md:text-lg lg:text-lg xsm:flex-col hover:bg-gray-500 hover:rounded-lg hover:py-4 text-white min-w-fit xxsm:hidden">
             <Badge badgeContent={shoppingCart} color="primary">
               <ShoppingCartIcon color="white" />

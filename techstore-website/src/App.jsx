@@ -13,9 +13,7 @@ import Home from "./pages/client/Home";
 import Contact from "./pages/client/Contact";
 import ProductView from "./pages/client/Productview";
 import Catalog from "./pages/client/Catalog";
-import Favorites from "./pages/client/Favorites";
 import Cart from "./pages/client/Cart";
-import Order from "./pages/client/Order";
 import PaymentInfo from "./pages/client/PaymentInfor";
 import Voucher from "./pages/client/Voucher";
 import Payment from "./pages/client/Payment";
@@ -33,6 +31,8 @@ import Register from "./pages/client/Register";
 import User from "./pages/client/User";
 import Edit from "./pages/client/EditProfile";
 import UserHome from "./pages/client/UserHome";
+import PageNotFound from "./pages/client/PageNotFound";
+import MomoTransferInfo from "./pages/client/MomoTransferInfo";
 
 // admin
 import AddCustomer from "./pages/admin/AddCustomer";
@@ -81,24 +81,43 @@ const router = createBrowserRouter(
       <Route element={<RequireAuth allowedRoles="" />}>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="search-product" element={<CatalogSearch />} />
-          <Route path="purchase" element={<Purchase />} />
           <Route path="product-view/:slug" element={<ProductView />} />
+          <Route path="search-product" element={<CatalogSearch />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="wishlist" element={<WishList />} />
+          <Route element={<RequireAuth allowedRoles="user" />}>
+            <Route path="/user" element={<User />}>
+              <Route index element={<UserHome />} />
+              <Route path="order" element={<Purchase />} />
+              <Route path="edit" element={<Edit />} />
+            </Route>
+          </Route>
           <Route path="catalog" element={<Catalog />} />
-          <Route path="shopping-cart" element={<Cart />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart/payment-info" element={<PaymentInfo />} />
+          <Route path="/cart/payment" element={<Payment />} />
+          <Route path="/cart/payment/success" element={<PaymentSuccess />} />
+          <Route path="/cart/voucher" element={<Voucher />} />
+          <Route
+            path="/cart/bank-transfer-info"
+            element={<BankTransferInfo />}
+          />
+          <Route
+            path="/cart/momo-transfer-info"
+            element={<MomoTransferInfo />}
+          />
           <Route path="forgot-password-otp" element={<Otp />} />
           <Route path="otp" element={<RegisteredOTP />} />
-          <Route path="wishlist" element={<WishList />} />
           <Route path="forgot-password" element={<RestorePassword />} />
           <Route path="change-password" element={<CreateNewPassword />} />
-
-          <Route path="login" element={<Login />} />
-          <Route element={<RequireAuth allowedRoles="guest" />}>
-            <Route path="register" element={<Register />} />
-          </Route>
+          <Route path="register" element={<Register />} />
         </Route>
       </Route>
+
+      {/*Page not found*/}
+      <Route path="*" Component={PageNotFound} />
+
+      <Route path="login" element={<Login />} />
       <Route path="/admin-login" element={<AdminLogin />} />
       <Route path="/salesperson-login" element={<SPLogin />} />
       <Route element={<RequireAuth allowedRoles="admin" />}>
