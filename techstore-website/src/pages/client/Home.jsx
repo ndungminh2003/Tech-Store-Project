@@ -12,16 +12,17 @@ import {
 } from "../../features/product/productSlice";
 export default function Home() {
   const dispatch = useDispatch();
+  const productState = useSelector((state) => state.product);
+  const { products, isLoading, isSuccess, isError } = productState;
+
   useEffect(() => {
     dispatch(resetState());
     let params = {
-      // limit: 80,
-      // skip: 30,
+      limit: 200,
+      // skip: 130,
     };
     dispatch(getLimitProducts(params));
   }, []);
-  const productState = useSelector((state) => state.product);
-  const { products, isLoading, isSuccess, isError } = productState;
 
   return (
     <div className=" flex flex-col gap-6">

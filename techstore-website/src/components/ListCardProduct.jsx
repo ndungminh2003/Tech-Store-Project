@@ -62,7 +62,7 @@ export default function ListCardProduct(props) {
           navigation={true}
           loop={true}
           autoplay={{
-            delay: 2500,
+            delay: 5000,
             disableOnInteraction: true,
           }}
           breakpoints={{
@@ -105,6 +105,7 @@ export default function ListCardProduct(props) {
                 brand={product.brand}
                 thumbnail={product.thumbnail}
                 images={product.images}
+                feature={product?.feature}
                 description={product.description}
                 slug={product.slug}
               />

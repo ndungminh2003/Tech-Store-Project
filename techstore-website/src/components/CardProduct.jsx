@@ -9,8 +9,9 @@ import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import { toast } from "react-toastify";
 
 const Style = {
   border: "solid 2 ",
@@ -21,18 +22,16 @@ const Style = {
 };
 
 export default function CardProduct(props) {
-
   const [isVisibleShoppingCart, setVisibleShoppingCart] = useState(false);
 
   const handleMouseOver = () => {
     setVisibleShoppingCart(true);
-  }
+  };
 
   const handleMouseLeave = () => {
     setVisibleShoppingCart(false);
   };
 
-  
   const navigate = useNavigate();
   const [thumbnail, setThumbnail] = useState(
     props.thumbnail ||
@@ -51,7 +50,37 @@ export default function CardProduct(props) {
   const handleCardClick = () => {
     navigate(`/product-view/${props.slug}`);
   };
-  console.log(isVisibleShoppingCart + 'cc');
+  const handleAddToCart = () => {
+    // Lấy dữ liệu từ local storage
+    const existingCart = localStorage.getItem("cart");
+    const cart = existingCart ? JSON.parse(existingCart) : [];
+
+    // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
+    const foundIndex = cart.findIndex((x) => x._id === props.id);
+    if (foundIndex > -1) {
+      // Sản phẩm đã tồn tại trong giỏ hàng
+      cart[foundIndex].count += 1;
+      // console.log("cart 2", cart[foundIndex]);
+    } else {
+      // Sản phẩm chưa có trong giỏ hàng
+      const productToAdd = {
+        _id: props.id,
+        color: props.color,
+        name: props.name,
+        slug: props.slug,
+        thumbnail: props.thumbnail,
+        feature: props.feature !== undefined ? props.feature[0] : "",
+        price: props.price,
+        count: 1,
+      };
+
+      cart.push(productToAdd);
+    }
+    toast.success("Thêm vào giỏ hàng thành công");
+    localStorage.setItem("cart", JSON.stringify(cart));
+    console.log("cart 3", cart);
+    // Hiển thị thông báo hoặc cập nhật giao diện nếu cần
+  };
 
   return (
     <div className=" relative">
@@ -77,7 +106,6 @@ export default function CardProduct(props) {
                 "https://res.cloudinary.com/dqwdvpi4d/image/upload/v1691639790/default-product-image-removebg-preview_p3g0jy.png"
               }
               title="Laptop"
-
             />
           </div>
 
@@ -87,7 +115,10 @@ export default function CardProduct(props) {
                 <span className="md:text-sm">{props.name}</span>
               </Typography>
               <div className=" flex flex-col justify-end h-[140px]">
-                <div className=" text-red-700 text-2xl"> <span className=" text-lg">{props.price}đ</span> </div>
+                <div className=" text-red-700 text-2xl">
+                  {" "}
+                  <span className=" text-lg">{props.price}đ</span>{" "}
+                </div>
                 <Stack spacing={1}>
                   <Rating
                     name="half-rating-read"
@@ -108,30 +139,38 @@ export default function CardProduct(props) {
               </Button>
             </div>
           </div>
-
         </div>
-
       </Card>
-      {
-        isVisibleShoppingCart ? (
-          <div className="absolute bottom-[-15px] w-[70%] ml-[-10px] rounded-2xl flex gap-5 justify-center p-5" onMouseMove={handleMouseOver} onMouseOut={handleMouseLeave}>
-            <div className=" flex items-center cursor-pointer p-1 bg-slate-700 rounded-xl text-white w-44 h-8 justify-center">
-              <button className=" transition ease-in-out hover:scale-110 duration-300 p-1">
-                <span className=" text-sm">ADD TO CART</span>
-                <AddShoppingCartIcon sx={{fontSize: '25px'}}/>
-              </button>
-            </div>
+      {isVisibleShoppingCart ? (
+        <div
+          className="absolute bottom-[-15px] w-[70%] ml-[-10px] rounded-2xl flex gap-5 justify-center p-5"
+          onMouseMove={handleMouseOver}
+          onMouseOut={handleMouseLeave}
+        >
+          <div className=" flex items-center cursor-pointer p-1 bg-slate-700 rounded-xl text-white w-44 h-8 justify-center">
+            <button
+              onClick={handleAddToCart}
+              className=" transition ease-in-out hover:scale-110 duration-300 p-1"
+            >
+              <span className=" text-sm">ADD TO CART</span>
+              <AddShoppingCartIcon sx={{ fontSize: "25px" }} />
+            </button>
           </div>
-        ) : (
-        <div className="absolute bottom-[-15px] w-[70%] ml-[-20px] rounded-2xl flex gap-5 justify-center p-5" onMouseMove={handleMouseOver} onMouseOut={handleMouseLeave}>
+        </div>
+      ) : (
+        <div
+          className="absolute bottom-[-15px] w-[70%] ml-[-20px] rounded-2xl flex gap-5 justify-center p-5"
+          onMouseMove={handleMouseOver}
+          onMouseOut={handleMouseLeave}
+        >
           <div className=" flex items-center cursor-pointer p-1 rounded-xl text-white w-44 h-8 justify-center">
             <button className=" transition ease-in-out hover:scale-110 duration-300 p-1 text-gray-500 flex gap-2 items-center">
               <span className=" text-sm ">ADD TO CART</span>
-              <AddShoppingCartIcon sx={{fontSize: '25px', color: 'black'}}/>
+              <AddShoppingCartIcon sx={{ fontSize: "25px", color: "black" }} />
             </button>
           </div>
-        </div>)
-      }
+        </div>
+      )}
     </div>
   );
 }
