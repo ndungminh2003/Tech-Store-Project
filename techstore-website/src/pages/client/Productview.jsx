@@ -60,6 +60,10 @@ export default function ProductView() {
   const amount = 15000000;
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [activeIndexs, setActiveIndexs] = React.useState(0);
+  useEffect(() => {
+    dispatch(getProductBySlug(slug));
+  }, []);
+  const { productBySlug } = useSelector((state) => state.product);
 
   const handleButtonClick = (index) => {
     setActiveIndex(index);
@@ -77,10 +81,6 @@ export default function ProductView() {
       setShowMessage(false);
     }, 3000);
   };
-
-  useEffect(() => {
-    dispatch(getProductBySlug(slug));
-  }, []);
 
   const listImgThumb = [
     "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_green_211119.jpg",
