@@ -32,6 +32,7 @@ import Register from "./pages/client/Register";
 import User from "./pages/client/User";
 import Edit from "./pages/client/EditProfile";
 import UserHome from "./pages/client/UserHome";
+import PageNotFound from "./pages/client/PageNotFound";
 
 // admin
 // import AddCustomer from "./pages/admin/AddCustomer";
@@ -83,7 +84,12 @@ const router = createBrowserRouter(
         </Route>
         <Route path="login" element={<Login />} />
         <Route path="change-password" element={<CreateNewPassword />} />
+        
       </Route>
+
+      {/*Page not found*/}
+      <Route path="*" Component={PageNotFound} />
+
       <Route path="/admin-login" element={<AdminLogin />} />
       <Route element={<RequireAuth allowedRoles="admin" />}>
         <Route path="/admin" element={<AdminLayout />}>

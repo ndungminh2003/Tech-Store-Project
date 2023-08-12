@@ -104,7 +104,7 @@ export default function CardProduct(props) {
             <div>
               <Button size="small">
                 <span className="text-gray-500 mr-1">Favorite</span>
-                <FavoriteBorderIcon sx={{ color: "red" }} />
+                <FavoriteBorderIcon className="!cursor-pointer z-20 text-[#d70018] hover:animate-ping"></FavoriteBorderIcon>
               </Button>
             </div>
           </div>
@@ -115,51 +115,22 @@ export default function CardProduct(props) {
       {
         isVisibleShoppingCart ? (
           <div className="absolute bottom-[-15px] w-[70%] ml-[-10px] rounded-2xl flex gap-5 justify-center p-5" onMouseMove={handleMouseOver} onMouseOut={handleMouseLeave}>
-            
-        {/* <div className=" flex items-center cursor-pointer p-1 bg-white rounded-xl text-white w-20 h-14 justify-center">
-          <button className=" transition ease-in-out hover:scale-110 duration-300 p-1">
-            
-            <FavoriteBorderIcon sx={{ color: "black" }} />
-          </button>
-        </div> */}
-
-        <div className=" flex items-center cursor-pointer p-1 bg-slate-700 rounded-xl text-white w-44 h-8 justify-center">
-          <button className=" transition ease-in-out hover:scale-110 duration-300 p-1">
-            <span className=" text-sm">ADD TO CART</span>
-            <AddShoppingCartIcon sx={{fontSize: '25px'}}/>
-          </button>
-        </div>
-
-        {/* <div className=" flex items-center cursor-pointer p-1 bg-white rounded-xl text-white w-20 h-14 justify-center">
-          <button className=" transition ease-in-out hover:scale-110 duration-300 p-1">
-            
-            <RemoveRedEyeIcon sx={{fontSize: '20px', color: 'black'}}/>
-          </button>
-        </div> */}
-      </div>
-        ) : (<div className="absolute bottom-[-15px] w-[70%] ml-[-20px] rounded-2xl flex gap-5 justify-center p-5" onMouseMove={handleMouseOver} onMouseOut={handleMouseLeave}>
-            
-        {/* <div className=" flex items-center cursor-pointer p-1 bg-white rounded-xl text-white w-20 h-14 justify-center">
-          <button className=" transition ease-in-out hover:scale-110 duration-300 p-1">
-            
-            <FavoriteBorderIcon sx={{ color: "black" }} />
-          </button>
-        </div> */}
-
-        <div className=" flex items-center cursor-pointer p-1 rounded-xl text-white w-44 h-8 justify-center">
-          <button className=" transition ease-in-out hover:scale-110 duration-300 p-1 text-gray-500 flex gap-2 items-center">
-            <span className=" text-sm ">ADD TO CART</span>
-            <AddShoppingCartIcon sx={{fontSize: '25px', color: 'black'}}/>
-          </button>
-        </div>
-
-        {/* <div className=" flex items-center cursor-pointer p-1 bg-white rounded-xl text-white w-20 h-14 justify-center">
-          <button className=" transition ease-in-out hover:scale-110 duration-300 p-1">
-            
-            <RemoveRedEyeIcon sx={{fontSize: '20px', color: 'black'}}/>
-          </button>
-        </div> */}
-      </div>)
+            <div className=" flex items-center cursor-pointer p-1 bg-slate-700 rounded-xl text-white w-44 h-8 justify-center">
+              <button className=" transition ease-in-out hover:scale-110 duration-300 p-1">
+                <span className=" text-sm">ADD TO CART</span>
+                <AddShoppingCartIcon sx={{fontSize: '25px'}}/>
+              </button>
+            </div>
+          </div>
+        ) : (
+        <div className="absolute bottom-[-15px] w-[70%] ml-[-20px] rounded-2xl flex gap-5 justify-center p-5" onMouseMove={handleMouseOver} onMouseOut={handleMouseLeave}>
+          <div className=" flex items-center cursor-pointer p-1 rounded-xl text-white w-44 h-8 justify-center">
+            <button className=" transition ease-in-out hover:scale-110 duration-300 p-1 text-gray-500 flex gap-2 items-center">
+              <span className=" text-sm ">ADD TO CART</span>
+              <AddShoppingCartIcon sx={{fontSize: '25px', color: 'black'}}/>
+            </button>
+          </div>
+        </div>)
       }
     </div>
   );
