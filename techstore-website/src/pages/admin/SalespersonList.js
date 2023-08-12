@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Table } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getCustomers,
+  getSalesperson,
   deleteAUser,
   resetState,
 } from "../../features/account/accountSlice";
@@ -10,44 +10,40 @@ import { Link } from "react-router-dom";
 import { BiEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import CustomModal from "../../components/CustomModal";
-import useGetColumnSearchProps from "../../hook/useSearchProps";
 
-const Customers = () => {
+const columns = [
+  {
+    title: "SNo",
+    dataIndex: "key",
+  },
+  {
+    title: "Name",
+    dataIndex: "name",
+    sorter: (a, b) => a.name.length - b.name.length,
+  },
+  {
+    title: "Email",
+    dataIndex: "email",
+  },
+  {
+    title: "Mobile",
+    dataIndex: "mobile",
+  },
+  {
+    title: "Created Date",
+    dataIndex: "createdAt",
+  },
+  {
+    title: "Action",
+    dataIndex: "action",
+  },
+];
+
+const SalespersonList = () => {
   const [open, setOpen] = useState(false);
   const [userId, setUserId] = useState("");
   const dispatch = useDispatch();
-  const columns = [
-    {
-      title: "SNo",
-      dataIndex: "key",
-    },
-    {
-      title: "Name",
-      dataIndex: "name",
-      sorter: (a, b) => a.name.length - b.name.length,
-      ...useGetColumnSearchProps("name", "Name"),
-    },
-    {
-      title: "Email",
-      dataIndex: "email",
-      sorter: (a, b) => a.email.length - b.email.length,
-      ...useGetColumnSearchProps("email", "Email"),
-    },
-    {
-      title: "Mobile",
-      dataIndex: "mobile",
-      sorter: (a, b) => a.mobile.length - b.mobile.length,
-      ...useGetColumnSearchProps("mobile", "Mobile"),
-    },
-    {
-      title: "Created Date",
-      dataIndex: "createdAt",
-    },
-    {
-      title: "Action",
-      dataIndex: "action",
-    },
-  ];
+
   const showModal = (e) => {
     setOpen(true);
     setUserId(e);
@@ -58,36 +54,34 @@ const Customers = () => {
   };
   useEffect(() => {
     dispatch(resetState());
-    dispatch(getCustomers());
+    dispatch(getSalesperson());
   }, []);
   const deleteUser = (e) => {
     dispatch(deleteAUser(e));
     setOpen(false);
-    setTimeout(() => {
-      dispatch(getCustomers());
-    }, 100);
+    dispatch(getSalesperson());
   };
-  const customerstate = useSelector((state) => state.account.customers);
+  const salespseronState = useSelector((state) => state.account.salesperson);
   const data1 = [];
-  for (let i = 0; i < customerstate.length; i++) {
-    if (customerstate[i].role !== "admin") {
+  for (let i = 0; i < salespseronState.length; i++) {
+    if (salespseronState[i].role !== "admin") {
       data1.push({
         key: i + 1,
-        name: customerstate[i].name,
-        email: customerstate[i].email,
-        mobile: customerstate[i].mobile,
-        createdAt: new Date(customerstate[i].createdAt).toLocaleString(),
+        name: salespseronState[i].name,
+        email: salespseronState[i].email,
+        mobile: salespseronState[i].mobile,
+        createdAt: new Date(salespseronState[i].createdAt).toLocaleString(),
         action: (
           <div className="d-flex">
             <Link
               className=" fs-3 text-danger"
-              to={`/admin/customer/${customerstate[i]._id}`}
+              to={`/admin/salesperson/${salespseronState[i]._id}`}
             >
               <BiEdit />
             </Link>
             <button
               className="ms-3 fs-3 text-danger bg-transparent border-0"
-              onClick={() => showModal(customerstate[i]._id)}
+              onClick={() => showModal(salespseronState[i]._id)}
             >
               <AiFillDelete />
             </button>
@@ -99,7 +93,7 @@ const Customers = () => {
 
   return (
     <div className="admin">
-      <h3 className="mb-4 title text-3xl font-bold">Customers</h3>
+      <h3 className="mb-4 title">Salesperson List</h3>
       <div>
         <Table columns={columns} dataSource={data1} />
       </div>
@@ -115,4 +109,4 @@ const Customers = () => {
   );
 };
 
-export default Customers;
+export default SalespersonList;

@@ -59,7 +59,6 @@ const Register = () => {
       const { confirmPassword, ...data } = values;
       dispatch(register(data));
       formik.resetForm();
-      // navigate("/otp");
     },
   });
   const { registeredUser, isLoading, isError, isSuccess } = useSelector(
@@ -75,7 +74,7 @@ const Register = () => {
   useEffect(() => {
     if (isSubmited && !isLoading && isSuccess) {
       toast.success("Đăng ký thành công");
-      // navigate("/otp");
+      navigate("/otp");
     } else if (isSubmited && !isLoading && isError) {
       toast.error("Email hoặc số điện thoại đã được sử dụng");
       setIsSubmited(false);

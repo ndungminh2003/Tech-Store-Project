@@ -27,7 +27,7 @@ import Badge from "@mui/joy/Badge";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 
 const { Header, Sider, Content } = Layout;
-const AdminLayout = () => {
+const SPLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
@@ -72,38 +72,9 @@ const AdminLayout = () => {
               label: "Dashboard",
             },
             {
-              key: "customers",
+              key: "customer-list",
               icon: <AiOutlineUser style={{ fontSize: "24px" }} />,
               label: "Customers",
-              children: [
-                {
-                  key: "customer",
-                  icon: <AiOutlineUser style={{ fontSize: "24px" }} />,
-                  label: "Add Customer",
-                },
-                {
-                  key: "customer-list",
-                  icon: <AiOutlineUser style={{ fontSize: "24px" }} />,
-                  label: "Customer List",
-                },
-              ],
-            },
-            {
-              key: "salesperson",
-              icon: <LiaUserTieSolid style={{ fontSize: "24px" }} />,
-              label: "Saleperson",
-              children: [
-                {
-                  key: "salesperson",
-                  icon: <LiaUserTieSolid style={{ fontSize: "24px" }} />,
-                  label: "Add Saleperson",
-                },
-                {
-                  key: "list-salesperson",
-                  icon: <LiaUserTieSolid style={{ fontSize: "24px" }} />,
-                  label: "Saleperson List",
-                },
-              ],
             },
             {
               key: "Catalog",
@@ -119,36 +90,6 @@ const AdminLayout = () => {
                   key: "list-product",
                   icon: <AiOutlineShoppingCart style={{ fontSize: "24px" }} />,
                   label: "Product List",
-                },
-                {
-                  key: "brand",
-                  icon: <SiBrandfolder style={{ fontSize: "24px" }} />,
-                  label: "Brand",
-                },
-                {
-                  key: "list-brand",
-                  icon: <SiBrandfolder style={{ fontSize: "24px" }} />,
-                  label: "Brand List ",
-                },
-                {
-                  key: "category",
-                  icon: <BiCategoryAlt style={{ fontSize: "24px" }} />,
-                  label: "Category",
-                },
-                {
-                  key: "list-category",
-                  icon: <BiCategoryAlt style={{ fontSize: "24px" }} />,
-                  label: "Category List",
-                },
-                {
-                  key: "color",
-                  icon: <AiOutlineBgColors style={{ fontSize: "24px" }} />,
-                  label: "Color",
-                },
-                {
-                  key: "list-color",
-                  icon: <AiOutlineBgColors style={{ fontSize: "24px" }} />,
-                  label: "Color List",
                 },
               ],
             },
@@ -170,54 +111,10 @@ const AdminLayout = () => {
               ],
             },
             {
-              key: "marketing",
-              icon: <RiCouponLine style={{ fontSize: "24px" }} />,
-              label: "Marketing",
-              children: [
-                {
-                  key: "coupon",
-                  icon: <ImBlog style={{ fontSize: "24px" }} />,
-                  label: "Add Coupon",
-                },
-                {
-                  key: "coupon-list",
-                  icon: <RiCouponLine style={{ fontSize: "24px" }} />,
-                  label: "Coupon List",
-                },
-              ],
-            },
-            {
               key: "sales-report",
               icon: <TbReportMoney style={{ fontSize: "24px" }} />,
               label: "Sales Reports",
             },
-            // {
-            //   key: "blogs",
-            //   icon: <FaBloggerB style={{ fontSize: "24px" }} />,
-            //   label: "Blogs",
-            //   children: [
-            //     {
-            //       key: "blog",
-            //       icon: <ImBlog style={{ fontSize: "24px" }} />,
-            //       label: "Add Blog",
-            //     },
-            //     {
-            //       key: "blog-list",
-            //       icon: <FaBloggerB style={{ fontSize: "24px" }} />,
-            //       label: "Blog List",
-            //     },
-            //     {
-            //       key: "blog-category",
-            //       icon: <ImBlog style={{ fontSize: "24px" }} />,
-            //       label: "Add Blog Category",
-            //     },
-            //     {
-            //       key: "blog-category-list",
-            //       icon: <FaBloggerB style={{ fontSize: "24px" }} />,
-            //       label: "Blog Category List",
-            //     },
-            //   ],
-            // },
             // {
             //   key: "enquiries",
             //   icon: <FaClipboardList style={{ fontSize: "24px" }} />,
@@ -269,7 +166,7 @@ const AdminLayout = () => {
 
               <div class=" flex flex-col mr-8 ">
                 <h5 class="mb-0 font-bold">Hoang Anh</h5>
-                <p class="mb-0">Administrator</p>
+                <p class="mb-0">Salesperson</p>
               </div>
 
               {isOpen && (
@@ -316,4 +213,4 @@ const AdminLayout = () => {
     </Layout>
   );
 };
-export default AdminLayout;
+export default SPLayout;

@@ -5,6 +5,7 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
+import React from "react";
 
 // client
 import Layout from "./components/Layout";
@@ -20,7 +21,6 @@ import Voucher from "./pages/client/Voucher";
 import Payment from "./pages/client/Payment";
 import PaymentSuccess from "./pages/client/PaymentSuccess";
 import WishList from "./pages/client/WishList";
-
 import BankTransferInfo from "./pages/client/BankTransferInfo";
 import RestorePassword from "./pages/client/RestorePassword";
 import Otp from "./pages/client/Otp";
@@ -35,11 +35,11 @@ import Edit from "./pages/client/EditProfile";
 import UserHome from "./pages/client/UserHome";
 
 // admin
-// import AddCustomer from "./pages/admin/AddCustomer";
-// import AddSalesperson from "./pages/admin/AddSalesperson";
-// import SalespersonList from "./pages/admin/SalespersonList";
+import AddCustomer from "./pages/admin/AddCustomer";
+import AddSalesperson from "./pages/admin/AddSalesperson";
+import SalespersonList from "./pages/admin/SalespersonList";
 import Dashboard from "./pages/admin/Dashboard";
-import Customers from "./pages/admin/Customers";
+import CustomerList from "./pages/admin/CustomerList";
 import AddProduct from "./pages/admin/AddProduct";
 import ProductList from "./pages/admin/ProductList";
 import AddCategory from "./pages/admin/AddCategory";
@@ -56,13 +56,24 @@ import ForgotPassword from "./pages/admin/ForgotPassword";
 import ResetPassword from "./pages/admin/ResetPassword";
 import ViewEnq from "./pages/admin/ViewEnq";
 import ViewOrder from "./pages/admin/ViewOrder";
-import AdminLogin from "./pages/admin/AdminLogin";
+import AdminLogin from "./pages/admin/Login";
 import AdminLayout from "./components/AdminLayout";
 import CustomerDetails from "./pages/admin/CustomerDetails";
 import EditOrder from "./pages/admin/EditOrder";
 
+// salesperson
+import SPLayout from "./components/SPLayout";
+import SPDashboard from "./pages/salesperson/Dashboard";
+import SPAddCustomer from "./pages/salesperson/AddCustomer";
+import SPCustomerList from "./pages/salesperson/CustomerList";
+import SPAddProduct from "./pages/salesperson/AddProduct";
+import SPProductList from "./pages/salesperson/ProductList";
+import SPEditOrder from "./pages/salesperson/EditOrder";
+import SPOrders from "./pages/salesperson/Orders";
+import SPViewOrder from "./pages/salesperson/ViewOrder";
+import SPLogin from "./pages/salesperson/Login";
+// protected route
 import RequireAuth from "./components/RequireAuth";
-import React from "react";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -89,16 +100,17 @@ const router = createBrowserRouter(
         </Route>
       </Route>
       <Route path="/admin-login" element={<AdminLogin />} />
+      <Route path="/salesperson-login" element={<SPLogin />} />
       <Route element={<RequireAuth allowedRoles="admin" />}>
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Dashboard />} />
-          {/* <Route path="customer" element={<AddCustomer />} />
-          <Route path="customer/:id" element={<AddCustomer />} /> */}
-          <Route path="customer-list" element={<Customers />} />
-          <Route path="customer" element={<CustomerDetails />} />
-          {/* <Route path="salesperson" element={<AddSalesperson />} /> */}
-          {/* <Route path="salesperson/:id" element={<AddSalesperson />} />
-          <Route path="list-salesperson" element={<SalespersonList />} /> */}
+          <Route path="customer" element={<AddCustomer />} />
+          <Route path="customer/:id" element={<AddCustomer />} />
+          <Route path="customer-list" element={<CustomerList />} />
+          {/* <Route path="customer" element={<CustomerDetails />} /> */}
+          <Route path="salesperson" element={<AddSalesperson />} />
+          <Route path="salesperson/:id" element={<AddSalesperson />} />
+          <Route path="list-salesperson" element={<SalespersonList />} />
           <Route path="product" element={<AddProduct />} />
           <Route path="product/:id" element={<AddProduct />} />
           <Route path="list-product" element={<ProductList />} />
@@ -121,6 +133,25 @@ const router = createBrowserRouter(
           <Route path="reset-password" element={<ResetPassword />} />
           <Route path="enquiries/:id" element={<ViewEnq />} />
           <Route path="order/:id" element={<ViewOrder />} />
+        </Route>
+      </Route>
+      <Route element={<RequireAuth allowedRoles="salesperson" />}>
+        <Route path="/salesperson" element={<SPLayout />}>
+          <Route index element={<SPDashboard />} />
+          <Route path="customer" element={<SPAddCustomer />} />
+          <Route path="customer/:id" element={<SPAddCustomer />} />
+          <Route path="customer-list" element={<SPCustomerList />} />
+          {/* <Route path="customer" element={<CustomerDetails />} /> */}
+          <Route path="product" element={<SPAddProduct />} />
+          <Route path="product/:id" element={<SPAddProduct />} />
+          <Route path="list-product" element={<SPProductList />} />
+          <Route path="enquiries" element={<Enquiries />} />
+          <Route path="order" element={<SPEditOrder />} />
+          <Route path="order-list" element={<SPOrders />} />
+          <Route path="forgot-password" element={<ForgotPassword />} />
+          <Route path="reset-password" element={<ResetPassword />} />
+          <Route path="enquiries/:id" element={<ViewEnq />} />
+          <Route path="order/:id" element={<SPViewOrder />} />
         </Route>
       </Route>
     </>
