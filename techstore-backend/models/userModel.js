@@ -33,10 +33,10 @@ var userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    cart: {
-      type: Array,
-      default: [],
-    },
+    // cart: {
+    //   type: Array,
+    //   default: [],
+    // },
     address: {
       type: String,
     },
@@ -45,6 +45,7 @@ var userSchema = new mongoose.Schema(
       default: "",
     },
     wishlist: [{ type: mongoose.Types.ObjectId, ref: "Product" }],
+    orders: [{ type: mongoose.Types.ObjectId, ref: "Order" }],
     refreshToken: {
       type: String,
     },

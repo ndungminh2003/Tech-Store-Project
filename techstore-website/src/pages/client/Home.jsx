@@ -17,13 +17,14 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(resetState());
-    let params = {
-      limit: 200,
-      // skip: 130,
-    };
-    dispatch(getLimitProducts(params));
+    if (products) {
+      let params = {
+        limit: 200,
+        // skip: 130,
+      };
+      dispatch(getLimitProducts(params));
+    }
   }, []);
-
   return (
     <div className=" flex flex-col gap-6">
       <Banner />

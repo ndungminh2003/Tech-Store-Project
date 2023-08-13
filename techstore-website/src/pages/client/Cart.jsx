@@ -3,22 +3,52 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { AccountCircle } from "@mui/icons-material";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import "../../assets/style/res.scss";
+import { resetProductState } from "../../features/product/productSlice";
 
 export default function CardProduct() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [cartItems, setCartItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
+    dispatch(resetProductState());
     const cartData = localStorage.getItem("cart");
-    if (cartData) {
-      setCartItems(JSON.parse(cartData));
-    }
+    const cart = cartData
+      ? JSON.parse(cartData)
+      : { products: [], total: 0, totalQuantity: 0, totalDiscount: 0 };
+
+    setCartItems(cart.products);
+    setTotalPrice(cart.total);
+    setIsLoading(false);
   }, []);
-  console.log(cartItems.length);
+
+  useEffect(() => {
+    if (!isLoading) {
+      setTotalPrice(
+        cartItems.reduce((total, item) => total + item.count * item.price, 0)
+      );
+      const cart = {
+        products: cartItems,
+        total: totalPrice,
+        totalQuantity: cartItems.reduce((total, item) => total + item.count, 0),
+        totalDiscount: 0,
+      };
+      localStorage.setItem("cart", JSON.stringify(cart));
+      window.dispatchEvent(new Event("storage"));
+    }
+  }, [cartItems]);
+
   const handleDeleteItem = (itemId) => {
     const updatedCart = cartItems.filter((item) => item._id !== itemId);
     setCartItems(updatedCart);
+  };
+
+  const formatNumberWithDots = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
 
   return (
@@ -55,6 +85,7 @@ export default function CardProduct() {
                   }
                   return cartItem;
                 });
+
                 setCartItems(updatedCart);
               };
               return (
@@ -83,7 +114,7 @@ export default function CardProduct() {
                     <div className="flex items-center justify-between text-[15px]">
                       <div className="flex items-center gap-1">
                         <p className="text-[#d70018] font-bold">
-                          {item.price} ₫
+                          {formatNumberWithDots(item.price * item.count)} ₫
                         </p>
                         <p className="text-[#777] text-sm line-through">
                           {/* {item.originalPrice} ₫ */}
@@ -125,7 +156,9 @@ export default function CardProduct() {
                 <h1 className="text-[#0e2431] font-semibold">
                   Tổng tiền tạm tính:
                 </h1>
-                <span className="text-[#d70018] font-bold">47.520.000 ₫</span>
+                <span className="text-[#d70018] font-bold">
+                  {formatNumberWithDots(totalPrice)} ₫
+                </span>
               </div>
               <div className="flex flex-col font-bold gap-2">
                 <button
@@ -157,13 +190,13 @@ export default function CardProduct() {
               role="img"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 496 512"
-              class="svg-inline--fa fa-frown"
+              className="svg-inline--fa fa-frown"
             >
               <path
                 data-v-5a4f0845=""
                 fill="currentColor"
                 d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm80 168c17.7 0 32 14.3 32 32s-14.3 32-32 32-32-14.3-32-32 14.3-32 32-32zm-160 0c17.7 0 32 14.3 32 32s-14.3 32-32 32-32-14.3-32-32 14.3-32 32-32zm170.2 218.2C315.8 367.4 282.9 352 248 352s-67.8 15.4-90.2 42.2c-13.5 16.3-38.1-4.2-24.6-20.5C161.7 339.6 203.6 320 248 320s86.3 19.6 114.7 53.8c13.6 16.2-11 36.7-24.5 20.4z"
-                class=""
+                className=""
               ></path>
             </svg>
           </div>

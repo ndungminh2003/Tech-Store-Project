@@ -59,6 +59,7 @@ const Register = () => {
       const { confirmPassword, ...data } = values;
       dispatch(register(data));
       formik.resetForm();
+      setIsSubmited(true);
     },
   });
   const { registeredUser, isLoading, isError, isSuccess } = useSelector(

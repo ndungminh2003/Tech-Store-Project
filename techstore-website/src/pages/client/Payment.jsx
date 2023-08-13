@@ -406,6 +406,8 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { Link, useNavigate } from "react-router-dom";
 import { Alert, Checkbox, Snackbar } from "@mui/material";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { formatNumberWithDots } from "../../utils/formatNumber";
 function Payment() {
   const navigate = useNavigate();
   const [paymentSelected, setPaymentSelected] = useState("");
@@ -415,6 +417,15 @@ function Payment() {
     horizontal: "center",
   });
   const { vertical, horizontal, open } = state;
+
+  const { createdOrder } = useSelector((state) => state.order) || {
+    _id: "",
+    name: "",
+    phone: "",
+    address: "",
+    totalAfterDiscount: 0,
+  };
+  // const order = JSON.parse(localStorage.getItem("order"));
 
   const handleClick = (newState) => () => {
     setState({ ...newState, open: true });
@@ -583,27 +594,27 @@ function Payment() {
             </h1>
             <p className="font-bold text-lg my-[15px]">
               <span className="font-normal">Mã Đơn Hàng: </span>
-              WN0301220174
+              {createdOrder._id}
             </p>
             <p className="font-bold text-lg my-[15px]">
               <span className="font-normal">Người đặt: </span>
-              Nguyễn Bảo Duy
+              {createdOrder.name}
             </p>
             <p className="font-bold text-lg my-[15px]">
               <span className="font-normal">Số Điện Thoại: </span>
-              0939570374
+              {createdOrder.phone}
             </p>
             <p className="font-bold text-lg my-[15px]">
               <span className="font-normal">Email: </span>
-              nbduy21@vp.fitus.edu.vn
+              {createdOrder.email}
             </p>
             <p className="font-bold text-lg my-[15px]">
               <span className="font-normal">Nhận Sản Phẩm Tại: </span>
-              227 Nguyễn Văn Cừ, P4, Q5, TPHCM
+              {createdOrder.address}
             </p>
             <p className="font-bold text-lg my-[15px]">
               <span className="font-normal">Tổng Tiền: </span>
-              47.520.000 ₫
+              {formatNumberWithDots(createdOrder.totalAfterDiscount)} ₫
             </p>
           </div>
         </div>

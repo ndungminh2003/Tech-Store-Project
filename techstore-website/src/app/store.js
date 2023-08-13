@@ -9,6 +9,8 @@ import enquiryReducer from "../features/enquiry/enquirySlice";
 import uploadReducer from "../features/upload/uploadSlice";
 import couponReducer from "../features/coupon/couponSlice";
 import authReducer from "../features/auth/authSlice";
+import orderReducer from "../features/order/orderSlice";
+
 // import clientProductReducer from "../features/clientproduct/productSlice";
 import {
   persistStore,
@@ -33,6 +35,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   account: accountReducer,
   product: productReducer,
+  order: orderReducer,
   brand: brandReducer,
   pCategory: pCategoryReducer,
   color: colorReducer,

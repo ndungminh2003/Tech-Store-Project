@@ -1,11 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { applyCoupon } from "../../features/coupon/couponSlice";
+import { createOrder } from "../../features/order/orderSlice";
 import "../../assets/style/res.scss";
+import { toast } from "react-toastify";
 
 function Voucher() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [coupon, setCoupon] = useState("");
+  const [isApply, setIsApply] = useState(false);
+  const { appliedCoupon, isLoading, isSuccess, isError } = useSelector(
+    (state) => state.coupon
+  );
+  const order = JSON.parse(localStorage.getItem("order"));
+  const formatNumberWithDots = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  };
+  const handleApplyCoupon = () => {
+    dispatch(applyCoupon({ coupon }));
+    setIsApply(true);
+  };
 
+  useEffect(() => {
+    if (isApply && !isLoading && isSuccess) {
+      toast.success("Áp dụng mã giảm giá thành công");
+      order.totalAfterDiscount =
+        order.total - (appliedCoupon.discount / 100) * order.total;
+      localStorage.setItem("order", JSON.stringify(order));
+      setIsApply(false);
+    }
+    if (isApply && !isLoading && isError) {
+      toast.error("Mã giảm giá không hợp lệ");
+      order.totalAfterDiscount = order.total;
+      localStorage.setItem("order", JSON.stringify(order));
+      setIsApply(false);
+    }
+  }, [isLoading]);
+  const handlePaymentClick = () => {
+    dispatch(createOrder({ order, paymentMethod: "COD" }));
+    navigate("/cart/payment");
+  };
   return (
     <div className="">
       <div className="flex items-center justify-center max-w-[700px] m-auto my-5">
@@ -41,7 +78,7 @@ function Voucher() {
                   data-v-76247bda=""
                   fill="currentColor"
                   d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"
-                  class=""
+                  className=""
                 ></path>
               </svg>
             </div>
@@ -66,7 +103,7 @@ function Voucher() {
                   data-v-76247bda=""
                   fill="currentColor"
                   d="M528 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h480c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-352 96c35.3 0 64 28.7 64 64s-28.7 64-64 64-64-28.7-64-64 28.7-64 64-64zm112 236.8c0 10.6-10 19.2-22.4 19.2H86.4C74 384 64 375.4 64 364.8v-19.2c0-31.8 30.1-57.6 67.2-57.6h5c12.3 5.1 25.7 8 39.8 8s27.6-2.9 39.8-8h5c37.1 0 67.2 25.8 67.2 57.6v19.2zM512 312c0 4.4-3.6 8-8 8H360c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h144c4.4 0 8 3.6 8 8v16zm0-64c0 4.4-3.6 8-8 8H360c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h144c4.4 0 8 3.6 8 8v16zm0-64c0 4.4-3.6 8-8 8H360c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h144c4.4 0 8 3.6 8 8v16z"
-                  class=""
+                  className=""
                 ></path>
               </svg>
             </div>
@@ -132,7 +169,7 @@ function Voucher() {
                   data-v-76247bda=""
                   fill="currentColor"
                   d="M0 432c0 26.5 21.5 48 48 48h480c26.5 0 48-21.5 48-48V256H0v176zm192-68c0-6.6 5.4-12 12-12h136c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H204c-6.6 0-12-5.4-12-12v-40zm-128 0c0-6.6 5.4-12 12-12h72c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM576 80v48H0V80c0-26.5 21.5-48 48-48h480c26.5 0 48 21.5 48 48z"
-                  class=""
+                  className=""
                 ></path>
               </svg>
             </div>
@@ -156,7 +193,7 @@ function Voucher() {
                   data-v-76247bda=""
                   fill="currentColor"
                   d="M425.7 256c-16.9 0-32.8-9-41.4-23.4L320 126l-64.2 106.6c-8.7 14.5-24.6 23.5-41.5 23.5-4.5 0-9-.6-13.3-1.9L64 215v178c0 14.7 10 27.5 24.2 31l216.2 54.1c10.2 2.5 20.9 2.5 31 0L551.8 424c14.2-3.6 24.2-16.4 24.2-31V215l-137 39.1c-4.3 1.3-8.8 1.9-13.3 1.9zm212.6-112.2L586.8 41c-3.1-6.2-9.8-9.8-16.7-8.9L320 64l91.7 152.1c3.8 6.3 11.4 9.3 18.5 7.3l197.9-56.5c9.9-2.9 14.7-13.9 10.2-23.1zM53.2 41L1.7 143.8c-4.6 9.2.3 20.2 10.1 23l197.9 56.5c7.1 2 14.7-1 18.5-7.3L320 64 69.8 32.1c-6.9-.8-13.5 2.7-16.6 8.9z"
-                  class=""
+                  className=""
                 ></path>
               </svg>
             </div>
@@ -206,13 +243,15 @@ function Voucher() {
             </div>
             <input
               type="text"
+              value={coupon}
+              onChange={(e) => setCoupon(e.target.value)}
               placeholder="Đừng quên sử dụng mã giảm giá mà bạn có nhé"
               className="border border-none focus:border-[2px] bg-[#f3f4f6] focus:border-[#333] h-full flex-1 py-[10px] rounded-[10px] pl-[50px] w-full placeholder-[#d70018]"
             />
           </div>
 
           <button
-            type=""
+            onClick={handleApplyCoupon}
             className="py-[6px] px-3 bg-[#d70018] rounded text-white"
           >
             Áp dụng
@@ -226,23 +265,23 @@ function Voucher() {
             </h1>
             <p className="font-bold text-lg my-[15px]">
               <span className="font-normal">Người đặt: </span>
-              Nguyễn Bảo Duy
+              {order.name}
             </p>
             <p className="font-bold text-lg my-[15px]">
               <span className="font-normal">Số Điện Thoại: </span>
-              0939570374
+              {order.mobile}
             </p>
             <p className="font-bold text-lg my-[15px]">
               <span className="font-normal">Email: </span>
-              nbduy21@vp.fitus.edu.vn
+              {order.email}
             </p>
             <p className="font-bold text-lg my-[15px]">
               <span className="font-normal">Nhận Sản Phẩm Tại: </span>
-              227 Nguyễn Văn Cừ, P4, Q5, TPHCM
+              {order.address}
             </p>
             <p className="font-bold text-lg my-[15px]">
               <span className="font-normal">Tổng Tiền: </span>
-              47.520.000 ₫
+              {formatNumberWithDots(order.total)} ₫
             </p>
           </div>
         </div>
@@ -251,12 +290,14 @@ function Voucher() {
       <div className="w-full max-w-[670px] m-auto bg-white shadow-cellphone rounded-md p-[10px] mt-5">
         <div className="flex items-center justify-between mb-2 text-base">
           <h1 className="text-[#0e2431] font-semibold">Tổng tiền tạm tính:</h1>
-          <span className="text-[#d70018] font-bold">47.520.000 ₫</span>
+          <span className="text-[#d70018] font-bold">
+            {formatNumberWithDots(order.totalAfterDiscount)} ₫
+          </span>
         </div>
         <div className="flex flex-col gap-2 font-bold">
           <button
             className="px-3 py-[6px] uppercase h-[60px] bg-slate-500 rounded text-white"
-            onClick={() => navigate("/cart/payment")}
+            onClick={handlePaymentClick}
           >
             Tiếp tục
           </button>

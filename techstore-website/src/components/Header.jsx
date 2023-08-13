@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -332,7 +332,7 @@ const catalog = [
 ];
 
 export default function Header() {
-  const [shoppingCart, setShoppingCart] = useState(3); // State of shopping cart
+  const [quantity, setQuantity] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   let { user } = useAuth();
   const handleOnClick = () => {
@@ -364,6 +364,17 @@ export default function Header() {
   };
 
   const [hoveredElement, setHoveredElement] = useState(null);
+  const updateQuantityFromLocalStorage = (event) => {
+    const cart = JSON.parse(window.localStorage.getItem("cart"));
+    const newQuantity = cart ? cart.totalQuantity : 0;
+    setQuantity(newQuantity);
+  };
+  useEffect(() => {
+    window.addEventListener("storage", updateQuantityFromLocalStorage);
+    return () => {
+      window.removeEventListener("storage", updateQuantityFromLocalStorage);
+    };
+  }, []);
 
   const handleMouseOver = (c) => {
     setHoveredElement(c);
@@ -466,7 +477,7 @@ export default function Header() {
 
         <Link to="/cart">
           <div className="flex gap-2 items-center p-4 cursor-pointer capitalize text-xl xxsm:text-lg xsm:text-lg sm:text-lg md:text-lg lg:text-lg xsm:flex-col hover:bg-gray-500 hover:rounded-lg hover:py-4 text-white min-w-fit xxsm:hidden">
-            <Badge badgeContent={shoppingCart} color="primary">
+            <Badge badgeContent={quantity} color="primary">
               <ShoppingCartIcon color="white" />
             </Badge>
             <div>Cart</div>

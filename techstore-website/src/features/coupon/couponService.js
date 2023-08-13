@@ -8,8 +8,20 @@ const getCoupons = async () => {
   return response.data;
 };
 
+const applyCoupon = async (coupon) => {
+  let config = get_config();
+  const response = await axios.post(
+    `${base_url}user/cart/applycoupon`,
+    coupon,
+    config
+  );
+
+  return response.data;
+};
+
 const createCoupons = async (coupon) => {
   let config = get_config();
+  console.log("service data", coupon);
   const response = await axios.post(`${base_url}coupon/`, coupon, config);
 
   return response.data;
@@ -45,6 +57,7 @@ const deleteCoupon = async (id) => {
 const couponService = {
   getCoupons,
   createCoupons,
+  applyCoupon,
   deleteCoupon,
   getCoupon,
   updateCoupon,

@@ -3,6 +3,7 @@ const mongoose = require("mongoose"); // Erase if already required
 // Declare the Schema of the Mongo model
 var orderSchema = new mongoose.Schema(
   {
+    orderID: String,
     products: [
       {
         product: {
@@ -11,6 +12,8 @@ var orderSchema = new mongoose.Schema(
         },
         count: Number,
         color: String,
+        feature: String,
+        price: Number,
       },
     ],
     paymentIntent: {},
@@ -19,17 +22,23 @@ var orderSchema = new mongoose.Schema(
       default: "Not Processed",
       enum: [
         "Not Processed",
-        "Cash on Delivery",
         "Processing",
-        "Dispatched",
+        "Delivering",
         "Cancelled",
         "Delivered",
       ],
     },
-    orderby: {
-      type: mongoose.Types.ObjectId,
-      ref: "User",
-    },
+    // orderby: {
+    //   type: mongoose.Types.ObjectId,
+    //   ref: "User",
+    // },
+    email: String,
+    name: String,
+    phone: String,
+    address: String,
+    total: Number,
+    totalAfterDiscount: Number,
+    totalQuantity: Number,
   },
   {
     timestamps: true,

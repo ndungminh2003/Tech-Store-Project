@@ -10,7 +10,7 @@ const CreateNewPassword = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
-  const [countdown, setCountdown] = useState(10);
+  const [countdown, setCountdown] = useState(60);
   const [isCounting, setIsCounting] = useState(true);
   const [isSubmited, setIsSubmited] = useState(false);
   const { isSuccess, isLoading, isError, isVerified } = useSelector(

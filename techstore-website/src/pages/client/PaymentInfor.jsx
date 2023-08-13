@@ -1599,13 +1599,14 @@
 import React, { useState, useEffect } from "react";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import ReCAPTCHA from "react-google-recaptcha";
 import {
   Autocomplete,
   Checkbox,
   FormControl,
   FormControlLabel,
-  Input,
+  // Input,
   Radio,
   RadioGroup,
   TextField,
@@ -1615,121 +1616,26 @@ import { Formik, Form } from "formik";
 
 function PaymentInfo() {
   const navigate = useNavigate();
-
   const [deliverySelected, setDeliverySelected] = useState("");
-
   const [value, setValue] = useState(0);
-
-  const country = [
-    { label: "An Giang", year: 1994 },
-    { label: "Bà Rịa - Vũng Tàu", year: 1972 },
-    { label: "Bình Dương", year: 1974 },
-    { label: "Bình Phước", year: 2008 },
-    { label: "Bình Thuận", year: 2008 },
-    { label: "Bình Định", year: 2008 },
-    { label: "Bạc Liêu", year: 2008 },
-    { label: "Bắc Giang", year: 2008 },
-    { label: "Bắc Kạn", year: 2008 },
-    { label: "Bắc Ninh", year: 2008 },
-    { label: "Bến Tre", year: 2008 },
-    { label: "Cao Bằng", year: 2008 },
-    { label: "Cà Mau", year: 2008 },
-    { label: "Cần Thơ", year: 2008 },
-    { label: "Gia Lai", year: 2008 },
-    { label: "Hà Giang", year: 2008 },
-    { label: "Hà Nam", year: 2008 },
-    { label: "Hà Nội", year: 2008 },
-    { label: "Hà Tĩnh", year: 2008 },
-    { label: "Hòa Bình", year: 2008 },
-    { label: "Hưng Yên", year: 2008 },
-    { label: "Hải Dương", year: 2008 },
-    { label: "Hải Phòng", year: 2008 },
-    { label: "Hậu Giang", year: 2008 },
-    { label: "Hồ Chí Minh", year: 2008 },
-    { label: "Khánh Hòa", year: 2008 },
-    { label: "Kiên Giang", year: 2008 },
-    { label: "Kon Tum", year: 2008 },
-    { label: "Lai Châu", year: 2008 },
-    { label: "Long An", year: 2008 },
-    { label: "Lào Cai", year: 2008 },
-    { label: "Lâm Đồng", year: 2008 },
-    { label: "Lạng Sơn", year: 2008 },
-    { label: "Nam Định", year: 2008 },
-    { label: "Nghệ An", year: 2008 },
-    { label: "Ninh Bình", year: 2008 },
-    { label: "Ninh Thuận", year: 2008 },
-    { label: "Phú Thọ", year: 2008 },
-    { label: "Phú Yên", year: 2008 },
-    { label: "Quảng Bình", year: 2008 },
-    { label: "Quảng Nam", year: 2008 },
-    { label: "Quảng Ngãi", year: 2008 },
-    { label: "Quảng Ninh", year: 2008 },
-    { label: "Quảng Trị", year: 2008 },
-    { label: "Sóc Trăng", year: 2008 },
-    { label: "Sơn La", year: 2008 },
-    { label: "Thanh Hóa", year: 2008 },
-    { label: "Thái Bình", year: 2008 },
-    { label: "Thái Nguyên", year: 2008 },
-    { label: "Thừa Thiên - Huế", year: 2008 },
-    { label: "Tiền Giang", year: 2008 },
-    { label: "Trà Vinh", year: 2008 },
-    { label: "Tuyên Quang", year: 2008 },
-    { label: "Tây Ninh", year: 2008 },
-    { label: "Vĩnh Long", year: 2008 },
-    { label: "Vĩnh Phúc", year: 2008 },
-    { label: "Yên Bái", year: 2008 },
-    { label: "Điện Biên", year: 2008 },
-    { label: "Đà Nẵng", year: 2008 },
-    { label: "Đắk Lắk", year: 2008 },
-    { label: "Đắk Nông", year: 2008 },
-    { label: "Đồng Nai", year: 2008 },
-    { label: "Đồng Tháp", year: 2008 },
-  ];
-
-  const provinces = [
-    { label: "Huyện Bình Chánh" },
-    { label: "Huyện Cần Giờ" },
-    { label: "Huyện Củ Chi" },
-    { label: "Huyện Hóc Môn" },
-    { label: "Huyện Nhà Bè" },
-    { label: "Quận 1" },
-    { label: "Quận 10" },
-    { label: "Quận 11" },
-    { label: "Quận 12" },
-    { label: "Quận 2" },
-    { label: "Quận 3" },
-    { label: "Quận 4" },
-    { label: "Quận 5" },
-    { label: "Quận 6" },
-    { label: "Quận 7" },
-    { label: "Quận 8" },
-    { label: "Quận 9" },
-    { label: "Quận Bình Thạnh" },
-    { label: "Quận Bình Tân" },
-    { label: "Quận Gò Vấp" },
-    { label: "Quận Phú Nhuận" },
-    { label: "Quận Thủ Đức" },
-    { label: "Quận Tân Bình" },
-    { label: "Quận Tân Phú" },
-    { label: "Thành Phố Thủ Đức" },
-  ];
+  const { user } = useSelector((state) => state.auth);
 
   const addressStore = [
     {
       id: "ch1",
-      parentId: "040",
+      parentId: "001",
       label: "Đất Thổ Cư Hòa Lạc, Km29, ĐCT08, Thạch Hoà, Thạch Thất, Hà Nội",
     },
   ];
 
   const TEST_SITE_KEY = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI";
-
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [districtOptions, setDistrictOptions] = useState([]);
   const [wardOptions, setWardOptions] = useState([]);
   const [storeOptions, setStoreOptions] = useState([]);
 
   useEffect(() => {
+    if (!user) navigate("/login");
     const fetchData = async () => {
       try {
         const response = await axios.get(
@@ -1740,7 +1646,6 @@ function PaymentInfo() {
         console.error("Error fetching data:", error);
       }
     };
-
     fetchData();
   }, []);
   const handleChange = (event) => {
@@ -1749,15 +1654,67 @@ function PaymentInfo() {
   return (
     <Formik
       initialValues={{
+        email: "",
+        name: "",
+        mobile: "",
         city: "",
         district: "",
         ward: "",
         address: "",
         addressStore: "",
       }}
-      onSubmit={(values) => {
+      onSubmit={(values, { resetForm }) => {
         // Handle form submission here
-        console.log(values);
+        const cart = JSON.parse(localStorage.getItem("cart"));
+        const order = {
+          email: values.email,
+          name: values.name,
+          mobile: values.mobile,
+          address:
+            (values.address !== ""
+              ? values.address + ", " + values.ward
+              : values.addressStore) +
+            ", " +
+            values.district +
+            ", " +
+            values.city,
+          products: cart.products,
+          total: cart.total,
+          totalQuantity: cart.totalQuantity,
+          totalAfterDiscount: cart.total,
+        };
+        console.log(order);
+        localStorage.setItem("order", JSON.stringify(order));
+        navigate("/cart/voucher");
+        // get cart on local storage
+        // const cart = JSON.parse(localStorage.getItem("cart"));
+        // // get total price
+        // const totalPrice = cart.reduce(
+        //   (total, item) => total + item.price * item.quantity,
+        //   0
+        // );
+        // // get total quantity
+        // const totalQuantity = cart.reduce(
+        //   (total, item) => total + item.quantity,
+        //   0
+        // );
+        // // get total weight
+        // const totalWeight = cart.reduce(
+        //   (total, item) => total + item.weight * item.quantity,
+        //   0
+        // );
+        // // get total discount
+        // const totalDiscount = cart.reduce(
+        //   (total, item) => total + item.discount * item.quantity,
+        //   0
+        // );
+        // // get total price after discount
+        // const totalPriceAfterDiscount = totalPrice - totalDiscount;
+        // // get total shipping fee
+        // const totalShippingFee = 0;
+        // // get total payment
+        // const totalPayment =
+        //   totalPriceAfterDiscount + totalShippingFee + totalWeight * 10000;
       }}
     >
       {({ values, setFieldValue }) => (
@@ -1798,7 +1755,7 @@ function PaymentInfo() {
                         data-v-76247bda=""
                         fill="currentColor"
                         d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"
-                        class=""
+                        className=""
                       ></path>
                     </svg>
                   </div>
@@ -1823,7 +1780,7 @@ function PaymentInfo() {
                         data-v-76247bda=""
                         fill="currentColor"
                         d="M528 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h480c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-352 96c35.3 0 64 28.7 64 64s-28.7 64-64 64-64-28.7-64-64 28.7-64 64-64zm112 236.8c0 10.6-10 19.2-22.4 19.2H86.4C74 384 64 375.4 64 364.8v-19.2c0-31.8 30.1-57.6 67.2-57.6h5c12.3 5.1 25.7 8 39.8 8s27.6-2.9 39.8-8h5c37.1 0 67.2 25.8 67.2 57.6v19.2zM512 312c0 4.4-3.6 8-8 8H360c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h144c4.4 0 8 3.6 8 8v16zm0-64c0 4.4-3.6 8-8 8H360c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h144c4.4 0 8 3.6 8 8v16zm0-64c0 4.4-3.6 8-8 8H360c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h144c4.4 0 8 3.6 8 8v16z"
-                        class=""
+                        className=""
                       ></path>
                     </svg>
                   </div>
@@ -1887,7 +1844,7 @@ function PaymentInfo() {
                         data-v-76247bda=""
                         fill="currentColor"
                         d="M0 432c0 26.5 21.5 48 48 48h480c26.5 0 48-21.5 48-48V256H0v176zm192-68c0-6.6 5.4-12 12-12h136c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H204c-6.6 0-12-5.4-12-12v-40zm-128 0c0-6.6 5.4-12 12-12h72c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM576 80v48H0V80c0-26.5 21.5-48 48-48h480c26.5 0 48 21.5 48 48z"
-                        class=""
+                        className=""
                       ></path>
                     </svg>
                   </div>
@@ -1911,7 +1868,7 @@ function PaymentInfo() {
                         data-v-76247bda=""
                         fill="currentColor"
                         d="M425.7 256c-16.9 0-32.8-9-41.4-23.4L320 126l-64.2 106.6c-8.7 14.5-24.6 23.5-41.5 23.5-4.5 0-9-.6-13.3-1.9L64 215v178c0 14.7 10 27.5 24.2 31l216.2 54.1c10.2 2.5 20.9 2.5 31 0L551.8 424c14.2-3.6 24.2-16.4 24.2-31V215l-137 39.1c-4.3 1.3-8.8 1.9-13.3 1.9zm212.6-112.2L586.8 41c-3.1-6.2-9.8-9.8-16.7-8.9L320 64l91.7 152.1c3.8 6.3 11.4 9.3 18.5 7.3l197.9-56.5c9.9-2.9 14.7-13.9 10.2-23.1zM53.2 41L1.7 143.8c-4.6 9.2.3 20.2 10.1 23l197.9 56.5c7.1 2 14.7-1 18.5-7.3L320 64 69.8 32.1c-6.9-.8-13.5 2.7-16.6 8.9z"
-                        class=""
+                        className=""
                       ></path>
                     </svg>
                   </div>
@@ -1929,17 +1886,33 @@ function PaymentInfo() {
                       <input
                         type="text"
                         placeholder="Họ và tên (bắt buộc)"
+                        value={values.name}
+                        onChange={(e) => {
+                          setFieldValue("name", e.target.value);
+                        }}
                         className="w-full outline-none border border-[#ddd] py-[6px] px-3 rounded-[10px]"
+                        required
                       />
                       <input
-                        type="text"
+                        type="tel"
                         placeholder="Số điện thoại"
+                        value={values.mobile}
+                        onChange={(e) => {
+                          setFieldValue("mobile", e.target.value);
+                        }}
                         className="w-full outline-none border border-[#ddd] py-[6px] px-3 rounded-[10px]"
+                        pattern="[0-9]{9,15}"
+                        required
                       />
                       <input
-                        type="text"
+                        type="email"
                         placeholder="Email (Vui lòng điền email để nhận hoá đơn VAT)"
+                        value={values.email}
+                        onChange={(e) => {
+                          setFieldValue("email", e.target.value);
+                        }}
                         className="w-full outline-none border border-[#ddd] py-[6px] px-3 rounded-[10px]"
+                        required
                       />
                     </div>
                   </div>
@@ -1975,19 +1948,21 @@ function PaymentInfo() {
                         <Autocomplete
                           disablePortal
                           id="city"
-                          options={data || []}
+                          options={data}
                           getOptionLabel={(option) => option.Name || ""}
                           value={
-                            data
-                              ? data.find((city) => city.Id === values.city)
-                              : null
+                            data.find((city) => city.Name === values.city) ||
+                            null
                           }
                           onChange={(event, newValue) => {
-                            setFieldValue("city", newValue ? newValue.Id : "");
+                            setFieldValue(
+                              "city",
+                              newValue ? newValue.Name : ""
+                            );
                             setFieldValue("district", "");
                             setFieldValue("ward", "");
                             setFieldValue("addressStore", "");
-
+                            setFieldValue("address", "");
                             if (newValue) {
                               setDistrictOptions(
                                 newValue.Districts.map((district) => ({
@@ -2000,9 +1975,14 @@ function PaymentInfo() {
                             }
                           }}
                           renderInput={(params) => (
-                            <TextField {...params} label="Tỉnh/Thành phố" />
+                            <TextField
+                              {...params}
+                              label="Tỉnh/Thành phố"
+                              required
+                            />
                           )}
                           className="w-1/2"
+                          required
                         />
                         <Autocomplete
                           disablePortal
@@ -2011,13 +1991,13 @@ function PaymentInfo() {
                           getOptionLabel={(option) => option.label || ""}
                           value={
                             districtOptions.find(
-                              (district) => district.Id === values.district
+                              (district) => district.Name === values.district
                             ) || null
                           }
                           onChange={(event, newValue) => {
                             setFieldValue(
                               "district",
-                              newValue ? newValue.Id : ""
+                              newValue ? newValue.Name : ""
                             );
                             setFieldValue("addressStore", "");
                             setFieldValue("ward", "");
@@ -2027,6 +2007,7 @@ function PaymentInfo() {
                                   (item) => item.parentId === newValue.Id
                                 )
                               );
+                              console.log(newValue.Id);
 
                               setWardOptions(
                                 newValue.Wards.map((ward) => ({
@@ -2039,7 +2020,11 @@ function PaymentInfo() {
                             }
                           }}
                           renderInput={(params) => (
-                            <TextField {...params} label="Quận/huyện" />
+                            <TextField
+                              {...params}
+                              label="Quận/huyện"
+                              required
+                            />
                           )}
                           className="w-1/2"
                         />
@@ -2054,17 +2039,21 @@ function PaymentInfo() {
                               getOptionLabel={(option) => option.label || ""}
                               value={
                                 wardOptions.find(
-                                  (ward) => ward.Id === values.ward
+                                  (ward) => ward.Name === values.ward
                                 ) || null
                               }
                               onChange={(event, newValue) => {
                                 setFieldValue(
                                   "ward",
-                                  newValue ? newValue.Id : ""
+                                  newValue ? newValue.Name : ""
                                 );
                               }}
                               renderInput={(params) => (
-                                <TextField {...params} label="Phường/Xã" />
+                                <TextField
+                                  {...params}
+                                  label="Phường/Xã"
+                                  required
+                                />
                               )}
                               className="w-1/2"
                             />
@@ -2076,6 +2065,7 @@ function PaymentInfo() {
                                 setFieldValue("address", event.target.value)
                               }
                               className="w-1/2"
+                              required
                             />
                           </>
                         ) : (
@@ -2086,19 +2076,22 @@ function PaymentInfo() {
                             fullWidth
                             value={
                               storeOptions.find(
-                                (store) => store.id === values.addressStore
+                                (store) => store.label === values.addressStore
                               ) || null
                             }
                             onChange={(event, newValue) => {
                               setFieldValue(
                                 "addressStore",
-                                newValue ? newValue.id : ""
+                                newValue ? newValue.label : ""
                               );
+                              setFieldValue("address", "");
+                              setFieldValue("ward", "");
                             }}
                             renderInput={(params) => (
                               <TextField
                                 {...params}
                                 label="Chọn địa chỉ cửa hàng"
+                                required
                               />
                             )}
                           />
@@ -2113,7 +2106,10 @@ function PaymentInfo() {
                     />
                     <div className="flex items-center gap-1 mt-5 mb-2">
                       <Checkbox id="check" className="w-[18px] h-[18px]" />
-                      <label for="check" className="text-[#0e2431] text-base">
+                      <label
+                        htmlFor="check"
+                        className="text-[#0e2431] text-base"
+                      >
                         Yêu cầu xuất hóa đơn công ty (Vui lòng điền email để
                         nhận hoá đơn VAT)
                       </label>
@@ -2141,8 +2137,8 @@ function PaymentInfo() {
               </div>
               <div className="flex flex-col gap-2 font-bold">
                 <button
+                  type="submit"
                   className="px-3 py-[6px] uppercase h-[60px] bg-slate-500 rounded text-white"
-                  onClick={() => navigate("/cart/voucher")}
                 >
                   Tiếp tục
                 </button>

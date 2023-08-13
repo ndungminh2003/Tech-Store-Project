@@ -45,27 +45,24 @@ export default function CardProduct(props) {
     } else {
       setThumbnail(props.thumbnail);
     }
-  }, [props.images]);
+  }, [props.thumbnail]);
 
   const handleCardClick = () => {
     navigate(`/product-view/${props.slug}`);
   };
   const handleAddToCart = () => {
-    // Lấy dữ liệu từ local storage
     const existingCart = localStorage.getItem("cart");
-    const cart = existingCart ? JSON.parse(existingCart) : [];
+    const cart = existingCart
+      ? JSON.parse(existingCart)
+      : { products: [], total: 0, totalQuantity: 0, totalDiscount: 0 };
 
-    // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
-    const foundIndex = cart.findIndex((x) => x._id === props.id);
+    const foundIndex = cart.products.findIndex((x) => x._id === props.id);
     if (foundIndex > -1) {
-      // Sản phẩm đã tồn tại trong giỏ hàng
-      cart[foundIndex].count += 1;
-      // console.log("cart 2", cart[foundIndex]);
+      cart.products[foundIndex].count += 1;
     } else {
-      // Sản phẩm chưa có trong giỏ hàng
       const productToAdd = {
         _id: props.id,
-        color: props.color,
+        color: props.color.length > 0 ? props.color[0] : "",
         name: props.name,
         slug: props.slug,
         thumbnail: props.thumbnail,
@@ -74,12 +71,13 @@ export default function CardProduct(props) {
         count: 1,
       };
 
-      cart.push(productToAdd);
+      cart.products.push(productToAdd);
     }
+    cart.totalQuantity += 1;
+    cart.total += props.price;
     toast.success("Thêm vào giỏ hàng thành công");
     localStorage.setItem("cart", JSON.stringify(cart));
-    console.log("cart 3", cart);
-    // Hiển thị thông báo hoặc cập nhật giao diện nếu cần
+    window.dispatchEvent(new Event("storage"));
   };
 
   return (
