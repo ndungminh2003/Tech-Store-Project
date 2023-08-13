@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
+import { validatePayment } from "../../features/user/paymentService";
 
 function PaymentSuccess() {
   const navigate = useNavigate();
+  const [status, setStatus] = useState("pedding");
+  const history = useLocation();
+
+  useEffect(() => {
+    validatePayment(history.search)
+      .then(data => {
+        setStatus("success");
+      })
+      .catch(() => {
+        setStatus("failed");
+      });
+  }, []);
 
   return (
     <div className="">
