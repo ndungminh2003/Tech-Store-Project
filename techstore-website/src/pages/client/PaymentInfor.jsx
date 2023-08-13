@@ -1715,11 +1715,7 @@ function PaymentInfo() {
   ];
 
   const addressStore = [
-    {
-      id: "ch1",
-      parentId: "040",
-      label: "Đất Thổ Cư Hòa Lạc, Km29, ĐCT08, Thạch Hoà, Thạch Thất, Hà Nội",
-    },
+    { id: "ch1", parentId: "774", label: "227 Nguyễn Văn Cừ, P4, Q5, TPHCM" },
   ];
 
   const TEST_SITE_KEY = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI";
@@ -1766,7 +1762,7 @@ function PaymentInfo() {
             <div className="flex items-center justify-center  max-w-[700px] m-auto my-5">
               <div
                 className="res-none py-[10px] flex w-full text-center cursor-pointer"
-                onClick={() => navigate("/cart")}
+                onClick={() => navigate("/shopping-cart")}
               >
                 <div className="!text-base text-gray-600 justify-start flex items-center font-semibold">
                   <ArrowBackIosIcon />
