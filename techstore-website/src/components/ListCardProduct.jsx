@@ -31,25 +31,42 @@ const brands = [
 
 export default function ListCardProduct(props) {
   const [products, setProducts] = useState(props.productState);
+  const [brand, setBrand] = useState("");
+
   useEffect(() => {
     const type = props.type.toLowerCase();
     // setProducts depends on props.type
-    const productList = props.productState.filter(
-      (product) => product.category.toLowerCase() === type
-    );
+    let productList = [];
+    if (brand === "" || brand === "ALL") {
+      productList = props.productState.filter(
+        (product) => product.category.toLowerCase() === type
+      );
+    } else {
+      productList = props.productState.filter(
+        (product) =>
+          product.category.toLowerCase() === type && product.brand === brand
+      );
+    }
     setProducts(productList);
-  }, [props.productState]);
+  }, [props.productState, brand]);
+
   return (
     <div className=" container mx-auto flex flex-col">
       <div className=" flex gap-4 justify-between px-4 py-2 xxsm:flex-col xsm:flex-col sm:flex-col md:flex-col ">
         <h1 className=" font-bold text-3xl text-gray-500">{props.type}</h1>
         <div className=" flex gap-5 xxsm:hidden xsm:gap-4 sm:gap-4 md:gap-4 ">
           {brands.map((brand) => (
-            <span className=" cursor-pointer bg-slate-200 p-4 rounded-xl hover:bg-slate-400 duration-300">
+            <span
+              className=" cursor-pointer bg-slate-200 p-4 rounded-xl hover:bg-slate-400 duration-300"
+              onClick={() => setBrand(brand.name)}
+            >
               {brand.name}
             </span>
           ))}
-          <span className=" cursor-pointer bg-slate-200 p-4 rounded-xl hover:bg-slate-400 duration-300 xsm:hidden sm:hidden">
+          <span
+            className=" cursor-pointer bg-slate-200 p-4 rounded-xl hover:bg-slate-400 duration-300 xsm:hidden sm:hidden"
+            onClick={() => setBrand("ALL")}
+          >
             All
           </span>
         </div>
@@ -62,8 +79,8 @@ export default function ListCardProduct(props) {
           navigation={true}
           loop={true}
           autoplay={{
-            delay: 5000,
-            disableOnInteraction: true,
+            delay: 2500,
+            disableOnInteraction: false,
           }}
           breakpoints={{
             600: {
@@ -103,9 +120,7 @@ export default function ListCardProduct(props) {
                 name={product.title}
                 price={product.price}
                 brand={product.brand}
-                thumbnail={product.thumbnail}
                 images={product.images}
-                feature={product?.feature}
                 description={product.description}
                 slug={product.slug}
               />
