@@ -242,3 +242,10 @@ input::-webkit-inner-spin-button {
   color: red;
   font-size: 12px;
 }
+
+.ce-chat-engine{
+
+  padding: 10px;
+  border-radius: 15px;
+  
+}

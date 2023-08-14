@@ -72,6 +72,7 @@ import SPEditOrder from "./pages/salesperson/EditOrder";
 import SPOrders from "./pages/salesperson/Orders";
 import SPViewOrder from "./pages/salesperson/ViewOrder";
 import SPLogin from "./pages/salesperson/Login";
+import ChatSupport from "./pages/salesperson/ChatEngine";
 // protected route
 import RequireAuth from "./components/RequireAuth";
 
@@ -172,6 +173,7 @@ const router = createBrowserRouter(
           <Route path="reset-password" element={<ResetPassword />} />
           <Route path="enquiries/:id" element={<ViewEnq />} />
           <Route path="order/:id" element={<SPViewOrder />} />
+          <Route path="support" element= {<ChatSupport/>} />
         </Route>
       </Route>
     </>
