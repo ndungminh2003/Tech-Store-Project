@@ -97,6 +97,7 @@ const router = createBrowserRouter(
           <Route path="/cart/payment-info" element={<PaymentInfo />} />
           <Route path="/cart/payment" element={<Payment />} />
           <Route path="/cart/payment/success" element={<PaymentSuccess />} />
+          <Route path="/cart/payment/:id" element={<Payment />} />
           <Route path="/cart/voucher" element={<Voucher />} />
           <Route
             path="/cart/bank-transfer-info"

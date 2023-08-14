@@ -24,6 +24,8 @@ const logout = async (email) => {
     { email },
     { withCredentials: true }
   );
+  localStorage.removeItem("cart");
+  localStorage.removeItem("order");
   localStorage.removeItem("user");
   return response.data;
 };

@@ -11,6 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import { formatNumberWithDots } from "../utils/formatNumber";
 import { toast } from "react-toastify";
 
 const Style = {
@@ -115,7 +116,9 @@ export default function CardProduct(props) {
               <div className=" flex flex-col justify-end h-[140px]">
                 <div className=" text-red-700 text-2xl">
                   {" "}
-                  <span className=" text-lg">{props.price}đ</span>{" "}
+                  <span className=" text-lg">
+                    {formatNumberWithDots(props.price)} ₫
+                  </span>{" "}
                 </div>
                 <Stack spacing={1}>
                   <Rating
