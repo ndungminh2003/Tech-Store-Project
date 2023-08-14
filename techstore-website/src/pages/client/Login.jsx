@@ -8,6 +8,8 @@ import { login, resetAuthState } from "../../features/auth/authSlice";
 import * as Yup from "yup";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { toast } from "react-toastify";
+import HashLoader from "react-spinners/HashLoader";
+
 
 const initialValues = {
   email: "",
@@ -44,6 +46,9 @@ const Login = () => {
 
   const authState = useSelector((state) => state.auth);
   const { user, isError, isSuccess, isLoading, message } = authState;
+
+  
+  
   useEffect(() => {
     if (isSubmited && isSuccess && !isLoading && user?.role === "user") {
       toast.success("Đăng nhập thành công");
@@ -75,6 +80,33 @@ const Login = () => {
 
   return (
     <div className="max-w-[700px] m-auto">
+
+    {isLoading && (
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.5)', /* Adjust the transparency as needed */
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 9999, /* Ensure the overlay is on top */
+          }}
+          className="overlay"
+        >
+          <HashLoader
+            color="#e8fffa"
+            loading
+            size={100}
+            speedMultiplier={1}
+          />
+        </div>
+      )}
+
+
       <div className="py-[10px] flex w-full text-center">
         {/* <ArrowBackIcon
           className="justify-start !text-[30px] cursor-pointer"
