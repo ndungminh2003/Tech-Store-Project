@@ -52,8 +52,8 @@ export default function CardProduct() {
   };
 
   return (
-    <div className="">
-      <div className="flex items-center justify-center  max-w-[700px] m-auto my-5">
+    <div className=" ">
+      <div className="flex items-center justify-center max-w-[700px] m-auto my-5 ">
         <div
           className="res-none py-[10px] flex w-full text-center"
           onClick={() => navigate("/")}
@@ -70,8 +70,8 @@ export default function CardProduct() {
       </div>
 
       {cartItems.length !== 0 ? (
-        <div>
-          <div className="res-content max-w-[600px] h-[600px] overflow-auto max-h-[600px] m-auto flex flex-col gap-10 hidden-scrollbar">
+        <div className=" h-[100vh]">
+          <div className="res-content max-w-[600px] h-[100%] overflow-auto m-auto flex flex-col gap-10 hidden-scrollbar">
             {cartItems.map((item) => {
               const handleQuantityChange = (newQuantity) => {
                 if (newQuantity <= 0) {

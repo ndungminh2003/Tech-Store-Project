@@ -59,6 +59,10 @@ function Voucher() {
           </h1>
         </div>
       </div>
+
+      <div className=" h-[100vh] ">
+
+      <div className=" h-[100vh]">
       <div className="bg-[#fef2f2] max-w-[600px] m-auto rounded-[15px]">
         <div className="max-w-[600px] m-auto p-4 flex items-center ">
           <div className="w-[20%] flex flex-col items-center text-xs text-[#0e2431]">
@@ -286,14 +290,17 @@ function Voucher() {
           </div>
         </div>
       </div>
+      </div>
 
-      <div className="w-full max-w-[670px] m-auto bg-white shadow-cellphone rounded-md p-[10px] mt-5">
+
+      <div className="w-full max-w-[670px] m-auto bg-white shadow-cellphone rounded-md p-[10px] mt-5 sticky bottom-0">
         <div className="flex items-center justify-between mb-2 text-base">
           <h1 className="text-[#0e2431] font-semibold">Tổng tiền tạm tính:</h1>
           <span className="text-[#d70018] font-bold">
             {formatNumberWithDots(order.totalAfterDiscount)} ₫
           </span>
         </div>
+        
         <div className="flex flex-col gap-2 font-bold">
           <button
             className="px-3 py-[6px] uppercase h-[60px] bg-slate-500 rounded text-white"
@@ -309,6 +316,9 @@ function Voucher() {
           </Link>
         </div>
       </div>
+
+      </div>
+
     </div>
   );
 }
