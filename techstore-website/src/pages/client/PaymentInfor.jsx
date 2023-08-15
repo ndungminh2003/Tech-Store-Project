@@ -1623,8 +1623,8 @@ function PaymentInfo() {
   const addressStore = [
     {
       id: "ch1",
-      parentId: "001",
-      label: "Đất Thổ Cư Hòa Lạc, Km29, ĐCT08, Thạch Hoà, Thạch Thất, Hà Nội",
+      parentId: "774",
+      label: "227 Nguyễn Văn Cừ, Phường 4",
     },
   ];
 
