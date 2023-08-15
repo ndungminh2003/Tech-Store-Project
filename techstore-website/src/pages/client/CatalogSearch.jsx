@@ -5,6 +5,7 @@ import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrow
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useSelector } from "react-redux";
 
+
 export default function CatalogSearch() {
   const products = useSelector((state) => state.product?.searchedProducts);
 
@@ -27,17 +28,28 @@ export default function CatalogSearch() {
   useEffect(() => {
     setSortedProducts(products?.findProduct || []);
   }, [products]);
+
+  var style = {
+    height: '100%'
+  };
+  
+  if (products?.totalProducts <= 10) {
+    style = {
+      height: '100vh'
+    };
+  }
+
   return (
-    <div className=" flex flex-col m-6 container mx-auto gap-4">
+    <div className=" flex flex-col m-6 container mx-auto gap-4" style={style}>
       {products?.totalProducts === 0 ? (
-        <div className=" flex flex-col items-center gap-10 ">
+        <div className=" flex flex-col items-center gap-10 justify-center">
           <span className="flex justify-center text-xl text-red-500 font-bold">
             Error: No products found for the keyword{" "}
             <b className="mx-1">'{products?.keyword}'</b>
           </span>
           
-          <img src="/logo/small.png" alt="logo" className=" rounded-lg w-96 h-96 mt-16"/>
-          <span className="flex justify-center text-xl text-black font-bold mb-20">
+          <img src="/logo/small.png" alt="logo" className=" rounded-lg w-52 h-52 "/>
+          <span className="flex justify-center text-xl text-black font-bold ">
             Opps Sorry! No Results Found
           </span>
         </div>
@@ -99,3 +111,5 @@ export default function CatalogSearch() {
     </div>
   );
 }
+
+

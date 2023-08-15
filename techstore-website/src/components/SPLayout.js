@@ -25,6 +25,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Badge from "@mui/joy/Badge";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 
 const { Header, Sider, Content } = Layout;
 const SPLayout = () => {
@@ -120,6 +121,12 @@ const SPLayout = () => {
             //   icon: <FaClipboardList style={{ fontSize: "24px" }} />,
             //   label: "Enquiries",
             // },
+            {
+              key: "support",
+              icon: <SupportAgentIcon style={{ fontSize: "24px" }} />,
+              label: "Support",
+            },
+            
             {
               key: "logout",
               icon: <RiLogoutBoxRLine style={{ fontSize: "24px" }} />,

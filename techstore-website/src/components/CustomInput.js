@@ -11,22 +11,23 @@ const CustomInput = (props) => {
         value={val}
         onChange={onChng}
         onBlur={onBlr}
-        className={`w-full h-10 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors peer rounded-md`}
+        placeholder={label}
+        className={`w-full h-10 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors peer rounded-md p-2`}
         autoComplete="off"
       />
       {val ? (
         <label
-          htmlFor={i_id}
-          className="absolute left-0 top-[-16px] text-blue-600 text-xs "
+          for={i_id}
+          className=" ml-2 absolute left-0 top-[-16px] text-blue-600 text-xs peer-focus:text-xs transition-all duration-500 ease-in"
         >
-          <div className=" ml-2">{label}</div>
+          {label}
         </label>
       ) : (
         <label
-          htmlFor={i_id}
-          className="absolute left-0 top-2 text-gray-600 cursor-text peer-focus:text-xs peer-focus:-top-4 peer-focus:text-blue-600 transition-all "
+          for={i_id}
+          className=" ml-2 absolute left-0 top-2 text-gray-600 cursor-text peer-focus:text-xs peer-focus:-top-4 peer-focus:text-blue-600 transition-all hidden"
         >
-          <div className=" ml-2">{label}</div>
+          {label}
         </label>
       )}
     </div>

@@ -78,15 +78,15 @@ const CustomerList = () => {
         mobile: customerstate[i].mobile,
         createdAt: new Date(customerstate[i].createdAt).toLocaleString(),
         action: (
-          <div className="d-flex">
+          <div className="flex">
             <Link
-              className=" fs-3 text-danger"
+              className=" text-2xl text-red-600"
               to={`/admin/customer/${customerstate[i]._id}`}
             >
               <BiEdit />
             </Link>
             <button
-              className="ms-3 fs-3 text-danger bg-transparent border-0"
+              className="ms-3 text-2xl text-red-600 bg-transparent border-0"
               onClick={() => showModal(customerstate[i]._id)}
             >
               <AiFillDelete />

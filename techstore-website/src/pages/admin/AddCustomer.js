@@ -124,91 +124,109 @@ const AddCustomer = () => {
 
   return (
     <div>
-      <h3 className="mb-4 title">
+      <h3 className="mb-4 title text-3xl font-bold">
         {getUserId !== undefined ? "Edit" : "Add"} Customer
       </h3>
       <div>
         <form
           onSubmit={formik.handleSubmit}
-          className="d-flex gap-3 flex-column"
+          className="flex gap-3 flex-col"
         >
-          <CustomInput
-            type="text"
-            label="Enter Customer Name"
-            name="name"
-            onChng={formik.handleChange("name")}
-            onBlr={formik.handleBlur("name")}
-            val={formik.values.name}
-          />
-          <div className="error">
-            {formik.touched.name && formik.errors.name}
+          <div className=" h-16">
+            <CustomInput
+              type="text"
+              label="Enter Customer Name"
+              name="name"
+              onChng={formik.handleChange("name")}
+              onBlr={formik.handleBlur("name")}
+              val={formik.values.name}
+            />
+            <div className="error">
+              {formik.touched.name && formik.errors.name}
+            </div>
           </div>
-          <CustomInput
-            type="email"
-            label="Enter Customer Email"
-            name="email"
-            onChng={formik.handleChange("email")}
-            onBlr={formik.handleBlur("email")}
-            val={formik.values.email}
-          />
-          <div className="error">
-            {formik.touched.email && formik.errors.email}
-          </div>
-          <CustomInput
-            type="number"
-            label="Enter Phone Number"
-            name="mobile"
-            onChng={formik.handleChange("mobile")}
-            onBlr={formik.handleBlur("mobile")}
-            val={formik.values.mobile}
-          />
-          <div className="error">
-            {formik.touched.mobile && formik.errors.mobile}
-          </div>
-          <CustomInput
-            type="date"
-            name="dateOfBirth"
-            onChng={formik.handleChange("dateOfBirth")}
-            onBlr={formik.handleBlur("dateOfBirth")}
-            val={formik.values.dateOfBirth}
-            label="Enter Date of Birth"
-            id="date"
-          />
-          <div className="error">
-            {formik.touched.dateOfBirth && formik.errors.dateOfBirth}
-          </div>
-          <select
-            name="role"
-            onChange={formik.handleChange("role")}
-            onBlur={formik.handleBlur("role")}
-            value={formik.values.role}
-            className="form-control py-3 mb-3"
-            id=""
-          >
-            <option value="" disabled>
-              Select Role
-            </option>
-            <option value="admin">Admin</option>
-            <option value="user">User</option>
-            <option value="salesperson">Salesperson</option>
-          </select>
-          <div className="error">
-            {formik.touched.role && formik.errors.role}
+          
+          <div className=" h-16">
+            <CustomInput
+              type="email"
+              label="Enter Customer Email"
+              name="email"
+              onChng={formik.handleChange("email")}
+              onBlr={formik.handleBlur("email")}
+              val={formik.values.email}
+            />
+            <div className="error">
+              {formik.touched.email && formik.errors.email}
+            </div>
           </div>
 
-          <CustomInput
-            type="text"
-            label="Enter Customer Address"
-            name="address"
-            onChng={formik.handleChange("address")}
-            onBlr={formik.handleBlur("address")}
-            val={formik.values.address}
-          />
-          <div className="error">
-            {formik.touched.address && formik.errors.address}
+          <div className=" h-16">
+            <CustomInput
+              type="number"
+              label="Enter Phone Number"
+              name="mobile"
+              onChng={formik.handleChange("mobile")}
+              onBlr={formik.handleBlur("mobile")}
+              val={formik.values.mobile}
+            />
+            <div className="error">
+              {formik.touched.mobile && formik.errors.mobile}
+            </div>
           </div>
+
+          <div className=" h-16">
+            <CustomInput
+              type="date"
+              name="dateOfBirth"
+              onChng={formik.handleChange("dateOfBirth")}
+              onBlr={formik.handleBlur("dateOfBirth")}
+              val={formik.values.dateOfBirth}
+            
+              id="date"
+            />
+            <div className="error">
+              {formik.touched.dateOfBirth && formik.errors.dateOfBirth}
+            </div>
+          </div>
+
+          <div className=" h-16">
+            <select
+              name="role"
+              onChange={formik.handleChange("role")}
+              onBlur={formik.handleBlur("role")}
+              value={formik.values.role}
+              className="block appearance-none w-full px-2 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded py-3 mb-3"
+              id=""
+            >
+              <option value="" disabled>
+                Select Role
+              </option>
+              <option value="admin">Admin</option>
+              <option value="user">User</option>
+              <option value="salesperson">Salesperson</option>
+            </select>
+            <div className="error">
+              {formik.touched.role && formik.errors.role}
+            </div>
+          </div>
+
+          <div className=" h-16">
+            <CustomInput
+              type="text"
+              label="Enter Customer Address"
+              name="address"
+              onChng={formik.handleChange("address")}
+              onBlr={formik.handleBlur("address")}
+              val={formik.values.address}
+            />
+            <div className="error">
+              {formik.touched.address && formik.errors.address}
+            </div>
+          </div>
+
+
           <button
-            className="btn btn-success border-0 rounded-3 my-5"
+            className="inline-block align-middle text-center select-none font-normal whitespace-no-wrap rounded py-1 px-3 leading-normal no-underline bg-green-500 text-white hover:bg-green-600 border-0 rounded-3 my-5"
             type="submit"
           >
             {getUserId !== undefined ? "Edit" : "Add"} Customer

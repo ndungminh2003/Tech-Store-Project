@@ -43,13 +43,15 @@ function Payment() {
   };
   const { vertical, horizontal, open } = state;
 
-  const { createdOrder } = useSelector((state) => state.order) || {
+  let { createdOrder } = useSelector((state) => state.order);
+  createdOrder = createdOrder !== undefined ? createdOrder : {
     _id: "",
     name: "",
     phone: "",
     address: "",
     totalAfterDiscount: 0,
   };
+  console.log("hello",createdOrder)
   // const order = JSON.parse(localStorage.getItem("order"));
 
   const handleClick = (newState) => () => {
@@ -74,6 +76,9 @@ function Payment() {
           </h1>
         </div>
       </div>
+
+      <div className=" h-[100vh]">
+      <div className=" h-[100vh]">
       <div className="bg-[#fef2f2] max-w-[600px] m-auto rounded-[15px]">
         <div className="max-w-[600px] m-auto p-4 flex items-center ">
           <div className="w-[20%] flex flex-col items-center text-xs text-[#0e2431]">
@@ -377,6 +382,8 @@ function Payment() {
           </div>
         </div>
       </div>
+      </div>
+      
 
       <Snackbar
         anchorOrigin={{ vertical, horizontal }}
@@ -386,14 +393,14 @@ function Payment() {
         key={vertical + horizontal}
       />
 
-      <div className="w-full max-w-[670px] m-auto bg-white shadow-cellphone rounded-md p-[10px] mt-5">
+      <div className="w-full max-w-[670px] m-auto bg-white shadow-cellphone rounded-md p-[10px] mt-5 sticky bottom-0">
         <div className="flex items-center justify-between mb-2 text-base">
           <h1 className="text-[#0e2431] font-semibold">Tổng tiền tạm tính:</h1>
           <span className="text-[#d70018] font-bold">47.520.000 ₫</span>
         </div>
         <div className="flex flex-col gap-2 font-bold">
           <button
-            className="px-3 py-[6px] uppercase h-[60px] bg-[#d70018] rounded text-white"
+            className="px-3 py-[6px] uppercase h-[60px] bg-slate-500 rounded text-white"
             onClick={() => {
               if (paymentSelected === "cash_on_shop") {
                 navigate("/cart/payment/success");
@@ -423,6 +430,9 @@ function Payment() {
           </button>
         </div>
       </div>
+      
+      </div>    
+
     </div>
   );
 }

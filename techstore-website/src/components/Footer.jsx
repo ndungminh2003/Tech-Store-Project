@@ -14,7 +14,13 @@ export default function Footer() {
     location.pathname === "/wishlist" ||
     location.pathname === "/contact" ||
     location.pathname === "/login" ||
-    location.pathname === "/register"
+    location.pathname === "/register"||
+    location.pathname === "/cart/payment-info" ||
+    location.pathname === "/cart/payment" ||
+    location.pathname === "/cart/payment/:id" ||
+    location.pathname === "/cart/payment/success" ||
+    location.pathname === "/cart/voucher" ||
+    location.pathname === "/cart/bank-transfer-info"
   ) {
     return null;
   }
