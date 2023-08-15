@@ -71,7 +71,7 @@ const SalespersonLogin = () => {
       <br />
       <br />
       <div className="my-5 w-1/4 bg-white rounded-lg mx-auto p-6">
-        <h3 className="text-center title text-3xl font-bold p-2">Login</h3>
+        <h3 className="text-center title text-3xl font-bold p-2">Salesperson Login</h3>
         <p className="text-center mb-4">Login to your account to continue.</p>
         <div className="error text-center" style={{ color: "red" }}>
           {message.message === "Rejected" ? "You are not an Salesperson" : ""}
@@ -108,7 +108,7 @@ const SalespersonLogin = () => {
 
           <div className="mb-3 flex justify-between">
 
-            <Link to="/admin" className=" hover:text-blue-500"> 
+            <Link to="/admin-login" className=" hover:text-blue-500"> 
               Login as an Administrator
             </Link>
 
