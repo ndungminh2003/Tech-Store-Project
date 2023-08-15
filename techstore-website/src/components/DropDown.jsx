@@ -43,7 +43,7 @@ export default function DropDown(props) {
     navigate("/");
   };
 
-  console.log("user", user);
+
 
   return (
     <div className=" relative">

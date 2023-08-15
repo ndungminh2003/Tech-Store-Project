@@ -9,6 +9,7 @@ const SupportWindow = props => {
 
     const [user, setUser] = useState(null)
     const [chat, setChat] = useState(null)
+    const [haveEmail, setHaveEmail] = useState(false)
 
     return (
         <div 
@@ -22,10 +23,12 @@ const SupportWindow = props => {
                 visible={user === null || chat === null}
                 setUser={user => setUser(user)} 
                 setChat={chat => setChat(chat)} 
+                setHaveEmail={haveEmail => setHaveEmail(haveEmail)}
             />
 
             <ChatEngine 
                 visible={user !== null && chat !== null}
+                haveEmail={haveEmail}
                 user={user} 
                 chat={chat} 
             />

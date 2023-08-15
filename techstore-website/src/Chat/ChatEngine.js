@@ -6,13 +6,15 @@ const ChatEngine = props => {
     const [showChat, setShowChat] = useState(false)
 
     useEffect(() => {
-        if (props.visible) {
+        if (props.visible && props.haveEmail) {
             setTimeout(() => {
                 setShowChat(true)
             }, 500)
         }
-    })
-
+        else {
+            setShowChat(false);
+        }
+    },[props.visible, props.haveEmail])
     return (
         <div
             className='transition-5'
@@ -29,10 +31,10 @@ const ChatEngine = props => {
                 <ChatEngineWrapper>
                     <Socket 
                         projectID="f63c5c4f-a8b1-4e55-9a3f-b2984621d508"
-                        userName={props.user.email}
-                        userSecret={props.user.email}
+                        userName={props.user?.email || ''}
+                        userSecret={props.user?.email || ''}
                     />
-                    <ChatFeed activeChat={props.chat.id} />
+                    <ChatFeed activeChat={props.chat?.id || ''} />
                 </ChatEngineWrapper>
             }
         </div>

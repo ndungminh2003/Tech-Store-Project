@@ -1,19 +1,21 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { styles } from "./styles"
 import axios from 'axios'
 import { LoadingOutlined } from '@ant-design/icons'
 import Avatar from './Avatar'
+import {useSelector} from "react-redux";
 
 const EmailForm = props => {
     
     const privateApiKey = "f70b0ac2-af3e-45a6-8ebd-ce7212671883";
     const project_id = "f63c5c4f-a8b1-4e55-9a3f-b2984621d508";
-
-    const [email, setEmail] = useState('')
+    const user = useSelector(state => state.auth.user);
+    const [email, setEmail] = useState(user?.email || '');
+    console.log("email", email);
     const [loading, setLoading] = useState(false)
 
-    function getOrCreateUser(callback) {
-        axios.put(
+    async function getOrCreateUser(callback) {
+        await axios.put(
             'https://api.chatengine.io/users/',
             {username: email, email: email, secret: email},
             {headers: {"Private-Key": privateApiKey}}
@@ -22,8 +24,8 @@ const EmailForm = props => {
         .catch(e => console.log('Get or create user error', e))
     }
 
-    function getOrCreateChat(callback) {
-        axios.put(
+    async function getOrCreateChat(callback) {
+        await axios.put(
             'https://api.chatengine.io/chats/',
             {
                 usernames: ['Nguyen Dung Minh', email], 
@@ -46,7 +48,8 @@ const EmailForm = props => {
 
         getOrCreateUser(
             user => {
-                props.setUser && props.setUser(user)
+                props.setUser && props.setUser(user);
+                props.setHaveEmail && props.setHaveEmail(true);
                 getOrCreateChat(chat => {
                     setLoading(false)
                     props.setChat && props.setChat(chat)
@@ -54,6 +57,46 @@ const EmailForm = props => {
             }
         )
     }
+
+    useEffect(() => {
+        if (user?.email) {
+          setEmail(user?.email);
+          if (email !== "") {
+            setLoading(true);
+            console.log("Sending Email", email);
+    
+            getOrCreateUser((user) => {
+              props.setUser && props.setUser(user);
+              props.setHaveEmail && props.setHaveEmail(true);
+              getOrCreateChat((chat) => {
+                setLoading(false);
+                props.setChat && props.setChat(chat);
+              });
+            });
+          }
+        } else {
+          setEmail("");
+          props.setHaveEmail && props.setHaveEmail(false);
+          props.setUser && props.setUser(null);
+          props.setChat && props.setChat(null);
+        }
+      }, [user]);
+
+    // useEffect(() => {
+    //     if(emailState !== '' && email !== '') {
+    //     setLoading(true)
+    //     console.log('Sending Email', email)
+
+    //     getOrCreateUser(
+    //         user => {
+    //             props.setUser && props.setUser(user)
+    //             getOrCreateChat(chat => {
+    //                 setLoading(false)
+    //                 props.setChat && props.setChat(chat)
+    //             })
+    //         }
+    //     )}
+    // }, [emailState])
 
     return (
         <div 
