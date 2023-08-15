@@ -105,11 +105,19 @@ const AdminLogin = () => {
           <div className="error mt-2 text-red-600">
             {formik.touched.password && formik.errors.password}
           </div>
-          <div className="mb-3 text-end">
-            <Link to="forgot-password" className="">
+          
+
+          <div className="mb-3 flex justify-between">
+
+            <Link to="/salesperson" className=" hover:text-blue-500"> 
+              Login as a Sales person
+            </Link>
+
+            <Link to="forgot-password" className=" hover:text-blue-500">
               Forgot Password?
             </Link>
           </div>
+
           <button
             className="border-0 px-3 py-2 text-white font-bold w-full text-center text-decoration-none text-xl rounded-lg"
             style={{ background: "#1e293b" }}

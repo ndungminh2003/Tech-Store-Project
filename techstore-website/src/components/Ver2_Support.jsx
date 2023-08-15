@@ -23,8 +23,12 @@ export default function Ver2_Support() {
     }
   return (
     <div ref={wrapperRef} >
-        <SupportWindow visible={visible} />
+      
+      <SupportWindow visible={visible} />
+      
+      <div className=" fixed bottom-[24px] right-[24px] lg:bottom-24">
         <Avatar onClick={() => setVisible(true)} />
+      </div>
     </div>
   )
 }
