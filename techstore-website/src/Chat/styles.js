@@ -104,3 +104,20 @@ export const styles = {
       backgroundColor: '#fff',
   }
 }
+
+function adjustSupportWindowBottom() {
+    const screenWidth = window.innerWidth;
+    const supportWindowStyle = styles.supportWindow;
+  
+    if (screenWidth >= 1024 && screenWidth <= 1279) {
+      supportWindowStyle.bottom = '195px';
+    } else {
+      supportWindowStyle.bottom = '116px'; // Default value
+    }
+  }
+  
+  // Call the function initially to set the appropriate bottom value
+  adjustSupportWindowBottom();
+  
+  // You might also want to listen for window resize events to adjust the bottom value dynamically
+  window.addEventListener('resize', adjustSupportWindowBottom);
