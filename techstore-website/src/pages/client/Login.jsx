@@ -8,8 +8,9 @@ import { login, resetAuthState } from "../../features/auth/authSlice";
 import * as Yup from "yup";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { toast } from "react-toastify";
-import HashLoader from "react-spinners/HashLoader";
 
+import GridLoader from "react-spinners/GridLoader"
+import RingLoader from "react-spinners/RingLoader"
 
 const initialValues = {
   email: "",
@@ -47,7 +48,6 @@ const Login = () => {
   const authState = useSelector((state) => state.auth);
   const { user, isError, isSuccess, isLoading, message } = authState;
 
-  
   
   useEffect(() => {
     if (isSubmited && isSuccess && !isLoading && user?.role === "user") {
@@ -97,12 +97,13 @@ const Login = () => {
           }}
           className="overlay"
         >
-          <HashLoader
+          <RingLoader
             color="#e8fffa"
             loading
-            size={100}
+            size={150}
             speedMultiplier={1}
           />
+
         </div>
       )}
 

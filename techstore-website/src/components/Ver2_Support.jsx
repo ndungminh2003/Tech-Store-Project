@@ -22,17 +22,14 @@ export default function Ver2_Support() {
         }, [ref]);
     }
   return (
-    <div ref={wrapperRef}>
-            <SupportWindow visible={visible} />
-
-            <Avatar 
-                onClick={() => setVisible(true)}
-                style={{
-                    position: 'fixed',
-                    bottom: '24px',
-                    right: '24px',
-                }}
-            />
-        </div>
+    <div ref={wrapperRef} >
+        <SupportWindow visible={visible} />
+        <Avatar onClick={() => setVisible(true)} />
+    </div>
   )
 }
+
+
+  
+
+  

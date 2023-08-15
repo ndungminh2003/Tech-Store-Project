@@ -90,7 +90,7 @@ const AdminLogin = () => {
             onBlr={formik.handleBlur("email")}
             val={formik.values.email}
           />
-          <div className="error mt-2">
+          <div className="error mt-2 text-red-600">
             {formik.touched.email && formik.errors.email}
           </div>
           <CustomInput
@@ -102,7 +102,7 @@ const AdminLogin = () => {
             onBlr={formik.handleBlur("password")}
             val={formik.values.password}
           />
-          <div className="error mt-2">
+          <div className="error mt-2 text-red-600">
             {formik.touched.password && formik.errors.password}
           </div>
           <div className="mb-3 text-end">
