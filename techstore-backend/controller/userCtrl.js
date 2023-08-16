@@ -695,7 +695,10 @@ const createOrder = asyncHandler(async (req, res) => {
       };
     });
     const updated = await Product.bulkWrite(update, {});
-    res.json(newOrder);
+    const orderPopulate = await Order.findById(newOrder._id)
+      .populate("products.product")
+      .exec();
+    res.json(orderPopulate);
   } catch (error) {
     throw new Error(error);
   }
@@ -741,8 +744,31 @@ const getOrderById = asyncHandler(async (req, res) => {
   }
 });
 
+const updatePaymentStatus = asyncHandler(async (req, res) => {
+  const { status, method } = req.body;
+  const { id } = req.params;
+  validateMongoDbId(id);
+  try {
+    const updateOrderStatus = await Order.findByIdAndUpdate(
+      id,
+      {
+        paymentIntent: {
+          method: method,
+          status: status,
+        },
+      },
+      { new: true }
+    )
+      .populate("products.product")
+      .exec();
+    res.json(updateOrderStatus);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
 const updateOrderStatus = asyncHandler(async (req, res) => {
-  const { status } = req.body;
+  const { status, method } = req.body;
   const { id } = req.params;
   validateMongoDbId(id);
   try {
@@ -751,12 +777,26 @@ const updateOrderStatus = asyncHandler(async (req, res) => {
       {
         orderStatus: status,
         paymentIntent: {
+          method: method,
           status: status,
         },
       },
       { new: true }
-    );
+    )
+      .populate("products.product")
+      .exec();
     res.json(updateOrderStatus);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+const deleteOrder = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  validateMongoDbId(id);
+  try {
+    const deleteOrder = await Order.findByIdAndDelete(id);
+    res.json({ message: "Delete Order Successfully" });
   } catch (error) {
     throw new Error(error);
   }
@@ -790,6 +830,8 @@ module.exports = {
   createOrder,
   getOrders,
   updateOrderStatus,
+  updatePaymentStatus,
+  deleteOrder,
   getAllOrders,
   getOrderById,
   sendOTP,

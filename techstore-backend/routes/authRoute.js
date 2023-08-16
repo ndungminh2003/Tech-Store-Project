@@ -27,6 +27,7 @@ const {
   createOrder,
   getOrders,
   updateOrderStatus,
+  updatePaymentStatus,
   getAllOrders,
   getOrderById,
   sendOTP,
@@ -41,12 +42,8 @@ router.post("/register", createUser);
 router.post("/forgot-password-token", forgotPasswordToken);
 router.put("/reset-password/:token", resetPassword);
 router.put("/password", authMiddleware, updatePassword);
-router.put(
-  "/order/update-order/:id",
-  authMiddleware,
-  isAdmin,
-  updateOrderStatus
-);
+router.put("/order/update-order/:id", authMiddleware, updateOrderStatus);
+router.put("/order/update-payment/:id", authMiddleware, updatePaymentStatus);
 
 router.post("/send-otp", sendOTP);
 router.post("/login", login);

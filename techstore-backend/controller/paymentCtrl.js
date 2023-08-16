@@ -2,6 +2,7 @@ const moment = require("moment/moment");
 const uuid = require("uuid");
 const qs = require("qs");
 require("dotenv").config();
+const Order = require("../models/orderModel");
 
 module.exports = {
   async payment(req, res, next) {
@@ -88,17 +89,42 @@ module.exports = {
 
       let signed = hmac.update(Buffer.from(signData, "utf-8")).digest("hex");
 
-      if (secureHash !== signed) {
-        throw new Error("payment failed");
+      if (secureHash === signed) {
+        var orderId = vnp_Params["vnp_TxnRef"];
+        var rspCode = vnp_Params["vnp_ResponseCode"];
+        var bankCode = vnp_Params["vnp_BankCode"];
+        var bankTranNo = vnp_Params["vnp_BankTranNo"];
+        var vnpTranNo = vnp_Params["vnp_TransactionNo"];
+        var paidAmount = vnp_Params["vnp_Amount"];
+        var paidDate = vnp_Params["vnp_PayDate"];
+        var message = vnp_Params["vnp_Message"];
+        var orderInfo = vnp_Params["vnp_OrderInfo"];
+        var orderType = vnp_Params["vnp_OrderType"];
+        var data = {
+          orderId,
+          rspCode,
+          bankCode,
+          bankTranNo,
+          vnpTranNo,
+          paidAmount,
+          paidDate,
+          message,
+          orderInfo,
+          orderType,
+        };
+        console.log("data payment response", data);
+        var transactionStatus = vnp_Params["vnp_TransactionStatus"];
+        if (transactionStatus !== "00") {
+          return res.redirect(
+            "http://localhost:3000/cart/payment/failed?method=VNPAY"
+          );
+        }
+        return res.redirect(
+          "http://localhost:3000/cart/payment/success?method=VNPAY"
+        );
+      } else {
+        res.status(200).json({ RspCode: "97", Message: "Fail checksum" });
       }
-
-      //---------------------logic------------------------------
-      const [userId, productId] = String(vnp_Params.vnp_OrderInfo).split("---");
-
-      //---------------------logic------------------------------
-
-      // await tran.save();
-      return res.redirect("http://localhost:3000/cart/payment/success");
     } catch (e) {
       return res.redirect("http://localhost:3000/cart/payment/failed");
     }
