@@ -31,19 +31,23 @@ export default function CardProduct() {
       setTotalPrice(
         cartItems.reduce((total, item) => total + item.count * item.price, 0)
       );
-      const cart = {
+      const cartUpdate = {
         products: cartItems,
-        total: totalPrice,
+        total: cartItems.reduce(
+          (total, item) => total + item.count * item.price,
+          0
+        ),
         totalQuantity: cartItems.reduce((total, item) => total + item.count, 0),
         totalDiscount: 0,
       };
-      localStorage.setItem("cart", JSON.stringify(cart));
+      localStorage.setItem("cart", JSON.stringify(cartUpdate));
       window.dispatchEvent(new Event("storage"));
     }
   }, [cartItems]);
 
   const handleDeleteItem = (itemId) => {
     const updatedCart = cartItems.filter((item) => item._id !== itemId);
+
     setCartItems(updatedCart);
   };
 

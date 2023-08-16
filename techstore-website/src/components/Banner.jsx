@@ -423,9 +423,10 @@ export default function Banner() {
                 <div className=" font-bold text-xl">
                   {hoveredElement.brands.title}
                 </div>
-                {hoveredElement.brands.brand.map((b) => (
+                {hoveredElement.brands.brand.map((b, index) => (
                   // <Link to="search-product">
                   <div
+                    key={index}
                     className=" cursor-pointer text-gray-600 hover:text-red-500"
                     onClick={handleClick}
                   >
@@ -438,9 +439,12 @@ export default function Banner() {
                 <div className=" font-bold text-xl">
                   {hoveredElement.price.title}
                 </div>
-                {hoveredElement.price.range.map((b) => (
-                  <Link to="search-product">
-                    <div className=" cursor-pointer text-gray-600 hover:text-red-500">
+                {hoveredElement.price.range.map((b, index) => (
+                  <Link key={index} to="search-product">
+                    <div
+                      key={index}
+                      className=" cursor-pointer text-gray-600 hover:text-red-500"
+                    >
                       {b}
                     </div>
                   </Link>
@@ -452,8 +456,8 @@ export default function Banner() {
                   {hoveredElement.hot.title}
                   <LocalFireDepartmentIcon sx={{ color: "red" }} />
                 </div>
-                {hoveredElement.hot.product.map((b) => (
-                  <Link to="search-product">
+                {hoveredElement.hot.product.map((b, index) => (
+                  <Link key={index} to="search-product">
                     <div className=" cursor-pointer text-gray-600 hover:text-red-500">
                       {b}
                     </div>

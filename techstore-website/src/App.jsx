@@ -18,8 +18,8 @@ import PaymentInfo from "./pages/client/PaymentInfor";
 import Voucher from "./pages/client/Voucher";
 import Payment from "./pages/client/Payment";
 import PaymentSuccess from "./pages/client/PaymentSuccess";
+import PaymentFailed from "./pages/client/PaymentFailed";
 import WishList from "./pages/client/WishList";
-import BankTransferInfo from "./pages/client/BankTransferInfo";
 import RestorePassword from "./pages/client/RestorePassword";
 import Otp from "./pages/client/Otp";
 import RegisteredOTP from "./pages/client/RegisteredOTP";
@@ -32,7 +32,6 @@ import User from "./pages/client/User";
 import Edit from "./pages/client/EditProfile";
 import UserHome from "./pages/client/UserHome";
 import PageNotFound from "./pages/client/PageNotFound";
-import MomoTransferInfo from "./pages/client/MomoTransferInfo";
 
 // admin
 import AddCustomer from "./pages/admin/AddCustomer";
@@ -97,17 +96,9 @@ const router = createBrowserRouter(
           <Route path="/cart" element={<Cart />} />
           <Route path="/cart/payment-info" element={<PaymentInfo />} />
           <Route path="/cart/payment" element={<Payment />} />
-          <Route path="/cart/payment/:id" element={<Payment />} />
           <Route path="/cart/payment/success" element={<PaymentSuccess />} />
+          <Route path="/cart/payment/failed" element={<PaymentFailed />} />
           <Route path="/cart/voucher" element={<Voucher />} />
-          <Route
-            path="/cart/bank-transfer-info"
-            element={<BankTransferInfo />}
-          />
-          <Route
-            path="/cart/momo-transfer-info"
-            element={<MomoTransferInfo />}
-          />
           <Route path="forgot-password-otp" element={<Otp />} />
           <Route path="otp" element={<RegisteredOTP />} />
           <Route path="forgot-password" element={<RestorePassword />} />
@@ -173,7 +164,7 @@ const router = createBrowserRouter(
           <Route path="reset-password" element={<ResetPassword />} />
           <Route path="enquiries/:id" element={<ViewEnq />} />
           <Route path="order/:id" element={<SPViewOrder />} />
-          <Route path="support" element= {<ChatSupport/>} />
+          <Route path="support" element={<ChatSupport />} />
         </Route>
       </Route>
     </>

@@ -13,8 +13,19 @@ const createOrder = async (order) => {
   return response.data;
 };
 
+const updatePaymentStatus = async (updateData) => {
+  let config = get_config();
+  const response = await axios.put(
+    `${base_url}user/order/update-payment/${updateData.id}`,
+    updateData,
+    config
+  );
+  return response.data;
+};
+
 const orderService = {
   createOrder,
+  updatePaymentStatus,
 };
 
 export default orderService;

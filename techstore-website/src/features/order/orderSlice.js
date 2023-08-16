@@ -12,15 +12,30 @@ export const createOrder = createAsyncThunk(
   }
 );
 
+export const updatePaymentStatus = createAsyncThunk(
+  "order/update-order",
+  async (order, thunkAPI) => {
+    try {
+      return await orderService.updatePaymentStatus(order);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const resetOrderState = createAction("order/reset-order-state");
+
+const initialState = {
+  orders: [],
+  isLoading: false,
+  isSuccess: false,
+  isError: false,
+  message: "",
+};
+
 export const orderSlice = createSlice({
   name: "order",
-  initialState: {
-    orders: [],
-    isLoading: false,
-    isSuccess: false,
-    isError: false,
-    message: "",
-  },
+  initialState: initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
@@ -38,6 +53,24 @@ export const orderSlice = createSlice({
         state.isError = true;
         state.isSuccess = false;
         state.message = action.error;
+      })
+      .addCase(updatePaymentStatus.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updatePaymentStatus.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.updatedOrder = action.payload;
+      })
+      .addCase(updatePaymentStatus.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
+      })
+      .addCase(resetOrderState, (state) => {
+        return initialState;
       });
   },
 });

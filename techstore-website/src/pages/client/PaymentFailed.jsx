@@ -13,29 +13,21 @@ import {
   resetOrderState,
 } from "../../features/order/orderSlice";
 
-function PaymentSuccess() {
+function PaymentFailed() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const method = searchParams.get("method");
 
-  console.log(method);
   let { createdOrder } = useSelector((state) => state.order);
   createdOrder = createdOrder !== undefined ? createdOrder : {};
 
   useEffect(() => {
-    // validatePayment(history.search)
-    //   .then((data) => {
-    //     setStatus("success");
-    //   })
-    //   .catch(() => {
-    //     setStatus("failed");
-    //   });
     dispatch(
       updatePaymentStatus({
         id: createdOrder._id,
-        status: "success",
+        status: "failed",
         method: method,
       })
     );
@@ -208,47 +200,47 @@ function PaymentSuccess() {
               </em>
             </p>
           </div>
-          <div className="p-[10px] bg-[#d4edda] shadow-cellphone rounded-[15px]">
+          <div className="p-[10px] bg-[#fef2f2] shadow-cellphone rounded-[15px]">
             <div className="p-[10px] text-[#155724]">
-              <h1 className="text-xl font-semibold text-center uppercase">
-                ĐẶT HÀNG THÀNH CÔNG
+              <h1 className="text-xl font-semibold text-center uppercase text-[#CC0017]">
+                ĐẶT HÀNG KHÔNG THÀNH CÔNG
               </h1>
-              <p className="font-bold text-lg my-[15px]">
+              <p className="font-bold text-lg my-[15px] text-[#721C24]">
                 <span className="font-normal">Mã Đơn Hàng: </span>
                 {createdOrder._id}
               </p>
-              <p className="font-bold text-lg my-[15px]">
+              <p className="font-bold text-lg my-[15px] text-[#721C24]">
                 <span className="font-normal">Người đặt: </span>
                 {createdOrder.name}
               </p>
-              <p className="font-bold text-lg my-[15px]">
+              <p className="font-bold text-lg my-[15px] text-[#721C24]">
                 <span className="font-normal">Số Điện Thoại: </span>
                 {createdOrder.phone}
               </p>
-              <p className="font-bold text-lg my-[15px]">
+              <p className="font-bold text-lg my-[15px] text-[#721C24]">
                 <span className="font-normal">Email: </span>
                 {createdOrder.email}
               </p>
-              <p className="font-bold text-lg my-[15px]">
+              <p className="font-bold text-lg my-[15px] text-[#721C24]">
                 <span className="font-normal">Nhận Sản Phẩm Tại: </span>
                 {createdOrder.address}
               </p>
-              <p className="font-bold text-lg my-[15px]">
+              <p className="font-bold text-lg my-[15px] text-[#721C24]">
                 <span className="font-normal">Hình Thức Thanh Toán: </span>
                 {method}
               </p>
               {method === "VNPAY" ? (
-                <p className="font-bold text-lg my-[15px]">
+                <p className="font-bold text-lg my-[15px] text-[#721C24]">
                   <span className="font-normal">Trạng thái thanh toán: </span>
-                  Thành công
+                  Thất bại
                 </p>
               ) : (
-                <p className="font-bold text-lg my-[15px]">
+                <p className="font-bold text-lg my-[15px] text-[#721C24]">
                   <span className="font-normal">Trạng thái thanh toán: </span>
                   Thanh toán khi nhận hàng
                 </p>
               )}
-              <p className="font-bold text-lg my-[15px]">
+              <p className="font-bold text-lg my-[15px] text-[#721C24]">
                 <span className="font-normal">Tổng Tiền: </span>
                 {formatNumberWithDots(createdOrder.totalAfterDiscount)} ₫
               </p>
@@ -284,6 +276,102 @@ function PaymentSuccess() {
                 </div>
               </div>
             ))}
+
+            {/* <div className="flex gap-[10px] p-[5px] mb-[10px] shadow-cellphone rounded-[15px]">
+              <div className="w-[calc(25%-5px)]">
+                <img
+                  src="https://image.cellphones.com.vn/200x/media/catalog/product/t/_/t_m_21.png"
+                  alt=""
+                />
+              </div>
+              <div className="text-base font-semibold text-[#0e2431]">
+                <p className="my-[5px]">iPhone 14 Pro Max 256GB-Tím</p>
+                <p className="my-[5px]">
+                  <span className="font-normal">Giá:</span> 29.290.000 ₫
+                  <del className="text-[15px] font-normal text-[#777777]">
+                    32.990.000 ₫
+                  </del>
+                </p>
+                <p className="my-[5px]">
+                  <span className="font-normal">Số lượng:</span> 1
+                </p>
+                <p className=" my-[5px]">
+                  <span className="font-normal">Tổng tiền:</span> 29.290.000 ₫
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-[10px] p-[5px] mb-[10px] shadow-cellphone rounded-[15px]">
+              <div className="w-[calc(25%-5px)]">
+                <img
+                  src="https://image.cellphones.com.vn/200x/media/catalog/product/t/_/t_m_21.png"
+                  alt=""
+                />
+              </div>
+              <div className="text-base font-semibold text-[#0e2431]">
+                <p className="my-[5px]">iPhone 14 Pro Max 256GB-Tím</p>
+                <p className="my-[5px]">
+                  <span className="font-normal">Giá:</span> 29.290.000 ₫
+                  <del className="text-[15px] font-normal text-[#777777]">
+                    32.990.000 ₫
+                  </del>
+                </p>
+                <p className="my-[5px]">
+                  <span className="font-normal">Số lượng:</span> 1
+                </p>
+                <p className=" my-[5px]">
+                  <span className="font-normal">Tổng tiền:</span> 29.290.000 ₫
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-[10px] p-[5px] mb-[10px] shadow-cellphone rounded-[15px]">
+              <div className="w-[calc(25%-5px)]">
+                <img
+                  src="https://image.cellphones.com.vn/200x/media/catalog/product/t/_/t_m_21.png"
+                  alt=""
+                />
+              </div>
+              <div className="text-base font-semibold text-[#0e2431]">
+                <p className="my-[5px]">iPhone 14 Pro Max 256GB-Tím</p>
+                <p className="my-[5px]">
+                  <span className="font-normal">Giá:</span> 29.290.000 ₫
+                  <del className="text-[15px] font-normal text-[#777777]">
+                    32.990.000 ₫
+                  </del>
+                </p>
+                <p className="my-[5px]">
+                  <span className="font-normal">Số lượng:</span> 1
+                </p>
+                <p className=" my-[5px]">
+                  <span className="font-normal">Tổng tiền:</span> 29.290.000 ₫
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-[10px] p-[5px] mb-[10px] shadow-cellphone rounded-[15px]">
+              <div className="w-[calc(25%-5px)]">
+                <img
+                  src="https://image.cellphones.com.vn/200x/media/catalog/product/t/_/t_m_21.png"
+                  alt=""
+                />
+              </div>
+              <div className="text-base font-semibold text-[#0e2431]">
+                <p className="my-[5px]">iPhone 14 Pro Max 256GB-Tím</p>
+                <p className="my-[5px]">
+                  <span className="font-normal">Giá:</span> 29.290.000 ₫
+                  <del className="text-[15px] font-normal text-[#777777]">
+                    32.990.000 ₫
+                  </del>
+                </p>
+                <p className="my-[5px]">
+                  <span className="font-normal">Số lượng:</span> 1
+                </p>
+                <p className=" my-[5px]">
+                  <span className="font-normal">Tổng tiền:</span> 29.290.000 ₫
+                </p>
+              </div>
+            </div> */}
           </div>
 
           <div className="flex items-center gap-3 my-3">
@@ -323,4 +411,4 @@ function PaymentSuccess() {
   );
 }
 
-export default PaymentSuccess;
+export default PaymentFailed;

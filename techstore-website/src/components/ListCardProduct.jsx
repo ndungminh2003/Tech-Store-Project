@@ -55,8 +55,9 @@ export default function ListCardProduct(props) {
       <div className=" flex gap-4 justify-between px-4 py-2 xxsm:flex-col xsm:flex-col sm:flex-col md:flex-col ">
         <h1 className=" font-bold text-3xl text-gray-500">{props.type}</h1>
         <div className=" flex gap-5 xxsm:hidden xsm:gap-4 sm:gap-4 md:gap-4 ">
-          {brands.map((brand) => (
+          {brands.map((brand, index) => (
             <span
+              key={index}
               className=" cursor-pointer bg-slate-200 p-4 rounded-xl hover:bg-slate-400 duration-300"
               onClick={() => setBrand(brand.name)}
             >

@@ -174,8 +174,9 @@ export default function Widget() {
           Accessories
         </h1>
         <div className=" flex flex-wrap gap-7 ml-2">
-          {accessories.map((i) => (
+          {accessories.map((i, index) => (
             <Link
+              key={index}
               to="search-product"
               className=" hover:scale-110 hover:duration-200"
             >
@@ -199,8 +200,9 @@ export default function Widget() {
           Electronic Computer
         </h1>
         <div className=" flex flex-wrap gap-7 ml-2">
-          {electronic_computer.map((i) => (
+          {electronic_computer.map((i, index) => (
             <Link
+              key={index}
               to="search-product"
               className=" hover:scale-110 hover:duration-200"
             >
@@ -224,8 +226,9 @@ export default function Widget() {
           Second-Hand
         </h1>
         <div className=" flex flex-wrap gap-7 ml-2">
-          {second_hand.map((i) => (
+          {second_hand.map((i, index) => (
             <Link
+              key={index}
               to="search-product"
               className=" hover:scale-110 hover:duration-200"
             >
