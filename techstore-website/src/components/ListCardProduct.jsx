@@ -7,6 +7,7 @@ import { Autoplay, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/grid";
+import { useSelector } from "react-redux";
 
 const brands = [
   {
@@ -32,7 +33,9 @@ const brands = [
 export default function ListCardProduct(props) {
   const [products, setProducts] = useState(props.productState);
   const [brand, setBrand] = useState("");
-
+  let wishlist = useSelector((state) => state.auth.user?.wishlist);
+  wishlist = wishlist || [];
+  const productIdsInWishlist = wishlist.map((product) => product._id);
   useEffect(() => {
     const type = props.type.toLowerCase();
     // setProducts depends on props.type
@@ -44,7 +47,8 @@ export default function ListCardProduct(props) {
     } else {
       productList = props.productState.filter(
         (product) =>
-          product.category.toLowerCase() === type && product.brand === brand
+          product.category.toLowerCase() === type &&
+          product.brand.toLowerCase() === brand.toLowerCase()
       );
     }
     setProducts(productList);
@@ -126,7 +130,12 @@ export default function ListCardProduct(props) {
                 images={product.images}
                 description={product.description}
                 slug={product.slug}
+                feature={product.feature}
+                isFavorite={productIdsInWishlist.includes(product._id)}
               />
+              {productIdsInWishlist.includes(product._id)
+                ? console.log("product", product._id)
+                : null}
             </SwiperSlide>
           ))}
         </Swiper>

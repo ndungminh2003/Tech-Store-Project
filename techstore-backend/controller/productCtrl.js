@@ -149,32 +149,61 @@ const getAllProduct = asyncHandler(async (req, res) => {
 });
 const addToWishlist = asyncHandler(async (req, res) => {
   const { _id } = req.user;
-  const { prodId } = req.body;
+  const { proId } = req.body;
   try {
-    const user = await User.findById(_id);
-    const alreadyadded = user.wishlist.find((id) => id.toString() === prodId);
+    const findUser = await User.findById(_id);
+    const findProduct = await Product.findById(proId);
+    if (!findProduct) throw new Error("Product not found");
+    const alreadyadded = findUser.wishlist.find(
+      (id) => id.toString() === proId
+    );
     if (alreadyadded) {
       let user = await User.findByIdAndUpdate(
         _id,
         {
-          $pull: { wishlist: prodId },
+          $pull: { wishlist: proId },
         },
         {
           new: true,
         }
-      );
-      res.json(user);
+      )
+        .populate("wishlist")
+        .exec();
+      const resUser = {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        mobile: user.mobile,
+        role: user.role,
+        accessToken: user.accessToken,
+        wishlist: user.wishlist,
+      };
+      console.log(resUser);
+      res.json({ message: "Product removed from wishlist", user: resUser });
     } else {
       let user = await User.findByIdAndUpdate(
         _id,
         {
-          $push: { wishlist: prodId },
+          $push: { wishlist: proId },
         },
         {
           new: true,
         }
-      );
-      res.json(user);
+      )
+        .populate("wishlist")
+        .exec();
+      const resUser = {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        mobile: user.mobile,
+        role: user.role,
+        accessToken: user.accessToken,
+        wishlist: user.wishlist,
+      };
+      console.log(user.wishlist);
+      console.log(resUser);
+      res.json({ message: "Product added to wishlist", user: resUser });
     }
   } catch (error) {
     throw new Error(error);

@@ -49,7 +49,7 @@ const createUserInAdmin = asyncHandler(async (req, res) => {
 const login = asyncHandler(async (req, res) => {
   const { email, password, role } = req.body;
   console.log({ email, password, role });
-  const findUser = await User.findOne({ email });
+  const findUser = await User.findOne({ email }).populate("wishlist").exec();
   if (!findUser) {
     return res.status(404).json("Email not found");
   }
@@ -84,6 +84,7 @@ const login = asyncHandler(async (req, res) => {
     email: findUser?.email,
     mobile: findUser?.mobile,
     role: findUser?.role,
+    wishlist: findUser?.wishlist,
     accessToken: generateToken(findUser?._id),
   });
 });

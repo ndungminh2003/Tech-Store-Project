@@ -5,14 +5,16 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import { formatNumberWithDots } from "../utils/formatNumber";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { addToWishlist } from "../features/auth/authSlice";
 
 const Style = {
   border: "solid 2 ",
@@ -23,8 +25,10 @@ const Style = {
 };
 
 export default function CardProduct(props) {
+  const dispatch = useDispatch();
   const [isVisibleShoppingCart, setVisibleShoppingCart] = useState(false);
-
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFavoriteClick, setIsFavoriteClick] = useState(false);
   const handleMouseOver = () => {
     setVisibleShoppingCart(true);
   };
@@ -38,6 +42,7 @@ export default function CardProduct(props) {
     props.thumbnail ||
       "https://res.cloudinary.com/dqwdvpi4d/image/upload/v1691639790/default-product-image-removebg-preview_p3g0jy.png"
   );
+
   useEffect(() => {
     if (props.thumbnail === undefined) {
       setThumbnail(
@@ -80,16 +85,48 @@ export default function CardProduct(props) {
     localStorage.setItem("cart", JSON.stringify(cart));
     window.dispatchEvent(new Event("storage"));
   };
+  const handleAddToWishlist = () => {
+    dispatch(addToWishlist({ proId: props.id }));
+    setIsFavoriteClick(true);
+  };
+  const { message, isSuccess, isError, isLoading } = useSelector(
+    (state) => state.auth
+  );
+  useEffect(() => {
+    if (
+      isFavoriteClick &&
+      !isLoading &&
+      isSuccess &&
+      message === "Product added to wishlist"
+    ) {
+      toast.success("Đã thêm vào danh sách yêu thích");
+      setIsFavoriteClick(false);
+
+      console.log("isFavorite", props.isFavorite);
+    }
+    if (
+      isFavoriteClick &&
+      !isLoading &&
+      isSuccess &&
+      message === "Product removed from wishlist"
+    ) {
+      toast.info("Đã xóa khỏi danh sách yêu thích");
+      setIsFavoriteClick(false);
+    }
+    if (isFavoriteClick && !isLoading && isError) {
+      toast.error("Thêm vào danh sách yêu thích thất bại");
+      setIsFavoriteClick(false);
+    }
+  }, [isSuccess, isError, isLoading]);
 
   return (
     <div className=" relative">
       <Card
         sx={Style}
-        onClick={handleCardClick}
         className="cursor-pointer hover:rounded-2xl hover:duration-75"
       >
         <div className=" flex flex-col gap-2 items-center h-full">
-          <div className=" hover:scale-110">
+          <div onClick={handleCardClick} className=" hover:scale-110">
             <CardMedia
               sx={{
                 width: 180,
@@ -108,7 +145,10 @@ export default function CardProduct(props) {
             />
           </div>
 
-          <div className=" flex flex-col justify-center h-[150px] w-[300px] md:w-[250px] lg:w-[330px]">
+          <div
+            onClick={handleCardClick}
+            className=" flex flex-col justify-center h-[150px] w-[300px] md:w-[250px] lg:w-[330px]"
+          >
             <CardContent className=" flex flex-col h-full ">
               <Typography gutterBottom variant="h6" component="div">
                 <span className="md:text-sm">{props.name}</span>
@@ -134,9 +174,19 @@ export default function CardProduct(props) {
 
           <div className="flex w-full justify-end p-1 h-full items-end">
             <div>
-              <Button size="small">
+              <Button
+                size="small"
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                onClick={handleAddToWishlist}
+              >
                 <span className="text-gray-500 mr-1">Favorite</span>
-                <FavoriteBorderIcon className="!cursor-pointer z-20 text-[#d70018] hover:animate-ping"></FavoriteBorderIcon>
+                {/* <FavoriteBorderIcon className="!cursor-pointer z-20 text-[#d70018] hover:animate-ping"></FavoriteBorderIcon> */}
+                {isHovered || props.isFavorite ? (
+                  <FavoriteIcon className="cursor-pointer text-red-600 hover:animate-ping" />
+                ) : (
+                  <FavoriteBorderIcon className="!cursor-pointer z-20 text-[#d70018] hover:text-red-600 hover:animate-ping" />
+                )}
               </Button>
             </div>
           </div>

@@ -68,6 +68,17 @@ const changePassword = async (data) => {
   return response.data;
 };
 
+const addToWishlist = async (prodId) => {
+  let config = get_config();
+  const response = await axios.put(
+    `${base_url}product/wishlist`,
+    prodId,
+    config
+  );
+
+  return response.data;
+};
+
 const authService = {
   login,
   logout,
@@ -77,6 +88,7 @@ const authService = {
   verifyOTP,
   deleteNotVerified,
   changePassword,
+  addToWishlist,
 };
 
 export default authService;

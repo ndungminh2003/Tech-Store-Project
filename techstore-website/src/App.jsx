@@ -86,8 +86,8 @@ const router = createBrowserRouter(
           <Route path="product-view/:slug" element={<ProductView />} />
           <Route path="search-product" element={<CatalogSearch />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="wishlist" element={<WishList />} />
           <Route element={<RequireAuth allowedRoles="user" />}>
+            <Route path="wishlist" element={<WishList />} />
             <Route path="/user" element={<User />}>
               <Route index element={<UserHome />} />
               <Route path="order" element={<Purchase />} />

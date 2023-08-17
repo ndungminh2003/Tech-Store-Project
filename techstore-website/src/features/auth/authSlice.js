@@ -100,6 +100,17 @@ export const refreshToken = createAsyncThunk(
   }
 );
 
+export const addToWishlist = createAsyncThunk(
+  "auth/add-to-wishlist",
+  async (prodId, thunkAPI) => {
+    try {
+      return await authService.addToWishlist(prodId);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 export const resetAuthState = createAction("auth/resetState");
 
 export const authSlice = createSlice({
@@ -231,6 +242,22 @@ export const authSlice = createSlice({
         state.isError = true;
         state.isSuccess = false;
         state.isLoading = false;
+        state.message = action.error;
+      })
+      .addCase(addToWishlist.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(addToWishlist.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.message = action.payload.message;
+        state.user = action.payload.user;
+      })
+      .addCase(addToWishlist.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
         state.message = action.error;
       })
       .addCase(resetAuthState, (state) => {
