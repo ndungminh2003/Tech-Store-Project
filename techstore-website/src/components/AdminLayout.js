@@ -175,7 +175,7 @@ const AdminLayout = () => {
               ],
             },
             {
-              key: "sales-report",
+              key: "report-list",
               icon: <TbReportMoney style={{ fontSize: "24px" }} />,
               label: "Sales Reports",
             },

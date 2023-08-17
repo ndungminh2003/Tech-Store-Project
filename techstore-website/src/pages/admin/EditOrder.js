@@ -77,22 +77,20 @@ const EditOrder = () => {
         <h1 className="text-[#071437] text-lg font-semibold">Edit Order</h1>
         <ul className="flex items-center gap-1 text-[#B5B5C3]">
           <li>
-            <a href="">Home</a>
+            <a href="">Dashboard</a>
           </li>
           <span className="w-[5px] h-[2px] bg-[#B5B5C3] mt-[2px]"></span>
-          <li>eCommerce</li>
-          <span className="w-[5px] h-[2px] bg-[#B5B5C3] mt-[2px]"></span>
-          <li>Sales</li>
+          <li>Orders</li>
         </ul>
       </div>
       <form onSubmit={formik.handleSubmit} className="flex gap-10">
-        <div className="w-[300px] py-[13px] border border-[#F1F1F2] rounded-xl">
-          <div className="px-[26px]">
+        <div className="w-[300px] border border-[#F1F1F2] rounded-xl">
+          <div className="px-[26px] bg-white rounded-md">
             <h1 className="text-xl min-h-[70px] text-[#071437] font-semibold leading-[70px]">
               Order Details
             </h1>
           </div>
-          <div className="px-[26px] pb-[30px] flex flex-col gap-10">
+          <div className="px-[26px] pb-[30px] flex flex-col gap-10 bg-white rounded-md">
             <div>
               <label
                 htmlFor=""
@@ -192,7 +190,7 @@ const EditOrder = () => {
           </div>
         </div>
         <div className="flex-1 flex flex-col gap-7">
-          <div className="border border-[#F1F1F2] rounded-xl px-[30px]">
+          <div className="border border-[#F1F1F2] rounded-xl px-[30px] bg-white rounded-md pb-[15px]">
             <h1 className="text-xl min-h-[70px]  text-[#071437] font-semibold leading-[70px]">
               Order Products
             </h1>
@@ -329,7 +327,7 @@ const EditOrder = () => {
                     </tr>
                   </thead>
 
-                  <tbody className="font-semibold text-gray-600 w-full">
+                  <tbody className="font-semibold text-gray-600 w-full ">
                     {order.products.map((product, index) => (
                       <tr key={index} className="odd">
                         <td>
@@ -395,9 +393,9 @@ const EditOrder = () => {
             </div>
           </div>
 
-          <div className="border border-[#F1F1F2] rounded-xl px-[30px] pb-[30px]">
+          <div className="border border-[#F1F1F2] rounded-xl px-[30px] pb-[30px] bg-white rounded-md">
             <div className="flex flex-col gap-7">
-              <h1 className="text-lg text-[#071437] font-semibold">
+              <h1 className="text-lg text-[#071437] font-semibold mt-[20px]">
                 Customer Details
               </h1>
               <div className="grid grid-cols-3 gap-5">

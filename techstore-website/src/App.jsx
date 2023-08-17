@@ -49,17 +49,17 @@ import AddColor from "./pages/admin/AddColor";
 import ColorList from "./pages/admin/ColorList";
 import AddCoupon from "./pages/admin/AddCoupon";
 import CouponList from "./pages/admin/CouponList";
-import Enquiries from "./pages/admin/Enquiries";
+// import Enquiries from "./pages/admin/Enquiries";
 import Orders from "./pages/admin/Orders";
 import ForgotPassword from "./pages/admin/ForgotPassword";
 import ResetPassword from "./pages/admin/ResetPassword";
-import ViewEnq from "./pages/admin/ViewEnq";
+// import ViewEnq from "./pages/admin/ViewEnq";
 import ViewOrder from "./pages/admin/ViewOrder";
 import AdminLogin from "./pages/admin/Login";
 import AdminLayout from "./components/AdminLayout";
 import CustomerDetails from "./pages/admin/CustomerDetails";
 import EditOrder from "./pages/admin/EditOrder";
-
+import ReportList from "./pages/admin/SalesReportList";
 // salesperson
 import SPLayout from "./components/SPLayout";
 import SPDashboard from "./pages/salesperson/Dashboard";
@@ -71,6 +71,8 @@ import SPEditOrder from "./pages/salesperson/EditOrder";
 import SPOrders from "./pages/salesperson/Orders";
 import SPViewOrder from "./pages/salesperson/ViewOrder";
 import SPLogin from "./pages/salesperson/Login";
+import SPAddReport from "./pages/salesperson/AddSalesReport";
+import SPReportList from "./pages/salesperson/SalesReportList";
 import ChatSupport from "./pages/salesperson/ChatEngine";
 // protected route
 import RequireAuth from "./components/RequireAuth";
@@ -138,14 +140,12 @@ const router = createBrowserRouter(
           <Route path="coupon-list" element={<CouponList />} />
           <Route path="coupon" element={<AddCoupon />} />
           <Route path="coupon/:id" element={<AddCoupon />} />
-          <Route path="enquiries" element={<Enquiries />} />
           <Route path="order-list" element={<Orders />} />
           <Route path="order/edit-order/:id" element={<EditOrder />} />
           <Route path="order/:id" element={<EditOrder />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
           <Route path="reset-password" element={<ResetPassword />} />
-          <Route path="enquiries/:id" element={<ViewEnq />} />
-          {/* <Route path="order/:id" element={<ViewOrder />} /> */}
+          <Route path="report-list/" element={<ReportList />} />
         </Route>
       </Route>
       <Route element={<RequireAuth allowedRoles="salesperson" />}>
@@ -158,12 +158,13 @@ const router = createBrowserRouter(
           <Route path="product" element={<SPAddProduct />} />
           <Route path="product/:id" element={<SPAddProduct />} />
           <Route path="list-product" element={<SPProductList />} />
-          <Route path="enquiries" element={<Enquiries />} />
           <Route path="order" element={<SPEditOrder />} />
           <Route path="order-list" element={<SPOrders />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
           <Route path="reset-password" element={<ResetPassword />} />
-          <Route path="enquiries/:id" element={<ViewEnq />} />
+          <Route path="report-list/" element={<SPReportList />} />
+          <Route path="report/" element={<SPAddReport />} />
+          <Route path="report/:id" element={<SPAddReport />} />
           <Route path="order/:id" element={<SPViewOrder />} />
           <Route path="support" element={<ChatSupport />} />
         </Route>

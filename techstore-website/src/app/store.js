@@ -5,7 +5,7 @@ import productReducer from "../features/product/productSlice";
 import brandReducer from "../features/brand/brandSlice";
 import pCategoryReducer from "../features/pcategory/pcategorySlice";
 import colorReducer from "../features/color/colorSlice";
-import enquiryReducer from "../features/enquiry/enquirySlice";
+import reportReducer from "../features/salesreport/reportSlice";
 import uploadReducer from "../features/upload/uploadSlice";
 import couponReducer from "../features/coupon/couponSlice";
 import authReducer from "../features/auth/authSlice";
@@ -39,7 +39,7 @@ const rootReducer = combineReducers({
   brand: brandReducer,
   pCategory: pCategoryReducer,
   color: colorReducer,
-  enquiry: enquiryReducer,
+  report: reportReducer,
   upload: uploadReducer,
   coupon: couponReducer,
 });

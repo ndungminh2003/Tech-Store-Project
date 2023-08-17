@@ -25,7 +25,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Badge from "@mui/joy/Badge";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 
 const { Header, Sider, Content } = Layout;
 const SPLayout = () => {
@@ -44,7 +44,7 @@ const SPLayout = () => {
   const handleLogout = () => {
     dispatch(logout(authState?.user?.email));
     setIsOpen(false);
-    navigate("/admin-login");
+    navigate("/salesperson-login");
   };
   return (
     <Layout /* onContextMenu={(e) => e.preventDefault()} */ className="admin">
@@ -115,6 +115,18 @@ const SPLayout = () => {
               key: "sales-report",
               icon: <TbReportMoney style={{ fontSize: "24px" }} />,
               label: "Sales Reports",
+              children: [
+                {
+                  key: "report",
+                  icon: <TbReportMoney style={{ fontSize: "24px" }} />,
+                  label: "Add Report",
+                },
+                {
+                  key: "report-list",
+                  icon: <TbReportMoney style={{ fontSize: "24px" }} />,
+                  label: "View Reports",
+                },
+              ],
             },
             // {
             //   key: "enquiries",
@@ -126,7 +138,7 @@ const SPLayout = () => {
               icon: <SupportAgentIcon style={{ fontSize: "24px" }} />,
               label: "Support",
             },
-            
+
             {
               key: "logout",
               icon: <RiLogoutBoxRLine style={{ fontSize: "24px" }} />,
