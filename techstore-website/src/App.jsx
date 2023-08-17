@@ -139,12 +139,13 @@ const router = createBrowserRouter(
           <Route path="coupon" element={<AddCoupon />} />
           <Route path="coupon/:id" element={<AddCoupon />} />
           <Route path="enquiries" element={<Enquiries />} />
-          <Route path="order" element={<EditOrder />} />
           <Route path="order-list" element={<Orders />} />
+          <Route path="order/edit-order/:id" element={<EditOrder />} />
+          <Route path="order/:id" element={<EditOrder />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
           <Route path="reset-password" element={<ResetPassword />} />
           <Route path="enquiries/:id" element={<ViewEnq />} />
-          <Route path="order/:id" element={<ViewOrder />} />
+          {/* <Route path="order/:id" element={<ViewOrder />} /> */}
         </Route>
       </Route>
       <Route element={<RequireAuth allowedRoles="salesperson" />}>

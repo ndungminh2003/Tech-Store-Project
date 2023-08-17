@@ -25,6 +25,11 @@ const createAUser = async (user) => {
   return response.data;
 };
 
+const createUserInAdmin = async (user) => {
+  const response = await axios.post(`${base_url}user/admin-create-user`, user);
+  return response.data;
+};
+
 const updateAUser = async (user) => {
   const { id, accountData } = user;
   delete accountData._id;
@@ -48,6 +53,7 @@ const accountService = {
   getSalesperson,
   getAUser,
   createAUser,
+  createUserInAdmin,
   updateAUser,
   deleteUser,
 };

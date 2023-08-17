@@ -13,7 +13,7 @@ export const createOrder = createAsyncThunk(
 );
 
 export const updatePaymentStatus = createAsyncThunk(
-  "order/update-order",
+  "order/update-payment-status",
   async (order, thunkAPI) => {
     try {
       return await orderService.updatePaymentStatus(order);
@@ -22,6 +22,63 @@ export const updatePaymentStatus = createAsyncThunk(
     }
   }
 );
+
+export const getOrderById = createAsyncThunk(
+  "order/get-order-by-id",
+  async (orderId, thunkAPI) => {
+    try {
+      return await orderService.getOrderById(orderId);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const getOrdersByUserId = createAsyncThunk(
+  "order/get-orders-by-user-id",
+  async (userId, thunkAPI) => {
+    try {
+      return await orderService.getOrderByUserId(userId);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const updateOrder = createAsyncThunk(
+  "order/update-order",
+  async (order, thunkAPI) => {
+    try {
+      return await orderService.updateOrder(order);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const deleteOrder = createAsyncThunk(
+  "order/delete-order",
+  async (orderId, thunkAPI) => {
+    try {
+      return await orderService.deleteOrder(orderId);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const getAllOrders = createAsyncThunk(
+  "order/get-all-orders",
+  async (thunkAPI) => {
+    try {
+      return await orderService.getAllOrders();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const resetState = createAction("Reset_all");
 
 export const resetOrderState = createAction("order/reset-order-state");
 
@@ -54,6 +111,81 @@ export const orderSlice = createSlice({
         state.isSuccess = false;
         state.message = action.error;
       })
+      .addCase(getAllOrders.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getAllOrders.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.orders = action.payload;
+      })
+      .addCase(getAllOrders.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
+      })
+      .addCase(getOrderById.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getOrderById.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.orderById = action.payload;
+      })
+      .addCase(getOrderById.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
+      })
+      .addCase(getOrdersByUserId.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getOrdersByUserId.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.orders = action.payload;
+      })
+      .addCase(getOrdersByUserId.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
+      })
+      .addCase(updateOrder.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateOrder.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.updatedOrder = action.payload;
+      })
+      .addCase(updateOrder.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
+      })
+      .addCase(deleteOrder.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteOrder.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.message = action.payload;
+      })
+      .addCase(deleteOrder.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
+      })
       .addCase(updatePaymentStatus.pending, (state) => {
         state.isLoading = true;
       })
@@ -69,6 +201,7 @@ export const orderSlice = createSlice({
         state.isSuccess = false;
         state.message = action.error;
       })
+      .addCase(resetState, () => initialState)
       .addCase(resetOrderState, (state) => {
         return initialState;
       });

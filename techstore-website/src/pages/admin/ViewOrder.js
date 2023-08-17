@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BiEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import { Link, useLocation } from "react-router-dom";
-import { getOrderById } from "../../features/auth/authSlice";
+import { getOrderById } from "../../features/order/orderSlice";
 const columns = [
   {
     title: "SNo",

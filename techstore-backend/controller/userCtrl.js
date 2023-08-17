@@ -4,7 +4,6 @@ const Cart = require("../models/cartModel");
 const Coupon = require("../models/couponModel");
 const Order = require("../models/orderModel");
 const uniqid = require("uniqid");
-
 const asyncHandler = require("express-async-handler");
 const { generateToken } = require("../config/jwtToken");
 const validateMongoDbId = require("../utils/validateMongodbId");
@@ -29,6 +28,17 @@ const createUser = asyncHandler(async (req, res) => {
       htm: "<h1>Hey User here is your OTP</h1>" + otp,
     };
     sendEmail(data);
+    res.status(200).json(newUser);
+  } else {
+    throw new Error("User Already Exists");
+  }
+});
+
+const createUserInAdmin = asyncHandler(async (req, res) => {
+  const email = req.body.email;
+  const findUser = await User.findOne({ email: email });
+  if (!findUser) {
+    const newUser = await User.create(req.body);
     res.status(200).json(newUser);
   } else {
     throw new Error("User Already Exists");
@@ -299,11 +309,18 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 
 const updateUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
+  const { password } = req.body;
+  delete req.body.password;
   validateMongoDbId(id);
   try {
-    const updatedUser = await User.findByIdAndUpdate(id, req.body, {
+    let updatedUser = await User.findByIdAndUpdate(id, req.body, {
       new: true,
     });
+    if (password !== undefined) {
+      updatedUser.password = password;
+      const updatedPassword = await updatedUser.save();
+      console.log({ updatedPassword });
+    }
     res.json(updatedUser);
   } catch (error) {
     throw new Error(error);
@@ -447,9 +464,26 @@ const updatePassword = asyncHandler(async (req, res) => {
   }
 });
 
+const changeUserPassword = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const { password } = req.body;
+  validateMongoDbId(id);
+  try {
+    const user = await User.findById(id);
+    if (password) {
+      user.password = password;
+      const updatedPassword = await user.save();
+      res.json({ message: "Password Updated Successfully" });
+    } else {
+      res.json({ message: "Password not updated" });
+    }
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
 const changePassword = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
-  console.log("controller", email, password);
   try {
     const user = await User.findOne({ email });
     if (password) {
@@ -722,7 +756,6 @@ const getAllOrders = asyncHandler(async (req, res) => {
   try {
     const alluserorders = await Order.find()
       .populate("products.product")
-      .populate("orderby")
       .exec();
     res.json(alluserorders);
   } catch (error) {
@@ -804,6 +837,7 @@ const deleteOrder = asyncHandler(async (req, res) => {
 
 module.exports = {
   createUser,
+  createUserInAdmin,
   login,
   getallUser,
   getAllCustomer,
@@ -817,6 +851,7 @@ module.exports = {
   handleRefreshToken,
   logout,
   updatePassword,
+  changeUserPassword,
   changePassword,
   forgotPasswordToken,
   resetPassword,

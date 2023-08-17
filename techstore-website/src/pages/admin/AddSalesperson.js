@@ -9,13 +9,12 @@ import { useDispatch, useSelector } from "react-redux";
 
 import {
   getAUser,
-  createAUser,
+  createUserInAdmin,
   updateAUser,
   resetState,
 } from "../../features/account/accountSlice";
 
-const phoneRegExp =
-  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 let schema = yup.object().shape({
   name: yup.string().required("Name is Required"),
@@ -34,8 +33,9 @@ const defaultSalespersonState = {
   email: "",
   mobile: "",
   dateOfBirth: "",
-  role: "",
+  role: "salesperson",
   address: "",
+  password: "",
 };
 
 const AddSalesperson = () => {
@@ -43,7 +43,7 @@ const AddSalesperson = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const getUserId = location.pathname.split("/")[3];
-  const newSalesperson = useSelector((state) => state.account);
+  const newSales = useSelector((state) => state.account);
 
   const changeDateFormet = (date) => {
     const newDate = new Date(date).toLocaleDateString();
@@ -75,7 +75,7 @@ const AddSalesperson = () => {
     createdUser,
     updatedUser,
     userDetail,
-  } = newSalesperson;
+  } = newSales;
 
   let salesperson = userDetail || defaultSalespersonState;
 
@@ -86,15 +86,16 @@ const AddSalesperson = () => {
     dateOfBirth: changeDateFormet(salesperson.dateOfBirth),
     role: salesperson.role,
     address: salesperson.address,
+    password: "",
   };
 
   useEffect(() => {
-    if (isSuccess && createdUser) {
+    if (!isLoading && isSuccess && createdUser) {
       toast.success("Salesperson Added Successfullly!");
     }
-    if (isSuccess && updatedUser) {
+    if (!isLoading && isSuccess && updatedUser) {
       toast.success("Salesperson Updated Successfullly!");
-      navigate("/admin/list-salesperson");
+      navigate("/admin/customer-list");
     }
     if (isError) {
       toast.error("Something Went Wrong!");
@@ -106,19 +107,15 @@ const AddSalesperson = () => {
     initialValues: salesperson,
     validationSchema: schema,
     onSubmit: (values) => {
-      console.log("values", values);
       if (getUserId !== undefined) {
+        if (values.password === "") delete values.password;
         const data = { id: getUserId, accountData: values };
         dispatch(updateAUser(data));
         dispatch(resetState());
       } else {
-        dispatch(createAUser(values));
+        dispatch(createUserInAdmin(values));
         formik.resetForm();
         dispatch(resetState());
-        // This is optional
-        // setTimeout(() => {
-        //   dispatch(resetState());
-        // }, 1000);
       }
     },
   });
@@ -129,10 +126,7 @@ const AddSalesperson = () => {
         {getUserId !== undefined ? "Edit" : "Add"} Salesperson
       </h3>
       <div>
-        <form
-          onSubmit={formik.handleSubmit}
-          className="flex gap-3 flex-col"
-        >
+        <form onSubmit={formik.handleSubmit} className="flex gap-3 flex-col">
           <div className=" h-16">
             <CustomInput
               type="text"
@@ -163,7 +157,7 @@ const AddSalesperson = () => {
 
           <div className=" h-16">
             <CustomInput
-              type="number"
+              type="tel"
               label="Enter Phone Number"
               name="mobile"
               onChng={formik.handleChange("mobile")}
@@ -223,7 +217,33 @@ const AddSalesperson = () => {
               {formik.touched.address && formik.errors.address}
             </div>
           </div>
-          
+          {getUserId !== undefined ? (
+            <div className=" h-16">
+              <CustomInput
+                type="password"
+                label="Change Salesperson Password"
+                name="password"
+                onChng={formik.handleChange}
+                onBlr={formik.handleBlur}
+                val={formik.values.password}
+              />
+            </div>
+          ) : (
+            <div className=" h-16">
+              <CustomInput
+                type="password"
+                label="Enter Salesperson Password"
+                name="password"
+                onChng={formik.handleChange}
+                onBlr={formik.handleBlur}
+                val={formik.values.password}
+              />
+              <div className="error">
+                {formik.touched.password && formik.errors.password}
+              </div>
+            </div>
+          )}
+
           <button
             className="inline-block align-middle text-center select-none font-normal whitespace-no-wrap rounded py-1 px-3 leading-normal no-underline bg-green-500 text-white hover:bg-green-600 border-0 rounded-3 my-5"
             type="submit"

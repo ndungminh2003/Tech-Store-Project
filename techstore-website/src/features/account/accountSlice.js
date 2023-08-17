@@ -45,6 +45,17 @@ export const createAUser = createAsyncThunk(
   }
 );
 
+export const createUserInAdmin = createAsyncThunk(
+  "account/admin-create-user",
+  async (user, thunkAPI) => {
+    try {
+      return await accountService.createUserInAdmin(user);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 export const updateAUser = createAsyncThunk(
   "account/update-user",
   async (user, thunkAPI) => {
@@ -140,6 +151,21 @@ export const accountSlice = createSlice({
         state.createdUser = action.payload;
       })
       .addCase(createAUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
+      })
+      .addCase(createUserInAdmin.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createUserInAdmin.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.createdUser = action.payload;
+      })
+      .addCase(createUserInAdmin.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;

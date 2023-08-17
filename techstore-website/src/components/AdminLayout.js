@@ -153,21 +153,9 @@ const AdminLayout = () => {
               ],
             },
             {
-              key: "order",
+              key: "order-list",
               icon: <FaClipboardList style={{ fontSize: "24px" }} />,
               label: "Orders",
-              children: [
-                {
-                  key: "order",
-                  icon: <FaClipboardList style={{ fontSize: "24px" }} />,
-                  label: "Add Order",
-                },
-                {
-                  key: "order-list",
-                  icon: <FaClipboardList style={{ fontSize: "24px" }} />,
-                  label: "Order List",
-                },
-              ],
             },
             {
               key: "marketing",
@@ -267,9 +255,9 @@ const AdminLayout = () => {
                 />
               </div>
 
-              <div class=" flex flex-col mr-8 ">
-                <h5 class="mb-0 font-bold">Hoang Anh</h5>
-                <p class="mb-0">Administrator</p>
+              <div className=" flex flex-col mr-8 ">
+                <h5 className="mb-0 font-bold">Hoang Anh</h5>
+                <p className="mb-0">Administrator</p>
               </div>
 
               {isOpen && (

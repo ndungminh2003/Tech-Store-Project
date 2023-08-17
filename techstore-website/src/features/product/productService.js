@@ -70,7 +70,7 @@ const updateProduct = async (product) => {
 
 const getProduct = async (id) => {
   let config = get_config();
-  const response = await axios.get(`${base_url}product/${id}`, config);
+  const response = await axios.get(`${base_url}product/by-id/${id}`, config);
 
   return response.data;
 };

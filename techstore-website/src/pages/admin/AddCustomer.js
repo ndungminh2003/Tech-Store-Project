@@ -9,13 +9,12 @@ import { useDispatch, useSelector } from "react-redux";
 
 import {
   getAUser,
-  createAUser,
+  createUserInAdmin,
   updateAUser,
   resetState,
 } from "../../features/account/accountSlice";
 
-const phoneRegExp =
-  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 let schema = yup.object().shape({
   name: yup.string().required("Name is Required"),
@@ -34,8 +33,9 @@ const defaultCustomertState = {
   email: "",
   mobile: "",
   dateOfBirth: "",
-  role: "",
+  role: "user",
   address: "",
+  password: "",
 };
 
 const AddCustomer = () => {
@@ -72,8 +72,8 @@ const AddCustomer = () => {
     isSuccess,
     isError,
     isLoading,
-    createdCustomer,
-    updatedCustomer,
+    createdUser,
+    updatedUser,
     userDetail,
   } = newCustomer;
 
@@ -86,15 +86,16 @@ const AddCustomer = () => {
     dateOfBirth: changeDateFormet(customer.dateOfBirth),
     role: customer.role,
     address: customer.address,
+    password: "",
   };
 
   useEffect(() => {
-    if (isSuccess && createdCustomer) {
+    if (!isLoading && isSuccess && createdUser) {
       toast.success("Customer Added Successfullly!");
     }
-    if (isSuccess && updatedCustomer) {
+    if (!isLoading && isSuccess && updatedUser) {
       toast.success("Customer Updated Successfullly!");
-      navigate("/admin/list-customer");
+      navigate("/admin/customer-list");
     }
     if (isError) {
       toast.error("Something Went Wrong!");
@@ -107,17 +108,14 @@ const AddCustomer = () => {
     validationSchema: schema,
     onSubmit: (values) => {
       if (getUserId !== undefined) {
+        if (values.password === "") delete values.password;
         const data = { id: getUserId, accountData: values };
         dispatch(updateAUser(data));
         dispatch(resetState());
       } else {
-        dispatch(createAUser(values));
+        dispatch(createUserInAdmin(values));
         formik.resetForm();
         dispatch(resetState());
-        // This is optional
-        // setTimeout(() => {
-        //   dispatch(resetState());
-        // }, 1000);
       }
     },
   });
@@ -128,10 +126,7 @@ const AddCustomer = () => {
         {getUserId !== undefined ? "Edit" : "Add"} Customer
       </h3>
       <div>
-        <form
-          onSubmit={formik.handleSubmit}
-          className="flex gap-3 flex-col"
-        >
+        <form onSubmit={formik.handleSubmit} className="flex gap-3 flex-col">
           <div className=" h-16">
             <CustomInput
               type="text"
@@ -145,7 +140,7 @@ const AddCustomer = () => {
               {formik.touched.name && formik.errors.name}
             </div>
           </div>
-          
+
           <div className=" h-16">
             <CustomInput
               type="email"
@@ -162,7 +157,7 @@ const AddCustomer = () => {
 
           <div className=" h-16">
             <CustomInput
-              type="number"
+              type="tel"
               label="Enter Phone Number"
               name="mobile"
               onChng={formik.handleChange("mobile")}
@@ -181,7 +176,6 @@ const AddCustomer = () => {
               onChng={formik.handleChange("dateOfBirth")}
               onBlr={formik.handleBlur("dateOfBirth")}
               val={formik.values.dateOfBirth}
-            
               id="date"
             />
             <div className="error">
@@ -223,7 +217,32 @@ const AddCustomer = () => {
               {formik.touched.address && formik.errors.address}
             </div>
           </div>
-
+          {getUserId !== undefined ? (
+            <div className=" h-16">
+              <CustomInput
+                type="password"
+                label="Change Customer Password"
+                name="password"
+                onChng={formik.handleChange}
+                onBlr={formik.handleBlur}
+                val={formik.values.password}
+              />
+            </div>
+          ) : (
+            <div className=" h-16">
+              <CustomInput
+                type="password"
+                label="Enter Customer Password"
+                name="password"
+                onChng={formik.handleChange}
+                onBlr={formik.handleBlur}
+                val={formik.values.password}
+              />
+              <div className="error">
+                {formik.touched.password && formik.errors.password}
+              </div>
+            </div>
+          )}
 
           <button
             className="inline-block align-middle text-center select-none font-normal whitespace-no-wrap rounded py-1 px-3 leading-normal no-underline bg-green-500 text-white hover:bg-green-600 border-0 rounded-3 my-5"

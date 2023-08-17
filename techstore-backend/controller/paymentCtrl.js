@@ -126,7 +126,9 @@ module.exports = {
         res.status(200).json({ RspCode: "97", Message: "Fail checksum" });
       }
     } catch (e) {
-      return res.redirect("http://localhost:3000/cart/payment/failed");
+      return res.redirect(
+        "http://localhost:3000/cart/payment/failed?method=VNPAY"
+      );
     }
   },
 };

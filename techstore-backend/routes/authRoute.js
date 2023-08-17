@@ -1,6 +1,7 @@
 const express = require("express");
 const {
   createUser,
+  createUserInAdmin,
   login,
   logout,
   getallUser,
@@ -15,6 +16,7 @@ const {
   handleRefreshToken,
   updatePassword,
   changePassword,
+  changeUserPassword,
   forgotPasswordToken,
   resetPassword,
   loginAdmin,
@@ -39,9 +41,11 @@ const { authMiddleware, isAdmin } = require("../middlewares/authMiddleware");
 const router = express.Router();
 
 router.post("/register", createUser);
+router.post("/admin-create-user", createUserInAdmin);
 router.post("/forgot-password-token", forgotPasswordToken);
 router.put("/reset-password/:token", resetPassword);
 router.put("/password", authMiddleware, updatePassword);
+router.put("/password/:id", authMiddleware, isAdmin, changeUserPassword);
 router.put("/order/update-order/:id", authMiddleware, updateOrderStatus);
 router.put("/order/update-payment/:id", authMiddleware, updatePaymentStatus);
 

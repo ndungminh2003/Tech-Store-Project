@@ -85,12 +85,16 @@ const AddProduct = () => {
     updatedProduct,
     productName,
   } = newProduct;
-  const product = productName !== undefined ? productName : defaultProductState;
+  const product =
+    productName !== undefined && productName !== null
+      ? productName
+      : defaultProductState;
+  console.log(product);
   useEffect(() => {
-    if (isSuccess && createdProduct) {
+    if (!isLoading && isSuccess && createdProduct) {
       toast.success("Product Added Successfullly!");
     }
-    if (isSuccess && updatedProduct) {
+    if (!isLoading && isSuccess && updatedProduct) {
       toast.success("Product Updated Successfullly!");
       navigate("/admin/list-product");
     }
@@ -101,16 +105,10 @@ const AddProduct = () => {
   const coloropt = [];
   colorState.forEach((i) => {
     coloropt.push({
-      label: i.title,
-      value: i.title,
+      label: i,
+      value: i,
     });
   });
-  // product.images.forEach((i) => {
-  //   img.push({
-  //     public_id: i?.public_id,
-  //     url: i.url,
-  //   });
-  // });
 
   useEffect(() => {
     formik.setFieldValue("color", color || []);
@@ -125,19 +123,14 @@ const AddProduct = () => {
     onSubmit: (values) => {
       if (getProductId !== undefined) {
         const data = { id: getProductId, productData: values };
-        console.log(data.productData);
         dispatch(updateAProduct(data));
         dispatch(resetState());
       } else {
-        console.log(values);
         dispatch(createProduct(values));
         formik.resetForm();
         setColor(null);
         setImages([]);
         dispatch(resetProductState());
-        // setTimeout(() => {
-        //   dispatch(resetState());
-        // }, 1000);
       }
     },
   });
@@ -172,9 +165,9 @@ const AddProduct = () => {
               type="text"
               label="Enter Product Title"
               name="title"
+              val={formik.values.title}
               onChng={formik.handleChange("title")}
               onBlr={formik.handleBlur("title")}
-              val={formik.values.title}
             />
             <div className="error">
               {formik.touched.title && formik.errors.title}
@@ -234,6 +227,7 @@ const AddProduct = () => {
               onChange={formik.handleChange("category")}
               onBlur={formik.handleBlur("category")}
               value={formik.values.category}
+              defaultValue={formik.values.category}
               className="block appearance-none w-full  px-2  text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded py-3 mb-3"
               id=""
             >
@@ -256,6 +250,7 @@ const AddProduct = () => {
               onChange={formik.handleChange("tags")}
               onBlur={formik.handleBlur("tags")}
               value={formik.values.tags}
+              defaultValue={formik.values.tags}
               className="block appearance-none w-full px-2 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded py-3 mb-3"
               id=""
             >

@@ -65,7 +65,7 @@ const CustomerList = () => {
     setOpen(false);
     setTimeout(() => {
       dispatch(getCustomers());
-    }, 100);
+    }, 500);
   };
   const customerstate = useSelector((state) => state.account.customers);
   const data1 = [];

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BiEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { getOrders } from "../../features/auth/authSlice";
+import { getAllOrders } from "../../features/order/orderSlice";
 
 const columns = [
   {
@@ -37,7 +37,7 @@ const columns = [
 const Orders = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getOrders());
+    dispatch(getAllOrders());
   }, []);
   const orderState = useSelector((state) => state.auth.orders);
 

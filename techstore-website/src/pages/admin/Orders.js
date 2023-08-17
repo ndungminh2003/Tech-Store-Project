@@ -1,72 +1,121 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Table } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { BiEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { getOrders } from "../../features/auth/authSlice";
-
-const columns = [
-  {
-    title: "SNo",
-    dataIndex: "key",
-  },
-  {
-    title: "Name",
-    dataIndex: "name",
-  },
-  {
-    title: "Product",
-    dataIndex: "product",
-  },
-  {
-    title: "Amount",
-    dataIndex: "amount",
-  },
-  {
-    title: "Date",
-    dataIndex: "date",
-  },
-
-  {
-    title: "Action",
-    dataIndex: "action",
-  },
-];
+import { getAllOrders, deleteOrder } from "../../features/order/orderSlice";
+import { formatNumberWithDots } from "../../utils/formatNumber";
+import CustomModal from "../../components/CustomModal";
+import useGetColumnSearchProps from "../../hook/useSearchProps";
 
 const Orders = () => {
   const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
+  const [orderId, setOrderId] = useState("");
+  const showModal = (e) => {
+    setOpen(true);
+    setOrderId(e);
+  };
+  const hideModal = () => {
+    setOpen(false);
+  };
   useEffect(() => {
-    dispatch(getOrders());
+    dispatch(getAllOrders());
   }, []);
-  const orderState = useSelector((state) => state.auth.orders);
+  const orderState = useSelector((state) => state.order.orders);
+  const columns = [
+    {
+      title: "Order ID",
+      dataIndex: "key",
+      ...useGetColumnSearchProps("key", "Order ID"),
+    },
+    {
+      title: "Customer",
+      dataIndex: "customer",
+      sorter: (a, b) => a.customer.length - b.customer.length,
+      ...useGetColumnSearchProps("customer", "Customer"),
+    },
+    {
+      title: "View Order",
+      dataIndex: "view",
+    },
+    {
+      title: "Status",
+      dataIndex: "status",
+      sorter: (a, b) => a.status.length - b.status.length,
+      ...useGetColumnSearchProps("status", "Status"),
+    },
+    {
+      title: "Payment",
+      dataIndex: "payment",
+      sorter: (a, b) => a.payment.length - b.payment.length,
+      ...useGetColumnSearchProps("payment", "Payment"),
+    },
+    {
+      title: "Amount (VNĐ)",
+      dataIndex: "amount",
+      sorter: (a, b) => parseInt(a.amount) - parseInt(b.amount),
+      ...useGetColumnSearchProps("amount", "Amount (VNĐ)"),
+    },
+    {
+      title: "Create Date",
+      dataIndex: "date",
+      sorter: (a, b) => a.date - b.date,
+    },
 
+    {
+      title: "Action",
+      dataIndex: "action",
+    },
+  ];
   const data1 = [];
   for (let i = 0; i < orderState.length; i++) {
     data1.push({
-      key: i + 1,
-      name: orderState[i].orderby.name,
-      product: (
-        <Link to={`/admin/order/${orderState[i]._id}`}>View Orders</Link>
-      ),
-      amount: orderState[i].paymentIntent.amount,
+      key: "#" + orderState[i]._id,
+      customer: orderState[i].name,
+      view: <Link to={`/admin/order/${orderState[i]._id}`}>View Details</Link>,
+      amount: formatNumberWithDots(orderState[i].totalAfterDiscount),
+      status: orderState[i].orderStatus,
+      payment: orderState[i].paymentIntent.method,
       date: new Date(orderState[i].createdAt).toLocaleString(),
       action: (
         <div className=" flex">
-          <Link to="/" className=" text-lg text-red-600">
+          <Link
+            to={`/admin/order/edit-order/${orderState[i]._id}`}
+            className=" text-2xl text-red-600"
+          >
             <BiEdit />
           </Link>
-          <Link className="ms-3 text-lg text-red-600" to="/">
+          <button
+            className="ms-3 text-2xl text-red-600 bg-transparent border-0"
+            onClick={() => showModal(orderState[i]._id)}
+          >
             <AiFillDelete />
-          </Link>
+          </button>
         </div>
       ),
     });
   }
+  const deleteOrderAction = (e) => {
+    dispatch(deleteOrder(e));
+    setOpen(false);
+    setTimeout(() => {
+      dispatch(getAllOrders());
+    }, 500);
+  };
   return (
     <div className="admin">
       <h3 className="mb-4 title text-3xl font-bold">Orders</h3>
       <div>{<Table columns={columns} dataSource={data1} />}</div>
+      <CustomModal
+        hideModal={hideModal}
+        open={open}
+        performAction={() => {
+          deleteOrderAction(orderId);
+        }}
+        title="Are you sure you want to delete this order ?"
+      />
     </div>
   );
 };

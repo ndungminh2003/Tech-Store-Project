@@ -17,6 +17,13 @@ let schema = yup.object().shape({
   expiry: yup.date().required("Expiry Date is Required"),
   discount: yup.number().required("Discount Percentage is Required"),
 });
+
+const defaultCouponState = {
+  name: "",
+  expiry: "0000-00-00",
+  discount: 0,
+};
+
 const AddCoupon = () => {
   const dispatch = useDispatch();
   const location = useLocation();
@@ -30,11 +37,15 @@ const AddCoupon = () => {
     isLoading,
     createdCoupon,
     couponName,
-    couponDiscount,
-    couponExpiry,
     updatedCoupon,
   } = newCoupon;
-  const changeDateFormet = (date) => {
+
+  let coupon =
+    couponName !== undefined && couponName !== null
+      ? couponName
+      : defaultCouponState;
+
+  const changeDateFormat = (date) => {
     const newDate = new Date(date).toLocaleDateString();
     let [day, month, year] = newDate.split("/");
     if (day < 10) {
@@ -45,7 +56,12 @@ const AddCoupon = () => {
     }
     return [year, month, day].join("-");
   };
-
+  coupon = {
+    name: coupon.name,
+    discount: coupon.discount,
+    expiry: changeDateFormat(coupon.expiry),
+  };
+  console.log(coupon);
   useEffect(() => {
     if (getCouponId !== undefined) {
       dispatch(getACoupon(getCouponId));
@@ -55,24 +71,24 @@ const AddCoupon = () => {
   }, [getCouponId]);
 
   useEffect(() => {
-    if (isSuccess && createdCoupon) {
+    dispatch(resetState());
+  }, []);
+
+  useEffect(() => {
+    if (!isLoading && isSuccess && createdCoupon) {
       toast.success("Coupon Added Successfullly!");
     }
-    if (isSuccess && updatedCoupon) {
+    if (!isLoading && isSuccess && updatedCoupon) {
       toast.success("Coupon Updated Successfullly!");
       navigate("/admin/coupon-list");
     }
-    if (isError && couponName && couponDiscount && couponExpiry) {
+    if (!isLoading && isError) {
       toast.error("Something Went Wrong!");
     }
   }, [isSuccess, isError, isLoading]);
   const formik = useFormik({
     enableReinitialize: true,
-    initialValues: {
-      name: couponName || "",
-      expiry: changeDateFormet(couponExpiry) || "",
-      discount: couponDiscount || "",
-    },
+    initialValues: coupon,
     validationSchema: schema,
     onSubmit: (values) => {
       if (getCouponId !== undefined) {
@@ -82,9 +98,7 @@ const AddCoupon = () => {
       } else {
         dispatch(createCoupon(values));
         formik.resetForm();
-        setTimeout(() => {
-          dispatch(resetState);
-        }, 300);
+        dispatch(resetState());
       }
     },
   });
@@ -104,8 +118,8 @@ const AddCoupon = () => {
             <CustomInput
               type="text"
               name="name"
-              onChng={formik.handleChange("name")}
-              onBlr={formik.handleBlur("name")}
+              onChng={formik.handleChange}
+              onBlr={formik.handleBlur}
               val={formik.values.name}
               label="Enter Coupon Name"
               id="name"
@@ -119,9 +133,9 @@ const AddCoupon = () => {
             <input
               type="date"
               name="expiry"
-              onChange={formik.handleChange("expiry")}
-              onBlur={formik.handleBlur("expiry")}
-              val={formik.values.expiry}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.expiry}
               label="Enter Expiry Data"
               id="date"
               className=" w-full h-10"
@@ -135,8 +149,8 @@ const AddCoupon = () => {
             <CustomInput
               type="number"
               name="discount"
-              onChng={formik.handleChange("discount")}
-              onBlr={formik.handleBlur("discount")}
+              onChng={formik.handleChange}
+              onBlr={formik.handleBlur}
               val={formik.values.discount}
               label="Enter Discount"
               id="discount"

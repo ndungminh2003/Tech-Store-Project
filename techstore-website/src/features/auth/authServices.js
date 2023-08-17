@@ -68,27 +68,11 @@ const changePassword = async (data) => {
   return response.data;
 };
 
-const getOrders = async () => {
-  let config = get_config();
-
-  const response = await axios.get(`${base_url}user/getallorders`, config);
-  return response.data;
-};
-
-const getOrder = async (id) => {
-  let config = get_config();
-
-  const response = await axios.get(`${base_url}user/getorder/${id}`, config);
-  return response.data;
-};
-
 const authService = {
   login,
   logout,
   register,
   refreshToken,
-  getOrders,
-  getOrder,
   sendOTP,
   verifyOTP,
   deleteNotVerified,

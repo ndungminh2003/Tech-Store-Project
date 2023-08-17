@@ -1,5 +1,6 @@
 const express = require("express");
 const {
+  getCoupon,
   createCoupon,
   getAllCoupons,
   updateCoupon,
@@ -11,7 +12,7 @@ const router = express.Router();
 router.post("/", authMiddleware, isAdmin, createCoupon);
 router.put("/:id", authMiddleware, isAdmin, updateCoupon);
 router.delete("/:id", authMiddleware, isAdmin, deleteCoupon);
-router.get("/:id", authMiddleware, isAdmin, getAllCoupons);
 router.get("/", authMiddleware, isAdmin, getAllCoupons);
+router.get("/:id", authMiddleware, isAdmin, getCoupon);
 
 module.exports = router;
