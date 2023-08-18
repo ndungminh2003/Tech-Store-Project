@@ -133,9 +133,6 @@ export default function ListCardProduct(props) {
                 feature={product.feature}
                 isFavorite={productIdsInWishlist.includes(product._id)}
               />
-              {productIdsInWishlist.includes(product._id)
-                ? console.log("product", product._id)
-                : null}
             </SwiperSlide>
           ))}
         </Swiper>

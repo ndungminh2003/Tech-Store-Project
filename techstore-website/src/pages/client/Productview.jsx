@@ -26,7 +26,11 @@ import lgThumbnail from "lightgallery/plugins/thumbnail";
 import lgZoom from "lightgallery/plugins/zoom";
 import lgFullscreen from "lightgallery/plugins/fullscreen";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductBySlug } from "../../features/product/productSlice";
+import { toast } from "react-toastify";
+import {
+  getProductBySlug,
+  resetProductState,
+} from "../../features/product/productSlice";
 import CheckIcon from "@mui/icons-material/Check";
 
 export default function ProductView() {
@@ -48,12 +52,6 @@ export default function ProductView() {
     backgroundSize: "75% 100%", // 75% độ dài là màu đỏ
   };
 
-  const handleNavigatePayment = () => {
-    const product = productStore.products?.find((x) => x.slug === parmas.slug);
-    if (product) {
-      navigate(`/cart/payment/${product._id}`);
-    }
-  };
   const formatCurrency = (amount) => {
     const numericAmount = Number(amount);
     if (isNaN(numericAmount)) {
@@ -69,6 +67,7 @@ export default function ProductView() {
   const [activeIndexs, setActiveIndexs] = React.useState(0);
 
   useEffect(() => {
+    dispatch(resetProductState());
     dispatch(getProductBySlug(slug));
   }, []);
   const { productBySlug } = useSelector((state) => state.product);
@@ -135,6 +134,49 @@ export default function ProductView() {
     },
   };
 
+  const handleAddToCart = () => {
+    const existingCart = localStorage.getItem("cart");
+    const cart = existingCart
+      ? JSON.parse(existingCart)
+      : { products: [], total: 0, totalQuantity: 0, totalDiscount: 0 };
+
+    const foundIndex = cart.products.findIndex(
+      (x) => x._id === productBySlug._id
+    );
+    if (foundIndex > -1) {
+      cart.products[foundIndex].count += 1;
+    } else {
+      const productToAdd = {
+        _id: productBySlug._id,
+        color:
+          productBySlug.color.length > 0
+            ? productBySlug.color[selectedColor]
+            : "",
+        name: productBySlug.title,
+        slug: productBySlug.slug,
+        thumbnail: productBySlug.thumbnail,
+        feature:
+          productBySlug.feature !== undefined
+            ? productBySlug.feature[selectedFeature]
+            : "",
+        price: productBySlug.price,
+        count: 1,
+      };
+
+      cart.products.push(productToAdd);
+    }
+    cart.totalQuantity += 1;
+    cart.total += productBySlug.price;
+    toast.success("Thêm vào giỏ hàng thành công");
+    localStorage.setItem("cart", JSON.stringify(cart));
+    window.dispatchEvent(new Event("storage"));
+  };
+
+  const handleBuyNow = () => {
+    handleAddToCart();
+    navigate("/cart");
+  };
+
   return (
     <>
       {productBySlug ? (
@@ -166,7 +208,11 @@ export default function ProductView() {
               <h1 className="text-lg text-[#0a263c] font-bold">
                 {productBySlug.title}
               </h1>
-              <Rating name="read-only" value={5} readOnly />
+              <Rating
+                name="read-only"
+                value={productBySlug.totalrating}
+                readOnly
+              />
               <p>{productBySlug.totalrating} đánh giá</p>
             </div>
             <hr className="my-[15px] border-none" />
@@ -373,14 +419,17 @@ export default function ProductView() {
                   <div className="flex gap-[10px] mt-[10px]">
                     <button
                       className="w-[calc(100%-70px)] flex flex-col items-center text-white bg-[#f52f32] py-2 rounded-[10px]"
-                      onClick={handleNavigatePayment}
+                      onClick={handleBuyNow}
                     >
                       <strong className="text-base">MUA NGAY</strong>
                       <span className="text-sm">
                         (Giao nhanh từ 2 giờ hoặc nhận tại cửa hàng)
                       </span>
                     </button>
-                    <button className="rounded-[10px] border-[2px] border-[#e04040] px-1">
+                    <button
+                      onClick={handleAddToCart}
+                      className="rounded-[10px] border-[2px] border-[#e04040] px-1"
+                    >
                       <img
                         src="https://cdn2.cellphones.com.vn/50x,webp,q70/media/wysiwyg/add-to-cart.png"
                         alt=""

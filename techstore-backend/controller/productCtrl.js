@@ -74,7 +74,9 @@ const getProductBySlug = asyncHandler(async (req, res) => {
   const { slug } = req.params;
   console.log(slug);
   try {
-    const findProduct = await Product.findOne({ slug: slug });
+    const findProduct = await Product.findOne({ slug: slug })
+      .populate("ratings.postedby", "_id name")
+      .exec();
     res.json(findProduct);
   } catch (error) {
     throw new Error(error);
@@ -176,9 +178,10 @@ const addToWishlist = asyncHandler(async (req, res) => {
         mobile: user.mobile,
         role: user.role,
         accessToken: user.accessToken,
+        address: user.address,
+        dateOfBirth: user.dateOfBirth,
         wishlist: user.wishlist,
       };
-      console.log(resUser);
       res.json({ message: "Product removed from wishlist", user: resUser });
     } else {
       let user = await User.findByIdAndUpdate(
@@ -201,8 +204,6 @@ const addToWishlist = asyncHandler(async (req, res) => {
         accessToken: user.accessToken,
         wishlist: user.wishlist,
       };
-      console.log(user.wishlist);
-      console.log(resUser);
       res.json({ message: "Product added to wishlist", user: resUser });
     }
   } catch (error) {
@@ -224,7 +225,11 @@ const rating = asyncHandler(async (req, res) => {
           ratings: { $elemMatch: alreadyRated },
         },
         {
-          $set: { "ratings.$.star": star, "ratings.$.comment": comment },
+          $set: {
+            "ratings.$.star": star,
+            "ratings.$.comment": comment,
+            "ratings.$.createdAt": Date.now(),
+          },
         },
         {
           new: true,
@@ -239,6 +244,7 @@ const rating = asyncHandler(async (req, res) => {
               star: star,
               comment: comment,
               postedby: _id,
+              createdAt: Date.now(),
             },
           },
         },
@@ -259,7 +265,9 @@ const rating = asyncHandler(async (req, res) => {
         totalrating: actualRating,
       },
       { new: true }
-    );
+    )
+      .populate("ratings.postedby", "_id name")
+      .exec();
     res.json(finalproduct);
   } catch (error) {
     throw new Error(error);

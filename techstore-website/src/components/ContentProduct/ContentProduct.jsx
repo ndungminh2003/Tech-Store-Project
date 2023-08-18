@@ -1,11 +1,11 @@
 import React from "react";
 import BoxReview from "../BoxReview/BoxReview";
 import Question from "../Question/Question";
-import "../../assets/style/ContentProduct.scss"
+import "../../assets/style/ContentProduct.scss";
 const ContentProduct = () => {
   return (
     <div className="flex gap-3 content-product">
-      <div className="content-product-top w-[830px]">
+      <div className="content-product-top w-[830px] pb-10">
         <div className="p-[15px] shadow-cellphone rounded-[10px]">
           <div className="p-2 mb-2 bg-[#f2f2f2] rounded-lg">
             <h1 className="text-[#d70018] font-semibold text-lg text-center">

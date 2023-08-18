@@ -8,9 +8,8 @@ import { login, resetAuthState } from "../../features/auth/authSlice";
 import * as Yup from "yup";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { toast } from "react-toastify";
-
-import GridLoader from "react-spinners/GridLoader"
-import RingLoader from "react-spinners/RingLoader"
+import GridLoader from "react-spinners/GridLoader";
+import RingLoader from "react-spinners/RingLoader";
 
 const initialValues = {
   email: "",
@@ -48,7 +47,6 @@ const Login = () => {
   const authState = useSelector((state) => state.auth);
   const { user, isError, isSuccess, isLoading, message } = authState;
 
-  
   useEffect(() => {
     if (isSubmited && isSuccess && !isLoading && user?.role === "user") {
       toast.success("Đăng nhập thành công");
@@ -58,7 +56,6 @@ const Login = () => {
       !isLoading &&
       (user?.role === undefined || user?.role !== "user")
     ) {
-      toast.error("Email hoặc mật khẩu không đúng");
       setIsSubmited(false);
       // navigate("/login");
     } else if (user?.role !== undefined) {
@@ -73,40 +70,32 @@ const Login = () => {
     if (isEmailFilled) {
       navigate(`/forgot-password?email=${formik.values.email}`);
     } else {
-      // Hiển thị thông báo yêu cầu điền email trước khi chuyển hướng
       alert("Vui lòng điền vào trường email trước khi tiếp tục.");
     }
   };
 
   return (
     <div className="max-w-[700px] m-auto">
-
-    {isLoading && (
+      {isLoading && (
         <div
           style={{
-            position: 'absolute',
+            position: "absolute",
             top: 0,
             left: 0,
-            width: '100%',
-            height: '100%',
-            backgroundColor: 'rgba(0, 0, 0, 0.5)', /* Adjust the transparency as needed */
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            zIndex: 9999, /* Ensure the overlay is on top */
+            width: "100%",
+            height: "100%",
+            backgroundColor:
+              "rgba(0, 0, 0, 0.5)" /* Adjust the transparency as needed */,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 9999 /* Ensure the overlay is on top */,
           }}
           className="overlay"
         >
-          <RingLoader
-            color="#e8fffa"
-            loading
-            size={150}
-            speedMultiplier={1}
-          />
-
+          <RingLoader color="#e8fffa" loading size={150} speedMultiplier={1} />
         </div>
       )}
-
 
       <div className="py-[10px] flex w-full text-center">
         {/* <ArrowBackIcon
@@ -126,6 +115,11 @@ const Login = () => {
           />
         </div>
         <div>
+          <div className="error text-center" style={{ color: "red" }}>
+            {message.message === "Rejected"
+              ? "Email hoặc mật khẩu không đúng"
+              : ""}
+          </div>
           <form onSubmit={formik.handleSubmit}>
             <div className="mt-5 mb-3">
               <input

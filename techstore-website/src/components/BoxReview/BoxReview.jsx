@@ -1,5 +1,5 @@
 import { Rating, Stack, styled } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import StarIcon from "@mui/icons-material/Star";
 import LinearProgress, {
   linearProgressClasses,
@@ -7,9 +7,39 @@ import LinearProgress, {
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
-import "../../assets/style/BoxReview.scss" 
-
+import "../../assets/style/BoxReview.scss";
+import { rating } from "../../features/product/productSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import moment from "moment";
 const BoxReview = () => {
+  const dispatch = useDispatch();
+  const authState = useSelector((state) => state.auth);
+  const { user } = authState;
+  const [star, setStar] = useState(0);
+  const [comment, setComment] = useState("");
+  const { productBySlug } = useSelector((state) => state.product);
+  const prodId = productBySlug._id;
+
+  const handleRatingSubmit = async () => {
+    try {
+      if (!user?._id) {
+        toast.info("Vui lòng đăng nhập tài khoản để đánh giá !");
+      }
+
+      if (prodId && star && comment) {
+        dispatch(rating({ prodId, comment, star }));
+        setComment("");
+        setStar(0);
+      } else {
+        toast.info("Vui lòng đánh giá sản phẩm");
+      }
+    } catch (error) {
+      // Handle error
+      console.error("Error updating rating:", error);
+    }
+  };
+
   const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     width: 340,
     height: 8,
@@ -26,14 +56,16 @@ const BoxReview = () => {
   return (
     <div className="box-review p-2 shadow-cellphone">
       <h1 className="text-[#363636] mb-6 text-base font-semibold">
-        Đánh giá & nhận xét iPhone 14 Pro Max 256GB | Chính hãng VN/A
+        Đánh giá & nhận xét {productBySlug.title} | Chính hãng VN/A
       </h1>
       <div className="flex items-center border border-[#e5e7eb] rounded-2xl p-2">
         <div className="w-[40%] text-center border-r border-[#e5e7eb]">
-          <p className="text-[#363636] text-2xl font-semibold">5.0/5</p>
+          <p className="text-[#363636] text-2xl font-semibold">
+            {productBySlug.totalrating}.0/5
+          </p>
           <Rating readOnly value={5} className="!text-base" />
           <p>
-            <strong>9</strong> đánh giá và nhận xét
+            <strong>{productBySlug.ratings.length}</strong> đánh giá và nhận xét
           </p>
         </div>
         <div className="w-[60%] pl-5">
@@ -97,15 +129,44 @@ const BoxReview = () => {
           </div>
         </div>
       </div>
-      <p className="text-center my-2">Bạn đánh giá sao sản phẩm này</p>
+      {/* <p className="text-center my-2">Bạn đánh giá sao sản phẩm này</p>
       <div className="text-center">
         <button className="bg-[#d7000e] w-[300px] text-white rounded-[10px] py-2">
           Đánh giá ngay
         </button>
-      </div>
+      </div> */}
 
       <div className="mt-2">
-        <div className="mb-4">
+        {productBySlug.ratings.map((rate) => (
+          <div className="mb-4">
+            <div className="flex justify-between items-center ">
+              <div className="flex items-center gap-2">
+                <p className="text-[#1e1619] font-semibold w-[25px] h-[25px] bg-[#ddd] text-center rounded-[5px]">
+                  {rate.postedby.name[0]}
+                </p>
+                <span className="text-[#4a4a4a] font-semibold text-sm">
+                  {rate.postedby.name}
+                </span>
+              </div>
+              <p className="text-[#707070] text-xs font-semibold">
+                {moment(rate.createdAt).format("DD/MM/YYYY HH:mm")}
+              </p>
+            </div>
+            <div className="ml-10 my-2 p-2 text-xs">
+              <div className="flex items-center">
+                <strong className="text-[#363636]">Đánh giá: </strong>
+                <Rating value={rate.star} readOnly className="!text-base" />
+              </div>
+              <div>
+                <p className="my-1">
+                  <strong className="text-[#363636]">Nhận xét : </strong>
+                  {rate.comment}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+        {/* <div className="mb-4">
           <div className="flex justify-between items-center ">
             <div className="flex items-center gap-2">
               <p className="text-[#1e1619] font-semibold w-[25px] h-[25px] bg-[#ddd] text-center rounded-[5px]">
@@ -212,7 +273,7 @@ const BoxReview = () => {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="text-center">
@@ -227,9 +288,16 @@ const BoxReview = () => {
 
       <div>
         <div>
-          <p className="mb-1 text-xl text-[#363636] font-semibold">
-            Hỏi và đáp
-          </p>
+          <p className="mb-1 text-xl text-[#363636] font-semibold">Đánh giá</p>
+          <div>
+            <Rating
+              name="product-rating"
+              value={star}
+              onChange={(event, newValue) => {
+                setStar(newValue);
+              }}
+            />
+          </div>
           <div className="flex gap-2">
             <textarea
               name=""
@@ -238,8 +306,14 @@ const BoxReview = () => {
               rows="10"
               placeholder="Xin mời để lại câu hỏi, CellphoneS sẽ trả lời lại trong 1h, các câu hỏi sau 22h - 8h sẽ được trả lời vào sáng hôm sau"
               className="w-[calc(100%-80px)] p-3 border border-[#ccc] outline-none h-32 shadow-cellphone rounded-[15px] text-[#363636] text-sm"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
             ></textarea>
-            <button className="bg-[#d7000e] text-white flex items-center justify-center gap-1 py-[7px]  rounded-lg w-[70px] !h-10">
+            <button
+              // className="bg-[#d7000e] text-white flex items-center justify-center gap-1 py-[7px]  rounded-lg w-[70px] !h-10"
+              className="bg-[#d7000e] text-white flex items-center justify-center gap-1 py-[7px]  rounded-lg w-[70px] !h-10 hover:cursor-pointer"
+              onClick={handleRatingSubmit}
+            >
               <svg
                 height="15"
                 xmlns="http://www.w3.org/2000/svg"
@@ -252,7 +326,7 @@ const BoxReview = () => {
             </button>
           </div>
         </div>
-        <div>
+        {/* <div>
           <div>
             <div className="flex items-center justify-between my-[10px]">
               <div className="flex items-center gap-2">
@@ -585,10 +659,10 @@ const BoxReview = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
 
-        <div className="text-center mt-[15px]">
+        {/* <div className="text-center mt-[15px]">
           <a
             href=""
             className="py-1 shadow-cellphone w-[300px] block m-auto rounded-[10px] border border-[#ccc]"
@@ -596,7 +670,7 @@ const BoxReview = () => {
             Xem thêm 949 bình luận
             <KeyboardArrowDownIcon />
           </a>
-        </div>
+        </div> */}
       </div>
     </div>
   );

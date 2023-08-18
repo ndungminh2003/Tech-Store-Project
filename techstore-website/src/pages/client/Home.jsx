@@ -19,7 +19,7 @@ export default function Home() {
     dispatch(resetState());
     if (products) {
       let params = {
-        limit: 200,
+        // limit: 200,
         // skip: 130,
       };
       dispatch(getLimitProducts(params));
@@ -33,12 +33,20 @@ export default function Home() {
           <SkeletonProduct type={"PHONE"} />
           <SkeletonProduct type={"LAPTOP"} />
           <SkeletonProduct type={"WATCH"} />
+          <SkeletonProduct type={"TABLET"} />
+          <SkeletonProduct type={"HEADPHONE"} />
+          <SkeletonProduct type={"TV"} />
+          <SkeletonProduct type={"SCREENPC"} />
         </div>
       ) : (
         <div className=" flex flex-col gap-6">
           <ListCardProduct type={"PHONE"} productState={products} />
           <ListCardProduct type={"LAPTOP"} productState={products} />
           <ListCardProduct type={"WATCH"} productState={products} />
+          <ListCardProduct type={"TABLET"} productState={products} />
+          <ListCardProduct type={"HEADPHONE"} productState={products} />
+          <ListCardProduct type={"TV"} productState={products} />
+          <ListCardProduct type={"SCREENPC"} productState={products} />
         </div>
       )}
 

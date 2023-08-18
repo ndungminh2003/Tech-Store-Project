@@ -84,8 +84,10 @@ const login = asyncHandler(async (req, res) => {
     email: findUser?.email,
     mobile: findUser?.mobile,
     role: findUser?.role,
-    wishlist: findUser?.wishlist,
     accessToken: generateToken(findUser?._id),
+    address: findUser?.address,
+    dateOfBirth: findUser?.dateOfBirth,
+    wishlist: findUser?.wishlist,
   });
 });
 
@@ -209,7 +211,10 @@ const sendOTP = asyncHandler(async (req, res) => {
       htm: "<h1>Hey User here is your OTP</h1>" + otp,
     };
     sendEmail(data);
-    res.status(200).json(user);
+    res.status(200).json({
+      email: user.email,
+      otp: user.otp,
+    });
   } catch (error) {
     throw new Error(error);
   }
@@ -302,7 +307,17 @@ const updateUserProfile = asyncHandler(async (req, res) => {
         new: true,
       }
     );
-    res.json(updatedUser);
+    res.json({
+      _id: updatedUser?._id,
+      name: updatedUser?.name,
+      email: updatedUser?.email,
+      mobile: updatedUser?.mobile,
+      role: updatedUser?.role,
+      accessToken: updatedUser?.accessToken,
+      address: updatedUser?.address,
+      dateOfBirth: updatedUser?.dateOfBirth,
+      wishlist: updatedUser?.wishlist,
+    });
   } catch (error) {
     throw new Error(error);
   }

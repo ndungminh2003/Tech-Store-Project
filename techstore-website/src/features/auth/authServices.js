@@ -79,6 +79,16 @@ const addToWishlist = async (prodId) => {
   return response.data;
 };
 
+const updateProfile = async (data) => {
+  let config = get_config();
+  const response = await axios.put(
+    `${base_url}user/edit-profile`,
+    data,
+    config
+  );
+  return response.data;
+};
+
 const authService = {
   login,
   logout,
@@ -89,6 +99,7 @@ const authService = {
   deleteNotVerified,
   changePassword,
   addToWishlist,
+  updateProfile,
 };
 
 export default authService;

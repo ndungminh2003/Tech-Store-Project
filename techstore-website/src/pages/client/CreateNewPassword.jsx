@@ -3,7 +3,7 @@ import "../../assets/style/styles.scss";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changePassword } from "../../features/auth/authSlice";
 import { toast } from "react-toastify";
 
@@ -26,7 +26,7 @@ const CreateNewPassword = () => {
   const queryParams = new URLSearchParams(location.search);
   const email = queryParams.get("email") || "";
   const isVerified = queryParams.get("isVerified") === "true" || false;
-
+  const { user } = useSelector((state) => state.auth);
   const formik = useFormik({
     initialValues: {
       password: "",
@@ -42,9 +42,10 @@ const CreateNewPassword = () => {
         };
         dispatch(changePassword(data));
         toast.success("Đổi mật khẩu thành công");
-        navigate("/login");
+        if (user === null || user === undefined) navigate("/login");
+        else navigate("/");
       } else {
-        toast.error("Email chưa được xác thực");
+        toast.error("Email chưa được xác thực OTP");
       }
       formik.resetForm();
     },

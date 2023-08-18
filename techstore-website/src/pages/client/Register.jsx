@@ -74,7 +74,6 @@ const Register = () => {
 
   useEffect(() => {
     if (isSubmited && !isLoading && isSuccess) {
-      toast.success("Đăng ký thành công");
       navigate("/otp");
     } else if (isSubmited && !isLoading && isError) {
       toast.error("Email hoặc số điện thoại đã được sử dụng");

@@ -5,7 +5,9 @@ const getUserfromLocalStorage = localStorage.getItem("user")
   ? JSON.parse(localStorage.getItem("user"))
   : null;
 const initialState = {
-  user: getUserfromLocalStorage,
+  user: localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : null,
   orders: [],
   isError: false,
   isLoading: false,
@@ -105,6 +107,17 @@ export const addToWishlist = createAsyncThunk(
   async (prodId, thunkAPI) => {
     try {
       return await authService.addToWishlist(prodId);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const changeProfile = createAsyncThunk(
+  "auth/change-profile",
+  async (data, thunkAPI) => {
+    try {
+      return await authService.updateProfile(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -255,6 +268,21 @@ export const authSlice = createSlice({
         state.user = action.payload.user;
       })
       .addCase(addToWishlist.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
+      })
+      .addCase(changeProfile.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(changeProfile.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.user = action.payload;
+      })
+      .addCase(changeProfile.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;

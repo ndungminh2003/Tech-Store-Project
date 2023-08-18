@@ -82,7 +82,7 @@ const CreateNewPassword = () => {
       isVerified &&
       isVerified !== undefined
     ) {
-      displaySuccessToast("OTP verified successfully");
+      toast.success("Đăng ký thành công");
       navigate("/login");
     } else if (
       isSubmited &&

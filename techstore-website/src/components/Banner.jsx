@@ -351,9 +351,29 @@ export default function Banner() {
     setHoveredElement(null);
   };
 
-  const handleClick = (event) => {
-    let param = event.target.textContent;
-    param = `?brand=${param}&page=1&limit=10`;
+  function extractRange(inputString) {
+    const numberPattern = /\d+(\.\d+)?/g;
+    const values = inputString.match(numberPattern);
+    let result;
+    if (inputString.includes("Under")) {
+      return [0, parseFloat(values[0])];
+    } else if (inputString.includes("Above")) {
+      return [parseFloat(values[0]), 1000]; // Assuming a large upper limit
+    } else if (inputString.includes("From")) {
+      return [parseFloat(values[0]), parseFloat(values[1])];
+    }
+
+    return [];
+  }
+
+  const handleClick = (params) => {
+    let param = "?";
+    Object.entries(params).forEach(([key, value]) => {
+      param += `${key}=${value}&`;
+    });
+    // param = `?category=${params}?brand=${param}&page=1&limit=10`;
+    // param += `page=1&limit=10`;
+    // param = param.replace(/\s+/g, "").toLowerCase();
     console.log("param", param);
     dispatch(getProductByCatalog(param));
     navigate(`/catalog/${param}`);
@@ -428,7 +448,9 @@ export default function Banner() {
                   <div
                     key={index}
                     className=" cursor-pointer text-gray-600 hover:text-red-500"
-                    onClick={handleClick}
+                    onClick={() =>
+                      handleClick({ brand: b, category: hoveredElement.type })
+                    }
                   >
                     {b}
                   </div>
@@ -440,14 +462,21 @@ export default function Banner() {
                   {hoveredElement.price.title}
                 </div>
                 {hoveredElement.price.range.map((b, index) => (
-                  <Link key={index} to="search-product">
-                    <div
-                      key={index}
-                      className=" cursor-pointer text-gray-600 hover:text-red-500"
-                    >
-                      {b}
-                    </div>
-                  </Link>
+                  // <Link key={index} to="search-product">
+                  <div
+                    key={index}
+                    className=" cursor-pointer text-gray-600 hover:text-red-500"
+                    onClick={() =>
+                      handleClick({
+                        "price[gte]": extractRange(b)[0] * 1000000,
+                        "price[lte]": extractRange(b)[1] * 1000000,
+                        category: hoveredElement.type,
+                      })
+                    }
+                  >
+                    {b}
+                  </div>
+                  // </Link>
                 ))}
               </div>
 

@@ -82,6 +82,13 @@ const deleteProduct = async (id) => {
   return response.data;
 };
 
+const rating = async (obj) => {
+  const config = get_config();
+  const response = await axios.put(`${base_url}product/rating`, obj, config);
+
+  return response.data;
+};
+
 const productService = {
   getProducts,
   getProductBySlug,
@@ -92,6 +99,7 @@ const productService = {
   getProduct,
   deleteProduct,
   searchProducts,
+  rating,
 };
 
 export default productService;

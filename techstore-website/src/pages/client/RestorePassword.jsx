@@ -21,7 +21,7 @@ const RestorePassword = () => {
     setIsSubmited(true);
   };
   const handleBackClick = () => {
-    navigate("/login");
+    navigate(-1);
   };
   useEffect(() => {
     if (isSubmited && !isLoading && isSuccess) {
