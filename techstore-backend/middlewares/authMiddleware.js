@@ -13,6 +13,8 @@ const authMiddleware = expressAsyncHandler(async (req, res, next) => {
         const user = await User.findById(decoded?.id);
         req.user = user;
         next();
+      } else {
+        throw new Error("Not Authorized");
       }
     } catch (error) {
       throw new Error("Not Authorized token expired, Please login again");

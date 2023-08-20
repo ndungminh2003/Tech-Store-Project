@@ -3,7 +3,9 @@ import { get_config } from "../../utils/axiosconfig";
 import { base_url } from "../../utils/baseUrl";
 
 const getProducts = async () => {
-  const response = await axios.get(`${base_url}product/`);
+  const response = await axios.get(
+    `${base_url}product/?fields=title,price,thumbnail,slug,feature,brand,color,category`
+  );
 
   return response.data;
 };
@@ -21,6 +23,7 @@ const getLimitProducts = async (limit) => {
       params += `${key}=${limit[key]}&`;
     }
   }
+  params += "fields=title,price,thumbnail,slug,feature,brand,color,category";
   const response = await axios.get(`${base_url}product/${params}`);
 
   return response.data;

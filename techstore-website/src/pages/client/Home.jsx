@@ -6,15 +6,13 @@ import Widget from "../../components/Widget";
 import SkeletonProduct from "../../components/SkeletonProduct";
 
 import {
-  getProducts,
   getLimitProducts,
   resetState,
 } from "../../features/product/productSlice";
 export default function Home() {
   const dispatch = useDispatch();
   const productState = useSelector((state) => state.product);
-  const { products, isLoading, isSuccess, isError } = productState;
-
+  let { products, isLoading, isSuccess, isError } = productState;
   useEffect(() => {
     dispatch(resetState());
     if (products) {
@@ -25,6 +23,25 @@ export default function Home() {
       dispatch(getLimitProducts(params));
     }
   }, []);
+  let productsPhone = products.filter(
+    (product) => product.category === "Phone"
+  );
+  let productsLaptop = products.filter(
+    (product) => product.category === "Laptop"
+  );
+  let productsWatch = products.filter(
+    (product) => product.category === "Watch"
+  );
+  let productsTablet = products.filter(
+    (product) => product.category === "Tablet"
+  );
+  let productsHeadphone = products.filter(
+    (product) => product.category === "Headphone"
+  );
+  let productsTV = products.filter((product) => product.category === "TV");
+  let productsScreenPC = products.filter(
+    (product) => product.category === "ScreenPC"
+  );
   return (
     <div className=" flex flex-col gap-6">
       <Banner />
@@ -40,13 +57,16 @@ export default function Home() {
         </div>
       ) : (
         <div className=" flex flex-col gap-6">
-          <ListCardProduct type={"PHONE"} productState={products} />
-          <ListCardProduct type={"LAPTOP"} productState={products} />
-          <ListCardProduct type={"WATCH"} productState={products} />
-          <ListCardProduct type={"TABLET"} productState={products} />
-          <ListCardProduct type={"HEADPHONE"} productState={products} />
-          <ListCardProduct type={"TV"} productState={products} />
-          <ListCardProduct type={"SCREENPC"} productState={products} />
+          <ListCardProduct type={"PHONE"} productState={productsPhone} />
+          <ListCardProduct type={"LAPTOP"} productState={productsLaptop} />
+          <ListCardProduct type={"WATCH"} productState={productsWatch} />
+          <ListCardProduct type={"TABLET"} productState={productsTablet} />
+          <ListCardProduct
+            type={"HEADPHONE"}
+            productState={productsHeadphone}
+          />
+          <ListCardProduct type={"TV"} productState={productsTV} />
+          <ListCardProduct type={"SCREENPC"} productState={productsScreenPC} />
         </div>
       )}
 

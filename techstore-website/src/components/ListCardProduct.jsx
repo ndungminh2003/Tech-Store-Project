@@ -37,18 +37,13 @@ export default function ListCardProduct(props) {
   wishlist = wishlist || [];
   const productIdsInWishlist = wishlist.map((product) => product._id);
   useEffect(() => {
-    const type = props.type.toLowerCase();
     // setProducts depends on props.type
     let productList = [];
     if (brand === "" || brand === "ALL") {
-      productList = props.productState.filter(
-        (product) => product.category.toLowerCase() === type
-      );
+      productList = props.productState;
     } else {
       productList = props.productState.filter(
-        (product) =>
-          product.category.toLowerCase() === type &&
-          product.brand.toLowerCase() === brand.toLowerCase()
+        (product) => product.brand.toLowerCase() === brand.toLowerCase()
       );
     }
     setProducts(productList);
@@ -127,8 +122,6 @@ export default function ListCardProduct(props) {
                 brand={product.brand}
                 color={product.color}
                 thumbnail={product.thumbnail}
-                images={product.images}
-                description={product.description}
                 slug={product.slug}
                 feature={product.feature}
                 isFavorite={productIdsInWishlist.includes(product._id)}
