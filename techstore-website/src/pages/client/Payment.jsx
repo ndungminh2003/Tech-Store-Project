@@ -1,4 +1,6 @@
 import React from "react";
+import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
 import { Checkbox, Snackbar } from "@mui/material";
 import { useState } from "react";
@@ -20,7 +22,7 @@ function Payment() {
           name: "",
           phone: "",
           address: "",
-          totalAfterDiscount: 0,
+          totalAfterDiscount: "0",
         };
   const [paymentSelected, setPaymentSelected] = useState("");
   const [state, setState] = React.useState({
@@ -77,6 +79,22 @@ function Payment() {
     setState({ ...state, open: false });
   };
 
+  const [responseMessage, setResponseMessage] = useState("");
+
+  const handleZaloPayment = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5050/api/payment/createorder",
+        {
+          amount: createdOrder.totalAfterDiscount,
+        }
+      );
+
+      window.location.href = response.data.orderurl;
+    } catch (error) {
+      console.error("Lỗi khi gửi yêu cầu:", error);
+    }
+  };
   return (
     <div className="">
       <div className="flex items-center justify-center max-w-[700px] m-auto my-5">
@@ -284,10 +302,10 @@ function Payment() {
                   <label htmlFor="cash_on_shop" className="h-[70px]">
                     <span>Thanh toán tại cửa hàng</span>
                     <img
-                      src="https://cellphones.com.vn/cart/_nuxt/img/COS.f5b9a7b.png"
+                      src="https://cdn2.cellphones.com.vn/x400,webp,q100/media/payment-logo/COS.png"
                       alt="
                   "
-                      className="w-[65%] m-auto"
+                      className="w-[50px] m-auto"
                     />
                   </label>
                 </div>
@@ -308,9 +326,9 @@ function Payment() {
                   <label data-v-63bf7435 htmlFor="cod" className="h-[70px]">
                     <span>Thanh toán khi nhận hàng</span>
                     <img
-                      src="https://cellphones.com.vn/cart/_nuxt/img/transfer.3133aad.png"
+                      src="https://cdn2.cellphones.com.vn/x400,webp,q100/media/payment-logo/COD.png"
                       alt=""
-                      className="w-[65%] m-auto"
+                      className="w-[50px] m-auto"
                     />
                   </label>
                 </div>
@@ -335,6 +353,30 @@ function Payment() {
                       alt="
                   "
                       className="w-[65%] m-auto"
+                    />
+                  </label>
+                </div>
+                <div
+                  className={`w-[calc(50%-5px)] text-center rounded-[15px] p-[5px] shadow-cellphone cursor-pointer overflow-hidden ${
+                    paymentSelected === "zalopay_transfer"
+                      ? "border border-[#d70018] payment-group relative"
+                      : ""
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    className="hidden"
+                    id="zalopay_transfer"
+                    value="zalopay_transfer"
+                    onClick={(e) => setPaymentSelected(e.target.value)}
+                  />
+                  <label htmlFor="zalopay_transfer" className="h-[70px]">
+                    <span>Thanh toán qua</span>
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/vi/7/77/ZaloPay_Logo.png"
+                      alt="
+                "
+                      className="w-[90px] m-auto"
                     />
                   </label>
                 </div>
@@ -370,7 +412,13 @@ function Payment() {
           <div className="flex flex-col gap-2 font-bold">
             <button
               className="px-3 py-[6px] uppercase h-[60px] bg-slate-500 rounded text-white"
-              onClick={() => handleContinueClick()}
+              onClick={() => {
+                if (paymentSelected === "zalopay_transfer") {
+                  handleZaloPayment();
+                } else {
+                  handleContinueClick();
+                }
+              }}
             >
               Tiếp tục
             </button>
