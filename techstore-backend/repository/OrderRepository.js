@@ -3,7 +3,7 @@ const Order = require("../models/Order");
 
 const ORDER_PER_PAGE = 10;
 
-class OrderRespository {
+class OrderRepository {
   SaveOrder(data = {}) {
     return sequelize.transaction((t) => {
       const { description } = JSON.parse(data.embeddata);
@@ -34,4 +34,4 @@ class OrderRespository {
   }
 }
 
-module.exports = new OrderRespository();
+module.exports = new OrderRepository();
