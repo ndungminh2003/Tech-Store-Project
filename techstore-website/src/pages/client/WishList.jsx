@@ -22,7 +22,7 @@ function WishList() {
       const productToAdd = {
         _id: product._id,
         color: product.color.length > 0 ? product.color[0] : "",
-        name: product.name,
+        name: product.title,
         slug: product.slug,
         thumbnail: product.thumbnail,
         feature: product.feature !== undefined ? product.feature[0] : "",
