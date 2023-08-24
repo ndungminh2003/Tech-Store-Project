@@ -7,7 +7,7 @@ router.get("/validate", validatePayment);
 
 const ZaloPay = require("../zalopay");
 
-const OrderRespository = require("../respository/OrderRepository");
+const OrderRepository = require("../repository/OrderRepository");
 
 router.post("/createorder", async (req, res) => {
   return res.send(await ZaloPay.CreateOrder(req.body));
@@ -31,7 +31,7 @@ router.get("/gethistory", async (req, res) => {
   page = Number(page);
   page = isNaN(page) ? 1 : page;
 
-  const orders = await OrderRespository.Paginate(page);
+  const orders = await OrderRepository.Paginate(page);
   res.send(orders);
 });
 
