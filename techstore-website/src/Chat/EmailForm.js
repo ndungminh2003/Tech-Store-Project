@@ -146,7 +146,7 @@ const EmailForm = props => {
                 />
 
                 <div style={styles.topText}>
-                    Welcome to TechStore <br /> support 👋
+                    Xin chào bạn đến với TechStore <br/> support 👋
                 </div>
 
                 <form 
@@ -154,14 +154,14 @@ const EmailForm = props => {
                     style={{ position: 'relative', width: '100%', top: '19.75%' }}
                 >
                     <input 
-                        placeholder='Your Email'
+                        placeholder='Email của bạn'
                         onChange={e => setEmail(e.target.value)}
                         style={styles.emailInput}
                     />
                 </form>
 
                 <div style={styles.bottomText}>
-                    Enter your email <br /> to get started.
+                    Nhập email để bắt đầu.
                 </div>
             </div>
         </div>

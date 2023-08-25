@@ -49,7 +49,7 @@ export default function DropDown(props) {
     <div className=" relative">
       <div
         onClick={handleOnClick}
-        className="flex items-center gap-2 p-4 text-xl text-white capitalize cursor-pointer  lg:text-lg hover:bg-gray-500 hover:rounded-lg xxsm:hidden"
+        className="flex items-center gap-2 p-4 text-lg text-white capitalize cursor-pointer hover:bg-gray-500 hover:rounded-lg xxsm:hidden xsm:text-sm"
       >
         <AccountCircleIcon />
         <span>{user?.name}</span>
@@ -61,21 +61,21 @@ export default function DropDown(props) {
           <Link to="/user" onClick={handleOnClick}>
             <div className="flex items-center gap-1 p-2 text-lg cursor-pointer  xsm:text-sm sm:text-sm hover:bg-gray-300 hover:rounded-lg">
               <ManageAccountsIcon />
-              <span>My Acount</span>
+              <span>Tài khoản</span>
             </div>
           </Link>
 
           <Link to="/user/order" onClick={handleOnClick}>
             <div className="flex items-center gap-1 p-2 text-lg cursor-pointer  xsm:text-sm sm:text-sm hover:bg-gray-300 hover:rounded-lg">
               <PaymentIcon />
-              <span>Purchase</span>
+              <span>Order</span>
             </div>
           </Link>
 
           <Link to="/" onClick={handleLogout}>
             <div className="flex items-center gap-1 p-2 text-lg cursor-pointer  xsm:text-sm sm:text-sm hover:bg-gray-300 hover:rounded-lg">
               <LogoutIcon />
-              <span>Log out</span>
+              <span>Đăng xuất</span>
             </div>
           </Link>
         </div>
@@ -85,13 +85,13 @@ export default function DropDown(props) {
             <Link to="/login" onClick={handleOnClick}>
               <div className="flex items-center gap-1 p-2 text-lg cursor-pointer  xsm:text-sm sm:text-sm hover:bg-gray-300 hover:rounded-lg">
                 <LoginIcon />
-                <span>Login</span>
+                <span>Đăng nhập</span>
               </div>
             </Link>
             <Link to="/register" onClick={handleOnClick}>
               <div className="flex items-center gap-1 p-2 text-lg cursor-pointer  xsm:text-sm sm:text-sm hover:bg-gray-300 hover:rounded-lg">
                 <AppRegistrationIcon />
-                <span>Register</span>
+                <span>Đăng kí</span>
               </div>
             </Link>
           </div>

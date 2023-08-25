@@ -34,16 +34,7 @@ export default function Banner() {
       icon: <PhoneIphoneIcon />,
 
       brands: {
-        title: "Select by brand",
-        // brand: [
-        //   "Samsung",
-        //   "Apple",
-        //   "Xiaomi",
-        //   "OPPO",
-        //   "Vivo",
-        //   "Nokia",
-        //   "Xem thêm tất cả Điện Thoại",
-        // ],
+        title: "Chọn theo hãng",
         brand: [
           ...categoryBrands.filter((item) => item._id === "Phone")[0].brands,
           "Xem thêm tất cả Điện Thoại",
@@ -51,12 +42,12 @@ export default function Banner() {
       },
 
       price: {
-        title: "Phone price range",
+        title: "Mức giá điện thoại",
         range: [
-          "Under  5 million VND",
-          "From 5 to 10 million VND",
-          "From 10 to 15 million VND",
-          "Above 15 million VND",
+          "Dưới 5 triệu VND",
+          "Từ 5 tới 10 triệu VND",
+          "Từ 10 tới 15 triệu VND",
+          "Trên 15 triệu VND",
         ],
       },
 
@@ -80,7 +71,7 @@ export default function Banner() {
       icon: <TabletMacIcon />,
 
       brands: {
-        title: "Select by brand",
+        title: "Chọn theo hãng",
         brand: [
           ...categoryBrands.filter((item) => item._id === "Tablet")[0].brands,
           "Xem thêm tất cả Máy Tính Bảng",
@@ -88,12 +79,12 @@ export default function Banner() {
       },
 
       price: {
-        title: "Tablet price range",
+        title: "Mức giá Tablet",
         range: [
-          "Under  10 million VND",
-          "From 10 to 15 million VND",
-          "From 15 to 20 million VND",
-          "Above 20 million VND",
+          "Dưới 10 triệu VND",
+          "Từ 10 tới 15 triệu VND",
+          "Từ 15 tới 20 triệu VND",
+          "Trên 20 triệu VND",
         ],
       },
 
@@ -115,7 +106,7 @@ export default function Banner() {
       icon: <LaptopMacIcon />,
 
       brands: {
-        title: "Select by brand",
+        title: "Chọn theo hãng",
         brand: [
           ...categoryBrands.filter((item) => item._id === "Laptop")[0].brands,
           "Xem thêm tất cả Laptop",
@@ -123,12 +114,12 @@ export default function Banner() {
       },
 
       price: {
-        title: "Laptop price range",
+        title: "Mức giá laptop",
         range: [
-          "Under  15 million VND",
-          "From 15 to 20 million VND",
-          "From 20 to 25 million VND",
-          "Above 25 million VND",
+          "Dưới 15 triệu VND",
+          "Từ 15 tới 20 triệu VND",
+          "Từ 20 tới 25 triệu VND",
+          "Trên 25 triệu VND",
         ],
       },
 
@@ -152,7 +143,7 @@ export default function Banner() {
       icon: <HeadphonesIcon />,
 
       brands: {
-        title: "Headset brand",
+        title: "Hãng tai nghe",
         brand: [
           ...categoryBrands.filter((item) => item._id === "Headphone")[0]
             .brands,
@@ -161,12 +152,12 @@ export default function Banner() {
       },
 
       price: {
-        title: "Phone price range",
+        title: "Mức giá tai nghe",
         range: [
-          "Under 1 million VND",
-          "1 to 3 million VND",
-          "From 3 to 5 million VND",
-          "Above 5 million VND",
+          "Dưới 1 triệu VND",
+          "Từ 1 tới 3 triệu VND",
+          "Từ 3 tới 5 triệu VND",
+          "Trên 5 triệu VND",
         ],
       },
 
@@ -185,11 +176,11 @@ export default function Banner() {
 
     {
       id: 5,
-      type: "Watch",
+      type: "Đồng hồ",
       icon: <WatchIcon />,
 
       brands: {
-        title: "Select by brand",
+        title: "Chọn theo hãng",
         brand: [
           ...categoryBrands.filter((item) => item._id === "Watch")[0].brands,
           "Xem thêm tất cả Đồng Hồ",
@@ -197,12 +188,12 @@ export default function Banner() {
       },
 
       price: {
-        title: "Watch price range",
+        title: "Mức giá đồng hồ",
         range: [
-          "Under 2 million VND",
-          "From 2 to 5 million VND",
-          "From 5 to 10 million VND",
-          "Above 10 million VND",
+          "Dưới 2 triệu VND",
+          "Từ 2 tới 5 triệu VND",
+          "Từ 5 tới 10 triệu VND",
+          "Trên 10 triệu VND",
         ],
       },
 
@@ -226,7 +217,7 @@ export default function Banner() {
       icon: <DevicesIcon />,
 
       brands: {
-        title: "Select by brand",
+        title: "Chọn theo hãng",
         brand: [
           ...categoryBrands.filter((item) => item._id === "ScreenPC")[0].brands,
           "Xem thêm tất cả Màn Hình",
@@ -234,12 +225,12 @@ export default function Banner() {
       },
 
       price: {
-        title: "PC price range",
+        title: "Mức giá PC",
         range: [
-          "Under 5 million VND",
-          "From 5 to 10 million VND",
-          "From 10 to 15 million VND",
-          "Above 15 million VND",
+          "Dưới 5 triệu VND",
+          "Từ 5 tới 10 triệu VND",
+          "Từ 10 tới 15 triệu VND",
+          "Trên 15 triệu VND",
         ],
       },
 
@@ -255,7 +246,7 @@ export default function Banner() {
       icon: <ConnectedTvIcon />,
 
       brands: {
-        title: "Select by brand",
+        title: "Chọn theo hãng",
         brand: [
           ...categoryBrands.filter((item) => item._id === "TV")[0].brands,
           "Xem thêm tất cả Tivi",
@@ -263,11 +254,11 @@ export default function Banner() {
       },
 
       price: {
-        title: "Select by price",
+        title: "Mức giá Tivi",
         range: [
-          "From 9 to 12 million VND",
-          "From 12 to 15 million VND",
-          "Over 15 million VND",
+          "Từ 9 tới 12 triệu VND",
+          "Từ 12 tới 15 triệu VND",
+          "Trên 15 triệu VND",
         ],
       },
 

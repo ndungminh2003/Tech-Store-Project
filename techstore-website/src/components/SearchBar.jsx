@@ -45,7 +45,7 @@ export default function SearchBar() {
       <div className=" relative">
         <input
           type="search"
-          placeholder="Search..."
+          placeholder="Bạn cần tìm gì..."
           className=" w-full p-4 rounded-full"
           onChange={handleChangeKeyword}
           value={keyword}

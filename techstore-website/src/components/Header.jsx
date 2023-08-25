@@ -24,11 +24,11 @@ import { useDispatch, useSelector } from "react-redux";
 const catalog = [
   {
     id: 1,
-    type: "Phone",
+    type: "Điện thoại",
     icon: <PhoneIphoneIcon />,
 
     brands: {
-      title: "Select by brand",
+      title: "Chọn theo hãng",
       brand: [
         "Samsung",
         "iPhone",
@@ -47,12 +47,12 @@ const catalog = [
     },
 
     price: {
-      title: "Phone price range",
+      title: "Mức giá điện thoại",
       range: [
-        "Under  5 million VND",
-        "From 5 to 10 million VND",
-        "From 10 to 15 million VND",
-        "Above 15 million VND",
+        "Dưới 5 triệu VND",
+        "Từ 5 tới 10 triệu VND",
+        "Từ 10 tới 15 triệu VND",
+        "Trên 15 triệu VND",
       ],
     },
 
@@ -77,7 +77,7 @@ const catalog = [
     icon: <TabletMacIcon />,
 
     brands: {
-      title: "Select by brand",
+      title: "Chọn theo hãng",
       brand: [
         "iPad",
         "Samsung",
@@ -93,12 +93,12 @@ const catalog = [
     },
 
     price: {
-      title: "Tablet price range",
+      title: "Mức giá Tablet",
       range: [
-        "Under  10 million VND",
-        "From 10 to 15 million VND",
-        "From 15 to 20 million VND",
-        "Above 20 million VND",
+        "Dưới 10 triệu VND",
+        "Từ 10 tới 15 triệu VND",
+        "Từ 15 tới 20 triệu VND",
+        "Trên 20 triệu VND",
       ],
     },
 
@@ -120,7 +120,7 @@ const catalog = [
     icon: <LaptopMacIcon />,
 
     brands: {
-      title: "Select by brand",
+      title: "Chọn theo hãng",
       brand: [
         "Mac",
         "HP",
@@ -139,12 +139,12 @@ const catalog = [
     },
 
     price: {
-      title: "Laptop price range",
+      title: "Mức giá laptop",
       range: [
-        "Under  15 million VND",
-        "From 15 to 20 million VND",
-        "From 20 to 25 million VND",
-        "Above 25 million VND",
+        "Dưới 15 triệu VND",
+        "Từ 15 tới 20 triệu VND",
+        "Từ 20 tới 25 triệu VND",
+        "Trên 25 triệu VND",
       ],
     },
 
@@ -164,11 +164,11 @@ const catalog = [
 
   {
     id: 4,
-    type: "Head Phone",
+    type: "Tai nghe",
     icon: <HeadphonesIcon />,
 
     brands: {
-      title: "Headset brand",
+      title: "Hãng tai nghe",
       brand: [
         "Apple",
         "JBL",
@@ -184,12 +184,12 @@ const catalog = [
     },
 
     price: {
-      title: "Phone price range",
+      title: "Mức giá tai nghe",
       range: [
-        "Under 1 million VND",
-        "1 to 3 million VND",
-        "From 3 to 5 million VND",
-        "Above 5 million VND",
+        "Dưới 1 triệu VND",
+        "Từ 1 tới 3 triệu VND",
+        "Từ 3 tới 5 triệu VND",
+        "Trên 5 triệu VND",
       ],
     },
 
@@ -208,11 +208,11 @@ const catalog = [
 
   {
     id: 5,
-    type: "Watch",
+    type: "Đồng hồ",
     icon: <WatchIcon />,
 
     brands: {
-      title: "Select by brand",
+      title: "Chọn theo hãng",
       brand: [
         "Apple Watch",
         "Samsung",
@@ -228,12 +228,12 @@ const catalog = [
     },
 
     price: {
-      title: "Watch price range",
+      title: "Mức giá đồng hồ",
       range: [
-        "Under 2 million VND",
-        "From 2 to 5 million VND",
-        "From 5 to 10 million VND",
-        "Above 10 million VND",
+        "Dưới 2 triệu VND",
+        "Từ 2 tới 5 triệu VND",
+        "Từ 5 tới 10 triệu VND",
+        "Trên 10 triệu VND",
       ],
     },
 
@@ -257,7 +257,7 @@ const catalog = [
     icon: <DevicesIcon />,
 
     brands: {
-      title: "Select by brand",
+      title: "Chọn theo hãng",
       brand: [
         "ASUS",
         "Samsung",
@@ -273,12 +273,12 @@ const catalog = [
     },
 
     price: {
-      title: "PC price range",
+      title: "Mức giá PC",
       range: [
-        "Under 5 million VND",
-        "From 5 to 10 million VND",
-        "From 10 to 15 million VND",
-        "Above 15 million VND",
+        "Dưới 5 triệu VND",
+        "Từ 5 tới 10 triệu VND",
+        "Từ 10 tới 15 triệu VND",
+        "Trên 15 triệu VND",
       ],
     },
 
@@ -290,11 +290,11 @@ const catalog = [
 
   {
     id: 7,
-    type: "Television",
+    type: "Tivi",
     icon: <ConnectedTvIcon />,
 
     brands: {
-      title: "Select by brand",
+      title: "Chọn theo hãng",
       brand: [
         "Apple Watch",
         "Samsung",
@@ -310,11 +310,11 @@ const catalog = [
     },
 
     price: {
-      title: "Select by price",
+      title: "Mức giá Tivi",
       range: [
-        "From 9 to 12 million VND",
-        "From 12 to 15 million VND",
-        "Over 15 million VND",
+        "Từ 9 tới 12 triệu VND",
+        "Từ 12 tới 15 triệu VND",
+        "Trên 15 triệu VND",
       ],
     },
 
@@ -393,15 +393,15 @@ export default function Header() {
     <div className=" w-full bg-slate-800 sticky top-0 z-50">
       <div className=" relative container mx-auto flex h-17 justify-around items-center ">
         <Link to="/">
-          <div className=" w-52 flex items-center justify-center xxsm:w-36 xsm:w-36 sm:w-36 md:w-44">
+          <div className=" w-52 flex items-center justify-center xxsm:w-28 xsm:w-32 sm:w-36 md:w-40 lg:w-44">
             <img src="/logo/big.png" alt="logo" className=" object-fill" />
           </div>
         </Link>
 
         <div onClick={handleOnClick} className="">
-          <div className=" flex gap-2 items-center p-4 cursor-pointer capitalize text-xl lg:text-lg hover:bg-gray-500 hover:rounded-lg hover:py-4 text-white xxsm:hidden xsm:hidden sm:hidden md:hidden">
+          <div className=" flex gap-2 items-center p-4 cursor-pointer capitalize text-lg min-w-fit hover:bg-gray-500 hover:rounded-lg hover:py-4 text-white xxsm:hidden xsm:hidden sm:hidden md:hidden ">
             <NotesIcon />
-            <span>catalog</span>
+            <span>Danh mục</span>
           </div>
 
           {isOpen ? (
@@ -481,25 +481,25 @@ export default function Header() {
         <SearchBar />
 
         <Link to="/cart">
-          <div className="flex gap-2 items-center p-4 cursor-pointer capitalize text-xl xxsm:text-lg xsm:text-lg sm:text-lg md:text-lg lg:text-lg xsm:flex-col hover:bg-gray-500 hover:rounded-lg hover:py-4 text-white min-w-fit xxsm:hidden">
+          <div className="flex gap-2 items-center p-4 cursor-pointer capitalize text-lg xxsm:text-lg xsm:text-sm sm:text-lg md:text-lg xsm:flex-col hover:bg-gray-500 hover:rounded-lg hover:py-4 text-white min-w-fit xxsm:hidden">
             <Badge badgeContent={quantity} color="primary">
               <ShoppingCartIcon color="white" />
             </Badge>
-            <div>Cart</div>
+            <div>Giỏ hàng</div>
           </div>
         </Link>
 
         <Link to="/wishlist">
-          <div className=" flex gap-2 items-center p-4 cursor-pointer capitalize text-xl hover:bg-gray-500 hover:rounded-lg hover:py-4 text-white xxsm:hidden xsm:hidden sm:hidden md:hidden lg:hidden">
+          <div className=" flex gap-2 items-center p-4 cursor-pointer capitalize text-lg hover:bg-gray-500 hover:rounded-lg hover:py-4 text-white xxsm:hidden xsm:hidden sm:hidden md:hidden lg:hidden">
             <FavoriteIcon />
-            <span>wishlist</span>
+            <span>Yêu thích</span>
           </div>
         </Link>
 
         <Link to="/contact">
-          <div className=" flex gap-2 items-center p-4 cursor-pointer capitalize text-xl hover:bg-gray-500 hover:rounded-lg hover:py-4 text-white xxsm:hidden xsm:hidden sm:hidden md:hidden lg:hidden">
+          <div className=" flex gap-2 items-center p-4 cursor-pointer capitalize text-lg hover:bg-gray-500 hover:rounded-lg hover:py-4 text-white xxsm:hidden xsm:hidden sm:hidden md:hidden lg:hidden xl:hidden">
             <CallIcon />
-            <span>contact</span>
+            <span>Liên hệ</span>
           </div>
         </Link>
 

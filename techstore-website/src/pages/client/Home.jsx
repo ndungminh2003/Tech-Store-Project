@@ -49,26 +49,26 @@ export default function Home() {
       <Banner />
       {isLoading ? (
         <div className=" flex flex-col gap-6">
-          <SkeletonProduct type={"PHONE"} />
+          <SkeletonProduct type={"ĐIỆN THOẠI"} />
           <SkeletonProduct type={"LAPTOP"} />
-          <SkeletonProduct type={"WATCH"} />
+          <SkeletonProduct type={"ĐỒNG HỒ"} />
           <SkeletonProduct type={"TABLET"} />
-          <SkeletonProduct type={"HEADPHONE"} />
-          <SkeletonProduct type={"TV"} />
-          <SkeletonProduct type={"SCREENPC"} />
+          <SkeletonProduct type={"TAI NGHE"} />
+          <SkeletonProduct type={"TIVI"} />
+          <SkeletonProduct type={"MÀN HÌNH PC"} />
         </div>
       ) : (
         <div className=" flex flex-col gap-6">
-          <ListCardProduct type={"PHONE"} productState={productsPhone} />
+          <ListCardProduct type={"ĐIỆN THOẠI"} productState={productsPhone} />
           <ListCardProduct type={"LAPTOP"} productState={productsLaptop} />
-          <ListCardProduct type={"WATCH"} productState={productsWatch} />
+          <ListCardProduct type={"ĐỒNG HỒ"} productState={productsWatch} />
           <ListCardProduct type={"TABLET"} productState={productsTablet} />
           <ListCardProduct
-            type={"HEADPHONE"}
+            type={"TAI NGHE"}
             productState={productsHeadphone}
           />
-          <ListCardProduct type={"TV"} productState={productsTV} />
-          <ListCardProduct type={"SCREENPC"} productState={productsScreenPC} />
+          <ListCardProduct type={"TIVI"} productState={productsTV} />
+          <ListCardProduct type={"MÀN HÌNH PC"} productState={productsScreenPC} />
         </div>
       )}
 

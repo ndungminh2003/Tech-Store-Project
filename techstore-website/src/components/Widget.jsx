@@ -80,7 +80,7 @@ const accessories = [
 const second_hand = [
   {
     id: 1,
-    title: "Phone",
+    title: "Điện thoại",
     img:
       "https://cdn2.cellphones.com.vn/150x,webp,q70/media/catalog/product/i/p/ip-14-hp-cu.png",
   },
@@ -107,13 +107,13 @@ const second_hand = [
   },
   {
     id: 6,
-    title: "Headphone",
+    title: "Tai nghe",
     img:
       "https://cdn2.cellphones.com.vn/150x,webp,q70/media/catalog/product/c/a/cate-tai-nghe_1.png",
   },
   {
     id: 7,
-    title: "Computer-monitor",
+    title: "Màn hình máy tính",
     img:
       "https://cdn2.cellphones.com.vn/150x,webp,q70/media/catalog/product/c/a/cate-man-hinh.png",
   },
@@ -171,7 +171,7 @@ export default function Widget() {
     <div className=" flex flex-col gap-4 container mx-auto mb-10">
       <div className=" flex flex-col gap-2">
         <h1 className=" font-bold text-3xl text-gray-500 px-4 py-2 ">
-          Accessories
+          PHỤ KIỆN
         </h1>
         <div className=" flex flex-wrap gap-7 ml-2">
           {accessories.map((i, index) => (
@@ -197,7 +197,7 @@ export default function Widget() {
 
       <div className=" flex flex-col gap-2">
         <h1 className=" font-bold text-3xl text-gray-500 px-4 py-2 ">
-          Electronic Computer
+          LINH KIỆN MÁY TÍNH
         </h1>
         <div className=" flex flex-wrap gap-7 ml-2">
           {electronic_computer.map((i, index) => (
@@ -223,7 +223,7 @@ export default function Widget() {
 
       <div className=" flex flex-col gap-2">
         <h1 className=" font-bold text-3xl text-gray-500 px-4 py-2 ">
-          Second-Hand
+          HÀNG CŨ
         </h1>
         <div className=" flex flex-wrap gap-7 ml-2">
           {second_hand.map((i, index) => (

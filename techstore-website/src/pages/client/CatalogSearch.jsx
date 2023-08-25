@@ -33,7 +33,7 @@ export default function CatalogSearch() {
     height: '100%'
   };
   
-  if (products?.totalProducts <= 10) {
+  if (products?.totalProducts < 9) {
     style = {
       height: '100vh'
     };
@@ -44,19 +44,19 @@ export default function CatalogSearch() {
       {products?.totalProducts === 0 ? (
         <div className=" flex flex-col items-center gap-10 justify-center">
           <span className="flex justify-center text-xl text-red-500 font-bold">
-            Error: No products found for the keyword{" "}
+            Lỗi: Không tìm thấy sản phẩm cho từ khóa {" "}
             <b className="mx-1">'{products?.keyword}'</b>
           </span>
           
           <img src="/logo/small.png" alt="logo" className=" rounded-lg w-52 h-52 "/>
           <span className="flex justify-center text-xl text-black font-bold ">
-            Opps Sorry! No Results Found
+            Opps Sorry! Không tìm thấy sản phẩm
           </span>
         </div>
       ) : (
         <span className="flex justify-center text-xl text-gray-500">
-          Found <b className="mx-1">{products?.totalProducts}</b> products for
-          the keyword <b className="mx-1">'{products?.keyword}'</b>
+          Tìm thấy <b className="mx-1">{products?.totalProducts}</b> sản phẩm
+          cho từ khóa <b className="mx-1">'{products?.keyword}'</b>
         </span>
       )}
 
@@ -70,14 +70,14 @@ export default function CatalogSearch() {
                 onClick={sortHighToLow}
               >
                 <KeyboardDoubleArrowUpIcon sx={{ color: "blue" }} />
-                High-priced
+                Giá cao
               </p>
               <p
                 className=" flex justify-center items-center bg-slate-300 p-3 hover:bg-slate-400 hover:duration-200 rounded-xl gap-2"
                 onClick={sortLowToHigh}
               >
                 <KeyboardDoubleArrowDownIcon sx={{ color: "blue" }} />
-                Low-priced
+                Giá thấp
               </p>
             </div>
           </div>
@@ -104,7 +104,7 @@ export default function CatalogSearch() {
       )}
       {products?.totalProducts > 0 && (
         <div className=" flex items-center justify-center text-xl w-43 gap-2 bg-slate-300 p-4 hover:bg-slate-400 hover:duration-200 rounded-xl cursor-pointer self-center">
-          <span>See more</span>
+          <span>Xem thêm</span>
           <KeyboardArrowDownIcon />
         </div>
       )}
