@@ -27,7 +27,8 @@ export default function Footer() {
     location.pathname === "/forgot-password" ||
     location.pathname === "/forgot-password-otp" ||
     location.pathname === "/change-password" ||
-    location.pathname === "/otp"
+    location.pathname === "/otp" ||
+    location.pathname === "/user/order"
   ) {
     return null;
   }
@@ -36,23 +37,23 @@ export default function Footer() {
     <div className=" bg-slate-800 w-full text-white z-50 xxsm:sticky xxsm:bottom-0 xsm:sticky xsm:bottom-0 sm:sticky sm:bottom-0 md:sticky md:bottom-0 lg:sticky lg:bottom-0 ">
       <footer className=" container mx-auto grid grid-cols-3 gap-4 py-3 justify-items-center p-6 xxsm:hidden xsm:hidden sm:hidden md:hidden lg:hidden ">
         <div className=" flex flex-col gap-3">
-          <h1>INFORMATION AND POLICY</h1>
-          <p className=" cursor-pointer ml-2">Privacy Policy</p>
-          <p className=" cursor-pointer ml-2">Refund Policy</p>
-          <p className=" cursor-pointer ml-2">Shipping Policy</p>
-          <p className=" cursor-pointer ml-2">Terms Of Service</p>
+          <h1>Thông tin và chính sách</h1>
+          <p className=" cursor-pointer ml-2">Chính sách bảo mật</p>
+          <p className=" cursor-pointer ml-2">Chính sách đổi trả</p>
+          <p className=" cursor-pointer ml-2">Chính sách giao hàng</p>
+          <p className=" cursor-pointer ml-2">Tra thông tin bảo hành</p>
         </div>
 
         <div className="flex flex-col gap-3">
-          <h1>CENTER SUPPORT</h1>
+          <h1>Trung tâm hỗ trợ</h1>
           <p className=" ml-2">Hotline: 19006868</p>
           <p className=" ml-2"></p>
         </div>
 
         <div className=" flex flex-col gap-3 ">
-          <h1>CONNECT WITH US</h1>
+          <h1>Kết nối với chúng tôi</h1>
           <p className=" ml-2">TechStore</p>
-          <p className=" ml-2">227 District 5 HCM Viet Nam</p>
+          <p className=" ml-2">227 Quận 5 HCM Việt Nam</p>
 
           <div className="flex gap-4 items-center ml-2">
             <img
@@ -83,7 +84,7 @@ export default function Footer() {
         <Link to="/">
           <div className=" flex flex-col gap-2 items-center p-4 cursor-pointer capitalize xxsm:text-sm xsm:text-sm sm:text-sm md:text-lg hover:bg-gray-500 hover:rounded-lg hover:py-2 text-white">
             <HomeIcon />
-            <span>home</span>
+            <span>Trang chủ</span>
           </div>
         </Link>
 
@@ -95,14 +96,14 @@ export default function Footer() {
         <Link to="/wishlist">
           <div className=" flex flex-col gap-2 items-center p-4 cursor-pointer capitalize xxsm:text-sm xsm:text-sm sm:text-sm md:text-lg hover:bg-gray-500 hover:rounded-lg hover:py-2 text-white ">
             <FavoriteIcon />
-            <span>wishlist</span>
+            <span>Yêu thích</span>
           </div>
         </Link>
 
         <Link to="/contact">
           <div className=" flex flex-col gap-2 items-center p-4 cursor-pointer capitalize xxsm:text-sm xsm:text-sm sm:text-sm md:text-lg hover:bg-gray-500 hover:rounded-lg hover:py-2 text-white ">
             <CallIcon />
-            <span>contact</span>
+            <span>Liên hệ</span>
           </div>
         </Link>
       </div>

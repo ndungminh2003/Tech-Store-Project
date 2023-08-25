@@ -181,7 +181,7 @@ export default function CardProduct(props) {
                 onMouseLeave={() => setIsHovered(false)}
                 onClick={handleAddToWishlist}
               >
-                <span className="text-gray-500 mr-1 text-[16px]">Yêu thích</span>
+                <span className="text-gray-500 mr-1 text-[16px] md:text-[14px]">Yêu thích</span>
                 {/* <FavoriteBorderIcon className="!cursor-pointer z-20 text-[#d70018] hover:animate-ping"></FavoriteBorderIcon> */}
                 {isHovered || props.isFavorite ? (
                   <FavoriteIcon className="cursor-pointer text-red-600 hover:animate-ping" />
@@ -204,7 +204,7 @@ export default function CardProduct(props) {
               onClick={handleAddToCart}
               className=" transition ease-in-out hover:scale-110 duration-300 p-1"
             >
-              <span className=" text-[16px] ">Thêm vào giỏ</span>
+              <span className=" text-[16px] font-medium md:text-[14px]">Thêm vào giỏ</span>
               <AddShoppingCartIcon sx={{ fontSize: "25px" }} />
             </button>
           </div>
@@ -217,7 +217,7 @@ export default function CardProduct(props) {
         >
           <div className=" flex items-center cursor-pointer p-1 rounded-xl text-white w-44 h-8 justify-center">
             <button className=" transition ease-in-out hover:scale-110 duration-300 p-1 text-gray-500 flex gap-2 items-center">
-              <span className=" text-[16px] ">Thêm vào giỏ</span>
+              <span className=" text-[16px] font-medium md:text-[14px]">Thêm vào giỏ</span>
               <AddShoppingCartIcon sx={{ fontSize: "25px", color: "black" }} />
             </button>
           </div>

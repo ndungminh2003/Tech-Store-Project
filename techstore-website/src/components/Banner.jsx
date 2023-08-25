@@ -20,11 +20,11 @@ export default function Banner() {
   const catalog = [
     {
       id: 1,
-      type: "Phone",
+      type: "Điện thoại",
       icon: <PhoneIphoneIcon />,
-
+  
       brands: {
-        title: "Select by brand",
+        title: "Chọn theo hãng",
         brand: [
           "Samsung",
           "iPhone",
@@ -41,17 +41,17 @@ export default function Banner() {
           "Itel",
         ],
       },
-
+  
       price: {
-        title: "Phone price range",
+        title: "Mức giá điện thoại",
         range: [
-          "Under  5 million VND",
-          "From 5 to 10 million VND",
-          "From 10 to 15 million VND",
-          "Above 15 million VND",
+          "Dưới 5 triệu VND",
+          "Từ 5 tới 10 triệu VND",
+          "Từ 10 tới 15 triệu VND",
+          "Trên 15 triệu VND",
         ],
       },
-
+  
       hot: {
         title: "Hot",
         product: [
@@ -66,14 +66,14 @@ export default function Banner() {
         ],
       },
     },
-
+  
     {
       id: 2,
       type: "Tablet",
       icon: <TabletMacIcon />,
-
+  
       brands: {
-        title: "Select by brand",
+        title: "Chọn theo hãng",
         brand: [
           "iPad",
           "Samsung",
@@ -87,17 +87,17 @@ export default function Banner() {
           "Xem thêm tất cả Tablet",
         ],
       },
-
+  
       price: {
-        title: "Tablet price range",
+        title: "Mức giá Tablet",
         range: [
-          "Under  10 million VND",
-          "From 10 to 15 million VND",
-          "From 15 to 20 million VND",
-          "Above 20 million VND",
+          "Dưới 10 triệu VND",
+          "Từ 10 tới 15 triệu VND",
+          "Từ 15 tới 20 triệu VND",
+          "Trên 20 triệu VND",
         ],
       },
-
+  
       hot: {
         title: "Hot",
         product: [
@@ -109,14 +109,14 @@ export default function Banner() {
         ],
       },
     },
-
+  
     {
       id: 3,
       type: "Laptop",
       icon: <LaptopMacIcon />,
-
+  
       brands: {
-        title: "Select by brand",
+        title: "Chọn theo hãng",
         brand: [
           "Mac",
           "HP",
@@ -133,17 +133,17 @@ export default function Banner() {
           "Vaio",
         ],
       },
-
+  
       price: {
-        title: "Laptop price range",
+        title: "Mức giá laptop",
         range: [
-          "Under  15 million VND",
-          "From 15 to 20 million VND",
-          "From 20 to 25 million VND",
-          "Above 25 million VND",
+          "Dưới 15 triệu VND",
+          "Từ 15 tới 20 triệu VND",
+          "Từ 20 tới 25 triệu VND",
+          "Trên 25 triệu VND",
         ],
       },
-
+  
       hot: {
         title: "Hot",
         product: [
@@ -157,14 +157,14 @@ export default function Banner() {
         ],
       },
     },
-
+  
     {
       id: 4,
-      type: "Head Phone",
+      type: "Tai nghe",
       icon: <HeadphonesIcon />,
-
+  
       brands: {
-        title: "Headset brand",
+        title: "Hãng tai nghe",
         brand: [
           "Apple",
           "JBL",
@@ -178,17 +178,17 @@ export default function Banner() {
           "Edifier",
         ],
       },
-
+  
       price: {
-        title: "Phone price range",
+        title: "Mức giá tai nghe",
         range: [
-          "Under 1 million VND",
-          "1 to 3 million VND",
-          "From 3 to 5 million VND",
-          "Above 5 million VND",
+          "Dưới 1 triệu VND",
+          "Từ 1 tới 3 triệu VND",
+          "Từ 3 tới 5 triệu VND",
+          "Trên 5 triệu VND",
         ],
       },
-
+  
       hot: {
         title: "Hot",
         product: [
@@ -201,14 +201,14 @@ export default function Banner() {
         ],
       },
     },
-
+  
     {
       id: 5,
-      type: "Watch",
+      type: "Đồng hồ",
       icon: <WatchIcon />,
-
+  
       brands: {
-        title: "Select by brand",
+        title: "Chọn theo hãng",
         brand: [
           "Apple Watch",
           "Samsung",
@@ -222,17 +222,17 @@ export default function Banner() {
           "Oppo",
         ],
       },
-
+  
       price: {
-        title: "Watch price range",
+        title: "Mức giá đồng hồ",
         range: [
-          "Under 2 million VND",
-          "From 2 to 5 million VND",
-          "From 5 to 10 million VND",
-          "Above 10 million VND",
+          "Dưới 2 triệu VND",
+          "Từ 2 tới 5 triệu VND",
+          "Từ 5 tới 10 triệu VND",
+          "Trên 10 triệu VND",
         ],
       },
-
+  
       hot: {
         title: "Hot",
         product: [
@@ -246,14 +246,14 @@ export default function Banner() {
         ],
       },
     },
-
+  
     {
       id: 6,
       type: "PC",
       icon: <DevicesIcon />,
-
+  
       brands: {
-        title: "Select by brand",
+        title: "Chọn theo hãng",
         brand: [
           "ASUS",
           "Samsung",
@@ -267,30 +267,30 @@ export default function Banner() {
           "AOC",
         ],
       },
-
+  
       price: {
-        title: "PC price range",
+        title: "Mức giá PC",
         range: [
-          "Under 5 million VND",
-          "From 5 to 10 million VND",
-          "From 10 to 15 million VND",
-          "Above 15 million VND",
+          "Dưới 5 triệu VND",
+          "Từ 5 tới 10 triệu VND",
+          "Từ 10 tới 15 triệu VND",
+          "Trên 15 triệu VND",
         ],
       },
-
+  
       hot: {
         title: "Hot",
         product: ["ASUS", "Samsung", "DELL", "LG", "MSI", "GIGABYTE"],
       },
     },
-
+  
     {
       id: 7,
-      type: "Television",
+      type: "Tivi",
       icon: <ConnectedTvIcon />,
-
+  
       brands: {
-        title: "Select by brand",
+        title: "Chọn theo hãng",
         brand: [
           "Apple Watch",
           "Samsung",
@@ -304,16 +304,16 @@ export default function Banner() {
           "Oppo",
         ],
       },
-
+  
       price: {
-        title: "Select by price",
+        title: "Mức giá Tivi",
         range: [
-          "From 9 to 12 million VND",
-          "From 12 to 15 million VND",
-          "Over 15 million VND",
+          "Từ 9 tới 12 triệu VND",
+          "Từ 12 tới 15 triệu VND",
+          "Trên 15 triệu VND",
         ],
       },
-
+  
       hot: {
         title: "Hot",
         product: [

@@ -31,28 +31,28 @@ export default function User() {
         <div className=' flex flex-col gap-4'>
 
           <NavLink to='/user'>
-            <div className=' flex gap-2 items-center cursor-pointer text-lg bg-slate-400 rounded-xl w-30 h-10 hover:bg-slate-500 hover:duration-300 hover:text-lime-950 w-3/4'>
+            <div className=' flex gap-2 items-center cursor-pointer text-lg bg-slate-400 rounded-xl w-30 h-10 hover:bg-slate-500 hover:duration-300 hover:text-lime-950 w-5/6'>
               <PermContactCalendarIcon className=' ml-2'/>
-              <span>Detail</span>
+              <span>Chi tiết</span>
             </div>
           </NavLink>
 
           
           <NavLink to='/user/order'>
-            <div className=' flex gap-2 items-center cursor-pointer text-lg bg-slate-400 rounded-xl w-30 h-10 hover:bg-slate-500 hover:duration-300 hover:text-lime-950 w-3/4'>
+            <div className=' flex gap-2 items-center cursor-pointer text-lg bg-slate-400 rounded-xl h-10 hover:bg-slate-500 hover:duration-300 hover:text-lime-950 w-5/6'>
               <EventNoteIcon className=' ml-2'/>
-              <span>My Purchase</span>
+              <span>Lịch sử mua hàng</span>
             </div>
           </NavLink>
           
-          <div className=' flex gap-2 items-center cursor-pointer text-lg bg-slate-400 rounded-xl w-30 h-10 hover:bg-slate-500 hover:duration-300 hover:text-lime-950 w-3/4'>
+          <div className=' flex gap-2 items-center cursor-pointer text-lg bg-slate-400 rounded-xl w-30 h-10 hover:bg-slate-500 hover:duration-300 hover:text-lime-950 w-5/6'>
             <SupportAgentIcon className=' ml-2'/>
-            <span>Support</span>
+            <span>Hỗ trợ</span>
           </div>
 
-          <div className=' flex gap-2 items-center cursor-pointer text-lg bg-slate-400 rounded-xl w-30 h-10 hover:bg-slate-500 hover:duration-300 hover:text-lime-950 w-3/4'>
+          <div className=' flex gap-2 items-center cursor-pointer text-lg bg-slate-400 rounded-xl w-30 h-10 hover:bg-slate-500 hover:duration-300 hover:text-lime-950 w-5/6'>
             <LoyaltyIcon className=' ml-2'/>
-            <span>Voucher</span>
+            <span>Mã giảm giá</span>
           </div>
 
         </div>
