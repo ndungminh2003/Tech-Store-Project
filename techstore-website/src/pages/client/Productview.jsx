@@ -32,6 +32,7 @@ import {
   resetProductState,
   getRelatedProduct,
 } from "../../features/product/productSlice";
+import generateHtmlApi from '../../utils/generateHtml';
 import CheckIcon from "@mui/icons-material/Check";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 export default function ProductView() {
@@ -268,14 +269,15 @@ export default function ProductView() {
                                   alt=""
                                   className="w-[270px] h-[270px] rounded-[10px] object-cover"
                                 />
-                                <div className="text-white">
+                                <div className="text-white w-[350px]">
                                   <p className="text-lg mb-[5px] uppercase font-semibold text-center">
                                     Tính năng nổi bật
                                   </p>
                                   <div>
-                                    <ul className="text-sm flex flex-col gap-[5px]">
-                                      <li>{productBySlug.description}</li>
-                                    </ul>
+                                    <ul
+                                      dangerouslySetInnerHTML={{ __html: generateHtmlApi(productBySlug.description, 'li') }}
+                                      className="text-sm flex flex-col gap-[5px] list-disc pl-3"
+                                    ></ul>
                                   </div>
                                 </div>
                               </div>

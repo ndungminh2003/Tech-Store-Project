@@ -497,7 +497,7 @@ export default function Banner() {
           className=" rounded-3xl cursor-pointer  "
         />
         <img
-          src="https://cdn2.cellphones.com.vn/690x300,webp,q10/https://dashboard.cellphones.com.vn/storage/RightBanner_PreOrder_WATCH6_Series_07.png"
+          src="https://cdn2.cellphones.com.vn/690x300,webp,q10/https://dashboard.cellphones.com.vn/storage/asus%20tuf.jpg"
           alt=""
           className=" rounded-3xl cursor-pointer "
         />
