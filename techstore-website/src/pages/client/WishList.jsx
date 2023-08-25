@@ -90,7 +90,7 @@ function WishList() {
                     }}
                     className="block text-center h-[32px] w-[32px] line-[30px] bg-[#f6f7fb] rounded-[50%] text-[12px] text-[#000] transition-all duration-[.3s] ease-in-out hover:bg-[#1E293B] hover:text-[#fff]"
                   >
-                    <CloseIcon className="w-[18px] mt-[5px]" />
+                    <CloseIcon className="w-[18px] mt-[5px] cursor-pointer" />
                   </div>
                 </td>
                 <td className="text-[20px] border-none p-[15px]">
