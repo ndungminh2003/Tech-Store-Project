@@ -6,7 +6,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useSelector } from "react-redux";
 import MoneyIcon from "@mui/icons-material/Money";
 import RangeSlider from "../../components/RangeSlider";
-import ColorLensIcon from '@mui/icons-material/ColorLens';
+import ColorLensIcon from "@mui/icons-material/ColorLens";
 
 export default function CatalogSearch() {
   const products = useSelector((state) => state.product?.searchedProducts);
@@ -47,6 +47,12 @@ export default function CatalogSearch() {
     setIsOpen((prev) => !prev);
   };
 
+  const [isOpen1, setIsOpen1] = useState(false);
+
+  const handleOnClick1 = () => {
+    setIsOpen1((prev) => !prev);
+  };
+
   const [minValue, setMinValue] = useState(2500);
   const [maxValue, setMaxValue] = useState(7500);
 
@@ -81,13 +87,33 @@ export default function CatalogSearch() {
             <div className=" text-3xl text-gray-500 font-bold">Bộ lọc</div>
             <div>
               <div className=" flex gap-5 cursor-pointer">
-                <p
-                  className=" flex justify-center items-center bg-slate-300 p-3 hover:bg-slate-400 hover:duration-200 rounded-xl gap-2"
-                  onClick={sortHighToLow}
-                >
-                  <ColorLensIcon sx={{ color: "blue" }} />
-                  Màu sắc
-                </p>
+                <div className=" relative">
+                  <p
+                    className=" flex justify-center items-center bg-slate-300 p-3 hover:bg-slate-400 hover:duration-200 rounded-xl gap-2"
+                    onClick={handleOnClick1}
+                  >
+                    <ColorLensIcon sx={{ color: "blue" }} />
+                    Màu sắc
+                  </p>
+
+                  {isOpen1 ? (
+                    <div className=" absolute z-40 ">
+                      <div className=" flex w-80 bg-white shadow-xl shadow-slate-600 rounded-lg px-6 py-4 justify-around">
+                        <div className=" cursor-pointer bg-slate-200 p-3 rounded-md">
+                          Đen
+                        </div>
+                        <div className=" cursor-pointer bg-slate-200 p-3 rounded-md">
+                          Xanh
+                        </div>
+                        <div className=" cursor-pointer bg-slate-200 p-3 rounded-md">
+                          Đỏ
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>
                 <div className=" relative">
                   <p
                     className=" flex justify-center items-center bg-slate-300 p-3 hover:bg-slate-400 hover:duration-200 rounded-xl gap-2"
@@ -120,7 +146,9 @@ export default function CatalogSearch() {
           </div>
 
           <div className="flex flex-col gap-2 ml-8">
-            <div className=" text-3xl text-gray-500 font-bold">Sắp xếp theo</div>
+            <div className=" text-3xl text-gray-500 font-bold">
+              Sắp xếp theo
+            </div>
             <div>
               <div className=" flex gap-5 cursor-pointer">
                 <p
