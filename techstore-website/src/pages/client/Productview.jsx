@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Rating } from "@mui/material";
-import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { ReactComponent as GiftBoxIcon } from "../../assets/giftbox.svg";
 import "../../assets/style/Productview.scss";
 
@@ -30,17 +30,16 @@ import { toast } from "react-toastify";
 import {
   getProductBySlug,
   resetProductState,
+  getRelatedProduct,
 } from "../../features/product/productSlice";
 import CheckIcon from "@mui/icons-material/Check";
-
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 export default function ProductView() {
   const location = useLocation();
   const dispatch = useDispatch();
   const pathname = location.pathname;
   const lastSlashIndex = pathname.lastIndexOf("/");
-  const slug = pathname.slice(lastSlashIndex + 1);
-  const parmas = useParams();
-  const productStore = useSelector((state) => state.product);
+  const [slug, setSlug] = useState(pathname.slice(lastSlashIndex + 1));
   const [selectedFeature, setSelectedFeature] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
 
@@ -69,9 +68,11 @@ export default function ProductView() {
   useEffect(() => {
     dispatch(resetProductState());
     dispatch(getProductBySlug(slug));
-  }, []);
-  const { productBySlug } = useSelector((state) => state.product);
+    dispatch(getRelatedProduct(slug));
+  }, [slug]);
 
+  let { productBySlug, relatedProduct } = useSelector((state) => state.product);
+  relatedProduct = relatedProduct || [];
   const handleButtonClick = (index) => {
     setActiveIndex(index);
   };
@@ -177,6 +178,11 @@ export default function ProductView() {
     navigate("/cart");
   };
 
+  const handleCardClick = (slug) => {
+    navigate(`/product-view/${slug}`);
+    setSlug(slug);
+  };
+
   return (
     <>
       {productBySlug ? (
@@ -237,6 +243,7 @@ export default function ProductView() {
                         return (
                           <SwiperSlide key={index}>
                             <LightGallery
+                              licenseKey="your_license_key"
                               speed={500}
                               plugins={[lgThumbnail, lgZoom, lgFullscreen]}
                               className="flex"
@@ -280,7 +287,7 @@ export default function ProductView() {
                   </Swiper>
                 </div>
                 <ProductInfor title={productBySlug.title} />
-                <BoughtTogether />
+                {/* <BoughtTogether /> */}
               </div>
               <div className="option-price w-[40%] pl-[20px]">
                 <div className="mb-[10px]">
@@ -332,7 +339,7 @@ export default function ProductView() {
                         productBySlug?.color.map((obj, index) => (
                           <li className="w-[calc(100%/3-10px)]">
                             <Link
-                              className={`border   px-1 py-[5px] text-xs flex text-center gap-1 rounded-lg  ${
+                              className={`border h-[60px] justify-center items-center px-1 py-[5px] text-xs flex text-center gap-1 rounded-lg  ${
                                 selectedColor === index
                                   ? "border-[#d70018]"
                                   : "border-[#d1d5db]"
@@ -374,24 +381,18 @@ export default function ProductView() {
                       )}
                     </ul>
                   </div>
-                  <Link className="block my-3">
-                    <img
-                      src="https://cdn2.cellphones.com.vn/x120,webp,q100/https://dashboard.cellphones.com.vn/storage/product-banner-fold-flip-dat-hang.gif"
-                      alt="product_banner"
-                    />
-                  </Link>
-                  <div className="rounded-[10px] overflow-hidden border border-[#fee2e2]">
-                    <div className="flex items-center gap-[10px] p-2 bg-[#fee2e2]">
-                      <div className="w-5 fill-[#d70018] ">
+                  <div className="rounded-[10px] mt-[10px] overflow-hidden border border-[#A6C0EA]">
+                    <div className="flex items-center gap-[10px] p-2 bg-[#A6C0EA]">
+                      <div className="w-5 fill-[#1E293B] ">
                         <GiftBoxIcon />
                       </div>
-                      <h1 className="text-base text-[#d70018] font-semibold">
+                      <h1 className="text-base text-[#1E293B] font-semibold">
                         Khuyến mãi
                       </h1>
                     </div>
                     <div className="flex flex-col gap-4 px-2 py-4 text-sm">
                       <div className="flex gap-1">
-                        <p className="p-1 bg-[#cc0f35] text-white rounded-full w-5 h-5 text-[10px] flex items-center justify-center">
+                        <p className="p-1 bg-[#1E293B] text-white rounded-full w-5 h-5 text-[10px] flex items-center justify-center">
                           1
                         </p>
                         <Link>
@@ -400,13 +401,13 @@ export default function ProductView() {
                         </Link>
                       </div>
                       <div className="flex gap-1">
-                        <p className="p-1 bg-[#cc0f35] text-white rounded-full w-5 h-5 text-[10px] flex items-center justify-center">
+                        <p className="p-1 bg-[#1E293B] text-white rounded-full w-5 h-5 text-[10px] flex items-center justify-center">
                           2
                         </p>
                         <Link>Trả góp 12 tháng 0 lãi, 0đ</Link>
                       </div>
                       <div className="flex gap-1">
-                        <p className="p-1 bg-[#cc0f35] text-white rounded-full w-5 h-5 text-[10px] flex items-center justify-center">
+                        <p className="p-1 bg-[#1E293B] text-white rounded-full w-5 h-5 text-[10px] flex items-center justify-center">
                           3
                         </p>
                         <Link>
@@ -418,7 +419,7 @@ export default function ProductView() {
 
                   <div className="flex gap-[10px] mt-[10px]">
                     <button
-                      className="w-[calc(100%-70px)] flex flex-col items-center text-white bg-[#f52f32] py-2 rounded-[10px]"
+                      className="w-[calc(100%-70px)] flex flex-col items-center text-white bg-[#1E293B] py-2 rounded-[10px]"
                       onClick={handleBuyNow}
                     >
                       <strong className="text-base">MUA NGAY</strong>
@@ -428,14 +429,17 @@ export default function ProductView() {
                     </button>
                     <button
                       onClick={handleAddToCart}
-                      className="rounded-[10px] border-[2px] border-[#e04040] px-1"
+                      className="rounded-[10px] border-[2px] border-[#1E293B] px-1"
                     >
-                      <img
+                      {/* <img
                         src="https://cdn2.cellphones.com.vn/50x,webp,q70/media/wysiwyg/add-to-cart.png"
                         alt=""
                         className="w-[24px] h-[30px] object-contain m-auto"
-                      />
-                      <span className="text-[7.5px] text-[#e04040] font-semibold">
+                      /> */}
+                      <div>
+                        <AddShoppingCartIcon sx={{ fontSize: "25px" }} />
+                      </div>
+                      <span className="text-[7.5px] text-[#1E293B] font-semibold">
                         Thêm vào giỏ
                       </span>
                     </button>
@@ -445,188 +449,69 @@ export default function ProductView() {
             </div>
           </section>
           <section>
-            <ProductSimilar />
+            {/* <ProductSimilar /> */}
+            <div className="mt-6">
+              <h1 className="text-[#4a4a4a] font-semibold text-base">
+                SẢN PHẨM TƯƠNG TỰ
+              </h1>
+              <Swiper
+                spaceBetween={10}
+                modules={[Navigation, Autoplay]}
+                loop={true}
+                autoplay={{
+                  delay: 3000,
+                  disableOnInteraction: false,
+                }}
+                navigation={true}
+                slidesPerGroupAuto
+                slidesPerView={"auto"}
+                className="!min-h-[0] mt-[10px] md:mt-5 md:!mx-0 !mx-4 rounded-xl !p-[10px]"
+              >
+                {relatedProduct.map((product, index) => (
+                  <SwiperSlide
+                    key={product._id}
+                    className="!w-[228px] rounded-[15px] shadow-cellphone p-[10px]"
+                  >
+                    <div className="percent-discount">
+                      <p className="mt-[5px]">Giảm 12%</p>
+                    </div>
+                    <div onClick={() => handleCardClick(product.slug)}>
+                      {/* <a href={`/product-view/${product.slug}`}> */}
+                      <img
+                        className="rounded-xl w-[160px] !object-cover"
+                        src={product.thumbnail}
+                        alt="slider"
+                        preview={false}
+                        width={"100%"}
+                      ></img>
+                      <h3 className="h-[65px] text-[#444] font-semibold text-sm">
+                        {product.title}
+                      </h3>
+                      <div className="flex items-center gap-[10px] mb-[10px]">
+                        <p className="text-[#d70018] text-base font-bold">
+                          {formatCurrency(product.price)}
+                        </p>
+                        <p className="text-[#707070] font-semibold text-sm line-through">
+                          {formatCurrency(product.price)}
+                        </p>
+                      </div>
+                      <Rating
+                        value={product.totalrating}
+                        readOnly
+                        className="!text-base"
+                      />
+                      {/* </a> */}
+                    </div>
+                    <div className="text-xs flex items-center gap-1 justify-end ">
+                      <span>Yêu thích</span>
+                      <FavoriteBorderIcon className="text-[#d70018] hover:animate-ping cursor-pointer" />
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
           </section>
-          <ContentProduct />
-
-          {/* <div className="p-10 mb-5 product-view-comment pl-28 pr-28">
-          <div className="p-3 rounded-[10px] shadow offset-x-0 offset-y-1 blur-2 spread-0.1 mb-15 w-[60%]">
-            <h2 className="text-[1rem] font-[600]">
-              Đánh giá & nhận xét Samsung Galaxy S23 Ultra 256GB
-            </h2>
-            <div className="flex border rounded-[10px] border-gray-300">
-              <div className="border-r border-solid border-gray-300 flex justify-center flex-col items-center w-[40%]">
-                <div className="product-view-comment-number">5.0/5</div>
-                <div className="product-view-comment-star">
-                  <StarIcon className="text-yellow-500" />
-                  <StarIcon className="text-yellow-500" />
-                  <StarIcon className="text-yellow-500" />
-                  <StarIcon className="text-yellow-500" />
-                  <StarIcon className="text-yellow-500" />
-                </div>
-                <div className="product-view-comment-content ">
-                  1 đánh giá và nhận xet
-                </div>
-              </div>
-              <div className="product-view-comment-progress flex flex-col gap-3 w-[60%] p-3">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    5 <StarIcon className="text-yellow-500" />
-                  </div>
-                  <div className="w-[70%] h-[8px] rounded-[30px]">
-                    <div className="w-full h-[8px] bg-[#f00] rounded-[30px]"></div>
-                  </div>
-                  <div>1 đánh giá</div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    4 <StarIcon className="text-yellow-500" />
-                  </div>
-                  <div className="w-[70%] h-[8px] rounded-[30px]">
-                    <div className="w-full h-[8px] bg-[#f00] rounded-[30px]"></div>
-                  </div>
-                  <div>1 đánh giá</div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    3 <StarIcon className="text-yellow-500" />
-                  </div>
-                  <div className="w-[70%] h-[8px] rounded-[30px]">
-                    <div className="w-full h-[8px] bg-[#f00] rounded-[30px]"></div>
-                  </div>
-                  <div>1 đánh giá</div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    2 <StarIcon className="text-yellow-500" />
-                  </div>
-                  <div className="w-[70%] h-[8px] rounded-[30px]">
-                    <div className="w-full h-[8px] bg-[#f00] rounded-[30px]"></div>
-                  </div>
-                  <div>1 đánh giá</div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    1 <StarIcon className="text-yellow-500" />
-                  </div>
-                  <div className="w-[70%] h-[8px] rounded-[30px]">
-                    <div className="w-full h-[8px] bg-[#f00] rounded-[30px]"></div>
-                  </div>
-                  <div>1 đánh giá</div>
-                </div>
-              </div>
-            </div>
-            <div className="pt-2 pb-2 text-center">
-              Bạn đánh giá sao sản phẩm này
-            </div>
-            <div className="text-center">
-              <button className="text-center pt-2 pb-2 bg-red-600 rounded-10 h-[35px] w-[300px] text-[#fff] rounded-[10px]">
-                Đánh giá ngay
-              </button>
-            </div>
-            <div>
-              <div className="flex justify-between">
-                <div className="flex">
-                  <span className="w-[25px] h-[25px] rounded text-[#028e6d] uppercase font-[600] bg-[#ddd] block text-center mr-">
-                    Đ
-                  </span>
-                  <span className="ml-2">Đức Thịnh Nguyễn</span>
-                </div>
-                <div className="text-[#707070]">6/3/2023 16:05</div>
-              </div>
-              <div className="bg-[#f3f4f6] rounded-[10px] p-2 ml-[40px] w-calc-100-minus-40">
-                <div className="flex gap-2">
-                  <div className="flex text-[12px] items-center">
-                    <strong>Đánh giá:</strong>
-                  </div>
-                  <span>
-                    <StarIcon className="w-[15px] h-[15px] text-yellow-400" />
-                  </span>
-                  <span>
-                    <StarIcon className="w-[15px] h-[15px] text-yellow-400" />
-                  </span>
-                  <span>
-                    <StarIcon className="w-[15px] h-[15px] text-yellow-400" />
-                  </span>
-                  <span>
-                    <StarIcon className="w-[15px] h-[15px] text-yellow-400" />
-                  </span>
-                  <span>
-                    <StarIcon className="w-[15px] h-[15px] text-yellow-400" />
-                  </span>
-                </div>
-                <div className="flex text-[12px] gap-2">
-                  <strong>Nhận xét:</strong>
-                  <span>
-                    {" "}
-                    Sản phẩm tốt, chính sách thu cũ đổi mới tốt nhất thị trường
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="p-3 mt-4 rounded-[10px] shadow offset-x-0 offset-y-1 blur-2 spread-0.1 mb-15 w-[60%] bg-[#f9fafb]">
-            <div className="text-[1.25rem] font-[600]">Hỏi và đáp</div>
-            <div className="flex items-start gap-5">
-              <textarea
-                placeholder="Binh luan"
-                cols="70"
-                rows="80"
-                className="max-h-40 min-h-8 border-0 outline-none p-4 rounded-[10px] shadow-md min-w-0 w-calc-100-minus-80"
-              ></textarea>
-              <button className="bg-red-600 border-0 rounded-[8px] p-2 text-white gap-5 w-[70px]">
-                Send
-              </button>
-            </div>
-            <div className="mt-4 border"></div>
-            <div className="mt-10">
-              <div className="flex justify-between">
-                <div className="flex">
-                  <span className="w-[25px] h-[25px] rounded text-[#028e6d] uppercase font-[600] bg-[#ddd] block text-center mr-">
-                    Đ
-                  </span>
-                  <span className="ml-2">Đức Thịnh Nguyễn</span>
-                </div>
-                <div className="text-[#707070]">6/3/2023 16:05</div>
-              </div>
-              <div className="mt-5 ml-10 h-[70px] bg-white rounded-[10px] shadow-md  overflow-hidden p-[10px] w-calc-100-minus-25">
-                ben ban co ho gi ko
-              </div>
-            </div>
-            <div className="mt-5 ml-[45px]">
-              <div className="flex justify-between">
-                <div className="flex">
-                  <span className="w-[25px] h-[25px] rounded text-[#f00] uppercase font-[600] bg-[#ddd] block text-center mr-">
-                    C
-                  </span>
-                  <span className="ml-2">Đức Thịnh Nguyễn</span>
-                </div>
-                <div className="text-[#707070]">6/3/2023 16:05</div>
-              </div>
-              <div className="mt-5 ml-10 h-[70px] bg-white rounded-[10px] shadow-md  overflow-hidden p-[10px] w-calc-100-minus-25">
-                ben ban co ho gi ko
-                <a
-                  href="#rep"
-                  class="items-center bg-transparent border-0 text-red-600 cursor-pointer flex justify-end text-[14px] leading-1 mr-auto mt-[10px] no-underline"
-                >
-                  tra loi
-                </a>
-              </div>
-            </div>
-            <div className="flex items-start gap-5 mt-6">
-              <textarea
-                id="rep"
-                placeholder="Binh luan"
-                cols="70"
-                rows="80"
-                className="max-h-40 min-h-8 border-0 outline-none p-4 rounded-[10px] shadow-md min-w-0 w-calc-100-minus-80"
-              ></textarea>
-              <button className="bg-red-600 border-0 rounded-[8px] p-2 text-white gap-5 w-[70px]">
-                Send
-              </button>
-            </div>
-          </div>
-        </div> */}
+          <ContentProduct description={productBySlug.description} />
           <BackToTop />
         </div>
       ) : (

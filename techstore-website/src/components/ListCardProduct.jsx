@@ -33,6 +33,20 @@ const brands = [
 export default function ListCardProduct(props) {
   const [products, setProducts] = useState(props.productState);
   const [brand, setBrand] = useState("");
+  let { categoryBrands } = useSelector((state) => state.pCategory);
+  categoryBrands = categoryBrands || [
+    { _id: "Phone", brands: [] },
+    { _id: "Tablet", brands: [] },
+    { _id: "Laptop", brands: [] },
+    { _id: "Headphone", brands: [] },
+    { _id: "Watch", brands: [] },
+    { _id: "ScreenPC", brands: [] },
+    { _id: "TV", brands: [] },
+  ];
+  categoryBrands = categoryBrands.filter(
+    (categoryBrand) =>
+      categoryBrand._id.toLowerCase() === props.type.toLowerCase()
+  );
   let wishlist = useSelector((state) => state.auth.user?.wishlist);
   wishlist = wishlist || [];
   const productIdsInWishlist = wishlist.map((product) => product._id);
@@ -54,13 +68,13 @@ export default function ListCardProduct(props) {
       <div className=" flex gap-4 justify-between px-4 py-2 xxsm:flex-col xsm:flex-col sm:flex-col md:flex-col ">
         <h1 className=" font-bold text-3xl text-gray-500">{props.type}</h1>
         <div className=" flex gap-5 xxsm:hidden xsm:gap-4 sm:gap-4 md:gap-4 ">
-          {brands.map((brand, index) => (
+          {categoryBrands[0]?.brands.map((brand, index) => (
             <span
               key={index}
               className=" cursor-pointer bg-slate-200 p-4 rounded-xl hover:bg-slate-400 duration-300"
-              onClick={() => setBrand(brand.name)}
+              onClick={() => setBrand(brand)}
             >
-              {brand.name}
+              {brand}
             </span>
           ))}
           <span

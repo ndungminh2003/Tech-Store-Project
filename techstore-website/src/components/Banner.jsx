@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import TabletMacIcon from "@mui/icons-material/TabletMac";
@@ -17,6 +17,16 @@ import { getProductByCatalog } from "../features/product/productSlice";
 export default function Banner() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  let { categoryBrands } = useSelector((state) => state.pCategory);
+  categoryBrands = categoryBrands || [
+    { _id: "Phone", brands: [] },
+    { _id: "Tablet", brands: [] },
+    { _id: "Laptop", brands: [] },
+    { _id: "Headphone", brands: [] },
+    { _id: "Watch", brands: [] },
+    { _id: "ScreenPC", brands: [] },
+    { _id: "TV", brands: [] },
+  ];
   const catalog = [
     {
       id: 1,
@@ -25,20 +35,18 @@ export default function Banner() {
 
       brands: {
         title: "Select by brand",
+        // brand: [
+        //   "Samsung",
+        //   "Apple",
+        //   "Xiaomi",
+        //   "OPPO",
+        //   "Vivo",
+        //   "Nokia",
+        //   "Xem thêm tất cả Điện Thoại",
+        // ],
         brand: [
-          "Samsung",
-          "iPhone",
-          "Xiaomi",
-          "OPPO",
-          "realme",
-          "vivo",
-          "Nokia",
-          "ASUS",
-          "Nubia",
-          "Tecno",
-          "Infinix",
-          "OnePlus",
-          "Itel",
+          ...categoryBrands.filter((item) => item._id === "Phone")[0].brands,
+          "Xem thêm tất cả Điện Thoại",
         ],
       },
 
@@ -59,7 +67,6 @@ export default function Banner() {
           "Galaxy Z Fold5",
           "Galaxy Z Flip5",
           "Galaxy S23 Ultra",
-          "realme 11 Pro",
           "Oneplus Nord 3",
           "Xiaomi Redmi Note 12 8GB 128GB mới",
           "OPPO Reno10 5G",
@@ -75,16 +82,8 @@ export default function Banner() {
       brands: {
         title: "Select by brand",
         brand: [
-          "iPad",
-          "Samsung",
-          "Xiaomi",
-          "Huawei",
-          "Lenovo",
-          "Nokia",
-          "Alcatel",
-          "Kindle",
-          "Máy đọc sách",
-          "Xem thêm tất cả Tablet",
+          ...categoryBrands.filter((item) => item._id === "Tablet")[0].brands,
+          "Xem thêm tất cả Máy Tính Bảng",
         ],
       },
 
@@ -118,19 +117,8 @@ export default function Banner() {
       brands: {
         title: "Select by brand",
         brand: [
-          "Mac",
-          "HP",
-          "Dell",
-          "ASUS",
-          "Lenovo",
-          "Microsoft Surface",
-          "Acer",
-          "Xiaomi",
-          "LG",
-          "Huawei",
-          "MSI",
-          "Gigabyte",
-          "Vaio",
+          ...categoryBrands.filter((item) => item._id === "Laptop")[0].brands,
+          "Xem thêm tất cả Laptop",
         ],
       },
 
@@ -160,22 +148,15 @@ export default function Banner() {
 
     {
       id: 4,
-      type: "Head Phone",
+      type: "Headphone",
       icon: <HeadphonesIcon />,
 
       brands: {
         title: "Headset brand",
         brand: [
-          "Apple",
-          "JBL",
-          "Xiaomi",
-          "Samsung",
-          "Sony",
-          "Sennheiser",
-          "Soundpeats",
-          "Soul",
-          "Havit",
-          "Edifier",
+          ...categoryBrands.filter((item) => item._id === "Headphone")[0]
+            .brands,
+          "Xem thêm tất cả Tai Nghe",
         ],
       },
 
@@ -210,16 +191,8 @@ export default function Banner() {
       brands: {
         title: "Select by brand",
         brand: [
-          "Apple Watch",
-          "Samsung",
-          "Xiaomi",
-          "Huawei",
-          "Coros",
-          "Garmin",
-          "Kieslect",
-          "Amazfit",
-          "Soundpeats",
-          "Oppo",
+          ...categoryBrands.filter((item) => item._id === "Watch")[0].brands,
+          "Xem thêm tất cả Đồng Hồ",
         ],
       },
 
@@ -249,22 +222,14 @@ export default function Banner() {
 
     {
       id: 6,
-      type: "PC",
+      type: "ScreenPC",
       icon: <DevicesIcon />,
 
       brands: {
         title: "Select by brand",
         brand: [
-          "ASUS",
-          "Samsung",
-          "DELL",
-          "LG",
-          "MSI",
-          "GIGABYTE",
-          "HKC",
-          "ViewSonic",
-          "Philips",
-          "AOC",
+          ...categoryBrands.filter((item) => item._id === "ScreenPC")[0].brands,
+          "Xem thêm tất cả Màn Hình",
         ],
       },
 
@@ -286,22 +251,14 @@ export default function Banner() {
 
     {
       id: 7,
-      type: "Television",
+      type: "TV",
       icon: <ConnectedTvIcon />,
 
       brands: {
         title: "Select by brand",
         brand: [
-          "Apple Watch",
-          "Samsung",
-          "Xiaomi",
-          "Huawei",
-          "Coros",
-          "Garmin",
-          "Kieslect",
-          "Amazfit",
-          "Soundpeats",
-          "Oppo",
+          ...categoryBrands.filter((item) => item._id === "TV")[0].brands,
+          "Xem thêm tất cả Tivi",
         ],
       },
 

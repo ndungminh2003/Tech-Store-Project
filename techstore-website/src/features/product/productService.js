@@ -92,6 +92,12 @@ const rating = async (obj) => {
   return response.data;
 };
 
+const getRelatedProduct = async (id) => {
+  const response = await axios.get(`${base_url}product/related/${id}`);
+
+  return response.data;
+};
+
 const productService = {
   getProducts,
   getProductBySlug,
@@ -103,6 +109,7 @@ const productService = {
   deleteProduct,
   searchProducts,
   rating,
+  getRelatedProduct,
 };
 
 export default productService;

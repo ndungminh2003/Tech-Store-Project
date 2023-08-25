@@ -38,12 +38,20 @@ const updateProductCategory = async (category) => {
 
   return response.data;
 };
+
+const getCategoryBrands = async () => {
+  const response = await axios.get(`${base_url}product/category/brands`);
+
+  return response.data;
+};
+
 const pCategoryService = {
   getProductCategories,
   createCategory,
   getProductCategory,
   deleteProductCategory,
   updateProductCategory,
+  getCategoryBrands,
 };
 
 export default pCategoryService;

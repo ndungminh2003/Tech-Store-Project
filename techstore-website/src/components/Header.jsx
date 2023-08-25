@@ -19,7 +19,8 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-
+import { getCategoryBrands } from "../features/pcategory/pcategorySlice";
+import { useDispatch, useSelector } from "react-redux";
 const catalog = [
   {
     id: 1,
@@ -332,6 +333,7 @@ const catalog = [
 ];
 
 export default function Header() {
+  const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   let { user } = useAuth();
@@ -371,11 +373,14 @@ export default function Header() {
   };
   useEffect(() => {
     window.addEventListener("storage", updateQuantityFromLocalStorage);
+    dispatch(getCategoryBrands());
     return () => {
       window.removeEventListener("storage", updateQuantityFromLocalStorage);
     };
   }, []);
-
+  let { categoryBrands } = useSelector((state) => state.pCategory);
+  categoryBrands = categoryBrands || [];
+  console.log("categoryBrands", categoryBrands);
   const handleMouseOver = (c) => {
     setHoveredElement(c);
   };

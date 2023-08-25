@@ -274,6 +274,47 @@ const rating = asyncHandler(async (req, res) => {
   }
 });
 
+const getRelatedProduct = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  try {
+    const product = await Product.findOne({ slug: id });
+    const relatedProducts = await Product.find({
+      slug: { $ne: id },
+      category: product.category,
+    })
+      .limit(10)
+      .select("_id title thumbnail price slug totalrating");
+    res.json(relatedProducts);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+const getCategoryBrands = asyncHandler(async (req, res) => {
+  try {
+    const catalog = await Product.aggregate([
+      {
+        $group: {
+          _id: "$category", // Nhóm theo danh mục
+          brands: { $addToSet: "$brand" }, // Lấy danh sách các thương hiệu (loại bỏ các giá trị trùng lặp)
+        },
+      },
+      // {
+      //   $project: {
+      //     category: "$_id",
+      //     brands: 1,
+      //   },
+      // },
+      // {
+      //   $unset: "_id",
+      // },
+    ]);
+    res.json(catalog);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
 module.exports = {
   createProduct,
   getaProduct,
@@ -284,4 +325,6 @@ module.exports = {
   addToWishlist,
   rating,
   searchProduct,
+  getRelatedProduct,
+  getCategoryBrands,
 };

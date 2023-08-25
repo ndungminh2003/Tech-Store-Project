@@ -111,6 +111,17 @@ export const rating = createAsyncThunk(
   }
 );
 
+export const getRelatedProduct = createAsyncThunk(
+  "product/get-related-product",
+  async (id, thunkAPI) => {
+    try {
+      return await productService.getRelatedProduct(id);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 export const resetState = createAction("Reset_all");
 export const resetProductState = createAction("product/resetState");
 
@@ -272,6 +283,21 @@ export const productSlice = createSlice({
         state.productBySlug = action.payload;
       })
       .addCase(rating.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
+      })
+      .addCase(getRelatedProduct.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getRelatedProduct.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.relatedProduct = action.payload;
+      })
+      .addCase(getRelatedProduct.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;

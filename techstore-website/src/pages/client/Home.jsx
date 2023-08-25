@@ -9,6 +9,7 @@ import {
   getLimitProducts,
   resetState,
 } from "../../features/product/productSlice";
+import { getCategoryBrands } from "../../features/pcategory/pcategorySlice";
 export default function Home() {
   const dispatch = useDispatch();
   const productState = useSelector((state) => state.product);
@@ -20,6 +21,7 @@ export default function Home() {
         // limit: 200,
         // skip: 130,
       };
+      dispatch(getCategoryBrands());
       dispatch(getLimitProducts(params));
     }
   }, []);

@@ -21,7 +21,6 @@ export default function Catalog() {
   useEffect(() => {
     setSortedProducts(products || []);
   }, [products]);
-  console.log("products");
   return (
     <div className=" flex flex-col m-6 container mx-auto gap-4">
       {/* {products?.totalProducts === 0 ? (
@@ -37,7 +36,28 @@ export default function Catalog() {
       )} */}
 
       <div className="flex flex-col gap-2 ml-8">
-        <div className=" text-3xl text-gray-500 font-bold">Filter</div>
+        <div className=" text-3xl text-gray-500 font-bold">Bộ lọc</div>
+        <div>
+          <div className=" flex gap-5 cursor-pointer">
+            <p
+              className=" flex justify-center items-center bg-slate-300 p-3 hover:bg-slate-400 hover:duration-200 rounded-xl gap-2"
+              onClick={sortHighToLow}
+            >
+              <KeyboardDoubleArrowUpIcon sx={{ color: "blue" }} />
+              Brand
+            </p>
+            <p
+              className=" flex justify-center items-center bg-slate-300 p-3 hover:bg-slate-400 hover:duration-200 rounded-xl gap-2"
+              onClick={sortLowToHigh}
+            >
+              <KeyboardDoubleArrowDownIcon sx={{ color: "blue" }} />
+              Price
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col gap-2 ml-8">
+        <div className=" text-3xl text-gray-500 font-bold">Sắp xếp theo</div>
         <div>
           <div className=" flex gap-5 cursor-pointer">
             <p

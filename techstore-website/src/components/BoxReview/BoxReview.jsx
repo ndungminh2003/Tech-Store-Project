@@ -54,7 +54,7 @@ const BoxReview = () => {
     },
   }));
   return (
-    <div className="box-review p-2 shadow-cellphone">
+    <div className="box-review p-2 shadow-cellphone rounded-[10px]">
       <h1 className="text-[#363636] mb-6 text-base font-semibold">
         Đánh giá & nhận xét {productBySlug.title} | Chính hãng VN/A
       </h1>

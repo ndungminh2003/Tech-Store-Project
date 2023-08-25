@@ -2,11 +2,11 @@ import React from "react";
 import BoxReview from "../BoxReview/BoxReview";
 import Question from "../Question/Question";
 import "../../assets/style/ContentProduct.scss";
-const ContentProduct = () => {
+const ContentProduct = (props) => {
   return (
     <div className="flex gap-3 content-product">
       <div className="content-product-top w-[830px] pb-10">
-        <div className="p-[15px] shadow-cellphone rounded-[10px]">
+        <div className="p-[15px] shadow-cellphone rounded-[10px] mb-[15px]">
           <div className="p-2 mb-2 bg-[#f2f2f2] rounded-lg">
             <h1 className="text-[#d70018] font-semibold text-lg text-center">
               ĐẶC ĐIỂM NỔI BẬT
@@ -45,7 +45,8 @@ const ContentProduct = () => {
                 </strong>
               </a>
             </p>
-            <p className="mb-[10px]">
+            <p className="mb-[10px]">{props.description}</p>
+            {/* <p className="mb-[10px]">
               Kích thước <strong>màn hình iPhone 14 Pro Max</strong> vẫn là 6.1
               inch tuy nhiên phần “tai thỏ” đã được thay thế bằng một đường cắt
               hình viên thuốc. Apple gọi đây là<strong>Dynamic Island</strong> -
@@ -69,9 +70,9 @@ const ContentProduct = () => {
               hiệu suất cao sử dụng năng lượng thấp hơn 20% và bốn nhân tiết
               kiệm pin chỉ sử dụng một phần ba năng lượng so với chip của các
               đối thủ cạnh tranh.
-            </p>
+            </p> */}
           </div>
-          <div>
+          {/* <div>
             <h1 className="text-xl text-[#363636] font-bold">
               Bảng thông số chi tiết về iPhone 14 Pro Max phiên bản
             </h1>
@@ -144,9 +145,9 @@ const ContentProduct = () => {
                 </tr>
               </tbody>
             </table>
-          </div>
+          </div> */}
         </div>
-        <Question />
+        {/* <Question /> */}
         <BoxReview />
       </div>
       <div className="content-product-bottom w-[calc(100%-830px)]">

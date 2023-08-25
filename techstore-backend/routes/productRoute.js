@@ -9,6 +9,8 @@ const {
   addToWishlist,
   rating,
   searchProduct,
+  getRelatedProduct,
+  getCategoryBrands,
 } = require("../controller/productCtrl");
 const { isAdmin, authMiddleware } = require("../middlewares/authMiddleware");
 const router = express.Router();
@@ -16,7 +18,8 @@ const router = express.Router();
 router.post("/", authMiddleware, isAdmin, createProduct);
 
 router.get("/search/:query", searchProduct);
-
+router.get("/category/brands", getCategoryBrands);
+router.get("/related/:id", getRelatedProduct);
 router.get("/:slug", getProductBySlug);
 router.get("/by-id/:id", getaProduct);
 router.put("/wishlist", authMiddleware, addToWishlist);

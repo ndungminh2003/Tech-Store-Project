@@ -52,6 +52,18 @@ export const getAProductCategory = createAsyncThunk(
     }
   }
 );
+
+export const getCategoryBrands = createAsyncThunk(
+  "productCategory/get-category-brands",
+  async (thunkAPI) => {
+    try {
+      return await pCategoryService.getCategoryBrands();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 export const resetState = createAction("Reset_all");
 
 const initialState = {
@@ -92,6 +104,21 @@ export const pCategorySlice = createSlice({
         state.createdCategory = action.payload;
       })
       .addCase(createCategory.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
+      })
+      .addCase(getCategoryBrands.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getCategoryBrands.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.categoryBrands = action.payload;
+      })
+      .addCase(getCategoryBrands.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;
