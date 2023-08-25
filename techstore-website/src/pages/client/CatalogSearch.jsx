@@ -4,7 +4,9 @@ import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useSelector } from "react-redux";
-
+import MoneyIcon from "@mui/icons-material/Money";
+import RangeSlider from "../../components/RangeSlider";
+import ColorLensIcon from '@mui/icons-material/ColorLens';
 
 export default function CatalogSearch() {
   const products = useSelector((state) => state.product?.searchedProducts);
@@ -30,25 +32,38 @@ export default function CatalogSearch() {
   }, [products]);
 
   var style = {
-    height: '100%'
+    height: "100%",
   };
-  
+
   if (products?.totalProducts < 9) {
     style = {
-      height: '100vh'
+      height: "100vh",
     };
   }
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOnClick = () => {
+    setIsOpen((prev) => !prev);
+  };
+
+  const [minValue, setMinValue] = useState(2500);
+  const [maxValue, setMaxValue] = useState(7500);
 
   return (
     <div className=" flex flex-col m-6 container mx-auto gap-4" style={style}>
       {products?.totalProducts === 0 ? (
         <div className=" flex flex-col items-center gap-10 justify-center">
           <span className="flex justify-center text-xl text-red-500 font-bold">
-            Lỗi: Không tìm thấy sản phẩm cho từ khóa {" "}
+            Lỗi: Không tìm thấy sản phẩm cho từ khóa{" "}
             <b className="mx-1">'{products?.keyword}'</b>
           </span>
-          
-          <img src="/logo/small.png" alt="logo" className=" rounded-lg w-52 h-52 "/>
+
+          <img
+            src="/logo/small.png"
+            alt="logo"
+            className=" rounded-lg w-52 h-52 "
+          />
           <span className="flex justify-center text-xl text-black font-bold ">
             Opps Sorry! Không tìm thấy sản phẩm
           </span>
@@ -61,24 +76,68 @@ export default function CatalogSearch() {
       )}
 
       {products?.totalProducts > 0 && (
-        <div className="flex flex-col gap-2 ml-8">
-          <div className=" text-3xl text-gray-500 font-bold">Filter</div>
-          <div>
-            <div className=" flex gap-5 cursor-pointer">
-              <p
-                className=" flex justify-center items-center bg-slate-300 p-3 hover:bg-slate-400 hover:duration-200 rounded-xl gap-2"
-                onClick={sortHighToLow}
-              >
-                <KeyboardDoubleArrowUpIcon sx={{ color: "blue" }} />
-                Giá cao
-              </p>
-              <p
-                className=" flex justify-center items-center bg-slate-300 p-3 hover:bg-slate-400 hover:duration-200 rounded-xl gap-2"
-                onClick={sortLowToHigh}
-              >
-                <KeyboardDoubleArrowDownIcon sx={{ color: "blue" }} />
-                Giá thấp
-              </p>
+        <div className=" flex flex-col gap-8">
+          <div className="flex flex-col gap-2 ml-8">
+            <div className=" text-3xl text-gray-500 font-bold">Bộ lọc</div>
+            <div>
+              <div className=" flex gap-5 cursor-pointer">
+                <p
+                  className=" flex justify-center items-center bg-slate-300 p-3 hover:bg-slate-400 hover:duration-200 rounded-xl gap-2"
+                  onClick={sortHighToLow}
+                >
+                  <ColorLensIcon sx={{ color: "blue" }} />
+                  Màu sắc
+                </p>
+                <div className=" relative">
+                  <p
+                    className=" flex justify-center items-center bg-slate-300 p-3 hover:bg-slate-400 hover:duration-200 rounded-xl gap-2"
+                    onClick={handleOnClick}
+                  >
+                    <MoneyIcon sx={{ color: "blue" }} />
+                    Giá
+                  </p>
+
+                  {isOpen ? (
+                    <div className=" absolute z-40 ">
+                      <RangeSlider
+                        minValue={minValue}
+                        maxValue={maxValue}
+                        setMinValue={(minValue) => setMinValue(minValue)}
+                        setMaxValue={(maxValue) => setMaxValue(maxValue)}
+                        min={0}
+                        max={10000}
+                        step={100}
+                        priceCap={1000}
+                        setIsOpen={(isOpen) => setIsOpen(isOpen)}
+                      />
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-2 ml-8">
+            <div className=" text-3xl text-gray-500 font-bold">Sắp xếp theo</div>
+            <div>
+              <div className=" flex gap-5 cursor-pointer">
+                <p
+                  className=" flex justify-center items-center bg-slate-300 p-3 hover:bg-slate-400 hover:duration-200 rounded-xl gap-2"
+                  onClick={sortHighToLow}
+                >
+                  <KeyboardDoubleArrowUpIcon sx={{ color: "blue" }} />
+                  Giá cao
+                </p>
+                <p
+                  className=" flex justify-center items-center bg-slate-300 p-3 hover:bg-slate-400 hover:duration-200 rounded-xl gap-2"
+                  onClick={sortLowToHigh}
+                >
+                  <KeyboardDoubleArrowDownIcon sx={{ color: "blue" }} />
+                  Giá thấp
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -111,5 +170,3 @@ export default function CatalogSearch() {
     </div>
   );
 }
-
-

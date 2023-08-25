@@ -249,3 +249,15 @@ input::-webkit-inner-spin-button {
   border-radius: 15px;
   
 }
+
+/* Price Range */
+input[type="range"]::-webkit-slider-thumb {
+  pointer-events: auto;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  -webkit-appearance: none;
+  @apply bg-slate-500;
+
+  /* @apply w-6 h-6 appearance-none pointer-events-auto; */
+}

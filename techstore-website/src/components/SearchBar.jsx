@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { searchProducts } from "../features/product/productSlice";
 
-const types = ["iphone", "samsung", "oppo", "lenovo", "macbook", "akko"];
+const types = [];
 
 export default function SearchBar() {
   const [activeSearch, setActiveSearch] = useState([]);
