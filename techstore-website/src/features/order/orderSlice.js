@@ -36,9 +36,9 @@ export const getOrderById = createAsyncThunk(
 
 export const getOrdersByUserId = createAsyncThunk(
   "order/get-orders-by-user-id",
-  async (userId, thunkAPI) => {
+  async (thunkAPI) => {
     try {
-      return await orderService.getOrderByUserId(userId);
+      return await orderService.getOrderByUserId();
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }

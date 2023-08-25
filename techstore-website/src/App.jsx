@@ -32,6 +32,7 @@ import User from "./pages/client/User";
 import Edit from "./pages/client/EditProfile";
 import UserHome from "./pages/client/UserHome";
 import PageNotFound from "./pages/client/PageNotFound";
+import OrderDetail from "./pages/client/OrderDetail";
 
 // admin
 import AddCustomer from "./pages/admin/AddCustomer";
@@ -91,6 +92,7 @@ const router = createBrowserRouter(
             <Route path="/user" element={<User />}>
               <Route index element={<UserHome />} />
               <Route path="order" element={<Purchase />} />
+              <Route path="order/:id" element={<OrderDetail />} />
               <Route path="edit" element={<Edit />} />
             </Route>
           </Route>

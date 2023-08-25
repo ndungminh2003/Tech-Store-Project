@@ -49,12 +49,9 @@ const getOrderById = async (id) => {
   return response.data;
 };
 
-const getOrderByUserId = async (id) => {
+const getOrderByUserId = async () => {
   let config = get_config();
-  const response = await axios.get(
-    `${base_url}order/get-user-order/${id}`,
-    config
-  );
+  const response = await axios.get(`${base_url}order/get-user-order`, config);
   return response.data;
 };
 

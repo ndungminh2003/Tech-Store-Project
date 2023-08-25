@@ -67,10 +67,19 @@ const getOrderByUserId = asyncHandler(async (req, res) => {
   const { _id } = req.user;
   validateMongoDbId(_id);
   try {
-    const userorders = await Order.findOne({ orderby: _id })
-      .populate("products.product")
+    const userOrders = await User.findById(_id)
+      .select("_id orders")
+      .populate({
+        path: "orders",
+        select:
+          "_id paymentIntent orderStatus total totalAfterDiscount products createdAt",
+        populate: {
+          path: "products.product",
+          select: "_id title thumbnail",
+        },
+      })
       .exec();
-    res.json(userorders);
+    res.json(userOrders.orders);
   } catch (error) {
     throw new Error(error);
   }
@@ -91,12 +100,53 @@ const getOrderById = asyncHandler(async (req, res) => {
   const { id } = req.params;
   validateMongoDbId(id);
   try {
-    const order = await Order.findById(id).populate("products.product").exec();
+    const order = await Order.findById(id)
+      .populate("products.product", "_id title thumbnail")
+      .exec();
     res.json(order);
   } catch (error) {
     throw new Error(error);
   }
 });
+
+// const getOrderByUserId = asyncHandler(async (req, res) => {
+//   const { _id } = req.user;
+//   validateMongoDbId(_id);
+//   try {
+//     const userorders = await Order.findOne({ orderby: _id })
+//       .populate("products.product", "_id title price")
+//       .populate("orderby", "_id name email mobile address")
+//       .exec();
+//     res.json(userorders);
+//   } catch (error) {
+//     throw new Error(error);
+//   }
+// });
+
+// const getAllOrders = asyncHandler(async (req, res) => {
+//   try {
+//     const alluserorders = await Order.find()
+//       .populate("products.product")
+//       .exec();
+//     res.json(alluserorders);
+//   } catch (error) {
+//     throw new Error(error);
+//   }
+// });
+
+// const getOrderById = asyncHandler(async (req, res) => {
+//   const { id } = req.params;
+//   validateMongoDbId(id);
+//   try {
+//     const userorders = await Order.findById(id)
+//       .populate("products.product", "_id title price")
+//       .populate("orderby", "_id name email mobile address")
+//       .exec();
+//     res.json(userorders);
+//   } catch (error) {
+//     throw new Error(error);
+//   }
+// });
 
 const updatePaymentStatus = asyncHandler(async (req, res) => {
   const { status, method } = req.body;

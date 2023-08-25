@@ -12,7 +12,10 @@ import DevicesIcon from "@mui/icons-material/Devices";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
-import { getProductByCatalog } from "../features/product/productSlice";
+import {
+  getProductByCatalog,
+  searchProducts,
+} from "../features/product/productSlice";
 
 export default function Banner() {
   const navigate = useNavigate();
@@ -55,12 +58,12 @@ export default function Banner() {
         title: "Hot",
         product: [
           "iPhone 14 Pro Max",
-          "Galaxy Z Fold5",
-          "Galaxy Z Flip5",
-          "Galaxy S23 Ultra",
-          "Oneplus Nord 3",
-          "Xiaomi Redmi Note 12 8GB 128GB mới",
-          "OPPO Reno10 5G",
+          "Galaxy S23 Ultra 256GB",
+          "Galaxy Z Fold4",
+          "Galaxy Z Flip4",
+          "Vivo X80 Pro",
+          "Xiaomi Redmi Note 12 8GB 128GB",
+          "OPPO Find N2 Flip",
         ],
       },
     },
@@ -93,9 +96,9 @@ export default function Banner() {
         product: [
           "iPad Gen 10",
           "iPad mini 6",
-          "Galaxy Tab S9 Ultra",
-          "iPad Air 10.9 2022 M1",
-          "Nokia T21",
+          "Galaxy Tab S8",
+          "iPad Air 5",
+          "Xiaomi Pad 5",
         ],
       },
     },
@@ -126,13 +129,13 @@ export default function Banner() {
       hot: {
         title: "Hot",
         product: [
-          "Macbook Pro M2 2022 512GB",
-          "Macbook Pro M2 2022 256GB",
-          "Macbook Air M2 2022 512GB",
-          "Mac Mini M2 2022 512GB",
-          "Macbook Air M2 2022 256GB",
-          "Asus Vivobook Stale Oled T3304",
-          "Lenovo Ideapad 3 15IML05",
+          "Macbook Pro M2 2022",
+          "Macbook Pro M1",
+          "Macbook Air M2",
+          "Lenovo Gaming Legion 5",
+          "Laptop Asus Rog",
+          "MSI Gaming GF63",
+          "VivoBook",
         ],
       },
     },
@@ -164,19 +167,19 @@ export default function Banner() {
       hot: {
         title: "Hot",
         product: [
-          "AirPods Pro 2",
-          "Galaxy Buds 2 Pro",
+          "AirPods 3",
+          "Galaxy Buds2 Pro",
           "AirPods Pro",
-          "Samsung MX-T40",
-          "Samsung HW-Q600B",
-          "JBL Quantum One",
+          "Sony WH-CH520",
+          "Marshall Minor 3",
+          "True Wireless JBL",
         ],
       },
     },
 
     {
       id: 5,
-      type: "Đồng hồ",
+      type: "Watch",
       icon: <WatchIcon />,
 
       brands: {
@@ -200,13 +203,13 @@ export default function Banner() {
       hot: {
         title: "Hot",
         product: [
-          "Samsung Galaxy Watch6 Classic",
-          "Samsung Galaxy Watch6",
           "Apple Watch Series 8",
-          "Garmin Approach S70",
-          "Garmin Epix Pro 2",
-          "Huawei band 8",
           "Apple Watch SE",
+          "Samsung Galaxy Watch6",
+          "Samsung Galaxy Watch5",
+          "Garmin Forerunner 55",
+          "Xiaomi Watch S1 Pro",
+          "Huawei Watch GT3",
         ],
       },
     },
@@ -236,7 +239,14 @@ export default function Banner() {
 
       hot: {
         title: "Hot",
-        product: ["ASUS", "Samsung", "DELL", "LG", "MSI", "GIGABYTE"],
+        product: [
+          "Màn hình ASUS ProArt",
+          "Màn hình Gaming Gigabyte G24F",
+          "Màn hình Gaming LG UltraGear",
+          "Màn hình LG Ultrawide",
+          "Màn hình Xiaomi 27 inch",
+          "Màn hình cong MSI Pro 34 inch",
+        ],
       },
     },
 
@@ -265,12 +275,14 @@ export default function Banner() {
       hot: {
         title: "Hot",
         product: [
-          "Tivi Xiaomi A2 58 inch",
-          "Tivi Xiaomi P1 55 inch",
-          "Tivi Toshiba 43 inch",
-          "Tivi Coocaa FHD 43 inch",
-          "Tivi Khung Tranh 50 inch",
-          "Khung treo tivi",
+          "Smart Tivi Khung Tranh The Frame 4K Samsung",
+          "Smart Tivi Samsung QLED",
+          "Smart Google Tivi Coocaa 4K 70 inch",
+          "Android Tivi Xiaomi A2 58 inch",
+          "Android Tivi Xiaomi A2 43 inch",
+          "Smart Tivi LG 4K 43 inch",
+          "Tivi Coocaa 4K 70 inch",
+          "Google Tivi Coocaa 4K 55 inch",
         ],
       },
     },
@@ -303,11 +315,11 @@ export default function Banner() {
     const numberPattern = /\d+(\.\d+)?/g;
     const values = inputString.match(numberPattern);
     let result;
-    if (inputString.includes("Under")) {
+    if (inputString.includes("Dưới")) {
       return [0, parseFloat(values[0])];
-    } else if (inputString.includes("Above")) {
+    } else if (inputString.includes("Trên")) {
       return [parseFloat(values[0]), 1000]; // Assuming a large upper limit
-    } else if (inputString.includes("From")) {
+    } else if (inputString.includes("Từ")) {
       return [parseFloat(values[0]), parseFloat(values[1])];
     }
 
@@ -317,14 +329,19 @@ export default function Banner() {
   const handleClick = (params) => {
     let param = "?";
     Object.entries(params).forEach(([key, value]) => {
+      if (key === "brand" && value.includes("Xem thêm tất cả")) return;
       param += `${key}=${value}&`;
     });
     // param = `?category=${params}?brand=${param}&page=1&limit=10`;
     // param += `page=1&limit=10`;
     // param = param.replace(/\s+/g, "").toLowerCase();
-    console.log("param", param);
     dispatch(getProductByCatalog(param));
     navigate(`/catalog/${param}`);
+  };
+
+  const handleHotClick = (product) => {
+    dispatch(searchProducts(product));
+    navigate("/search-product");
   };
 
   //useState Slides
@@ -434,11 +451,13 @@ export default function Banner() {
                   <LocalFireDepartmentIcon sx={{ color: "red" }} />
                 </div>
                 {hoveredElement.hot.product.map((b, index) => (
-                  <Link key={index} to="search-product">
-                    <div className=" cursor-pointer text-gray-600 hover:text-red-500">
-                      {b}
-                    </div>
-                  </Link>
+                  <div
+                    key={index}
+                    onClick={() => handleHotClick(b)}
+                    className=" cursor-pointer text-gray-600 hover:text-red-500"
+                  >
+                    {b}
+                  </div>
                 ))}
               </div>
             </div>

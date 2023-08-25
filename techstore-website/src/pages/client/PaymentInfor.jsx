@@ -56,9 +56,9 @@ function PaymentInfo() {
   return (
     <Formik
       initialValues={{
-        email: "",
-        name: "",
-        mobile: "",
+        email: user?.email || "",
+        name: user?.name || "",
+        mobile: user?.mobile || "",
         city: "",
         district: "",
         ward: "",

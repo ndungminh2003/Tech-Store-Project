@@ -759,8 +759,8 @@ const getOrders = asyncHandler(async (req, res) => {
   validateMongoDbId(_id);
   try {
     const userorders = await Order.findOne({ orderby: _id })
-      .populate("products.product")
-      .populate("orderby")
+      .populate("products.product", "_id title price")
+      .populate("orderby", "_id name email mobile address")
       .exec();
     res.json(userorders);
   } catch (error) {
@@ -784,8 +784,8 @@ const getOrderById = asyncHandler(async (req, res) => {
   validateMongoDbId(id);
   try {
     const userorders = await Order.findById(id)
-      .populate("products.product")
-      .populate("orderby")
+      .populate("products.product", "_id title price")
+      .populate("orderby", "_id name email mobile address")
       .exec();
     res.json(userorders);
   } catch (error) {

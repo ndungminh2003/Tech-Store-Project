@@ -43,8 +43,6 @@ export default function DropDown(props) {
     navigate("/");
   };
 
-
-
   return (
     <div className=" relative">
       <div
@@ -68,7 +66,7 @@ export default function DropDown(props) {
           <Link to="/user/order" onClick={handleOnClick}>
             <div className="flex items-center gap-1 p-2 text-lg cursor-pointer  xsm:text-sm sm:text-sm hover:bg-gray-300 hover:rounded-lg">
               <PaymentIcon />
-              <span>Order</span>
+              <span>Đơn hàng</span>
             </div>
           </Link>
 
