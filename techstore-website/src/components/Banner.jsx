@@ -12,10 +12,7 @@ import DevicesIcon from "@mui/icons-material/Devices";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
-import {
-  getProductByCatalog,
-  searchProducts,
-} from "../features/product/productSlice";
+import { resetProductState } from "../features/product/productSlice";
 
 export default function Banner() {
   const navigate = useNavigate();
@@ -314,7 +311,6 @@ export default function Banner() {
   function extractRange(inputString) {
     const numberPattern = /\d+(\.\d+)?/g;
     const values = inputString.match(numberPattern);
-    let result;
     if (inputString.includes("Dưới")) {
       return [0, parseFloat(values[0])];
     } else if (inputString.includes("Trên")) {
@@ -335,13 +331,12 @@ export default function Banner() {
     // param = `?category=${params}?brand=${param}&page=1&limit=10`;
     // param += `page=1&limit=10`;
     // param = param.replace(/\s+/g, "").toLowerCase();
-    dispatch(getProductByCatalog(param));
+    dispatch(resetProductState());
     navigate(`/catalog/${param}`);
   };
 
   const handleHotClick = (product) => {
-    dispatch(searchProducts(product));
-    navigate("/search-product");
+    navigate(`/search-product/?keyword=${product}`);
   };
 
   //useState Slides

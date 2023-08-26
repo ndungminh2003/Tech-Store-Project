@@ -95,21 +95,9 @@ const SPLayout = () => {
               ],
             },
             {
-              key: "order",
+              key: "order-list",
               icon: <FaClipboardList style={{ fontSize: "24px" }} />,
               label: "Orders",
-              children: [
-                {
-                  key: "order",
-                  icon: <FaClipboardList style={{ fontSize: "24px" }} />,
-                  label: "Add Order",
-                },
-                {
-                  key: "order-list",
-                  icon: <FaClipboardList style={{ fontSize: "24px" }} />,
-                  label: "Order List",
-                },
-              ],
             },
             {
               key: "sales-report",

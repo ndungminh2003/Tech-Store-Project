@@ -15,6 +15,7 @@ export const createOrder = createAsyncThunk(
 export const updatePaymentStatus = createAsyncThunk(
   "order/update-payment-status",
   async (order, thunkAPI) => {
+    console.log(order);
     try {
       return await orderService.updatePaymentStatus(order);
     } catch (error) {

@@ -160,14 +160,14 @@ const router = createBrowserRouter(
           <Route path="product" element={<SPAddProduct />} />
           <Route path="product/:id" element={<SPAddProduct />} />
           <Route path="list-product" element={<SPProductList />} />
-          <Route path="order" element={<SPEditOrder />} />
+          <Route path="order/edit-order/:id" element={<EditOrder />} />
           <Route path="order-list" element={<SPOrders />} />
+          <Route path="order/:id" element={<EditOrder />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
           <Route path="reset-password" element={<ResetPassword />} />
           <Route path="report-list/" element={<SPReportList />} />
           <Route path="report/" element={<SPAddReport />} />
           <Route path="report/:id" element={<SPAddReport />} />
-          <Route path="order/:id" element={<SPViewOrder />} />
           <Route path="support" element={<ChatSupport />} />
         </Route>
       </Route>

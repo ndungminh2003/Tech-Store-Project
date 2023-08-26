@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { searchProducts } from "../features/product/productSlice";
 
 const types = [];
 
@@ -25,9 +24,7 @@ export default function SearchBar() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("keyword ", keyword);
-    dispatch(searchProducts(keyword));
-    navigate("/search-product");
+    navigate(`/search-product/?keyword=${keyword}`);
   };
 
   const handleSearchInputClick = () => {

@@ -1,9 +1,19 @@
 import { useState, useEffect, useRef } from "react";
 
-const RangeSlider = ({ minValue, maxValue, setMinValue, setMaxValue, min, max, step, priceCap, setIsOpen }) => {
+const RangeSlider = ({
+  minValue,
+  maxValue,
+  setMinValue,
+  setMaxValue,
+  setIsFiltered,
+  setFilterArray,
+  min,
+  max,
+  step,
+  priceCap,
+  setIsOpen,
+}) => {
   const progressRef = useRef(null);
-  
-
   const handleMin = (e) => {
     if (maxValue - minValue >= priceCap && maxValue <= max) {
       if (parseInt(e.target.value) > parseInt(maxValue)) {
@@ -90,11 +100,20 @@ const RangeSlider = ({ minValue, maxValue, setMinValue, setMaxValue, min, max, s
             />
 
             <div className=" flex justify-around gap-2">
-              <button className=" bg-red-300 mt-6 h-10 w-1/2 text-red-800 rounded-md" onClick={ () => setIsOpen(false)}>
+              <button
+                className=" bg-red-300 mt-6 h-10 w-1/2 text-red-800 rounded-md"
+                onClick={() => setIsOpen(false)}
+              >
                 Đóng
               </button>
 
-              <button className=" bg-slate-700 mt-6 h-10 w-1/2 text-white rounded-md">
+              <button
+                className=" bg-slate-700 mt-6 h-10 w-1/2 text-white rounded-md"
+                onClick={() => {
+                  setIsFiltered(true);
+                  setFilterArray((prevFilterArray) => [prevFilterArray[0], 1]);
+                }}
+              >
                 Xem kết quả
               </button>
             </div>

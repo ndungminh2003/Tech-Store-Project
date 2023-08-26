@@ -32,7 +32,7 @@ import {
   resetProductState,
   getRelatedProduct,
 } from "../../features/product/productSlice";
-import generateHtmlApi from '../../utils/generateHtml';
+import generateHtmlApi from "../../utils/generateHtml";
 import CheckIcon from "@mui/icons-material/Check";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 export default function ProductView() {
@@ -275,7 +275,12 @@ export default function ProductView() {
                                   </p>
                                   <div>
                                     <ul
-                                      dangerouslySetInnerHTML={{ __html: generateHtmlApi(productBySlug.description, 'li') }}
+                                      dangerouslySetInnerHTML={{
+                                        __html: generateHtmlApi(
+                                          productBySlug.description,
+                                          "li"
+                                        ),
+                                      }}
                                       className="text-sm flex flex-col gap-[5px] list-disc pl-3"
                                     ></ul>
                                   </div>
@@ -293,7 +298,7 @@ export default function ProductView() {
               </div>
               <div className="option-price w-[40%] pl-[20px]">
                 <div className="mb-[10px]">
-                  <div className="flex gap-[10px] w-full flex-nowrap">
+                  <div className="flex gap-[10px] w-full flex-wrap">
                     {productBySlug?.feature ? (
                       productBySlug?.feature.map((obj, index) => (
                         <Link
@@ -365,7 +370,13 @@ export default function ProductView() {
                               )}
 
                               <img
-                                src={listImage[index]}
+                                src={
+                                  listImage[
+                                    listImage.length -
+                                      productBySlug.color.length +
+                                      index
+                                  ]
+                                }
                                 alt="img_product"
                                 className="w-[30px] h-[30px]"
                               />

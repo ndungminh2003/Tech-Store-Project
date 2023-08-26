@@ -6,6 +6,7 @@ export const getUrl = async ({ info, amount }) => {
     amount,
     info,
   });
+  console.log("payment server", response);
   return response.data;
 };
 

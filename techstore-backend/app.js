@@ -3,6 +3,8 @@ const dbConnect = require("./config/dbConnect");
 const app = express();
 const dotenv = require("dotenv").config();
 const PORT = process.env.PORT || 4000;
+const fs = require("fs");
+const https = require("https");
 const authRouter = require("./routes/authRoute");
 const productRouter = require("./routes/productRoute");
 const blogRouter = require("./routes/blogRoute");
@@ -59,13 +61,30 @@ app.use("/api/category", categoryRouter);
 app.use("/api/blogcategory", blogcategoryRouter);
 app.use("/api/brand", brandRouter);
 app.use("/api/coupon", couponRouter);
+app.use("/api/payment", paymentRouter);
 app.use("/api/color", colorRouter);
 app.use("/api/report", reportRouter);
 app.use("/api/upload", uploadRouter);
-app.use("/api/payment", paymentRouter);
 
 app.use(notFound);
 app.use(errorHandler);
+
 app.listen(PORT, () => {
   console.log(`Server is running  at PORT ${PORT}`);
+});
+
+const privateKey = fs.readFileSync("./config/cert/key.pem", "utf8");
+const certificate = fs.readFileSync("./config/cert/cert.pem", "utf8");
+// const ca = fs.readFileSync("./ca.pem", "utf8");
+
+const credentials = {
+  key: privateKey,
+  cert: certificate,
+  // ca: ca,
+};
+
+const httpsServer = https.createServer(credentials, app);
+
+httpsServer.listen(5001, () => {
+  console.log(`Server is running at PORT ${5001} using HTTPS`);
 });

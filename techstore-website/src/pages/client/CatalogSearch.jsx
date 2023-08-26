@@ -3,26 +3,31 @@ import CardProduct from "../../components/CardProduct";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import MoneyIcon from "@mui/icons-material/Money";
 import RangeSlider from "../../components/RangeSlider";
 import ColorLensIcon from "@mui/icons-material/ColorLens";
-
+import { searchProducts } from "../../features/product/productSlice";
+import Checkbox from "@mui/material/Checkbox";
 export default function CatalogSearch() {
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const param = new URLSearchParams(location.search).get("keyword");
   const products = useSelector((state) => state.product?.searchedProducts);
 
   const [sortedProducts, setSortedProducts] = useState(
     products?.findProduct || []
   );
   const sortLowToHigh = () => {
-    const sorted = [...(products?.findProduct || [])].sort(
+    const sorted = [...(sortedProducts || [])].sort(
       (a, b) => a.price - b.price
     );
     setSortedProducts(sorted);
   };
 
   const sortHighToLow = () => {
-    const sorted = [...(products?.findProduct || [])].sort(
+    const sorted = [...(sortedProducts || [])].sort(
       (a, b) => b.price - a.price
     );
     setSortedProducts(sorted);
@@ -30,6 +35,10 @@ export default function CatalogSearch() {
   useEffect(() => {
     setSortedProducts(products?.findProduct || []);
   }, [products]);
+
+  useEffect(() => {
+    dispatch(searchProducts(param));
+  }, [param]);
 
   var style = {
     height: "100%",
@@ -40,22 +49,65 @@ export default function CatalogSearch() {
       height: "100vh",
     };
   }
+  const findMaxPrice = () => {
+    let max = 0;
+    products?.findProduct.forEach((product) => {
+      if (product.price > max) {
+        max = product.price;
+      }
+    });
+    max = Math.ceil(max / 1000000) * 1000000 + 1000000;
+    return max;
+  };
 
+  const findColorArray = () => {
+    let colorArray = [];
+    products?.findProduct.forEach((product) => {
+      product.color.forEach((color) => {
+        if (!colorArray.includes(color)) {
+          colorArray.push(color);
+        }
+      });
+    });
+    colorArray.push("Tất cả");
+    return colorArray;
+  };
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpen1, setIsOpen1] = useState(false);
+  const [minValue, setMinValue] = useState(0);
+  const [maxValue, setMaxValue] = useState(findMaxPrice());
+  const [color, setColor] = useState("Tất cả");
+  const [filterArray, setFilterArray] = useState([0, 0]);
+  const [isFiltered, setIsFiltered] = useState(false);
 
   const handleOnClick = () => {
     setIsOpen((prev) => !prev);
   };
-
-  const [isOpen1, setIsOpen1] = useState(false);
-
   const handleOnClick1 = () => {
     setIsOpen1((prev) => !prev);
   };
 
-  const [minValue, setMinValue] = useState(2500);
-  const [maxValue, setMaxValue] = useState(7500);
+  useEffect(() => {
+    if (isFiltered) {
+      let filtered = [...(products?.findProduct || [])];
+      if (filterArray[0] === 1 && color !== "Tất cả") {
+        filtered = filtered.filter((product) => product.color.includes(color));
+      }
+      if (filterArray[1] === 1) {
+        filtered = filtered.filter(
+          (product) => product.price >= minValue && product.price <= maxValue
+        );
+      }
+      setSortedProducts(filtered);
+    }
+  }, [isFiltered, filterArray]);
 
+  const handleColorClick = (color) => {
+    setColor(color);
+    setIsFiltered(true);
+    setIsOpen1(false);
+    setFilterArray([1, filterArray[1]]);
+  };
   return (
     <div className=" flex flex-col m-6 container mx-auto gap-4" style={style}>
       {products?.totalProducts === 0 ? (
@@ -82,11 +134,21 @@ export default function CatalogSearch() {
       )}
 
       {products?.totalProducts > 0 && (
-        <div className=" flex flex-col gap-8">
+        <div className=" flex flex-col gap-5">
           <div className="flex flex-col gap-2 ml-8">
             <div className=" text-3xl text-gray-500 font-bold">Bộ lọc</div>
             <div>
               <div className=" flex gap-5 cursor-pointer">
+                <Checkbox
+                  checked={filterArray[0] === 1}
+                  className=" relative"
+                  onChange={() =>
+                    setFilterArray([
+                      filterArray[0] === 1 ? 0 : 1,
+                      filterArray[1],
+                    ])
+                  }
+                />
                 <div className=" relative">
                   <p
                     className=" flex justify-center items-center bg-slate-300 p-3 hover:bg-slate-400 hover:duration-200 rounded-xl gap-2"
@@ -99,21 +161,32 @@ export default function CatalogSearch() {
                   {isOpen1 ? (
                     <div className=" absolute z-40 ">
                       <div className=" flex w-80 bg-white shadow-xl shadow-slate-600 rounded-lg px-6 py-4 justify-around">
-                        <div className=" cursor-pointer bg-slate-200 p-3 rounded-md">
-                          Đen
-                        </div>
-                        <div className=" cursor-pointer bg-slate-200 p-3 rounded-md">
-                          Xanh
-                        </div>
-                        <div className=" cursor-pointer bg-slate-200 p-3 rounded-md">
-                          Đỏ
-                        </div>
+                        {findColorArray().map((color) => (
+                          <div
+                            className=" cursor-pointer bg-slate-200 p-3 rounded-md"
+                            onClick={() => {
+                              handleColorClick(color);
+                            }}
+                          >
+                            {color}
+                          </div>
+                        ))}
                       </div>
                     </div>
                   ) : (
                     ""
                   )}
                 </div>
+                <Checkbox
+                  checked={filterArray[1] === 1}
+                  onChange={() =>
+                    setFilterArray([
+                      filterArray[0],
+                      filterArray[1] === 1 ? 0 : 1,
+                    ])
+                  }
+                  className=" relative"
+                />
                 <div className=" relative">
                   <p
                     className=" flex justify-center items-center bg-slate-300 p-3 hover:bg-slate-400 hover:duration-200 rounded-xl gap-2"
@@ -130,8 +203,14 @@ export default function CatalogSearch() {
                         maxValue={maxValue}
                         setMinValue={(minValue) => setMinValue(minValue)}
                         setMaxValue={(maxValue) => setMaxValue(maxValue)}
+                        setIsFiltered={(isFiltered) =>
+                          setIsFiltered(isFiltered)
+                        }
+                        setFilterArray={(filterArray) =>
+                          setFilterArray(filterArray)
+                        }
                         min={0}
-                        max={10000}
+                        max={findMaxPrice()}
                         step={100}
                         priceCap={1000}
                         setIsOpen={(isOpen) => setIsOpen(isOpen)}

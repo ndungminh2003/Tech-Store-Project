@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
 import { Checkbox, Snackbar } from "@mui/material";
@@ -33,6 +32,7 @@ function Payment() {
 
   const handleCreatePayment = async () => {
     if (user) {
+      console.log("VNPAY 11");
       const info = `Thanh toán đơn hàng ${createdOrder._id} tại TechStore.`;
       const url = await getUrl({
         info,
@@ -58,15 +58,23 @@ function Payment() {
     }
     if (paymentSelected === "COS") {
       dispatch(
-        updatePaymentStatus({ status: "Cash on Shop", method: paymentSelected })
+        updatePaymentStatus({
+          id: createdOrder._id,
+          status: "Cash on Shop",
+          method: paymentSelected,
+        })
       );
       navigate("/cart/payment/success?method=COS");
     }
     if (paymentSelected === "VNPAY") {
-      console.log("hello");
       dispatch(
-        updatePaymentStatus({ status: "Processing", method: paymentSelected })
+        updatePaymentStatus({
+          id: createdOrder._id,
+          status: "Processing",
+          method: paymentSelected,
+        })
       );
+      console.log("VNPAY 22");
       handleCreatePayment();
     }
   };
@@ -79,22 +87,6 @@ function Payment() {
     setState({ ...state, open: false });
   };
 
-  const [responseMessage, setResponseMessage] = useState("");
-
-  const handleZaloPayment = async () => {
-    try {
-      const response = await axios.post(
-        "http://localhost:5050/api/payment/createorder",
-        {
-          amount: createdOrder.totalAfterDiscount,
-        }
-      );
-
-      window.location.href = response.data.orderurl;
-    } catch (error) {
-      console.error("Lỗi khi gửi yêu cầu:", error);
-    }
-  };
   return (
     <div className="">
       <div className="flex items-center justify-center max-w-[700px] m-auto my-5">
@@ -356,30 +348,6 @@ function Payment() {
                     />
                   </label>
                 </div>
-                <div
-                  className={`w-[calc(50%-5px)] text-center rounded-[15px] p-[5px] shadow-cellphone cursor-pointer overflow-hidden ${
-                    paymentSelected === "zalopay_transfer"
-                      ? "border border-[#d70018] payment-group relative"
-                      : ""
-                  }`}
-                >
-                  <input
-                    type="radio"
-                    className="hidden"
-                    id="zalopay_transfer"
-                    value="zalopay_transfer"
-                    onClick={(e) => setPaymentSelected(e.target.value)}
-                  />
-                  <label htmlFor="zalopay_transfer" className="h-[70px]">
-                    <span>Thanh toán qua</span>
-                    <img
-                      src="https://upload.wikimedia.org/wikipedia/vi/7/77/ZaloPay_Logo.png"
-                      alt="
-                "
-                      className="w-[90px] m-auto"
-                    />
-                  </label>
-                </div>
               </div>
               <div className="flex items-center gap-1 mt-8 mb-2">
                 <Checkbox id="check" className="w-[18px] h-[18px]" />
@@ -412,13 +380,7 @@ function Payment() {
           <div className="flex flex-col gap-2 font-bold">
             <button
               className="px-3 py-[6px] uppercase h-[60px] bg-slate-500 rounded text-white"
-              onClick={() => {
-                if (paymentSelected === "zalopay_transfer") {
-                  handleZaloPayment();
-                } else {
-                  handleContinueClick();
-                }
-              }}
+              onClick={() => handleContinueClick()}
             >
               Tiếp tục
             </button>
