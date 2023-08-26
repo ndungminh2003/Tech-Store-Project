@@ -122,7 +122,7 @@ export default function CardProduct() {
                         </p>
                         <p className="text-[#777] text-sm line-through">
                           {/* {item.originalPrice} ₫ */}
-                          29.290.000 ₫
+                          {formatNumberWithDots(item.price * item.count)} ₫
                         </p>
                       </div>
                       <div className="flex items-center gap-1">

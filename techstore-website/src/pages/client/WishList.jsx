@@ -25,7 +25,10 @@ function WishList() {
         name: product.title,
         slug: product.slug,
         thumbnail: product.thumbnail,
-        feature: product.feature !== undefined ? product.feature[0] : "",
+        feature:
+          product.feature !== undefined && product.feature.length > 0
+            ? product.feature[product.feature.length - 1].name
+            : "",
         price: product.price,
         count: 1,
       };

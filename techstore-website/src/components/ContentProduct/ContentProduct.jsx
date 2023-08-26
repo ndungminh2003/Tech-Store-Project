@@ -2,6 +2,7 @@ import React from "react";
 import BoxReview from "../BoxReview/BoxReview";
 import Question from "../Question/Question";
 import "../../assets/style/ContentProduct.scss";
+import generateHtmlApi from "../../utils/generateHtml";
 const ContentProduct = (props) => {
   return (
     <div className="flex gap-3 content-product">
@@ -12,8 +13,13 @@ const ContentProduct = (props) => {
               ĐẶC ĐIỂM NỔI BẬT
             </h1>
             <div>
-              <ul className="flex flex-col gap-2">
-                <li className="before:content-['_•'] flex items-center gap-1 text-[#4a4a4a] text-sm">
+              <ul
+                dangerouslySetInnerHTML={{
+                  __html: generateHtmlApi(props.description, "li"),
+                }}
+                className="flex flex-col gap-2 pl-5 text-[#4a4a4a]"
+              >
+                {/* <li className="before:content-['_•'] flex items-center gap-1 text-[#4a4a4a] text-sm">
                   {" "}
                   Màn hình Dynamic Island - Sự biến mất của màn hình tai thỏ
                   thay thế bằng thiết kế viên thuốc, OLED 6,7 inch, hỗ trợ
@@ -31,12 +37,12 @@ const ContentProduct = (props) => {
                 <li className="before:content-['_•'] flex items-center gap-1 text-[#4a4a4a] text-sm">
                   {" "}
                   Pin liền lithium-ion kết hợp cùng công nghệ sạc nhanh cải tiến
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
           <div className="text-[#4a4a4a] text-[15px]">
-            <p className="mb-[10px]">
+            {/* <p className="mb-[10px]">
               iPhone 14 Pro Max có sự cải thiện lớn màn hình so với iPhone 13
               Pro Max. Sự khác biệt giữ phiên bản{" "}
               <a href="" title="iPhone 14 Pro Max 256GB">
@@ -44,7 +50,7 @@ const ContentProduct = (props) => {
                   iPhone 14 Pro Max 256GB
                 </strong>
               </a>
-            </p>
+            </p> */}
             <p className="mb-[10px]">{props.description}</p>
             {/* <p className="mb-[10px]">
               Kích thước <strong>màn hình iPhone 14 Pro Max</strong> vẫn là 6.1
@@ -156,7 +162,13 @@ const ContentProduct = (props) => {
             Thông số kỹ thuật
           </h1>
           <ul className="[&>*:nth-child(odd)]:bg-[#f2f2f2] text-sm">
-            <li className="flex items-center justify-between p-2">
+            {props?.specifications?.map((specification) => (
+              <li className="flex items-center justify-between p-2">
+                <p className="w-[40%]">{specification.title}</p>
+                <div className="w-1/2">{specification.value}</div>
+              </li>
+            ))}
+            {/* <li className="flex items-center justify-between p-2">
               <p className="w-[40%]">Kích thước màn hình</p>
               <div className="w-1/2">6.7 inches</div>
             </li>
@@ -213,7 +225,7 @@ const ContentProduct = (props) => {
             <li className="flex items-center justify-between p-2">
               <p className="w-[40%]">Chipset</p>
               <div className="w-1/2">Apple A16 Bionic 6 nhân</div>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

@@ -123,6 +123,27 @@ export const changeProfile = createAsyncThunk(
     }
   }
 );
+export const adminForgotPassword = createAsyncThunk(
+  "auth/admin-forgot-password",
+  async (email, thunkAPI) => {
+    try {
+      return await authService.adminForgotPassword(email);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const adminResetPassword = createAsyncThunk(
+  "auth/admin-reset-password",
+  async (data, thunkAPI) => {
+    try {
+      return await authService.adminResetPassword(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 
 export const resetAuthState = createAction("auth/resetState");
 
@@ -283,6 +304,36 @@ export const authSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(changeProfile.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
+      })
+      .addCase(adminForgotPassword.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(adminForgotPassword.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.message = action.payload;
+      })
+      .addCase(adminForgotPassword.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
+      })
+      .addCase(adminResetPassword.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(adminResetPassword.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.message = action.payload;
+      })
+      .addCase(adminResetPassword.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;

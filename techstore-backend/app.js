@@ -75,12 +75,10 @@ app.listen(PORT, () => {
 
 const privateKey = fs.readFileSync("./config/cert/key.pem", "utf8");
 const certificate = fs.readFileSync("./config/cert/cert.pem", "utf8");
-// const ca = fs.readFileSync("./ca.pem", "utf8");
 
 const credentials = {
   key: privateKey,
   cert: certificate,
-  // ca: ca,
 };
 
 const httpsServer = https.createServer(credentials, app);

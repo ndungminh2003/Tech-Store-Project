@@ -45,12 +45,6 @@ export default function ProductView() {
   const [selectedColor, setSelectedColor] = useState(null);
 
   const navigate = useNavigate();
-  const lineStyle = {
-    width: "150px", // Chiều dài 150px
-    height: "2px", // Chiều cao 2px
-    backgroundColor: "red", // Màu nền đỏ
-    backgroundSize: "75% 100%", // 75% độ dài là màu đỏ
-  };
 
   const formatCurrency = (amount) => {
     const numericAmount = Number(amount);
@@ -62,9 +56,6 @@ export default function ProductView() {
       currency: "VND",
     });
   };
-  const amount = 15000000;
-  const [activeIndex, setActiveIndex] = React.useState(0);
-  const [activeIndexs, setActiveIndexs] = React.useState(0);
 
   useEffect(() => {
     dispatch(resetProductState());
@@ -74,40 +65,18 @@ export default function ProductView() {
 
   let { productBySlug, relatedProduct } = useSelector((state) => state.product);
   relatedProduct = relatedProduct || [];
-  const handleButtonClick = (index) => {
-    setActiveIndex(index);
-  };
-  const handleButtonClicks = (index) => {
-    setActiveIndexs(index);
-  };
+
   const [showMessage, setShowMessage] = useState(false);
 
   const handleShowMessage = () => {
     setShowMessage(true);
 
-    // Sau 3 giây, đóng thông báo thành công
     setTimeout(() => {
       setShowMessage(false);
     }, 3000);
   };
 
   const listImage = productBySlug?.images?.map((obj) => obj.url) || [];
-
-  // const listImgThumb = [
-  //   "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_green_211119.jpg",
-  //   "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_burgundy_211119.jpg",
-  //   "https://cdn2.cellphones.com.vn/x/media/catalog/product/1/5/15.1.png",
-  //   "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_phantomwhite_211119.jpg",
-  //   "https://cdn2.cellphones.com.vn/x/media/catalog/product/1/5/15.6.png"
-  // ];
-
-  // const listImgOrigin = [
-  //   "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_green_211119.jpg",
-  //   "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_burgundy_211119.jpg",
-  //   "https://cdn2.cellphones.com.vn/x/media/catalog/product/1/5/15.1.png",
-  //   "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_phantomwhite_211119.jpg",
-  //   "https://cdn2.cellphones.com.vn/x/media/catalog/product/1/5/15.6.png"
-  // ];
 
   const pagination = {
     clickable: true,
@@ -131,8 +100,6 @@ export default function ProductView() {
           "</div>"
         );
       }
-
-      // return '<span class="' + className + '">' + (index + 1) + "</span>";
     },
   };
 
@@ -151,17 +118,24 @@ export default function ProductView() {
       const productToAdd = {
         _id: productBySlug._id,
         color:
-          productBySlug.color.length > 0
+          selectedColor !== null
             ? productBySlug.color[selectedColor]
+            : productBySlug.color.length > 0
+            ? productBySlug.color[0]
             : "",
         name: productBySlug.title,
         slug: productBySlug.slug,
         thumbnail: productBySlug.thumbnail,
         feature:
-          productBySlug.feature !== undefined
-            ? productBySlug.feature[selectedFeature]
+          selectedFeature !== null
+            ? productBySlug.feature[selectedFeature].name
+            : productBySlug.feature.length > 0
+            ? productBySlug.feature[productBySlug.feature.length - 1].name
             : "",
-        price: productBySlug.price,
+        price:
+          selectedFeature !== null
+            ? productBySlug.feature[selectedFeature].price
+            : productBySlug.price,
         count: 1,
       };
 
@@ -325,8 +299,8 @@ export default function ProductView() {
                             />
                           )}
 
-                          <strong>{obj}</strong>
-                          <span>{formatCurrency(productBySlug.price)}</span>
+                          <strong>{obj.name}</strong>
+                          <span>{formatCurrency(obj.price)}</span>
                         </Link>
                       ))
                     ) : (
@@ -524,7 +498,10 @@ export default function ProductView() {
               </Swiper>
             </div>
           </section>
-          <ContentProduct description={productBySlug.description} />
+          <ContentProduct
+            description={productBySlug.description}
+            specifications={productBySlug.specifications}
+          />
           <BackToTop />
         </div>
       ) : (

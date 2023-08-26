@@ -4,7 +4,7 @@ import { ReactComponent as PhoneIcon } from "../../assets/phone.svg";
 import { ReactComponent as BoxIcon } from "../../assets/box.svg";
 import { ReactComponent as ProtectIcon } from "../../assets/protect.svg";
 
-const ProductInfor = () => {
+const ProductInfor = (props) => {
   return (
     <div>
       <div className="p-[10px] border border-[#e5e7eb] rounded-[10px] mt-[10px]">
@@ -23,7 +23,7 @@ const ProductInfor = () => {
               <BoxIcon />
             </div>
             <div>
-              Samsung Galaxy S23 Ultra <br /> Cáp sạc <br /> Sách HDSD
+              {props.title} <br /> Cáp sạc <br /> Sách HDSD
             </div>
           </div>
           <div className="flex gap-2 ">

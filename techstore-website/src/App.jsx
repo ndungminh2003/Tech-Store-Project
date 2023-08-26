@@ -75,6 +75,8 @@ import SPLogin from "./pages/salesperson/Login";
 import SPAddReport from "./pages/salesperson/AddSalesReport";
 import SPReportList from "./pages/salesperson/SalesReportList";
 import ChatSupport from "./pages/salesperson/ChatEngine";
+import SPResetPassword from "./pages/salesperson/ResetPassword";
+import SPForgotPassword from "./pages/salesperson/ForgotPassword";
 // protected route
 import RequireAuth from "./components/RequireAuth";
 
@@ -116,7 +118,14 @@ const router = createBrowserRouter(
 
       <Route path="login" element={<Login />} />
       <Route path="/admin-login" element={<AdminLogin />} />
+      <Route path="/admin/forgot-password" element={<ForgotPassword />} />
+      <Route path="/admin/reset-password" element={<ResetPassword />} />
       <Route path="/salesperson-login" element={<SPLogin />} />
+      <Route
+        path="/salesperson/forgot-password"
+        element={<SPForgotPassword />}
+      />
+      <Route path="/salesperson/reset-password" element={<SPResetPassword />} />
       <Route element={<RequireAuth allowedRoles="admin" />}>
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Dashboard />} />
@@ -145,8 +154,6 @@ const router = createBrowserRouter(
           <Route path="order-list" element={<Orders />} />
           <Route path="order/edit-order/:id" element={<EditOrder />} />
           <Route path="order/:id" element={<EditOrder />} />
-          <Route path="forgot-password" element={<ForgotPassword />} />
-          <Route path="reset-password" element={<ResetPassword />} />
           <Route path="report-list/" element={<ReportList />} />
         </Route>
       </Route>

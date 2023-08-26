@@ -89,6 +89,22 @@ const updateProfile = async (data) => {
   return response.data;
 };
 
+const adminForgotPassword = async (email) => {
+  const response = await axios.post(
+    `${base_url}user/forgot-password-token`,
+    email
+  );
+  return response.data;
+};
+
+const adminResetPassword = async (data) => {
+  const response = await axios.put(
+    `${base_url}user/reset-password/${data.token}`,
+    data
+  );
+  return response.data;
+};
+
 const authService = {
   login,
   logout,
@@ -100,6 +116,8 @@ const authService = {
   changePassword,
   addToWishlist,
   updateProfile,
+  adminForgotPassword,
+  adminResetPassword,
 };
 
 export default authService;
