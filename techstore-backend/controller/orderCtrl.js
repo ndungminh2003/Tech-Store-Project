@@ -101,7 +101,7 @@ const getOrderById = asyncHandler(async (req, res) => {
   validateMongoDbId(id);
   try {
     const order = await Order.findById(id)
-      .populate("products.product", "_id title thumbnail")
+      .populate("products.product", "_id title thumbnail slug quantity")
       .exec();
     res.json(order);
   } catch (error) {

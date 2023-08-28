@@ -406,7 +406,7 @@ export default function ProductView() {
 
                   <div className="flex gap-[10px] mt-[10px]">
                     <button
-                      className="w-[calc(100%-70px)] flex flex-col items-center text-white bg-[#1E293B] py-2 rounded-[10px]"
+                      className="w-[calc(100%-80px)] flex flex-col items-center justify-center just text-white bg-[#1E293B] py-2 rounded-[10px]"
                       onClick={handleBuyNow}
                     >
                       <strong className="text-base">MUA NGAY</strong>

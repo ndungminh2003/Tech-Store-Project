@@ -236,34 +236,34 @@ const StatusTag = ({ title, status }) => {
 
   useEffect(() => {
     switch (status) {
-      case "CONFIRMED": {
+      case "Processing": {
         setBgColorStatus("bg-[#DBDEE1]");
         setColorStatus("text-[#929CA4]");
         setText("Đã xác nhận");
         break;
       }
-      case "COMPLETED": {
+      case "Completed": {
         setBgColorStatus("bg-[#3aa56620]");
         setColorStatus("text-[#3aa566]");
         setText("Đã hoàn thành");
         break;
       }
-      case "CANCELLED": {
+      case "Cancelled": {
         setBgColorStatus("bg-[#d42b5220]");
         setColorStatus("text-[#d42d52]");
         setText("Đã hủy");
         break;
       }
-      case "DELIVERED": {
+      case "Delivering": {
         setBgColorStatus("bg-[#3378dc20]");
         setColorStatus("text-[#3378dc]");
-        setText("Đã giao hàng");
+        setText("Đang giao hàng");
         break;
       }
-      case "FAILED": {
+      case "Not Processed": {
         setBgColorStatus("bg-[#d1385a20]");
         setColorStatus("text-[#d1385a]");
-        setText("Thất bại");
+        setText("Chưa xử lý");
         break;
       }
       default:

@@ -1,10 +1,4 @@
 import React from "react";
-import Avatar from "@mui/material/Avatar";
-import EditIcon from "@mui/icons-material/Edit";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import EventNoteIcon from "@mui/icons-material/EventNote";
-import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
-import LoyaltyIcon from "@mui/icons-material/Loyalty";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import Button from "@mui/material/Button";
 import SecurityIcon from "@mui/icons-material/Security";
@@ -16,62 +10,6 @@ import {
 } from "../../features/order/orderSlice";
 import { useEffect } from "react";
 import { formatNumberWithDots } from "../../utils/formatNumber";
-
-const orders1 = [
-  {
-    products: [
-      {
-        name: "iPad Air 5 (2022) 64GB-Xanh",
-        price: "13.990.000 vnd",
-        quanlity: "1",
-        img:
-          "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/1/_/1_253_3.jpg",
-      },
-      {
-        name: "Màn hình MSI Pro MP223 22 inch",
-        price: "1.890.000 vnd",
-        quanlity: "1",
-        img:
-          "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/m/a/man-hinh-msi-pro-mp223-22-inch.png",
-      },
-    ],
-
-    ordered: "21/7/2023",
-    status: "COMPLETED",
-    total: "15.880.000 vnd",
-  },
-
-  {
-    products: [
-      {
-        name: "Tai nghe Bluetooth Apple AirPods 2 ",
-        price: "2.670.000 vnd",
-        quanlity: "1",
-        img:
-          "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/g/r/group_169_2.png",
-      },
-    ],
-
-    ordered: "10/7/2023",
-    status: "COMPLETED",
-    total: "2.670.000 vnd",
-  },
-  {
-    products: [
-      {
-        name: "Tai nghe Bluetooth Apple AirPods 2 ",
-        price: "2.670.000 vnd",
-        quanlity: "1",
-        img:
-          "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/g/r/group_169_2.png",
-      },
-    ],
-
-    ordered: "10/7/2023",
-    status: "COMPLETED",
-    total: "2.670.000 vnd",
-  },
-];
 
 export default function Purchase() {
   const navigate = useNavigate();
@@ -117,7 +55,7 @@ export default function Purchase() {
                 alt=""
                 className="w-40 h-40"
               />
-              <div className="text-lg">Không có sản phẩm nào</div>
+              <div className="text-lg">Không có đơn hàng nào</div>
             </div>
           </div>
         ) : (
@@ -125,7 +63,7 @@ export default function Purchase() {
             {orders.map((order) => (
               <div className=" flex flex-col p-4 bg-white w-[97%] m-4 rounded-lg gap-4 only:">
                 <div className=" flex items-center justify-between border-b border-gray-400 p-4">
-                  {order.orderStatus === "COMPLETED" ? (
+                  {order.orderStatus === "Completed" ? (
                     <span className=" text-green-500 text-lg">
                       {" "}
                       <LocalShippingIcon /> The order was shipped successfully{" "}
@@ -133,9 +71,31 @@ export default function Purchase() {
                   ) : (
                     ""
                   )}
-                  <span className=" text-lg font-bold text-red-500">
-                    {order.orderStatus}
-                  </span>
+                  {order.orderStatus === "Not Processed" ? (
+                    <span className=" text-lg font-bold text-red-500">
+                      {order.orderStatus}
+                    </span>
+                  ) : null}
+                  {order.orderStatus === "Processing" ? (
+                    <span className=" text-lg font-bold text-[#929CA4]-500">
+                      {order.orderStatus}
+                    </span>
+                  ) : null}
+                  {order.orderStatus === "Delivering" ? (
+                    <span className=" text-lg font-bold text-[#3378dc]-500">
+                      {order.orderStatus}
+                    </span>
+                  ) : null}
+                  {order.orderStatus === "Completed" ? (
+                    <span className=" text-lg font-bold text-green-500">
+                      {order.orderStatus}
+                    </span>
+                  ) : null}
+                  {order.orderStatus === "Cancelled" ? (
+                    <span className=" text-lg font-bold text-red-500">
+                      {order.orderStatus}
+                    </span>
+                  ) : null}
                 </div>
                 {order.products.map((product) => (
                   <div className=" flex gap-4 justify-between border-b border-gray-400 p-4">
