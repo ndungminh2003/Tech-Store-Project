@@ -129,7 +129,8 @@ export default function ProductView() {
         feature:
           selectedFeature !== null
             ? productBySlug.feature[selectedFeature].name
-            : productBySlug.feature.length > 0
+            : productBySlug?.feature !== undefined &&
+              productBySlug.feature.length > 0
             ? productBySlug.feature[productBySlug.feature.length - 1].name
             : "",
         price:
@@ -194,7 +195,7 @@ export default function ProductView() {
                 value={productBySlug.totalrating}
                 readOnly
               />
-              <p>{productBySlug.totalrating} đánh giá</p>
+              <p>{productBySlug.ratings.length} đánh giá</p>
             </div>
             <hr className="my-[15px] border-none" />
             <div className="flex option-top">

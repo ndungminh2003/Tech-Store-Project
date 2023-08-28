@@ -138,6 +138,7 @@ export default function ListCardProduct(props) {
                 thumbnail={product.thumbnail}
                 slug={product.slug}
                 feature={product.feature}
+                totalrating={product.totalrating}
                 isFavorite={productIdsInWishlist.includes(product._id)}
               />
             </SwiperSlide>

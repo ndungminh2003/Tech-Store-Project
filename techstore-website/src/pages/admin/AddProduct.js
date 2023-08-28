@@ -89,7 +89,6 @@ const AddProduct = () => {
     productName !== undefined && productName !== null
       ? productName
       : defaultProductState;
-  console.log(product);
   useEffect(() => {
     if (!isLoading && isSuccess && createdProduct) {
       toast.success("Product Added Successfullly!");
@@ -105,8 +104,8 @@ const AddProduct = () => {
   const coloropt = [];
   colorState.forEach((i) => {
     coloropt.push({
-      label: i,
-      value: i,
+      label: i.title,
+      value: i.title,
     });
   });
 

@@ -166,7 +166,7 @@ export default function CardProduct(props) {
                 <Stack spacing={1}>
                   <Rating
                     name="half-rating-read"
-                    defaultValue={2.5}
+                    value={props.totalrating}
                     precision={0.5}
                     readOnly
                   />

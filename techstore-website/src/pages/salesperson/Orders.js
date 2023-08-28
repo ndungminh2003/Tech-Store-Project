@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table } from "antd";
+import { Table, Tag } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { BiEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
@@ -43,14 +43,30 @@ const Orders = () => {
     {
       title: "Status",
       dataIndex: "status",
+      key: "status",
       sorter: (a, b) => a.status.length - b.status.length,
       ...useGetColumnSearchProps("status", "Status"),
+      render: (_, { status }) => (
+        <>
+          {status === "Processing" ? <Tag color="blue">{status}</Tag> : null}
+          {status === "Completed" ? <Tag color="green">{status}</Tag> : null}
+          {status === "Cancelled" ? <Tag color="red">{status}</Tag> : null}
+          {status === "Delivering" ? <Tag color="blue">{status}</Tag> : null}
+          {status === "Not Processed" ? <Tag color="red">{status}</Tag> : null}
+        </>
+      ),
     },
     {
       title: "Payment",
       dataIndex: "payment",
       sorter: (a, b) => a.payment.length - b.payment.length,
       ...useGetColumnSearchProps("payment", "Payment"),
+      render: (_, { payment }) => (
+        <>
+          {payment === "VNPAY" ? <Tag color="blue">{payment}</Tag> : null}
+          {payment === "COD" ? <Tag color="yellow">{payment}</Tag> : null}
+        </>
+      ),
     },
     {
       title: "Amount (VNĐ)",

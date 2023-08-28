@@ -1,5 +1,5 @@
 import { Rating, Stack, styled } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import StarIcon from "@mui/icons-material/Star";
 import LinearProgress, {
   linearProgressClasses,
@@ -20,7 +20,14 @@ const BoxReview = () => {
   const [comment, setComment] = useState("");
   const { productBySlug } = useSelector((state) => state.product);
   const prodId = productBySlug._id;
-
+  const [rateArr, setRateArr] = useState([0, 0, 0, 0, 0]);
+  useEffect(() => {
+    const arr = [0, 0, 0, 0, 0];
+    productBySlug.ratings.map((rate) => {
+      arr[rate.star - 1] += 1;
+    });
+    setRateArr(arr);
+  }, [productBySlug.ratings]);
   const handleRatingSubmit = async () => {
     try {
       if (!user?._id) {
@@ -63,7 +70,11 @@ const BoxReview = () => {
           <p className="text-[#363636] text-2xl font-semibold">
             {productBySlug.totalrating}.0/5
           </p>
-          <Rating readOnly value={5} className="!text-base" />
+          <Rating
+            readOnly
+            value={productBySlug.totalrating}
+            className="!text-base"
+          />
           <p>
             <strong>{productBySlug.ratings.length}</strong> đánh giá và nhận xét
           </p>
@@ -75,9 +86,14 @@ const BoxReview = () => {
               <StarIcon className="!fill-[#f59e0b] !text-base" />
             </div>
             <div>
-              <BorderLinearProgress variant="determinate" value={100} />
+              <BorderLinearProgress
+                variant="determinate"
+                value={(rateArr[4] / productBySlug.ratings.length) * 100}
+              />
             </div>
-            <span className="text-xs text-[#4a4a4a]">9 đánh giá</span>
+            <span className="text-xs text-[#4a4a4a]">
+              {rateArr[4]} đánh giá
+            </span>
           </div>
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1">
@@ -87,9 +103,14 @@ const BoxReview = () => {
               <StarIcon className="!fill-[#f59e0b] !text-base" />
             </div>
             <div>
-              <BorderLinearProgress variant="determinate" value={0} />
+              <BorderLinearProgress
+                variant="determinate"
+                value={(rateArr[3] / productBySlug.ratings.length) * 100}
+              />
             </div>
-            <span className="text-xs text-[#4a4a4a]">0 đánh giá</span>
+            <span className="text-xs text-[#4a4a4a]">
+              {rateArr[3]} đánh giá
+            </span>
           </div>
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1">
@@ -99,9 +120,14 @@ const BoxReview = () => {
               <StarIcon className="!fill-[#f59e0b] !text-base" />
             </div>
             <div>
-              <BorderLinearProgress variant="determinate" value={0} />
+              <BorderLinearProgress
+                variant="determinate"
+                value={(rateArr[2] / productBySlug.ratings.length) * 100}
+              />
             </div>
-            <span className="text-xs text-[#4a4a4a]">0 đánh giá</span>
+            <span className="text-xs text-[#4a4a4a]">
+              {rateArr[2]} đánh giá
+            </span>
           </div>
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1">
@@ -111,9 +137,14 @@ const BoxReview = () => {
               <StarIcon className="!fill-[#f59e0b] !text-base" />
             </div>
             <div>
-              <BorderLinearProgress variant="determinate" value={0} />
+              <BorderLinearProgress
+                variant="determinate"
+                value={(rateArr[1] / productBySlug.ratings.length) * 100}
+              />
             </div>
-            <span className="text-xs text-[#4a4a4a]">0 đánh giá</span>
+            <span className="text-xs text-[#4a4a4a]">
+              {rateArr[1]} đánh giá
+            </span>
           </div>
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1">
@@ -123,9 +154,14 @@ const BoxReview = () => {
               <StarIcon className="!fill-[#f59e0b] !text-base" />
             </div>
             <div>
-              <BorderLinearProgress variant="determinate" value={0} />
+              <BorderLinearProgress
+                variant="determinate"
+                value={(rateArr[0] / productBySlug.ratings.length) * 100}
+              />
             </div>
-            <span className="text-xs text-[#4a4a4a]">0 đánh giá</span>
+            <span className="text-xs text-[#4a4a4a]">
+              {rateArr[0]} đánh giá
+            </span>
           </div>
         </div>
       </div>

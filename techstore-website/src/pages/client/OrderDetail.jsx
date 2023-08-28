@@ -237,9 +237,9 @@ const StatusTag = ({ title, status }) => {
   useEffect(() => {
     switch (status) {
       case "Processing": {
-        setBgColorStatus("bg-[#DBDEE1]");
-        setColorStatus("text-[#929CA4]");
-        setText("Đã xác nhận");
+        setBgColorStatus("bg-[#3378dc20]");
+        setColorStatus("text-[#3378dc]");
+        setText("Đang xử lý");
         break;
       }
       case "Completed": {

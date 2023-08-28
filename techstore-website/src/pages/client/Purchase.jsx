@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import Button from "@mui/material/Button";
 import SecurityIcon from "@mui/icons-material/Security";
@@ -8,7 +8,6 @@ import {
   getOrdersByUserId,
   resetOrderState,
 } from "../../features/order/orderSlice";
-import { useEffect } from "react";
 import { formatNumberWithDots } from "../../utils/formatNumber";
 
 export default function Purchase() {
@@ -24,30 +23,65 @@ export default function Purchase() {
       totalAfterDiscount: 0,
     },
   ];
+  const [filteredOrders, setFilteredOrders] = useState(orders);
+
+  const handleFilter = (status) => {
+    if (status === "All") {
+      setFilteredOrders(orders);
+      return;
+    }
+    setFilteredOrders(orders.filter((order) => order.orderStatus === status));
+  };
   useEffect(() => {
     dispatch(resetOrderState());
     dispatch(getOrdersByUserId());
   }, []);
+  useEffect(() => {
+    setFilteredOrders(orders);
+  }, [orders]);
   return (
     <div>
       <div className=" flex flex-col gap-5 min-w-[36rem]">
         <div className=" flex text-2xl bg-slate-500 h-20 justify-between rounded-lg">
-          {/* Link */}
-          <span className=" flex justify-center items-center p-4 w-1/4 text-white cursor-pointer hover:bg-slate-600 hover:duration-500 hover:rounded-lg xxsm:text-lg xsm:text-lg sm:text-lg md:text-xl">
+          <span
+            className=" flex justify-center items-center p-4 w-1/6 text-white cursor-pointer hover:bg-slate-600 hover:duration-500 hover:rounded-lg xxsm:text-lg xsm:text-lg sm:text-lg md:text-xl"
+            onClick={() => handleFilter("All")}
+          >
             Tất cả
           </span>
-          <span className=" flex justify-center items-center p-4 w-1/4 text-white cursor-pointer hover:bg-slate-600 hover:duration-500 hover:rounded-lg xxsm:text-lg xsm:text-lg sm:text-lg md:text-xl">
+          <span
+            className=" flex justify-center items-center p-4 w-1/6 text-white cursor-pointer hover:bg-slate-600 hover:duration-500 hover:rounded-lg xxsm:text-lg xsm:text-lg sm:text-lg md:text-xl"
+            onClick={() => handleFilter("Not Processed")}
+          >
+            Chưa xử lý
+          </span>
+          <span
+            className=" flex justify-center items-center p-4 w-1/6 text-white cursor-pointer hover:bg-slate-600 hover:duration-500 hover:rounded-lg xxsm:text-lg xsm:text-lg sm:text-lg md:text-xl"
+            onClick={() => handleFilter("Processing")}
+          >
+            Đang xử lý
+          </span>
+          <span
+            className=" flex justify-center items-center p-4 w-1/5 text-white cursor-pointer hover:bg-slate-600 hover:duration-500 hover:rounded-lg xxsm:text-lg xsm:text-lg sm:text-lg md:text-xl"
+            onClick={() => handleFilter("Delivering")}
+          >
             Đang vận chuyển
           </span>
-          <span className=" flex justify-center items-center p-4 w-1/4 text-white cursor-pointer hover:bg-slate-600 hover:duration-500 hover:rounded-lg xxsm:text-lg xsm:text-lg sm:text-lg md:text-xl">
+          <span
+            className=" flex justify-center items-center p-4 w-1/6 text-white cursor-pointer hover:bg-slate-600 hover:duration-500 hover:rounded-lg xxsm:text-lg xsm:text-lg sm:text-lg md:text-xl"
+            onClick={() => handleFilter("Completed")}
+          >
             Hoàn thành
           </span>
-          <span className=" flex justify-center items-center p-4 w-1/4 text-white cursor-pointer hover:bg-slate-600 hover:duration-500 hover:rounded-lg xxsm:text-lg xsm:text-lg sm:text-lg md:text-xl">
+          <span
+            className=" flex justify-center items-center p-4 w-1/6 text-white cursor-pointer hover:bg-slate-600 hover:duration-500 hover:rounded-lg xxsm:text-lg xsm:text-lg sm:text-lg md:text-xl"
+            onClick={() => handleFilter("Cancelled")}
+          >
             Hủy
           </span>
         </div>
 
-        {orders.length === 0 ? (
+        {filteredOrders.length === 0 ? (
           <div className=" flex flex-col h-[55rem] bg-slate-200 rounded-lg justify-center items-center">
             <div className="flex flex-col items-center gap-2">
               <img
@@ -60,7 +94,7 @@ export default function Purchase() {
           </div>
         ) : (
           <div className=" flex flex-col h-[55rem] bg-slate-200 rounded-lg items-center overflow-y-auto">
-            {orders.map((order) => (
+            {filteredOrders.map((order) => (
               <div className=" flex flex-col p-4 bg-white w-[97%] m-4 rounded-lg gap-4 only:">
                 <div className=" flex items-center justify-between border-b border-gray-400 p-4">
                   {order.orderStatus === "Completed" ? (
@@ -77,12 +111,12 @@ export default function Purchase() {
                     </span>
                   ) : null}
                   {order.orderStatus === "Processing" ? (
-                    <span className=" text-lg font-bold text-[#929CA4]-500">
+                    <span className=" text-lg font-bold text-blue-500">
                       {order.orderStatus}
                     </span>
                   ) : null}
                   {order.orderStatus === "Delivering" ? (
-                    <span className=" text-lg font-bold text-[#3378dc]-500">
+                    <span className=" text-lg font-bold text-blue-500">
                       {order.orderStatus}
                     </span>
                   ) : null}
