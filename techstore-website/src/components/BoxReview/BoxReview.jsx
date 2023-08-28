@@ -304,7 +304,7 @@ const BoxReview = () => {
               id=""
               cols="30"
               rows="10"
-              placeholder="Xin mời để lại câu hỏi, CellphoneS sẽ trả lời lại trong 1h, các câu hỏi sau 22h - 8h sẽ được trả lời vào sáng hôm sau"
+              placeholder="Nhập nhận xét của bạn về sản phẩm này"
               className="w-[calc(100%-80px)] p-3 border border-[#ccc] outline-none h-32 shadow-cellphone rounded-[15px] text-[#363636] text-sm"
               value={comment}
               onChange={(e) => setComment(e.target.value)}
