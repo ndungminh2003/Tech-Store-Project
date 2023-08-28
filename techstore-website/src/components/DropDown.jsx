@@ -56,7 +56,7 @@ export default function DropDown(props) {
 
       {isOpen && user?.role !== undefined ? (
         <div className=" flex flex-col gap-2 p-2 w-[130%] xsm:w-[100%] sm:w-[100%] rounded-xl absolute top-16 bg-slate-100 shadow-lg shadow-gray-300">
-          <Link to="/user" onClick={handleOnClick}>
+          <Link to="/user/edit" onClick={handleOnClick}>
             <div className="flex items-center gap-1 p-2 text-lg cursor-pointer  xsm:text-sm sm:text-sm hover:bg-gray-300 hover:rounded-lg">
               <ManageAccountsIcon />
               <span>Tài khoản</span>
