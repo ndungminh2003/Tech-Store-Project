@@ -90,9 +90,7 @@ export default function Edit() {
             <div className=" w-20 h-20">
               <img src="/logo/small.png" alt="logo" className=" rounded-xl" />
             </div>
-            <div className=" font-bold text-xl text-gray-600">
-              Minh Dung Nguyen
-            </div>
+            <div className=" font-bold text-xl text-gray-600">{user.name}</div>
           </div>
 
           <div className=" flex flex-col gap-5 w-full">
@@ -105,7 +103,7 @@ export default function Edit() {
                 value={formik.values.name}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                placeholder={data.name}
+                placeholder={user.name}
               />
               {formik.touched.name && formik.errors.name ? (
                 <div className=" text-red-500 text-sm ml-4">
@@ -123,7 +121,7 @@ export default function Edit() {
                 value={formik.values.mobile}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                placeholder={data.mobile}
+                placeholder={user.mobile}
               />
               {formik.touched.mobile && formik.errors.mobile ? (
                 <div className=" text-red-500 text-sm ml-4">
@@ -141,7 +139,7 @@ export default function Edit() {
                 className=" w-full p-4 border-b-gray-300 border-b-[1px] rounded-md outline-none focus:border-sky-500 focus:duration-500 "
                 value={formik.values.dateOfBirth}
                 onChange={formik.handleChange}
-                placeholder={data.dateOfBirth}
+                placeholder={user.dateOfBirth}
               />
             </div>
 
@@ -153,7 +151,7 @@ export default function Edit() {
                 className=" w-full p-4 border-b-gray-300 border-b-[1px] rounded-md outline-none focus:border-sky-500 focus:duration-500 "
                 value={formik.values.address}
                 onChange={formik.handleChange}
-                placeholder={data.address}
+                placeholder={user.address}
               />
             </div>
 
