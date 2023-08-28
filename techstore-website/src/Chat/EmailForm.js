@@ -7,8 +7,8 @@ import {useSelector} from "react-redux";
 
 const EmailForm = props => {
     
-    const privateApiKey = "f70b0ac2-af3e-45a6-8ebd-ce7212671883";
-    const project_id = "f63c5c4f-a8b1-4e55-9a3f-b2984621d508";
+    const privateApiKey = "00766548-9fcb-40e7-8acd-bb98399aa393";
+    const project_id = "cccfe7ec-6295-4b3f-96fd-8e100b5dbd76";
     const user = useSelector(state => state.auth.user);
     const [email, setEmail] = useState(user?.email || '');
     console.log("email", email);
@@ -28,7 +28,7 @@ const EmailForm = props => {
         await axios.put(
             'https://api.chatengine.io/chats/',
             {
-                usernames: ['Nguyen Dung Minh', email], 
+                usernames: ['Customer Support', email], 
                 is_direct_chat: true
             },
             {headers: {

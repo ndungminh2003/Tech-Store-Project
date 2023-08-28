@@ -15,6 +15,8 @@ const ChatEngine = props => {
             setShowChat(false);
         }
     },[props.visible, props.haveEmail])
+
+
     return (
         <div
             className='transition-5'
@@ -30,7 +32,7 @@ const ChatEngine = props => {
                 showChat &&
                 <ChatEngineWrapper>
                     <Socket 
-                        projectID="f63c5c4f-a8b1-4e55-9a3f-b2984621d508"
+                        projectID="cccfe7ec-6295-4b3f-96fd-8e100b5dbd76"
                         userName={props.user?.email || ''}
                         userSecret={props.user?.email || ''}
                     />

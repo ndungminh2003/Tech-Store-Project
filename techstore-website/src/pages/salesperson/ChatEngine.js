@@ -4,8 +4,8 @@ import { ChatEngine } from 'react-chat-engine'
 export default function ChatSupport() {
   return (
     <ChatEngine 
-      projectID="f63c5c4f-a8b1-4e55-9a3f-b2984621d508"
-      userName='Nguyen Dung Minh'
+      projectID="cccfe7ec-6295-4b3f-96fd-8e100b5dbd76"
+      userName='Customer Support'
       userSecret='123123'
       height='calc(80vh - 12px)'
       

@@ -160,10 +160,10 @@ export default function CatalogSearch() {
 
                   {isOpen1 ? (
                     <div className=" absolute z-40 ">
-                      <div className=" flex w-80 bg-white shadow-xl shadow-slate-600 rounded-lg px-6 py-4 justify-around">
+                      <div className=" flex w-fit gap-4 bg-white shadow-xl shadow-slate-600 rounded-lg px-6 py-4 justify-around">
                         {findColorArray().map((color) => (
                           <div
-                            className=" cursor-pointer bg-slate-200 p-3 rounded-md"
+                            className=" cursor-pointer bg-slate-200 p-3 rounded-md capitalize flex items-center justify-center w-20 h-16 hover:bg-slate-400"
                             onClick={() => {
                               handleColorClick(color);
                             }}
