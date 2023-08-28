@@ -10,12 +10,16 @@ import RangeSlider from "../../components/RangeSlider";
 import MoneyIcon from "@mui/icons-material/Money";
 import ColorLensIcon from "@mui/icons-material/ColorLens";
 import Checkbox from "@mui/material/Checkbox";
+import { Pagination } from "antd";
 export default function Catalog() {
   const dispatch = useDispatch();
   const location = useLocation();
   const param = location.search;
-  const { products } = useSelector((state) => state.product);
-
+  const { products, totalProducts, page, limit } = useSelector(
+    (state) => state.product
+  );
+  const [currentPage, setCurrentPage] = useState(page || 1);
+  const [size, setSize] = useState(limit || 10);
   const [sortedProducts, setSortedProducts] = useState(products || []);
   const sortLowToHigh = () => {
     const sorted = [...(sortedProducts || [])].sort(
@@ -35,7 +39,7 @@ export default function Catalog() {
   }, [products]);
 
   useEffect(() => {
-    dispatch(getProductByCatalog(param));
+    dispatch(getProductByCatalog(param + `page=${currentPage}&limit=${size}`));
   }, [param]);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -101,6 +105,11 @@ export default function Catalog() {
     setFilterArray([1, filterArray[1]]);
   };
 
+  const handleShowSizeChange = (current, size) => {
+    setSize(size);
+    setCurrentPage(1);
+    dispatch(getProductByCatalog(param + `page=${currentPage}&limit=${size}`));
+  };
   return (
     <div className=" flex flex-col m-6 container mx-auto gap-4">
       {/* {products?.totalProducts === 0 ? (
@@ -233,10 +242,22 @@ export default function Catalog() {
           </div>
         ))}
       </div>
-      <div className=" flex items-center justify-center text-xl w-43 gap-2 bg-slate-300 p-4 hover:bg-slate-400 hover:duration-200 rounded-xl cursor-pointer self-center">
-        <span>Xem thêm</span>
-        <KeyboardArrowDownIcon />
-      </div>
+      <Pagination
+        className="flex justify-center"
+        current={currentPage}
+        total={totalProducts || 0}
+        showTotal={(total) => `Total ${total} items`}
+        pageSize={size}
+        showSizeChanger
+        onShowSizeChange={handleShowSizeChange}
+        showQuickJumper
+        onChange={(page) => {
+          setCurrentPage(page);
+          dispatch(
+            getProductByCatalog(param + `page=${currentPage}&limit=${size}`)
+          );
+        }}
+      />
     </div>
   );
 }

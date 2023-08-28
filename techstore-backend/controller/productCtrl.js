@@ -83,22 +83,64 @@ const getProductBySlug = asyncHandler(async (req, res) => {
   }
 });
 
+// const searchProduct = asyncHandler(async (req, res) => {
+//   const { query } = req.params;
+//   console.log(query);
+//   try {
+//     const regexPattern = query
+//       .split(" ")
+//       .map((word) => `(?=.*\\b${word}\\b)`)
+//       .join("");
+//     console.log(regexPattern);
+//     const findProduct = await Product.find({
+//       title: { $regex: new RegExp(regexPattern, "i") },
+//     });
+//     const totalProducts = await Product.countDocuments({
+//       title: { $regex: new RegExp(regexPattern, "i") },
+//     });
+//     res.json({ findProduct, totalProducts, keyword: query });
+//   } catch (error) {
+//     throw new Error(error);
+//   }
+// });
+
 const searchProduct = asyncHandler(async (req, res) => {
-  const { query } = req.params;
-  console.log(query);
+  const query = req.query;
+  const { keyword, page, limit } = query;
+  console.log("Hi", keyword, page, limit);
+
   try {
-    const regexPattern = query
+    const regexPattern = keyword
       .split(" ")
       .map((word) => `(?=.*\\b${word}\\b)`)
       .join("");
     console.log(regexPattern);
+
+    // Tính toán chỉ số bắt đầu dựa trên trang và giới hạn
+    const startIndex = (page - 1) * limit;
+
+    // Tìm kiếm sản phẩm và đếm tổng số sản phẩm
     const findProduct = await Product.find({
       title: { $regex: new RegExp(regexPattern, "i") },
-    });
+    })
+      .select(
+        "title price thumbnail slug feature brand color category totalrating"
+      )
+      .skip(startIndex) // Bỏ qua các kết quả trước chỉ số bắt đầu
+      .limit(limit); // Giới hạn số lượng kết quả trả về
+
     const totalProducts = await Product.countDocuments({
       title: { $regex: new RegExp(regexPattern, "i") },
     });
-    res.json({ findProduct, totalProducts, keyword: query });
+
+    res.json({
+      findProduct,
+      totalProducts,
+      keyword: keyword,
+      currentPage: page,
+      limit: limit,
+      totalPages: Math.ceil(totalProducts / limit),
+    });
   } catch (error) {
     throw new Error(error);
   }
@@ -112,6 +154,10 @@ const getAllProduct = asyncHandler(async (req, res) => {
     excludeFields.forEach((el) => delete queryObj[el]);
     let queryStr = JSON.stringify(queryObj);
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+
+    let countQuery = Product.find(JSON.parse(queryStr));
+
+    const totalProducts = await countQuery.countDocuments();
 
     let query = Product.find(JSON.parse(queryStr));
 
@@ -143,8 +189,8 @@ const getAllProduct = asyncHandler(async (req, res) => {
       const productCount = await Product.countDocuments();
       if (skip >= productCount) throw new Error("This Page does not exists");
     }
-    const product = await query;
-    res.json(product);
+    const products = await query;
+    res.json({ products, totalProducts, page, limit });
   } catch (error) {
     throw new Error(error);
   }

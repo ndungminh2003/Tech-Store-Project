@@ -145,7 +145,7 @@ export const productSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         state.isSuccess = true;
-        state.products = action.payload;
+        state.products = action.payload.products;
       })
       .addCase(getProducts.rejected, (state, action) => {
         state.isLoading = false;
@@ -160,7 +160,8 @@ export const productSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         state.isSuccess = true;
-        state.products = action.payload;
+        state.products = action.payload.products;
+        state.totalProducts = action.payload.totalProducts;
       })
       .addCase(getLimitProducts.rejected, (state, action) => {
         state.isLoading = false;
@@ -175,7 +176,10 @@ export const productSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         state.isSuccess = true;
-        state.products = action.payload;
+        state.products = action.payload.products;
+        state.totalProducts = action.payload.totalProducts;
+        state.page = action.payload.page;
+        state.limit = action.payload.limit;
       })
       .addCase(getProductByCatalog.rejected, (state, action) => {
         state.isLoading = false;

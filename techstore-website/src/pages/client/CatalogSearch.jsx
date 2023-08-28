@@ -8,13 +8,19 @@ import { useLocation } from "react-router-dom";
 import MoneyIcon from "@mui/icons-material/Money";
 import RangeSlider from "../../components/RangeSlider";
 import ColorLensIcon from "@mui/icons-material/ColorLens";
-import { searchProducts } from "../../features/product/productSlice";
+import {
+  searchProducts,
+  resetProductState,
+} from "../../features/product/productSlice";
 import Checkbox from "@mui/material/Checkbox";
+import { Pagination } from "antd";
 export default function CatalogSearch() {
   const dispatch = useDispatch();
   const location = useLocation();
-  const param = new URLSearchParams(location.search).get("keyword");
+  const keyword = new URLSearchParams(location.search).get("keyword");
   const products = useSelector((state) => state.product?.searchedProducts);
+  const [currentPage, setCurrentPage] = useState(products?.currentPage || 1);
+  const [limit, setLimit] = useState(products?.limit || 10);
 
   const [sortedProducts, setSortedProducts] = useState(
     products?.findProduct || []
@@ -37,8 +43,9 @@ export default function CatalogSearch() {
   }, [products]);
 
   useEffect(() => {
-    dispatch(searchProducts(param));
-  }, [param]);
+    dispatch(resetProductState());
+    dispatch(searchProducts({ keyword, currentPage, limit }));
+  }, [keyword]);
 
   var style = {
     height: "100%",
@@ -107,6 +114,12 @@ export default function CatalogSearch() {
     setIsFiltered(true);
     setIsOpen1(false);
     setFilterArray([1, filterArray[1]]);
+  };
+
+  const handleShowSizeChange = (current, size) => {
+    setLimit(size);
+    setCurrentPage(1);
+    dispatch(searchProducts({ keyword, currentPage: 1, limit: size }));
   };
   return (
     <div className=" flex flex-col m-6 container mx-auto gap-4" style={style}>
@@ -251,28 +264,38 @@ export default function CatalogSearch() {
       )}
 
       {products?.totalProducts > 0 && (
-        <div className=" flex flex-row p-4 flex-wrap gap-5">
-          {sortedProducts.map((product) => (
-            <div className=" w-[284px] xl:w-[296px] lg:w-[316px] md:w-[358px] sm:w-[294px] xsm:w-[270px]">
-              <CardProduct
-                key={product._id}
-                id={product._id}
-                name={product.title}
-                price={product.price}
-                brand={product.brand}
-                thumbnail={product.thumbnail}
-                description={product.description}
-                slug={product.slug}
-              />
-            </div>
-          ))}
-        </div>
-      )}
-      {products?.totalProducts > 0 && (
-        <div className=" flex items-center justify-center text-xl w-43 gap-2 bg-slate-300 p-4 hover:bg-slate-400 hover:duration-200 rounded-xl cursor-pointer self-center">
-          <span>Xem thêm</span>
-          <KeyboardArrowDownIcon />
-        </div>
+        <>
+          <div className=" flex flex-row p-4 flex-wrap gap-5">
+            {sortedProducts.map((product) => (
+              <div className=" w-[284px] xl:w-[296px] lg:w-[316px] md:w-[358px] sm:w-[294px] xsm:w-[270px]">
+                <CardProduct
+                  key={product._id}
+                  id={product._id}
+                  name={product.title}
+                  price={product.price}
+                  brand={product.brand}
+                  thumbnail={product.thumbnail}
+                  description={product.description}
+                  slug={product.slug}
+                />
+              </div>
+            ))}
+          </div>
+          <Pagination
+            className="flex justify-center"
+            current={currentPage}
+            total={products?.totalProducts || 0}
+            showTotal={(total) => `Total ${total} items`}
+            pageSize={limit}
+            showSizeChanger
+            onShowSizeChange={handleShowSizeChange}
+            showQuickJumper
+            onChange={(page) => {
+              setCurrentPage(page);
+              dispatch(searchProducts({ keyword, currentPage: page, limit }));
+            }}
+          />
+        </>
       )}
     </div>
   );

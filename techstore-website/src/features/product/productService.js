@@ -23,7 +23,8 @@ const getLimitProducts = async (limit) => {
       params += `${key}=${limit[key]}&`;
     }
   }
-  params += "fields=title,price,thumbnail,slug,feature,brand,color,category";
+  params +=
+    "fields=title,price,thumbnail,slug,feature,brand,color,category,totalrating";
   const response = await axios.get(`${base_url}product/${params}`);
 
   return response.data;
@@ -31,13 +32,15 @@ const getLimitProducts = async (limit) => {
 
 const getProductByCatalog = async (params) => {
   // const response = await axios.get(`${base_url}product/`, { params });
-  // console.log("service", params);
+  console.log("service", params);
   const response = await axios.get(`${base_url}product/${params}`);
 
   return response.data;
 };
 
-const searchProducts = async (query) => {
+const searchProducts = async (params) => {
+  const query = `?keyword=${params.keyword}&page=${params.currentPage}&limit=${params.limit}`;
+  console.log("query", query);
   const response = await axios.get(`${base_url}product/search/${query}`);
   console.log(response.data);
   return response.data;
