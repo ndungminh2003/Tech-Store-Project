@@ -15,8 +15,6 @@ import HeadphonesIcon from "@mui/icons-material/Headphones";
 import WatchIcon from "@mui/icons-material/Watch";
 import ConnectedTvIcon from "@mui/icons-material/ConnectedTv";
 import DevicesIcon from "@mui/icons-material/Devices";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { getCategoryBrands } from "../features/pcategory/pcategorySlice";
@@ -318,9 +316,6 @@ export default function Header() {
       if (key === "brand" && value.includes("Xem thêm tất cả")) return;
       param += `${key}=${value}&`;
     });
-    // param = `?category=${params}?brand=${param}&page=1&limit=10`;
-    // param += `page=1&limit=10`;
-    // param = param.replace(/\s+/g, "").toLowerCase();
     dispatch(resetProductState());
     navigate(`/catalog/${param}`);
   };
@@ -511,13 +506,6 @@ export default function Header() {
         </Link>
 
         <DropDown user={user} />
-
-        {/* <Link to='/login'>
-            <div className=' flex gap-2 items-center p-4 cursor-pointer capitalize text-xl hover:bg-gray-500 hover:rounded-lg hover:py-2 text-white xxsm:hidden xsm:hidden sm:hidden md:hidden'>        
-              <AccountCircleIcon />      
-              <span>login</span>
-            </div>
-          </Link> */}
       </div>
     </div>
   );

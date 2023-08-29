@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "antd";
-import { BiEdit } from "react-icons/bi";
-import { AiFillDelete } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { getReports, resetState } from "../../features/salesreport/reportSlice";
-import { Link } from "react-router-dom";
 import useGetColumnSearchProps from "../../hook/useSearchProps";
 
 const SalesReportList = () => {
@@ -38,10 +35,6 @@ const SalesReportList = () => {
       sorter: (a, b) => a.revenue - b.revenue,
       ...useGetColumnSearchProps("revenue", "Total Revenue"),
     },
-    // {
-    //   title: "Action",
-    //   dataIndex: "action",
-    // },
   ];
 
   useEffect(() => {
@@ -60,22 +53,6 @@ const SalesReportList = () => {
       noOrders: report[i].noOrders,
       sold: report[i].sold,
       revenue: report[i].totalRevenue,
-      // action: (
-      //   <div className=" flex">
-      //     <Link
-      //       to={`/admin/report/${report[i]._id}`}
-      //       className=" text-2xl text-red-600"
-      //     >
-      //       <BiEdit />
-      //     </Link>
-      //     <button
-      //       className="ms-3 text-2xl text-red-600 bg-transparent border-0"
-      //       onClick={() => showModal(report[i]._id)}
-      //     >
-      //       <AiFillDelete />
-      //     </button>
-      //   </div>
-      // ),
     });
   }
   return (

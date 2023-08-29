@@ -6,7 +6,6 @@ const CustomModal = (props) => {
   const { open, hideModal, performAction, title } = props;
   const [isOKButtonHovered, setIsOKButtonHovered] = useState(false);
 
-  // Custom styles for the OK button
   const okButtonStyles = {
     background: isOKButtonHovered ? "#40a9ff" : "#1890ff",
     borderColor: isOKButtonHovered ? "#40a9ff" : "#1890ff",

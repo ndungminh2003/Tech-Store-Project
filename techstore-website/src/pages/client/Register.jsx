@@ -1,7 +1,6 @@
 import { Checkbox } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
-import ReCAPTCHA from "react-google-recaptcha";
 import { Link, useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useFormik } from "formik";
@@ -50,7 +49,6 @@ const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isSubmited, setIsSubmited] = useState(false);
-  const TEST_SITE_KEY = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI";
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: initialValues,
@@ -192,9 +190,6 @@ const Register = () => {
               <label htmlFor="1" className="text-[#777] text-[13px]">
                 Tôi đồng ý với các điều khoản bảo mật cá nhân
               </label>
-            </div>
-            <div className="flex justify-center py-5">
-              <ReCAPTCHA sitekey={TEST_SITE_KEY} />
             </div>
 
             <button

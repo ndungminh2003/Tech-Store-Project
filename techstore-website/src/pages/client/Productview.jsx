@@ -3,8 +3,6 @@ import { Rating } from "@mui/material";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { ReactComponent as GiftBoxIcon } from "../../assets/giftbox.svg";
 import "../../assets/style/Productview.scss";
-
-import BoughtTogether from "../../components/BoughtTogether/BoughtTogether";
 import ProductInfor from "../../components/ProductInfor/ProductInfor";
 import ProductSimilar from "../../components/ProductSimilar/ProductSimilar";
 import ContentProduct from "../../components/ContentProduct/ContentProduct";
@@ -419,11 +417,6 @@ export default function ProductView() {
                       onClick={handleAddToCart}
                       className="rounded-[10px] border-[2px] border-[#1E293B] px-1"
                     >
-                      {/* <img
-                        src="https://cdn2.cellphones.com.vn/50x,webp,q70/media/wysiwyg/add-to-cart.png"
-                        alt=""
-                        className="w-[24px] h-[30px] object-contain m-auto"
-                      /> */}
                       <div>
                         <AddShoppingCartIcon sx={{ fontSize: "25px" }} />
                       </div>

@@ -58,7 +58,6 @@ const ProductList = () => {
   const showModal = (e) => {
     setOpen(true);
     setProductId(e);
-    console.log(e);
   };
   const hideModal = () => {
     setOpen(false);

@@ -177,7 +177,7 @@ export default function Widget() {
           {accessories.map((i, index) => (
             <Link
               key={index}
-              to="search-product"
+              to="#"
               className=" hover:scale-110 hover:duration-200"
             >
               <div className=" flex flex-col items-center justify-center w-48 h-48 xl:w-44 xl:h-40 lg:w-40 lg:h-44 md:w-36 md:h-36 sm:w-32 sm:h-32 xsm:w-28 xsm:h-28 bg-red-400 rounded-xl cursor-pointer">
@@ -203,7 +203,7 @@ export default function Widget() {
           {electronic_computer.map((i, index) => (
             <Link
               key={index}
-              to="search-product"
+              to="#"
               className=" hover:scale-110 hover:duration-200"
             >
               <div className=" flex flex-col items-center justify-center w-48 h-48 xl:w-44 xl:h-40 lg:w-40 lg:h-44 md:w-36 md:h-36 sm:w-32 sm:h-32 xsm:w-28 xsm:h-28 bg-orange-300 rounded-xl cursor-pointer">
@@ -229,7 +229,7 @@ export default function Widget() {
           {second_hand.map((i, index) => (
             <Link
               key={index}
-              to="search-product"
+              to="#"
               className=" hover:scale-110 hover:duration-200"
             >
               <div className=" flex flex-col items-center justify-center w-48 h-48 xl:w-44 xl:h-40 lg:w-40 lg:h-44 md:w-36 md:h-36 sm:w-32 sm:h-32 xsm:w-28 xsm:h-28 bg-sky-300 rounded-xl cursor-pointer">

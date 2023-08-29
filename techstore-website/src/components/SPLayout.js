@@ -4,21 +4,14 @@ import {
   AiOutlineDashboard,
   AiOutlineShoppingCart,
   AiOutlineUser,
-  AiOutlineBgColors,
 } from "react-icons/ai";
-import { LiaUserTieSolid } from "react-icons/lia";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { TbReportMoney } from "react-icons/tb";
-import { RiCouponLine } from "react-icons/ri";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-import { ImBlog } from "react-icons/im";
-import { IoIosNotifications } from "react-icons/io";
-import { FaClipboardList, FaBloggerB } from "react-icons/fa";
-import { SiBrandfolder } from "react-icons/si";
-import { BiCategoryAlt } from "react-icons/bi";
+import { FaClipboardList } from "react-icons/fa";
 import { Layout, Menu, theme } from "antd";
 import { logout } from "../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -47,7 +40,7 @@ const SPLayout = () => {
     navigate("/salesperson-login");
   };
   return (
-    <Layout /* onContextMenu={(e) => e.preventDefault()} */ className="admin">
+    <Layout className="admin">
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo">
           <h2 className="text-white text-2xl text-center py-3 mb-0">

@@ -5,7 +5,6 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
-import { validatePayment } from "../../features/user/paymentService";
 import { useDispatch, useSelector } from "react-redux";
 import { formatNumberWithDots } from "../../utils/formatNumber";
 import {
@@ -25,13 +24,6 @@ function PaymentSuccess() {
   createdOrder = createdOrder !== undefined ? createdOrder : {};
 
   useEffect(() => {
-    // validatePayment(history.search)
-    //   .then((data) => {
-    //     setStatus("success");
-    //   })
-    //   .catch(() => {
-    //     setStatus("failed");
-    //   });
     dispatch(
       updatePaymentStatus({
         id: createdOrder._id,

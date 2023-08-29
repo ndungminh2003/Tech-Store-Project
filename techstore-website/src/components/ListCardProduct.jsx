@@ -9,27 +9,6 @@ import "swiper/css/navigation";
 import "swiper/css/grid";
 import { useSelector } from "react-redux";
 
-const brands = [
-  {
-    name: "Apple",
-  },
-  {
-    name: "Samsung",
-  },
-  {
-    name: "Oppo",
-  },
-  {
-    name: "Xiaomi",
-  },
-  {
-    name: "Vivo",
-  },
-  {
-    name: "Nokia",
-  },
-];
-
 export default function ListCardProduct(props) {
   const [products, setProducts] = useState(props.productState);
   const [brand, setBrand] = useState("");
@@ -51,7 +30,6 @@ export default function ListCardProduct(props) {
   wishlist = wishlist || [];
   const productIdsInWishlist = wishlist.map((product) => product._id);
   useEffect(() => {
-    // setProducts depends on props.type
     let productList = [];
     if (brand === "" || brand === "ALL") {
       productList = props.productState;
@@ -144,77 +122,6 @@ export default function ListCardProduct(props) {
             </SwiperSlide>
           ))}
         </Swiper>
-
-        {/* <Swiper
-          slidesPerView={1}
-          spaceBetween={0}
-          navigation={true}
-          loop={true}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-          breakpoints={{
-            600: {
-              slidesPerView: 2,
-              spaceBetween: 10,
-            },
-            640: {
-              slidesPerView: 2,
-              spaceBetween: 10,
-            },
-            768: {
-              slidesPerView: 3,
-              spaceBetween: 10,
-            },
-            1024: {
-              slidesPerView: 3,
-              spaceBetween: 10,
-            },
-
-            1280: {
-              slidesPerView: 4,
-              spaceBetween: 10,
-            },
-            1536: {
-              slidesPerView: 5,
-              spaceBetween: 10,
-            },
-          }}
-          modules={[Autoplay, Navigation]}
-          className="mySwiper"
-        >
-          <SwiperSlide>
-            <CardProduct />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CardProduct />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CardProduct />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CardProduct />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CardProduct />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CardProduct />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CardProduct />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CardProduct />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CardProduct />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CardProduct />
-          </SwiperSlide>
-        </Swiper> */}
       </div>
     </div>
   );

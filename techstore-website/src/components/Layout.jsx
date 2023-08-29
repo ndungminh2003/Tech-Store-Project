@@ -4,7 +4,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "./Header";
 import Footer from "./Footer";
-import Support from "./Support";
 import Ver2_Support from "./Ver2_Support";
 
 export default function Layout() {
@@ -26,8 +25,7 @@ export default function Layout() {
       <Footer />
 
       <div className=" fixed bottom-[-6px] right-0 z-50 xxsm:hidden xsm:hidden sm:hidden md:hidden lg:bottom-[87px]">
-        {/* <Support /> */}
-        <Ver2_Support/>
+        <Ver2_Support />
       </div>
     </div>
   );

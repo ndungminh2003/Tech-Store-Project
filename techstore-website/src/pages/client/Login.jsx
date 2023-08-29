@@ -1,15 +1,12 @@
-import { Checkbox } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { login, resetAuthState } from "../../features/auth/authSlice";
 import * as Yup from "yup";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { toast } from "react-toastify";
-import GridLoader from "react-spinners/GridLoader";
 import RingLoader from "react-spinners/RingLoader";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const initialValues = {
   email: "",
@@ -24,7 +21,6 @@ const loginValidation = Yup.object({
 });
 
 const Login = () => {
-  const TEST_SITE_KEY = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI";
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isSubmited, setIsSubmited] = useState(false);
@@ -40,7 +36,6 @@ const Login = () => {
       setIsSubmited(true);
       formik.resetForm();
       setIsEmailFilled(false);
-      // navigate(from, { replace: true });
     },
   });
 
@@ -57,13 +52,9 @@ const Login = () => {
       (user?.role === undefined || user?.role !== "user")
     ) {
       setIsSubmited(false);
-      // navigate("/login");
     } else if (user?.role !== undefined) {
       navigate(-1);
     }
-    // else {
-    //   navigate("/login");
-    // }
   }, [user, isError, isSuccess, isLoading]);
 
   const handleForgotPasswordClick = () => {
@@ -84,12 +75,11 @@ const Login = () => {
             left: 0,
             width: "100%",
             height: "100%",
-            backgroundColor:
-              "rgba(0, 0, 0, 0.5)" /* Adjust the transparency as needed */,
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            zIndex: 9999 /* Ensure the overlay is on top */,
+            zIndex: 9999,
           }}
           className="overlay"
         >
@@ -98,10 +88,10 @@ const Login = () => {
       )}
 
       <div className="py-[10px] flex w-full text-center">
-        {/* <ArrowBackIcon
+        <ArrowBackIcon
           className="justify-start !text-[30px] cursor-pointer"
           onClick={() => navigate("/")}
-        /> */}
+        />
         <h1 className="m-auto text-[#4a4a4a] text-[22px] font-bold">
           Đăng nhập Techstore Member
         </h1>
@@ -159,10 +149,6 @@ const Login = () => {
                   Quên mật khẩu?
                 </p>
               </div>
-            </div>
-
-            <div className="flex justify-center py-5">
-              <ReCAPTCHA sitekey={TEST_SITE_KEY} />
             </div>
 
             <button

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { QrCodeUrl } from "../../utils/QRCodeUrl";
 
 const BankTransferInfo = () => {
   const [seconds, setSeconds] = useState(300);
@@ -30,7 +29,6 @@ const BankTransferInfo = () => {
   };
 
   useEffect(() => {
-    // Clear the "Copy successful" message after 3 seconds
     if (copySuccess) {
       const timeout = setTimeout(() => {
         setCopySuccess(false);

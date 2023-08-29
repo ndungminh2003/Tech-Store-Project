@@ -5,8 +5,6 @@ import LinearProgress, {
   linearProgressClasses,
 } from "@mui/material/LinearProgress";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import "../../assets/style/BoxReview.scss";
 import { rating } from "../../features/product/productSlice";
 import { useSelector, useDispatch } from "react-redux";

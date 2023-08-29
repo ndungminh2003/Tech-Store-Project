@@ -61,7 +61,7 @@ const AddCoupon = () => {
     discount: coupon.discount,
     expiry: changeDateFormat(coupon.expiry),
   };
-  console.log(coupon);
+
   useEffect(() => {
     if (getCouponId !== undefined) {
       dispatch(getACoupon(getCouponId));

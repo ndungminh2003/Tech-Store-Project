@@ -8,7 +8,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { formatNumberWithDots } from "../utils/formatNumber";
@@ -66,6 +66,21 @@ export default function CardProduct(props) {
     if (foundIndex > -1) {
       cart.products[foundIndex].count += 1;
     } else {
+      console.log("productToAdd", {
+        _id: props.id,
+        color: props.color.length > 0 ? props.color[0] : "",
+        name: props.name,
+        slug: props.slug,
+        thumbnail: props.thumbnail,
+        feature:
+          props?.feature !== undefined &&
+          Array.isArray(props.feature) &&
+          props.feature.length > 0
+            ? props.feature[props.feature.length - 1].name
+            : "",
+        price: props.price,
+        count: 1,
+      });
       const productToAdd = {
         _id: props.id,
         color: props.color.length > 0 ? props.color[0] : "",
@@ -73,8 +88,10 @@ export default function CardProduct(props) {
         slug: props.slug,
         thumbnail: props.thumbnail,
         feature:
-          props.feature !== undefined && props.feature.length > 0
-            ? props.feature[props.feature.length - 1].name
+          props?.feature !== undefined &&
+          Array.isArray(props.feature) &&
+          props.feature.length > 0
+            ? props.feature[props.feature?.length - 1].name
             : "",
         price: props.price,
         count: 1,

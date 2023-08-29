@@ -57,7 +57,6 @@ const EditOrder = () => {
       console.log(values);
       dispatch(updateOrder(values));
       setIsSubmitted(true);
-      // dispatch(resetState());
     },
   });
 
@@ -481,7 +480,6 @@ const EditOrder = () => {
               <h1 className="text-lg text-[#071437] font-semibold">
                 Shipping Address
               </h1>
-              {/* <div className="grid grid-cols-2 gap-5"> */}
               <div className="flex flex-col">
                 <label
                   htmlFor="address"
@@ -499,89 +497,6 @@ const EditOrder = () => {
                   required
                 />
               </div>
-              {/* <div className="flex flex-col">
-                  <label
-                    htmlFor=""
-                    className="text-[#252F4A] font-semibold mb-[7px]"
-                  >
-                    Address Line 2
-                  </label>
-                  <input
-                    placeholder="Address Line 2"
-                    type="text"
-                    name=""
-                    defaultValue="1/23 Hastings Road"
-                    className="border border-[#DBDFE9] rounded-md px-[13px] py-[10px] text-[#4B5675] font-medium text-base outline-none"
-                  />
-                </div> */}
-              {/* </div> */}
-
-              {/* <div className="grid grid-cols-3 gap-5">
-                <div className="flex flex-col">
-                  <label
-                    htmlFor=""
-                    className="text-[#252F4A] font-semibold mb-[7px]"
-                  >
-                    City
-                  </label>
-                  <input
-                    type="text"
-                    name=""
-                    defaultValue="Melbourne"
-                    className="border border-[#DBDFE9] rounded-md px-[13px] py-[10px] text-[#4B5675] font-medium text-base outline-none"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <label
-                    htmlFor=""
-                    className="text-[#252F4A] font-semibold mb-[7px]"
-                  >
-                    Postcode
-                  </label>
-                  <input
-                    type="text"
-                    name=""
-                    defaultValue="3000"
-                    className="border border-[#DBDFE9] rounded-md px-[13px] py-[10px] text-[#4B5675] font-medium text-base outline-none"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <label
-                    htmlFor=""
-                    className="text-[#252F4A] font-semibold mb-[7px]"
-                  >
-                    State
-                  </label>
-                  <input
-                    type="text"
-                    name=""
-                    defaultValue="1/23 Hastings Road"
-                    className="border border-[#DBDFE9] rounded-md px-[13px] py-[10px] text-[#4B5675] font-medium text-base outline-none"
-                  />
-                </div>
-              </div>
-              <div className="flex flex-col">
-                <label
-                  htmlFor=""
-                  className="text-[#252F4A] font-semibold mb-[7px]"
-                >
-                  Country
-                </label>
-                <Select
-                  defaultValue="standard_rate"
-                  style={{ width: "100%" }}
-                  onChange={handleChange}
-                  options={[
-                    { value: "na", label: "N/A - Virtual Product" },
-                    { value: "standard_rate", label: "Standard Rate" },
-                    { value: "express_rate", label: "Express Rate" },
-                    {
-                      value: "speed_overnight_rate",
-                      label: "Speed Overnight Rate",
-                    },
-                  ]}
-                />
-              </div> */}
             </div>
           </div>
 

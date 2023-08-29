@@ -328,9 +328,6 @@ export default function Banner() {
       if (key === "brand" && value.includes("Xem thêm tất cả")) return;
       param += `${key}=${value}&`;
     });
-    // param = `?category=${params}?brand=${param}&page=1&limit=10`;
-    // param += `page=1&limit=10`;
-    // param = param.replace(/\s+/g, "").toLowerCase();
     dispatch(resetProductState());
     navigate(`/catalog/${param}`);
   };
@@ -338,8 +335,6 @@ export default function Banner() {
   const handleHotClick = (product) => {
     navigate(`/search-product/?keyword=${product}`);
   };
-
-  //useState Slides
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -404,7 +399,6 @@ export default function Banner() {
                   {hoveredElement.brands.title}
                 </div>
                 {hoveredElement.brands.brand.map((b, index) => (
-                  // <Link to="search-product">
                   <div
                     key={index}
                     className=" cursor-pointer text-gray-600 hover:text-red-500"
@@ -414,7 +408,6 @@ export default function Banner() {
                   >
                     {b}
                   </div>
-                  // </Link>
                 ))}
               </div>
               <div className=" flex flex-col gap-2 text-lg">
@@ -422,7 +415,6 @@ export default function Banner() {
                   {hoveredElement.price.title}
                 </div>
                 {hoveredElement.price.range.map((b, index) => (
-                  // <Link key={index} to="search-product">
                   <div
                     key={index}
                     className=" cursor-pointer text-gray-600 hover:text-red-500"
@@ -436,7 +428,6 @@ export default function Banner() {
                   >
                     {b}
                   </div>
-                  // </Link>
                 ))}
               </div>
 

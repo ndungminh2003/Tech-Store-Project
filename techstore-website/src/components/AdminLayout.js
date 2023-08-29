@@ -179,38 +179,6 @@ const AdminLayout = () => {
               icon: <TbReportMoney style={{ fontSize: "24px" }} />,
               label: "Sales Reports",
             },
-            // {
-            //   key: "blogs",
-            //   icon: <FaBloggerB style={{ fontSize: "24px" }} />,
-            //   label: "Blogs",
-            //   children: [
-            //     {
-            //       key: "blog",
-            //       icon: <ImBlog style={{ fontSize: "24px" }} />,
-            //       label: "Add Blog",
-            //     },
-            //     {
-            //       key: "blog-list",
-            //       icon: <FaBloggerB style={{ fontSize: "24px" }} />,
-            //       label: "Blog List",
-            //     },
-            //     {
-            //       key: "blog-category",
-            //       icon: <ImBlog style={{ fontSize: "24px" }} />,
-            //       label: "Add Blog Category",
-            //     },
-            //     {
-            //       key: "blog-category-list",
-            //       icon: <FaBloggerB style={{ fontSize: "24px" }} />,
-            //       label: "Blog Category List",
-            //     },
-            //   ],
-            // },
-            // {
-            //   key: "enquiries",
-            //   icon: <FaClipboardList style={{ fontSize: "24px" }} />,
-            //   label: "Enquiries",
-            // },
             {
               key: "logout",
               icon: <RiLogoutBoxRLine style={{ fontSize: "24px" }} />,

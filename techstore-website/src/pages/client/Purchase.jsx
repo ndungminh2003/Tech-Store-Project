@@ -154,25 +154,6 @@ export default function Purchase() {
                     </div>
                   </div>
                 ))}
-                {/* <div className=" flex text-xl font-bold flex-row-reverse">
-                  <span className=" flex items-center">
-                    <SecurityIcon className=" mr-2" /> Tổng tiền:{" "}
-                    <span className=" text-red-700 text-2xl ml-2">
-                      {formatNumberWithDots(order.total)}₫
-                    </span>
-                  </span>
-                </div>
-                <div className=" flex text-xl font-bold flex-row-reverse">
-                  <span className=" flex items-center">
-                    <SecurityIcon className=" mr-2" /> Giảm giá:{" "}
-                    <span className=" text-red-700 text-2xl ml-2">
-                      {formatNumberWithDots(
-                        order.totalAfterDiscount - order.total
-                      )}
-                      ₫
-                    </span>
-                  </span>
-                </div> */}
                 <div className=" flex text-xl font-bold flex-row-reverse">
                   <span className=" flex items-center">
                     <SecurityIcon className=" mr-2" /> Thành tiền:{" "}

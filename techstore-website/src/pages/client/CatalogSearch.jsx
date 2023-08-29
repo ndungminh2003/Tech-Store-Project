@@ -277,6 +277,9 @@ export default function CatalogSearch() {
                   thumbnail={product.thumbnail}
                   description={product.description}
                   slug={product.slug}
+                  totalrating={product.totalrating}
+                  color={product.color}
+                  feature={product.feature}
                 />
               </div>
             ))}

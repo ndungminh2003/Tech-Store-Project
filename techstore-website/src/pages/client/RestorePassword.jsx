@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import MaskedEmail from "./MaskedEmail";
 import { sendOTP } from "../../features/auth/authSlice";
 import { toast } from "react-toastify";
 const RestorePassword = () => {
-  const TEST_SITE_KEY = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI";
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -101,9 +99,6 @@ const RestorePassword = () => {
               </strong>
             </div>
           </div>
-        </div>
-        <div className="pl-[140px] capcha">
-          <ReCAPTCHA sitekey={TEST_SITE_KEY} />
         </div>
         <div className="res-btn">
           <button

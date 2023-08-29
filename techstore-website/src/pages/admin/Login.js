@@ -35,10 +35,6 @@ const AdminLogin = () => {
 
   const { user, isError, isSuccess, isLoading, message } = authState;
   useEffect(() => {
-    // localStorage.clear();
-    // localStorage.removeItem("token");
-    // localStorage.removeItem("user");
-    // dispatch(resetAuthState());
     dispatch(resetState());
   }, []);
 

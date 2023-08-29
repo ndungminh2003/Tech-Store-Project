@@ -118,11 +118,11 @@ export default function CardProduct() {
                     <div className="flex items-center justify-between text-[15px]">
                       <div className="flex items-center gap-1">
                         <p className="text-[#d70018] font-bold">
-                          {formatNumberWithDots(item.price * item.count)} ₫
+                          {formatNumberWithDots(item.price)} ₫
                         </p>
                         <p className="text-[#777] text-sm line-through">
                           {/* {item.originalPrice} ₫ */}
-                          {formatNumberWithDots(item.price * item.count)} ₫
+                          {formatNumberWithDots(item.price)} ₫
                         </p>
                       </div>
                       <div className="flex items-center gap-1">

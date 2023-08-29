@@ -1,7 +1,6 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CallIcon from "@mui/icons-material/Call";
-import NotesIcon from "@mui/icons-material/Notes";
 import HomeIcon from "@mui/icons-material/Home";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useLocation } from "react-router-dom";
@@ -87,11 +86,6 @@ export default function Footer() {
             <span>Trang chủ</span>
           </div>
         </Link>
-
-        {/* <div className=' flex flex-col gap-2 items-center p-4 cursor-pointer capitalize xxsm:text-sm xsm:text-sm sm:text-sm md:text-lg hover:bg-gray-500 hover:rounded-lg hover:py-2 text-white'>
-          <NotesIcon />
-          <span>catalog</span>
-        </div> */}
 
         <Link to="/wishlist">
           <div className=" flex flex-col gap-2 items-center p-4 cursor-pointer capitalize xxsm:text-sm xsm:text-sm sm:text-sm md:text-lg hover:bg-gray-500 hover:rounded-lg hover:py-2 text-white ">

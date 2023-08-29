@@ -235,9 +235,12 @@ export default function Catalog() {
               name={product.title}
               price={product.price}
               brand={product.brand}
+              color={product.color}
+              feature={product.feature}
               thumbnail={product.thumbnail}
               description={product.description}
               slug={product.slug}
+              totalrating={product.totalrating}
             />
           </div>
         ))}
