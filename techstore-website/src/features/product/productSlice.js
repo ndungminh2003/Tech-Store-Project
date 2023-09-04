@@ -122,6 +122,19 @@ export const getRelatedProduct = createAsyncThunk(
   }
 );
 
+export const getProductList = createAsyncThunk(
+  "product/get-product-list",
+  async (params, thunkAPI) => {
+    try {
+      // console.log("Hello");
+      // const response =
+      return await productService.getLimitProducts(params);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 export const resetState = createAction("Reset_all");
 export const resetProductState = createAction("product/resetState");
 
@@ -302,6 +315,21 @@ export const productSlice = createSlice({
         state.relatedProduct = action.payload;
       })
       .addCase(getRelatedProduct.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
+      })
+      .addCase(getProductList.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getProductList.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state[action.meta.arg.category] = action.payload;
+      })
+      .addCase(getProductList.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;

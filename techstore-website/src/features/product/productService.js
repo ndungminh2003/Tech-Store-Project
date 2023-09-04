@@ -31,8 +31,6 @@ const getLimitProducts = async (limit) => {
 };
 
 const getProductByCatalog = async (params) => {
-  // const response = await axios.get(`${base_url}product/`, { params });
-  console.log("service", params);
   const response = await axios.get(`${base_url}product/${params}`);
 
   return response.data;

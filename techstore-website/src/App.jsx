@@ -8,70 +8,70 @@ import {
 import React from "react";
 
 // client
-import Layout from "./components/Layout";
-import Home from "./pages/client/Home";
-import Contact from "./pages/client/Contact";
-import ProductView from "./pages/client/Productview";
-import Catalog from "./pages/client/Catalog";
-import Cart from "./pages/client/Cart";
-import PaymentInfo from "./pages/client/PaymentInfor";
-import Voucher from "./pages/client/Voucher";
-import Payment from "./pages/client/Payment";
-import PaymentSuccess from "./pages/client/PaymentSuccess";
-import PaymentFailed from "./pages/client/PaymentFailed";
-import WishList from "./pages/client/WishList";
-import RestorePassword from "./pages/client/RestorePassword";
-import Otp from "./pages/client/Otp";
-import RegisteredOTP from "./pages/client/RegisteredOTP";
-import CatalogSearch from "./pages/client/CatalogSearch";
-import CreateNewPassword from "./pages/client/CreateNewPassword";
-import Purchase from "./pages/client/Purchase";
-import Login from "./pages/client/Login";
-import Register from "./pages/client/Register";
-import User from "./pages/client/User";
-import Edit from "./pages/client/EditProfile";
-import UserHome from "./pages/client/UserHome";
-import PageNotFound from "./pages/client/PageNotFound";
-import OrderDetail from "./pages/client/OrderDetail";
+import LayoutUser from "./components/layout/LayoutUser";
+import Home from "./views/client/Home";
+import Contact from "./views/client/Contact";
+import ProductDetail from "./views/client/ProductDetail";
+import ResultCatalog from "./views/client/ResultCatalog";
+import Cart from "./views/client/Cart";
+import PaymentInfo from "./views/client/PaymentInfor";
+import Voucher from "./views/client/Voucher";
+import Payment from "./views/client/Payment";
+import PaymentSuccess from "./views/client/PaymentSuccess";
+import PaymentFailed from "./views/client/PaymentFailed";
+import WishList from "./views/client/WishList";
+import ForgotPassword from "./views/client/ForgotPassword";
+import ForgotPasswordOtp from "./views/client/ForgotPasswordOtp";
+import RegisteredOTP from "./views/client/RegisteredOTP";
+import ResultSearch from "./views/client/ResultSearch";
+import ChangePassword from "./views/client/ChangePassword";
+import OrderHistory from "./views/client/OrderHistory";
+import Login from "./views/client/Login";
+import Register from "./views/client/Register";
+import UserHomeNavbar from "./views/client/UserHomeNavbar";
+import EditProfile from "./views/client/EditProfile";
+import UserHome from "./views/client/UserHome";
+import PageNotFound from "./views/client/PageNotFound";
+import OrderDetail from "./views/client/OrderDetail";
 
 // admin
-import AddCustomer from "./pages/admin/AddCustomer";
-import AddSalesperson from "./pages/admin/AddSalesperson";
-import SalespersonList from "./pages/admin/SalespersonList";
-import Dashboard from "./pages/admin/Dashboard";
-import CustomerList from "./pages/admin/CustomerList";
-import AddProduct from "./pages/admin/AddProduct";
-import ProductList from "./pages/admin/ProductList";
-import AddCategory from "./pages/admin/AddCategory";
-import CategoryList from "./pages/admin/CategoryList";
-import AddBrand from "./pages/admin/AddBrand";
-import BrandList from "./pages/admin/BrandList";
-import AddColor from "./pages/admin/AddColor";
-import ColorList from "./pages/admin/ColorList";
-import AddCoupon from "./pages/admin/AddCoupon";
-import CouponList from "./pages/admin/CouponList";
-import Orders from "./pages/admin/Orders";
-import ForgotPassword from "./pages/admin/ForgotPassword";
-import ResetPassword from "./pages/admin/ResetPassword";
-import AdminLogin from "./pages/admin/Login";
-import AdminLayout from "./components/AdminLayout";
-import CustomerDetails from "./pages/admin/CustomerDetails";
-import EditOrder from "./pages/admin/EditOrder";
-import ReportList from "./pages/admin/SalesReportList";
+import AddCustomer from "./views/admin/AddCustomer";
+import AddSalesperson from "./views/admin/AddSalesperson";
+import SalespersonList from "./views/admin/SalespersonList";
+import Dashboard from "./views/admin/Dashboard";
+import CustomerList from "./views/admin/CustomerList";
+import AddProduct from "./views/admin/AddProduct";
+import ProductList from "./views/admin/ProductList";
+import AddCategory from "./views/admin/AddCategory";
+import CategoryList from "./views/admin/CategoryList";
+import AddBrand from "./views/admin/AddBrand";
+import BrandList from "./views/admin/BrandList";
+import AddColor from "./views/admin/AddColor";
+import ColorList from "./views/admin/ColorList";
+import AddCoupon from "./views/admin/AddCoupon";
+import CouponList from "./views/admin/CouponList";
+import Orders from "./views/admin/Orders";
+import AdminForgotPassword from "./views/admin/ForgotPassword";
+import ResetPassword from "./views/admin/ResetPassword";
+import AdminLogin from "./views/admin/Login";
+import AdminLayout from "./components/layout/LayoutAdmin";
+import CustomerDetails from "./views/admin/CustomerDetails";
+import EditOrder from "./views/admin/EditOrder";
+import ReportList from "./views/admin/SalesReportList";
 // salesperson
-import SPLayout from "./components/SPLayout";
-import SPDashboard from "./pages/salesperson/Dashboard";
-import SPAddCustomer from "./pages/salesperson/AddCustomer";
-import SPCustomerList from "./pages/salesperson/CustomerList";
-import SPAddProduct from "./pages/salesperson/AddProduct";
-import SPProductList from "./pages/salesperson/ProductList";
-import SPOrders from "./pages/salesperson/Orders";
-import SPLogin from "./pages/salesperson/Login";
-import SPAddReport from "./pages/salesperson/AddSalesReport";
-import SPReportList from "./pages/salesperson/SalesReportList";
-import ChatSupport from "./pages/salesperson/ChatEngine";
-import SPResetPassword from "./pages/salesperson/ResetPassword";
-import SPForgotPassword from "./pages/salesperson/ForgotPassword";
+import SPLayout from "./components/layout/LayoutSP";
+import SPDashboard from "./views/salesperson/Dashboard";
+import SPAddCustomer from "./views/salesperson/AddCustomer";
+import SPCustomerList from "./views/salesperson/CustomerList";
+import SPAddProduct from "./views/salesperson/AddProduct";
+import SPProductList from "./views/salesperson/ProductList";
+import SPOrders from "./views/salesperson/Orders";
+import SPLogin from "./views/salesperson/Login";
+import SPAddReport from "./views/salesperson/AddSalesReport";
+import SPReportList from "./views/salesperson/SalesReportList";
+import ChatSupport from "./views/salesperson/ChatEngine";
+import SPResetPassword from "./views/salesperson/ResetPassword";
+import SPForgotPassword from "./views/salesperson/ForgotPassword";
 // protected route
 import RequireAuth from "./components/RequireAuth";
 
@@ -79,31 +79,31 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route element={<RequireAuth allowedRoles="" />}>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<LayoutUser />}>
           <Route index element={<Home />} />
-          <Route path="product-view/:slug" element={<ProductView />} />
-          <Route path="search-product" element={<CatalogSearch />} />
+          <Route path="product-view/:slug" element={<ProductDetail />} />
+          <Route path="search-product" element={<ResultSearch />} />
           <Route path="contact" element={<Contact />} />
           <Route element={<RequireAuth allowedRoles="user" />}>
             <Route path="wishlist" element={<WishList />} />
-            <Route path="/user" element={<User />}>
+            <Route path="/user" element={<UserHomeNavbar />}>
               <Route index element={<UserHome />} />
-              <Route path="order" element={<Purchase />} />
+              <Route path="order" element={<OrderHistory />} />
               <Route path="order/:id" element={<OrderDetail />} />
-              <Route path="edit" element={<Edit />} />
+              <Route path="edit" element={<EditProfile />} />
             </Route>
           </Route>
-          <Route path="catalog" element={<Catalog />} />
+          <Route path="catalog" element={<ResultCatalog />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/cart/payment-info" element={<PaymentInfo />} />
           <Route path="/cart/payment" element={<Payment />} />
           <Route path="/cart/payment/success" element={<PaymentSuccess />} />
           <Route path="/cart/payment/failed" element={<PaymentFailed />} />
           <Route path="/cart/voucher" element={<Voucher />} />
-          <Route path="forgot-password-otp" element={<Otp />} />
+          <Route path="forgot-password-otp" element={<ForgotPasswordOtp />} />
           <Route path="otp" element={<RegisteredOTP />} />
-          <Route path="forgot-password" element={<RestorePassword />} />
-          <Route path="change-password" element={<CreateNewPassword />} />
+          <Route path="forgot-password" element={<ForgotPassword />} />
+          <Route path="change-password" element={<ChangePassword />} />
           <Route path="register" element={<Register />} />
         </Route>
       </Route>
@@ -113,7 +113,7 @@ const router = createBrowserRouter(
 
       <Route path="login" element={<Login />} />
       <Route path="/admin-login" element={<AdminLogin />} />
-      <Route path="/admin/forgot-password" element={<ForgotPassword />} />
+      <Route path="/admin/forgot-password" element={<AdminForgotPassword />} />
       <Route path="/admin/reset-password" element={<ResetPassword />} />
       <Route path="/salesperson-login" element={<SPLogin />} />
       <Route
@@ -165,8 +165,6 @@ const router = createBrowserRouter(
           <Route path="order/edit-order/:id" element={<EditOrder />} />
           <Route path="order-list" element={<SPOrders />} />
           <Route path="order/:id" element={<EditOrder />} />
-          <Route path="forgot-password" element={<ForgotPassword />} />
-          <Route path="reset-password" element={<ResetPassword />} />
           <Route path="report-list/" element={<SPReportList />} />
           <Route path="report/" element={<SPAddReport />} />
           <Route path="report/:id" element={<SPAddReport />} />
